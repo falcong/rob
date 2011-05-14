@@ -4,14 +4,18 @@ import java.util.HashSet;
 
 import rob.Problem;
 import rob.Solution;
+import rob.Supplier;
 
 
 
 public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	protected Problem problem;
+	protected Supplier[] suppliersList;
 	public AdvancedNeighbourGenerator2(Problem problem) {
 		this.problem=problem;
+		suppliersList=problem.getSuppliers().clone();
 	}
+	
 	/*
 	 * Nella soluzione che riceve in ingresso individua un fornitore casuale lo fa passare
 	 * alla successiva fascia di sconto (facendo in modo per quanto possibile che negli altri
@@ -23,8 +27,8 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	public Solution generate(Solution currentSolution, int distance){
 		int numSuppliers=problem.getDimension();
 		Solution solution = new Solution(currentSolution);
-		//supplier1 = fornitore a cui far aumentare di 1 la fascia di sconto attiva
 		int startSupplier = findTargetSupplier(solution);
+		
 		boolean relaxed=false;
 		boolean done=false;
 		int s=startSupplier;
@@ -144,6 +148,7 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	@Override
 	public void setProblem(Problem problem) {
 		this.problem=problem;
+		suppliersList=problem.getSuppliers().clone();
 	}
 	
 	/*
@@ -216,4 +221,5 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 		System.out.println(g);
 		return true;
 	}
+	
 }

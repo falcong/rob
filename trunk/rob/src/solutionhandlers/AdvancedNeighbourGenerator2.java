@@ -223,3 +223,4 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	}
 	
 }
+//modifica claudio

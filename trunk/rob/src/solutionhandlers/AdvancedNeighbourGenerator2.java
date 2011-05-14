@@ -5,6 +5,8 @@ import java.util.HashSet;
 import rob.Problem;
 import rob.Solution;
 
+/*provaprova*/
+
 public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	protected Problem problem;
 	public AdvancedNeighbourGenerator2(Problem problem) {

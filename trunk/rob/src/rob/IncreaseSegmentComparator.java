@@ -2,9 +2,13 @@ package rob;
 
 import java.util.Comparator;
 
-public class ImprovableComparator implements Comparator<Supplier> {
+public class IncreaseSegmentComparator implements Comparator<Supplier> {
 
 	Solution solution;
+	
+	public IncreaseSegmentComparator(Solution solution) {
+		this.solution = solution;
+	}
 	
 	@Override
 	public int compare(Supplier s1, Supplier s2) throws Error {

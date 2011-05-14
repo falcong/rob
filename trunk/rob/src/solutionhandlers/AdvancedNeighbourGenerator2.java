@@ -1,7 +1,8 @@
 package solutionhandlers;
 
-import java.util.HashSet;
+import java.util.Arrays;
 
+import rob.IncreaseSegmentComparator;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
@@ -26,122 +27,29 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	@Override
 	public Solution generate(Solution currentSolution, int distance){
 		int numSuppliers=problem.getDimension();
-		Solution solution = new Solution(currentSolution);
-		int startSupplier = findTargetSupplier(solution);
-		//Ciao
+		orderSuppliersByGapToNextSegment(currentSolution);
+		Solution solution=null;
 		boolean relaxed=false;
 		boolean done=false;
-		int s=startSupplier;
-		while(!done) {
-			done = moveQuantity(s, solution,relaxed);
-			s = s%numSuppliers+1;
-			if(s==startSupplier){
+		for(int tS=1;tS<=numSuppliers && !done;tS++){
+			//resetto la soluzione perché il target è cambiato
+			solution = new Solution(currentSolution);
+			done = moveQuantity(suppliersList[tS].getId(), solution,relaxed);
+			if(tS==numSuppliers && !done){
 				//ho fatto il giro, rilasso le condizioni
 				relaxed=true;
+				//resetto s (a zero, perchè il fine ciclo mi riporterà a 1)
+				tS=0;
 				System.err.println("[AdvNG2] Warning: rilasso le condizioni.");
 			}
 		}
-		
-
-		
 		return solution;
 	}
 
 	
-	/*
-	 * trova un fornitore presso cui aumentare gli acquisti
-	 */
-	private int findTargetSupplier(Solution solution){
-		int target = findSupplierImproveable(solution);
-		if(target == 0){
-			target = findSupplierNotSaturated(solution);
-			if(target == 0){
-				throw new Error("Situazione anomala: tutti i fornitori sono saturi.\n" +
-						"Il programma verrà terminato.\n");
-			}
-		}
-		
-		return target;
-	}
-	
-	
-	public int findTargetSupplierPublic(Solution solution){
-		return findTargetSupplier(solution);
-	}
-	
-	
-	/*
-	 * trova un fornitore la cui fascia di sconto attiva sia aumentabile di 1
-	 */
-	private int findSupplierImproveable(Solution solution) {
-		int numSuppliers = problem.getDimension();
-		
-		int startSupplier = (int)(Math.random()*numSuppliers+1);
-		int supplier = startSupplier;
-		
-		boolean terminate = false;
-		do{
-			//activatedSegment =  fascia di sconto attiva in supplier1
-			int totalQuantityBought = solution.totalQuantityBought(supplier);
-			int activatedSegment = problem.getSupplier(supplier).activatedSegment(totalQuantityBought);
-			//massima fascia di sconto attivabile in supplier1
-			int maxSegmentActivable = problem.maxSegmentActivable(supplier);
-			
-			//controllo che in supplier1 sia possibile far aumentare di 1 la fascia di sconto attiva;
-			if(activatedSegment<maxSegmentActivable){
-				terminate = true;
-			}else{
-				if(supplier==numSuppliers){
-					supplier=1;
-				}else{
-					supplier++;
-				}
-			}
-		}while(!terminate && supplier!=startSupplier);
-		
-		if(!terminate){
-			supplier = 0;
-		}
-		
-		return supplier;
-	}	
-
-	
-	public int findSupplierImproveablePublic(Solution solution){
-		return findSupplierImproveable(solution);
-	}
-	
-	
-	private int findSupplierNotSaturated(Solution solution) {
-		int numSuppliers = problem.getDimension();
-		
-		int startSupplier = (int)(Math.random()*numSuppliers+1);
-		int supplier = startSupplier;
-		
-		boolean terminate = false;
-		do{
-			//disponibilità residua totale di tutti i prodotti
-			int residual=problem.getSupplier(supplier).getTotalResidualAvailability(solution);	
-			if (residual>0)
-				terminate=true;
-			else {
-				if (supplier==numSuppliers)
-					supplier=1;
-				else
-					supplier++;
-			}
-		}while(!terminate && supplier!=startSupplier);
-		
-		if(!terminate){
-			supplier = 0;
-		}
-		
-		return supplier;
-	}
-	
-	
-	public int findSupplierNotSaturatedPublic(Solution solution){
-		return findSupplierNotSaturated(solution) ;
+	private void orderSuppliersByGapToNextSegment(Solution solution) {
+		IncreaseSegmentComparator comparator=new IncreaseSegmentComparator(solution);
+		Arrays.sort(suppliersList, 1, suppliersList.length, comparator);
 	}
 
 	
@@ -156,12 +64,7 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	 * se targetSupplier si trova già nella fascia massima allora esso viene saturato
 	 */
 	private boolean moveQuantity(int targetSupplier, Solution solution, boolean relaxed){
-		int startSupplier = -1;
-		do {
-			startSupplier = (int)(Math.random()*problem.getDimension()+1);
-			}while(startSupplier==targetSupplier);
 		
-		int supplier = startSupplier;
 		int numProducts=problem.getNumProducts();
 		int numSuppliers=problem.getDimension();
 		/*
@@ -169,59 +72,191 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 		 * a targetSupplier per far aumentare la fascia di sconto attiva di 1 in targetSupplier
 		 */
 		int quantityToMove = problem.getSupplier(targetSupplier).quantityToIncreaseSegment(solution);
+		/*
+		 * prodotto da cui iniziare i trasferimenti: ogni ciclo di trasferimento inizia dallo stesso prodotto
+		 */
 		int startProduct=(int)(Math.random()*problem.getNumProducts()+1);
-		int g=0;
-		while(quantityToMove>0){
+		
+		int startSupplier = 0;
+		do {
+			startSupplier = (int)(Math.random()*problem.getDimension()+1);
+			}while(startSupplier==targetSupplier);
+		
+		int s = startSupplier;
+		
+		//ciclo sui fornitori
+		while(quantityToMove>0 && s>0){
+			//check source!=target
+			if (s==targetSupplier) {
+				s = cyclicIncrement(numSuppliers, startSupplier, s);
+				continue;
+			}
+				
+			
 			int maxMoveableTotalQuantity;
 			if (!relaxed)
-				maxMoveableTotalQuantity=problem.getSupplier(supplier).quantityToNotDecreaseSegment(solution);
+				maxMoveableTotalQuantity=problem.getSupplier(s).quantityToNotDecreaseSegment(solution);
 			else
 				maxMoveableTotalQuantity=0;
 			
-			int p= startProduct;
-			//ciclo sui prodotti
-			while((maxMoveableTotalQuantity>0 || relaxed) && quantityToMove>0) {
+			//check quantità movimentabile da source > 0
+			if (maxMoveableTotalQuantity==0) {
+				s = cyclicIncrement(numSuppliers, startSupplier, s);
+				continue;
+			}
+			
+			int p=startProduct;
+			/*
+			 * ciclo sui prodotti - condizioni di terminazione:
+			 * maxMoveableTotalQuantity=0 ove le condizioni NON sono rilassate
+			 * quantityToMove=0 (ho fatto scattare la fascia di sconto)
+			 * p>0 (ho fatto passare tutti i prodotti per il fornitore corrente - vedi metodo cyclicIncrement)
+			 */
+			while((maxMoveableTotalQuantity>0 || relaxed) && quantityToMove>0 && p>0) {
 				int quantity;
+				int targetResidual = problem.getSupplier(targetSupplier).getResidual(p, solution);
+				int sourceQuantity = solution.getQuantity(s, p);
+				if (targetResidual<=0 || sourceQuantity==0){
+					//Il prodotto p non può essere spostato: incremento p e continuo
+					p = cyclicIncrement(numProducts, startProduct, p);
+					continue;
+				}
+				
 				if (!relaxed) {
 					quantity = Math.min(
 							Math.min(quantityToMove, maxMoveableTotalQuantity), 
-							Math.min(problem.getSupplier(targetSupplier).getResidual(p, solution), solution.getQuantity(supplier, p)));
+							Math.min(targetResidual, sourceQuantity));
 				} else {
 					quantity = Math.min(
 							quantityToMove, 
-							Math.min(problem.getSupplier(targetSupplier).getResidual(p, solution), solution.getQuantity(supplier, p)));
+							Math.min(targetResidual, sourceQuantity));
 				}
-				
+
 				//Aggiornamenti
-				solution.moveQuantity(p, supplier, targetSupplier, quantity, problem);
+				solution.moveQuantity(p, s, targetSupplier, quantity, problem);
 						
 				quantityToMove-=quantity;
 				if(!relaxed){
 					maxMoveableTotalQuantity-=quantity;
 				}
 				
-				p=p%numProducts+1;
-				
-				//fine ciclo
-				if(p==startProduct)
-					break;					
+				p = cyclicIncrement(numProducts, startProduct, p);					
 			}
-			
-			supplier = supplier%numSuppliers+1;
-			if(supplier==targetSupplier){
-				supplier = supplier%numSuppliers+1;
-			}
-			g++;
-			if (supplier == startSupplier && !relaxed && quantityToMove>0)
-				return false;
-			else if (supplier == startSupplier && relaxed && quantityToMove>0)
-				return true;
-			
+			s=cyclicIncrement(numSuppliers, startSupplier, s);
 		}
-		System.out.println(g);
-		return true;
+		
+		if (quantityToMove>0 && !relaxed)
+			return false;
+		else
+			return true;
 	}
+
 	
+	/*
+	 * Questo metodo incrementa l'indice i in modo ciclico dati il valore massimo dell'indice (totalItems) e il valore da cui è iniziato il ciclo (startItemIdx)
+	 * Se dopo l'incremento il valore dell'indice è pari al valore di partenza, il metodo ritorna -1 per indicare che il ciclo è terminato.
+	 */
+	private int cyclicIncrement(int totalItems, int startItemIdx, int i) {
+		i=i%totalItems+1;
+		if(i==startItemIdx)
+			return -1;
+		return i;
+	}
+
+	/*
+	 * trova un fornitore presso cui aumentare gli acquisti
+	 */
+//	private int findTargetSupplier(Solution solution){
+//		int target = findSupplierImproveable(solution);
+//		if(target == 0){
+//			target = findSupplierNotSaturated(solution);
+//			if(target == 0){
+//				throw new Error("Situazione anomala: tutti i fornitori sono saturi.\n" +
+//						"Il programma verrà terminato.\n");
+//			}
+//		}
+//		
+//		return target;
+//	}
+//	
+//	
+//	public int findTargetSupplierPublic(Solution solution){
+//		return findTargetSupplier(solution);
+//	}
+//	
+//	
+//	/*
+//	 * trova un fornitore la cui fascia di sconto attiva sia aumentabile di 1
+//	 */
+//	private int findSupplierImproveable(Solution solution) {
+//		int numSuppliers = problem.getDimension();
+//		
+//		int startSupplier = (int)(Math.random()*numSuppliers+1);
+//		int supplier = startSupplier;
+//		
+//		boolean terminate = false;
+//		do{
+//			//activatedSegment =  fascia di sconto attiva in supplier1
+//			int totalQuantityBought = solution.totalQuantityBought(supplier);
+//			int activatedSegment = problem.getSupplier(supplier).activatedSegment(totalQuantityBought);
+//			//massima fascia di sconto attivabile in supplier1
+//			int maxSegmentActivable = problem.maxSegmentActivable(supplier);
+//			
+//			//controllo che in supplier1 sia possibile far aumentare di 1 la fascia di sconto attiva;
+//			if(activatedSegment<maxSegmentActivable){
+//				terminate = true;
+//			}else{
+//				if(supplier==numSuppliers){
+//					supplier=1;
+//				}else{
+//					supplier++;
+//				}
+//			}
+//		}while(!terminate && supplier!=startSupplier);
+//		
+//		if(!terminate){
+//			supplier = 0;
+//		}
+//		
+//		return supplier;
+//	}	
+
+//	
+//	public int findSupplierImproveablePublic(Solution solution){
+//		return findSupplierImproveable(solution);
+//	}
+	
+	
+//	private int findSupplierNotSaturated(Solution solution) {
+//		int numSuppliers = problem.getDimension();
+//		
+//		int startSupplier = (int)(Math.random()*numSuppliers+1);
+//		int supplier = startSupplier;
+//		
+//		boolean terminate = false;
+//		do{
+//			//disponibilità residua totale di tutti i prodotti
+//			int residual=problem.getSupplier(supplier).getTotalResidualAvailability(solution);	
+//			if (residual>0)
+//				terminate=true;
+//			else {
+//				if (supplier==numSuppliers)
+//					supplier=1;
+//				else
+//					supplier++;
+//			}
+//		}while(!terminate && supplier!=startSupplier);
+//		
+//		if(!terminate){
+//			supplier = 0;
+//		}
+//		
+//		return supplier;
+//	}
+//	
+//	
+//	public int findSupplierNotSaturatedPublic(Solution solution){
+//		return findSupplierNotSaturated(solution) ;
+//	}
+
 }
-//modifica claudio
-//modifica claudio 2

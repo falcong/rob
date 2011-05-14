@@ -41,6 +41,10 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 		
 		int move=0;
 		while (move<distance){
+			if (dropped.size()+dontAdd.size()==totalCells){
+				System.err.println("[EmptyCellsNG] Warning: non è stato possibile terminare tutti gli spostamenti richiesti.");
+				break;
+				}
 			boolean moved = empty(cellsToEmpty[move],result,dontAdd);
 			if (moved)
 				move++; //passo alla mossa successiva
@@ -48,10 +52,6 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 				dontAdd.remove(cellsToEmpty[move]);
 				dropped.add(cellsToEmpty[move]);
 				cellsToEmpty[move]=chooseCell();
-				if (dropped.size()+dontAdd.size()==totalCells){
-					System.err.println("Warning: non è stato possibile terminare tutti gli spostamenti richiesti.");
-					break;
-					}
 				}
 		}
 		return result;

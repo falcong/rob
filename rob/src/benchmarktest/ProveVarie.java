@@ -134,7 +134,7 @@ public class ProveVarie {
 		System.out.println("fo trivial = "+tSol.getObjectiveFunction());
 		
 		AdvancedNeighbourGenerator2 nGen = new AdvancedNeighbourGenerator2(problem);
-		LocalSearch ls = new LocalSearch(20, 15, SuccessorChoiceMethod.FIRST_IMPROVEMENT, nGen, problem);
+		LocalSearch ls = new LocalSearch(20, 10, SuccessorChoiceMethod.BEST_IMPROVEMENT, nGen, problem);
 		Solution finalSol = ls.execute(tSol);
 		System.out.println("fo lsa(trivial) = "+finalSol.getObjectiveFunction());
 	}
@@ -192,15 +192,15 @@ public class ProveVarie {
 		System.out.println("fo lines = "+lSol.getObjectiveFunction());
 		
 		AdvancedNeighbourGenerator2 nGen = new AdvancedNeighbourGenerator2(problem);
-		LocalSearch ls = new LocalSearch(5, 10, SuccessorChoiceMethod.FIRST_IMPROVEMENT, nGen, problem);
+		LocalSearch ls = new LocalSearch(20, 20, SuccessorChoiceMethod.BEST_IMPROVEMENT, nGen, problem);
 		
 		Solution iSol=ls.execute(lSol);
 		
 		EmptyCellsNeighbourGenerator ecGen = new EmptyCellsNeighbourGenerator(problem);
-		VNS vnsInternal = new VNS(4, ls, ecGen, problem);
+		VNS vnsInternal = new VNS(10, ls, ecGen, problem);
 		
 		BanSupplierNeighbourGenerator banGen = new BanSupplierNeighbourGenerator(problem);
-		VNS vnsExternal = new VNS(5, vnsInternal, banGen, problem);
+		VNS vnsExternal = new VNS((int)(problem.getDimension()/3), vnsInternal, banGen, problem,10,-1);
 		
 		Solution finalSol = vnsExternal.execute(iSol);
 		System.out.println("fo VNS(lines) = "+finalSol.getObjectiveFunction());

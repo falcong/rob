@@ -28,7 +28,7 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 		int numSuppliers=problem.getDimension();
 		Solution solution = new Solution(currentSolution);
 		int startSupplier = findTargetSupplier(solution);
-		
+		//Ciao
 		boolean relaxed=false;
 		boolean done=false;
 		int s=startSupplier;

@@ -35,9 +35,8 @@ public class LocalSearch extends Algorithm {
 		Solution currentSolution=startSolution;
 		int step;
 		for (step=1;step<=maxStepsNumber;step++) {
-			if(info==1){
-				System.out.println("step "+step);
-			}
+			//stampa step
+			printStep(step);
 			Solution successor;
 			switch(successorChoice) {
 			case FIRST_IMPROVEMENT: successor=firstImprovementExploration(currentSolution);break;
@@ -48,23 +47,13 @@ public class LocalSearch extends Algorithm {
 				currentSolution=successor;
 			else{
 				//l'esplorazione del vicinato ha ritornato null, siamo in un minimo locale
-				if(info==1){
-					//eseguiti step-1 passi
-					//metto 1 tab per i maxStepsNumber-(step-1) passi non eseguiti
-					for(int i=1; i<=maxStepsNumber-step+1; i++){
-						Utility.write(statisticsFile, "\t");
-					}
-					Utility.write(statisticsFile, step-1+"\t");
-				}
+				//stampa passi totali eseguiti
+				printTotalSteps(step);
 				return currentSolution;
 			}
 		}
-		if(info==1){
-			//eseguiti step-1 passi (maxStepsNumber)
-			//metto 1 tab perchè al passo maxStepsNumber non genero i figli
-			Utility.write(statisticsFile, "\t");
-			Utility.write(statisticsFile, step-1+"\t");
-		}
+		//stampa passi totali eseguiti
+		printTotalSteps2(step);
 		return currentSolution; //arrivo qui se esaurisco il numero di passi
 	}
 	
@@ -87,18 +76,17 @@ public class LocalSearch extends Algorithm {
 	private Solution firstImprovementExploration(Solution solution) {
 		int visited;
 		for(visited=1;visited<=maxNeighboursNumber;visited++) {
-			if(info==1){
-				System.out.println(visited);
-			}
+			//stampa vicino
+			printNeighbour(visited);
 			Solution neighbour=generator.generate(solution, 1);
 			if (neighbour.getObjectiveFunction()<solution.getObjectiveFunction()){
-				if(info==1){
-					//generati visited vicini
-					Utility.write(statisticsFile, visited+"\t");
-				}
+				//stampa n° vicini generati
+				printNumNeighbours(visited);
 				return neighbour; //Ho trovato un vicino migliore della soluzione corrente
 			}
 		}
+		//stampa n° vicini generati
+		//TODO
 		if(info==1){
 			//generati visited-1 vicini
 			Utility.write(statisticsFile, visited-1+"\t");
@@ -117,4 +105,83 @@ public class LocalSearch extends Algorithm {
 		this.info = info;
 		statisticsFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+".txt";
 	}
+	
+	
+	private void printStep(int step){
+		switch(info){
+			case 0:
+				break;
+			case 1:
+				System.out.println("step "+step);
+				break;
+		}
+	}
+	
+	
+	private void printTotalSteps(int steps){
+		switch(info){
+			case 0:
+				break;
+			case 1:
+				if(info==1){
+					//eseguiti steps-1 passi
+					//metto 1 tab per i maxStepsNumber-(steps-1) passi non eseguiti
+					for(int i=1; i<=maxStepsNumber-steps+1; i++){
+						Utility.write(statisticsFile, "\t");
+					}
+					Utility.write(statisticsFile, steps-1+"\t");
+				}
+				break;
+		}
+	}
+	
+	
+	private void printTotalSteps2(int step){
+		switch(info){
+		case 0:
+			break;
+		case 1:
+			//eseguiti step-1 passi (maxStepsNumber)
+			//metto 1 tab perchè al passo maxStepsNumber non genero i figli
+			Utility.write(statisticsFile, "\t");
+			Utility.write(statisticsFile, step-1+"\t");
+			break;
+		}
+	}
+	
+	
+	private void printNeighbour(int neighbour){
+		switch(info){
+		case 0:
+			break;
+		case 1:
+			System.out.println(neighbour);
+			break;
+		}
+	}
+	
+	
+	private void printNumNeighbours(int visited){
+		switch(info){
+		case 0:
+			break;
+		case 1:
+			//generati visited vicini
+			Utility.write(statisticsFile, visited+"\t");
+			break;
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,13 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator{
 		HashSet<Integer> banned = new HashSet<Integer>();
 		int [] banArray=new int[distance];
 		for (int i=0;i<distance;i++) {
-			banArray[i]=problem.getRandomSupplier(banned).getId();
+			int randomSup = problem.getRandomSupplier(banned).getId();
+			int total=solution.totalQuantityBought(randomSup);
+			if (total==0) {
+				i--;
+				continue;
+			}
+            banArray[i]=randomSup;
 			banned.add(banArray[i]);
 		}
 		

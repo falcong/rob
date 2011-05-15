@@ -182,6 +182,9 @@ public class LocalSearch extends Algorithm {
 			//generati visited vicini
 			Utility.write(statisticsFile, visited+"\t");
 			break;
+		case 2:
+			Utility.write(statisticsFile, visited+"\t");
+			break;
 		}
 	}
 	
@@ -197,8 +200,10 @@ public class LocalSearch extends Algorithm {
 			if(newline){
 				text += System.getProperty("line.separator");
 			}
-			text += "\t\t"+sol.getObjectiveFunction()+"\t\t\t";
+			text += "\t\t"+sol.getObjectiveFunction()+"\t\t";
 			Utility.write(statisticsFile, text);
+			//console
+			System.out.println("\t"+sol.getObjectiveFunction());
 			break;
 		}
 	}

@@ -18,6 +18,7 @@ public class LocalSearch extends Algorithm {
 	 * info indica quali statistiche verranno stampate in statisticsn.txt
 	 * info = 0 non verrà stampata alcuna statistica
 	 * info = 1 n°passi e n° vicini
+	 * info = 2 vari stati, n° vicini per ogni passo, passi totali (usato in statistiche 5)
 	 */
 	int info = 0;
 	String statisticsFile;
@@ -33,6 +34,8 @@ public class LocalSearch extends Algorithm {
 	
 	public Solution execute(Solution startSolution){
 		Solution currentSolution=startSolution;
+		//# 2 tab + fo(currentSolution) + 2 tab
+		printS0(currentSolution, false);
 		int step;
 		for (step=1;step<=maxStepsNumber;step++) {
 			//stampa step
@@ -43,17 +46,24 @@ public class LocalSearch extends Algorithm {
 			case BEST_IMPROVEMENT: successor=bestImprovementExploration(currentSolution);break;
 			default: successor=firstImprovementExploration(currentSolution);break;
 			}
-			if(successor!=null) //ho un successore, continuo la ricerca
+			if(successor!=null){ 
+				//ho un successore, continuo la ricerca
 				currentSolution=successor;
+				//# new line
+				//# 2 tab current solution + fo(currentSolution) + 2 tab
+				printS0(currentSolution, true);
+			}
 			else{
 				//l'esplorazione del vicinato ha ritornato null, siamo in un minimo locale
 				//stampa passi totali eseguiti
 				printTotalSteps(step);
+				//# n° passi fatti + new line
 				return currentSolution;
 			}
 		}
 		//stampa passi totali eseguiti
 		printTotalSteps2(step);
+		//# 3 tab + numero passi
 		return currentSolution; //arrivo qui se esaurisco il numero di passi
 	}
 	
@@ -82,15 +92,13 @@ public class LocalSearch extends Algorithm {
 			if (neighbour.getObjectiveFunction()<solution.getObjectiveFunction()){
 				//stampa n° vicini generati
 				printNumNeighbours(visited);
+				//#n° vicini generati
 				return neighbour; //Ho trovato un vicino migliore della soluzione corrente
 			}
 		}
 		//stampa n° vicini generati
-		//TODO
-		if(info==1){
-			//generati visited-1 vicini
-			Utility.write(statisticsFile, visited-1+"\t");
-		}
+		printNumNeighbours(visited-1);
+		//#n° vicini generati
 		return null;
 	}
 
@@ -123,15 +131,16 @@ public class LocalSearch extends Algorithm {
 			case 0:
 				break;
 			case 1:
-				if(info==1){
-					//eseguiti steps-1 passi
-					//metto 1 tab per i maxStepsNumber-(steps-1) passi non eseguiti
-					for(int i=1; i<=maxStepsNumber-steps+1; i++){
-						Utility.write(statisticsFile, "\t");
-					}
-					Utility.write(statisticsFile, steps-1+"\t");
+				//eseguiti steps-1 passi
+				//metto 1 tab per i maxStepsNumber-(steps-1) passi non eseguiti
+				for(int i=1; i<=maxStepsNumber-steps+1; i++){
+					Utility.write(statisticsFile, "\t");
 				}
+				Utility.write(statisticsFile, steps-1+"\t");
 				break;
+			case 2:
+				//eseguiti steps-1 passi
+				Utility.write(statisticsFile, steps-1+"\t"+System.getProperty("line.separator"));
 		}
 	}
 	
@@ -145,6 +154,10 @@ public class LocalSearch extends Algorithm {
 			//metto 1 tab perchè al passo maxStepsNumber non genero i figli
 			Utility.write(statisticsFile, "\t");
 			Utility.write(statisticsFile, step-1+"\t");
+			break;
+		case 2:
+			//eseguiti step-1 passi (maxStepsNumber)
+			Utility.write(statisticsFile, "\t\t\t"+(step-1)+"\t");
 			break;
 		}
 	}
@@ -168,6 +181,24 @@ public class LocalSearch extends Algorithm {
 		case 1:
 			//generati visited vicini
 			Utility.write(statisticsFile, visited+"\t");
+			break;
+		}
+	}
+	
+	
+	private void printS0(Solution sol, boolean newline){
+		switch(info){
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			String text = "";
+			if(newline){
+				text += System.getProperty("line.separator");
+			}
+			text += "\t\t"+sol.getObjectiveFunction()+"\t\t\t";
+			Utility.write(statisticsFile, text);
 			break;
 		}
 	}

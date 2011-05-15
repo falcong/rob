@@ -2,7 +2,6 @@ package solutionhandlers;
 
 import java.util.Arrays;
 
-import rob.IncreaseSegmentComparator;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
@@ -11,10 +10,10 @@ import rob.Supplier;
 
 public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	protected Problem problem;
-	protected Supplier[] suppliersList;
+	//protected Supplier[] suppliersList;
 	public AdvancedNeighbourGenerator2(Problem problem) {
 		this.problem=problem;
-		suppliersList=problem.getSuppliers().clone();
+		//suppliersList=problem.getSuppliers().clone();
 	}
 	
 	/*
@@ -27,19 +26,29 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	@Override
 	public Solution generate(Solution currentSolution, int distance){
 		int numSuppliers=problem.getDimension();
-		orderSuppliersByGapToNextSegment(currentSolution);
+		//orderSuppliersByGapToNextSegment(currentSolution);
 		Solution solution=null;
 		boolean relaxed=false;
 		boolean done=false;
-		for(int tS=1;tS<=numSuppliers && !done;tS++){
+		
+		int starttS=(int)(Math.random()*problem.getDimension()+1);
+		int tS=starttS;
+		//for(int tS=1;tS<=numSuppliers && !done;tS++){
+		while (tS>0 && !done) {
 			//resetto la soluzione perché il target è cambiato
 			solution = new Solution(currentSolution);
-			done = moveQuantity(suppliersList[tS].getId(), solution,relaxed);
-			if(tS==numSuppliers && !done){
+			//done = moveQuantity(suppliersList[tS].getId(), solution,relaxed);
+			//
+			done = moveQuantity(tS, solution,relaxed);
+			tS=cyclicIncrement(numSuppliers, starttS,tS);
+			//
+			//if(tS==numSuppliers && !done){
+			if(tS<0 && !done){
 				//ho fatto il giro, rilasso le condizioni
 				relaxed=true;
 				//resetto s (a zero, perchè il fine ciclo mi riporterà a 1)
-				tS=0;
+				//tS=0;
+				tS=starttS;
 				System.err.println("[AdvNG2] Warning: rilasso le condizioni.");
 			}
 		}
@@ -47,16 +56,16 @@ public class AdvancedNeighbourGenerator2 extends NeighbourGenerator {
 	}
 
 	
-	private void orderSuppliersByGapToNextSegment(Solution solution) {
-		IncreaseSegmentComparator comparator=new IncreaseSegmentComparator(solution);
-		Arrays.sort(suppliersList, 1, suppliersList.length, comparator);
-	}
+//	private void orderSuppliersByGapToNextSegment(Solution solution) {
+//		IncreaseSegmentComparator comparator=new IncreaseSegmentComparator(solution);
+//		Arrays.sort(suppliersList, 1, suppliersList.length, comparator);
+//	}
 
 	
 	@Override
 	public void setProblem(Problem problem) {
 		this.problem=problem;
-		suppliersList=problem.getSuppliers().clone();
+		//suppliersList=problem.getSuppliers().clone();
 	}
 	
 	/*

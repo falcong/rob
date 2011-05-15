@@ -36,15 +36,19 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 		int [] cellsToEmpty= new int[distance];
 		
 		for (int i=0;i<distance;i++){
+			if(blacklistsFull()) {
+				dontAdd.clear();
+				dropped.clear();
+				return result;
+			}
+				
 			cellsToEmpty[i]=chooseCell();
 		}
 		
 		int move=0;
 		while (move<distance){
-			if (dropped.size()+dontAdd.size()==totalCells){
-				System.err.println("[EmptyCellsNG] Warning: non è stato possibile terminare tutti gli spostamenti richiesti.");
+			if(blacklistsFull())
 				break;
-				}
 			boolean moved = empty(cellsToEmpty[move],result,dontAdd);
 			if (moved)
 				move++; //passo alla mossa successiva
@@ -54,12 +58,22 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 				cellsToEmpty[move]=chooseCell();
 				}
 		}
+		dropped.clear();
+		dontAdd.clear();
 		return result;
 		/*
 		 * nota: sostituire una cella in un'iterazione che non è la prima rende possibile che tale cella sia stata riempita 
 		 * in un'iterazione precedente. 
 		 */
 		//TODO tenere traccia delle celle di destinazione degli spostamenti e impedire che ciò si verifichi??
+	}
+
+	private boolean blacklistsFull() {
+		if (dropped.size()+dontAdd.size()==totalCells){
+			System.err.println("[EmptyCellsNG] Warning: non è stato possibile terminare tutti gli spostamenti richiesti.");
+			return true;
+			} else
+				return false;
 	}
 
 	private int chooseCell() {

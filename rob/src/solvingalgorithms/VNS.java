@@ -21,6 +21,7 @@ public class VNS extends Algorithm {
 	int info = 0;
 	String label;
 	String outputFile;
+	Solution cplex;
 	
 	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem){
 		this.afterShaking=afterShaking;
@@ -111,6 +112,10 @@ public class VNS extends Algorithm {
 		outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistics+".txt";
 		this.label = label;
 	}
+	
+	public void setCplex(Solution sol){
+		cplex = sol;
+	}
 		
 	
 	private void printS0(){
@@ -120,8 +125,9 @@ public class VNS extends Algorithm {
 			case 1:
 				//label + 0 + time + 1 tab + fo + 1tab + 4 tab + new line
 				Utility.write(outputFile, label+0+"\t"+(int)System.currentTimeMillis()/1000+"\t"+
-						currentSolution.getObjectiveFunction()+"\t\t\t\t\t"
-						+System.getProperty("line.separator"));
+						currentSolution.getObjectiveFunction()+"\t\t\t\t\t"+
+						currentSolution.calcDistance(cplex)+
+						System.getProperty("line.separator"));
 				break;
 		}
 	}
@@ -133,9 +139,10 @@ public class VNS extends Algorithm {
 				break;
 			case 1:
 				//label + 1 + time + 1 tab + fo + 1tab + k + 1 tab + 3 tab + new line
-				Utility.write(outputFile, label+1+"\t"+(int)System.currentTimeMillis()/1000+"\t"
-						+sol.getObjectiveFunction()+"\t"+k+"\t\t\t\t"
-						+System.getProperty("line.separator"));
+				Utility.write(outputFile, label+1+"\t"+(int)System.currentTimeMillis()/1000+"\t"+
+						sol.getObjectiveFunction()+"\t"+k+"\t\t\t\t"+
+						sol.calcDistance(cplex)+
+						System.getProperty("line.separator"));
 				break;
 		}
 	}
@@ -148,8 +155,9 @@ public class VNS extends Algorithm {
 			case 1:
 				//label + 2 + time + 1 tab + fo + 1tab + 4 tab + new line
 				Utility.write(outputFile, label+2+"\t"+(int)System.currentTimeMillis()/1000+"\t"+
-						sol.getObjectiveFunction()+"\t\t\t\t\t"
-						+System.getProperty("line.separator"));
+						sol.getObjectiveFunction()+"\t\t\t\t\t"+
+						sol.calcDistance(cplex)+
+						System.getProperty("line.separator"));
 				break;
 		}
 	}

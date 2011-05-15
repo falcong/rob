@@ -293,6 +293,10 @@ public class Statistics {
 		ProblemParser probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
 		Problem problem = probParser.parse(problemName);
 		
+		//ottimo
+		Solution cplex = new Solution(Utility.getConfigParameter("input")+
+				System.getProperty("file.separator")+"cplex_solution_"+problemName, problem);
+		
 		//local search
 		int maxNeighboursNumber = 50;
 		int maxStepsNumber = 100;
@@ -308,6 +312,7 @@ public class Statistics {
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, statistic, intLabel);
+		intVNS.setCplex(cplex);
 		
 		//vns esterna
       	//s0 = soluzione lines
@@ -320,6 +325,7 @@ public class Statistics {
       	String extLabel = "e";
       	VNS extVNS = new VNS(kMax, intVNS, extShaking, problem, numRestarts, time);
       	extVNS.setStatistics(1, statistic, extLabel);
+      	extVNS.setCplex(cplex);
 		
 		//cancello eventuale contenuto file
 		PrintStream out = Utility.openOutFile(outputFile, false);

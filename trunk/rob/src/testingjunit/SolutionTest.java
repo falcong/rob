@@ -142,8 +142,10 @@ public class SolutionTest {
 		problem=parser.parse("problema1.txt");
 		SolutionGenerator generator=new TrivialSolutionGenerator(problem);
 		Solution sol = generator.generate();
-		sol.export("mySol.txt");
-		Solution sol2= new Solution("mySol.txt",problem);
+		sol.export(Utility.getConfigParameter("proveVarie")+System.getProperty("file.separator")+
+				"mySol.txt");
+		Solution sol2= new Solution(Utility.getConfigParameter("proveVarie")+
+				System.getProperty("file.separator")+"mySol.txt",problem);
 		assertEquals(0,sol.calcDistance(sol2));
 	}
 	

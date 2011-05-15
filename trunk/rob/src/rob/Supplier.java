@@ -41,7 +41,7 @@ public class Supplier {
 	 * averagePrices[k] = media pesata dei prezzi del prodotto k nelle varie fasce
 	 * averagePrices[0] non è usato
 	 */
-	private double averagePrices[];
+	//private double averagePrices[];
 	
 	private int numOfferedProducts;
 	
@@ -209,10 +209,10 @@ public class Supplier {
 		return basePrices[product];
 	}
 
-	public double getAveragePrice() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	public double getAveragePrice() {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 	public double[][] getPrices(){
 		return prices;

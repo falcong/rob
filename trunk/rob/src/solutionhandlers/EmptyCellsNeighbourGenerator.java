@@ -42,7 +42,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 				return result;
 			}
 				
-			cellsToEmpty[i]=chooseCell();
+			cellsToEmpty[i]=chooseCell(solution);
 		}
 		
 		int move=0;
@@ -55,7 +55,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 			else {//sostituisco la cella con un'altra
 				dontAdd.remove(cellsToEmpty[move]);
 				dropped.add(cellsToEmpty[move]);
-				cellsToEmpty[move]=chooseCell();
+				cellsToEmpty[move]=chooseCell(solution);
 				}
 		}
 		dropped.clear();
@@ -76,11 +76,16 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 				return false;
 	}
 
-	private int chooseCell() {
+	private int chooseCell(Solution sol) {
 		int cell;
 		do {
-			cell=1+(int)(Math.random()*totalCells);			
-		}while(dontAdd.contains(cell) || dropped.contains(cell));
+			cell=1+(int)(Math.random()*totalCells);
+			int product = (cell-1)%numProducts+1;
+			int supplier=(cell-product)/numProducts+1;
+			int quantity=sol.getQuantity(supplier, product);
+			if (quantity==0)
+				dropped.add(cell);
+		}while((dontAdd.contains(cell) || dropped.contains(cell)));
 		dontAdd.add(cell);
 		return cell;
 	}

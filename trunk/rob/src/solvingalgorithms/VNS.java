@@ -2,6 +2,7 @@ package solvingalgorithms;
 
 import rob.Problem;
 import rob.Solution;
+import rob.Utility;
 import solutionhandlers.NeighbourGenerator;
 
 public class VNS extends Algorithm {
@@ -10,9 +11,16 @@ public class VNS extends Algorithm {
 	protected Solution currentSolution;
 	protected NeighbourGenerator generator;
 	private long maximumTime; //tempo massimo dopo cui arrestare la ricerca. Se disabilitato è =-1
-	private final boolean verbose = true;
 	//numero di volte in cui far ripartire la ricerca
 	protected int restarts;
+	/*
+	 * indica quali informazioni stampare
+	 * info = 0 non stampa nulla
+	 * info = 1 stampa label0, label1, label2 (per statistiche 5) in corrispondenza di s0, s1 e s2 
+	 */
+	int info = 0;
+	String label;
+	String outputFile;
 	
 	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem){
 		this.afterShaking=afterShaking;
@@ -48,19 +56,20 @@ public class VNS extends Algorithm {
 
 	private Solution runVNS(Solution startSolution) {
 		currentSolution=startSolution;
-		//System.out.println("Soluzione iniziale");
-		//currentSolution.print();
+		//stampa s0
+		printS0();
 		int k=1;
 		while(k<=kMax) {
-			if(verbose){
-				System.out.println("k = "+k);
-				System.out.println("\t"+currentSolution.getObjectiveFunction());
-				System.out.flush();
-			}
 			Solution y=shaking(k);
+			//stampa s1
+			printS1(y, k);
 			Solution nextSolution=afterShaking.execute(y);
+			//stampa s2
+			printS2(nextSolution);
 			if(nextSolution.getObjectiveFunction()<currentSolution.getObjectiveFunction()){
-				currentSolution=nextSolution; //move				
+				currentSolution=nextSolution; //move
+				//stampa s0
+				printS0();
 				k=1;
 			} else {
 				k++; // aumento l'intorno
@@ -71,6 +80,7 @@ public class VNS extends Algorithm {
 		return currentSolution;
 	}
 	
+
 	/*
 	 * k = dimensione dell'intorno in cui effettuare lo shaking. La distanza del
 	 * vicino generato è un numero casuale compreso tra 1 e k
@@ -95,6 +105,52 @@ public class VNS extends Algorithm {
 		afterShaking.setProblem(problem);
 	}
 
-
 	
+	public void setStatistics(int info, int statistics, String label){
+		this.info = info;
+		outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistics+".txt";
+		this.label = label;
+	}
+		
+	
+	private void printS0(){
+		switch(info){
+			case 0: 
+				break;
+			case 1:
+				//label + 0 + time + 1 tab + fo + 1tab + 4 tab + new line
+				Utility.write(outputFile, label+0+"\t"+(int)System.currentTimeMillis()/1000+"\t"+
+						currentSolution.getObjectiveFunction()+"\t\t\t\t\t"
+						+System.getProperty("line.separator"));
+				break;
+		}
+	}
+	
+	
+	private void printS1(Solution sol, int k){
+		switch(info){
+			case 0: 
+				break;
+			case 1:
+				//label + 1 + time + 1 tab + fo + 1tab + k + 1 tab + 3 tab + new line
+				Utility.write(outputFile, label+1+"\t"+(int)System.currentTimeMillis()/1000+"\t"
+						+sol.getObjectiveFunction()+"\t"+k+"\t\t\t\t"
+						+System.getProperty("line.separator"));
+				break;
+		}
+	}
+	
+	
+	private void printS2(Solution sol){
+		switch(info){
+			case 0: 
+				break;
+			case 1:
+				//label + 2 + time + 1 tab + fo + 1tab + 4 tab + new line
+				Utility.write(outputFile, label+2+"\t"+(int)System.currentTimeMillis()/1000+"\t"+
+						sol.getObjectiveFunction()+"\t\t\t\t\t"
+						+System.getProperty("line.separator"));
+				break;
+		}
+	}
 }

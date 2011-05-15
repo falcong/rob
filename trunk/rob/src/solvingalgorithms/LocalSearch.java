@@ -109,9 +109,9 @@ public class LocalSearch extends Algorithm {
 	}
 
 
-	public void setStatistics(int info,int statistic){
+	public void setStatistics(int info,String outputFile){
 		this.info = info;
-		statisticsFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+".txt";
+		this.statisticsFile = outputFile;
 	}
 	
 	

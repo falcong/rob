@@ -77,7 +77,7 @@ public class Statistics {
 			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
-	      	locSearch.setStatistics(1, statistic);
+	      	locSearch.setStatistics(1, outputFile);
 	      	
 	      	//s1 = lsa(s0)
 	      	Solution s1 = locSearch.execute(s0);
@@ -141,7 +141,7 @@ public class Statistics {
 			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
-	      	locSearch.setStatistics(1, statistic);
+	      	locSearch.setStatistics(1, outputFile);
 	      	
 	      	//s1 = lsa2(s0)
 	      	Solution s1 = locSearch.execute(s0);
@@ -205,7 +205,7 @@ public class Statistics {
 			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
-	      	locSearch.setStatistics(1, statistic);
+	      	locSearch.setStatistics(1, outputFile);
 	      	
 	      	//s1 = lsa(s0)
 	      	Solution s1 = locSearch.execute(s0);
@@ -269,7 +269,7 @@ public class Statistics {
 			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
-	      	locSearch.setStatistics(1, statistic);
+	      	locSearch.setStatistics(1, outputFile);
 	      	
 	      	//s1 = lsa2(s0)
 	      	Solution s1 = locSearch.execute(s0);
@@ -305,14 +305,14 @@ public class Statistics {
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);
-      	locSearch.setStatistics(2, statistic);
+      	locSearch.setStatistics(2, outputFile);
 		
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
 		int lMax = 10;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
-		intVNS.setStatistics(1, statistic, intLabel);
+		intVNS.setStatistics(1, outputFile, intLabel);
 		intVNS.setCplex(cplex);
 		
 		//vns esterna
@@ -325,7 +325,7 @@ public class Statistics {
       	int time = -1;
       	String extLabel = "e";
       	VNS extVNS = new VNS(kMax, intVNS, extShaking, problem, numRestarts, time);
-      	extVNS.setStatistics(1, statistic, extLabel);
+      	extVNS.setStatistics(1, outputFile, extLabel);
       	extVNS.setCplex(cplex);
 		
 		//cancello eventuale contenuto file
@@ -388,7 +388,7 @@ public class Statistics {
 			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
-	      	locSearch.setStatistics(1, statistic);
+	      	locSearch.setStatistics(1, outputFile);
 	      	
 	      	//s1 = lsa2(s0)
 	      	Solution s1 = locSearch.execute(s0);
@@ -452,7 +452,7 @@ public class Statistics {
 			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
-	      	locSearch.setStatistics(1, statistic);
+	      	locSearch.setStatistics(1, outputFile);
 	      	
 	      	//s1 = lsa2(s0)
 	      	Solution s1 = locSearch.execute(s0);

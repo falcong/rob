@@ -87,8 +87,7 @@ public class VNS extends Algorithm {
 	 * vicino generato è un numero casuale compreso tra 1 e k
 	 */
 	protected Solution shaking(int k){
-		int shakingAmount=k;
-		return generator.generate(currentSolution, shakingAmount);
+		return generator.generate(currentSolution, k);
 	}
 
 	public void setMaximumTime(long maximumTime) {
@@ -107,9 +106,9 @@ public class VNS extends Algorithm {
 	}
 
 	
-	public void setStatistics(int info, int statistics, String label){
+	public void setStatistics(int info, String outputFile, String label){
 		this.info = info;
-		outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistics+".txt";
+		this.outputFile = outputFile;
 		this.label = label;
 	}
 	

@@ -287,7 +287,8 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+".txt";
+		final int FILE_NUMBER = 1;
+		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
 		ProblemParser probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
@@ -295,7 +296,7 @@ public class Statistics {
 		
 		//ottimo
 		Solution cplex = new Solution(Utility.getConfigParameter("input")+
-				System.getProperty("file.separator")+"cplex_solution_"+problemName, problem);
+				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);
 		
 		//local search
 		int maxNeighboursNumber = 50;

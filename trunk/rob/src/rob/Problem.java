@@ -1,5 +1,6 @@
 package rob;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import rob.Supplier;
@@ -184,19 +185,24 @@ public class Problem {
 		return suppliers[supplier].activatedSegment(getMaxQuantityBuyable(supplier));
 	}
 	
-	public boolean cellIsEmptiable(int cell, Solution solution, HashSet<Integer> otherCellsToEmpty){
+	public boolean cellIsEmptiable(int cell, Solution solution, ArrayList<Integer> otherCellsToEmpty){
 		int product=getProductFromCell(cell);
-		int supplierId= getSupplierFromCell(cell);
+		//int supplierId= getSupplierFromCell(cell);
 		//somma disponibilità
-		
+		int sumResidualAvailability=0;
 		for (int i=1;i<=dimension;i++){
 			int cell2 = getCell(i,product);
-			if (cell2==cell || otherCellsToEmpty.contains(cell2))
+			if (cell2==cell)
 				continue;
-			
+			if (otherCellsToEmpty.contains(cell2))
+				sumResidualAvailability-=solution.getQuantity(i, product);
+			else
+				sumResidualAvailability+=getSupplier(i).getResidual(product, solution);
 		}
-
-		return true;
+		if (sumResidualAvailability>0)
+			return true;
+		else 
+			return false;
 	}
 	
 	public int getSupplierFromCell (int cell) {

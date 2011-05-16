@@ -23,6 +23,8 @@ public class VNS extends Algorithm {
 	String outputFile;
 	Solution cplex;
 	
+	int increment=1;
+	
 	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem){
 		this.afterShaking=afterShaking;
 		this.kMax=kMax;
@@ -73,7 +75,7 @@ public class VNS extends Algorithm {
 				printS0();
 				k=1;
 			} else {
-				k++; // aumento l'intorno
+				k=k+increment; // aumento l'intorno
 			}
 
 		}
@@ -165,5 +167,9 @@ public class VNS extends Algorithm {
 				System.out.println(label+2+"\t"+sol.getObjectiveFunction());
 				break;
 		}
+	}
+	
+	public void setIncrement(int value){
+		this.increment=value;
 	}
 }

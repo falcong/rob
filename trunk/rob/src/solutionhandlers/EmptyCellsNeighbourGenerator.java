@@ -9,7 +9,7 @@ import rob.Supplier;
 
 public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	protected Problem problem;
-   private int numSuppliers;
+	private int numSuppliers;
 	private int numProducts;
 	int totalCells;
 
@@ -47,7 +47,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 			if(cellsToEmpty.contains(cell) || cellsNotEmptyable.contains(cell)){
 				//la cella è già stata scelta o scartata precedentemente
 				continue;
-			}else if(isEmpty(cell) || false){
+			}else if(isEmpty(cell) || false){//TODO
 				//scarto la cella perchè vuota o non svuotabile
 				;
 			}	
@@ -55,7 +55,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 				
 		}
 		
-
+		//TODO
 		return null;
 			//////////////////////////////////
 /*			if(c app lns || c app ls){
@@ -96,11 +96,19 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 			return false;
 		}
 	}
+
+	
+
 	
 	
-	private boolean isEmpty(int cell){
-		if(true);
-		return true;
+	public boolean isEmpty(Solution sol, int cell){
+		int product = problem.getProduct(cell);
+		int supplier = problem.getSupplier(cell);
+		if(sol.getQuantity(supplier, product)==0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	

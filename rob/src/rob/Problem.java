@@ -184,16 +184,26 @@ public class Problem {
 		return suppliers[supplier].activatedSegment(getMaxQuantityBuyable(supplier));
 	}
 	
-	public boolean cellIsEmptiable(int cell, Solution solution, HashSet<Integer> forbiddenCells){
+	public boolean cellIsEmptiable(int cell, Solution solution, HashSet<Integer> otherCellsToEmpty){
+		int product=getProductFromCell(cell);
+		int supplierId= getSupplierFromCell(cell);
+		//somma disponibilità
 		
+		for (int i=1;i<=dimension;i++){
+			int cell2 = getCell(i,product);
+			if (cell2==cell || otherCellsToEmpty.contains(cell2))
+				continue;
+			
+		}
+
 		return true;
 	}
 	
-	public int getSupplier (int cell, int product) {
-		return (cell-product)/numProducts+1;
+	public int getSupplierFromCell (int cell) {
+		return (cell-getProductFromCell(cell))/numProducts+1;
 	}
 	
-	public int getProduct (int cell) {
+	public int getProductFromCell (int cell) {
 		return (cell-1)%numProducts+1;
 	}
 	

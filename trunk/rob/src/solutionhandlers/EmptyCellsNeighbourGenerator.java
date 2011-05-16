@@ -92,6 +92,50 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	}
 	
 	
+	private void empty(Solution sol, int cell){
+		int supplier = problem.getSupplierFromCell(cell);
+		int product = problem.getProductFromCell(cell);
+		
+		Supplier orderedSuppliers[] = problem.sortByCurrentPrice(product, sol);
+		
+		int quantity = sol.getQuantity(supplier, product); 
+			
+		for(int i=1; i<=numSuppliers && quantity>0; i++){
+			Supplier receivingSupplier = orderedSuppliers[i];
+			int recSup = receivingSupplier.getId();
+			int residualAvailability = problem.getSupplier(recSup).getResidual(product, sol);
+			
+			if(recSup!=supplier && ){
+				;
+			}
+		}
+			
+			
+		//////////
+		q = quantità da spostare
+		
+		for(int i=1; i<=numS && q>0; i++){
+			sric = supo[i];
+			ar = avr[sric,p]
+			ok = (sric != s) && (sric non app ls) && ar>0
+			if(ok){
+				qtomove = min(q, ar)
+				sposto in sol
+				q -= qtomove
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
 /*	@Override
 	public Solution generate(Solution solution, int distance){
 		//copia di solution da modificare

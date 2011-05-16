@@ -309,7 +309,7 @@ public class Statistics {
 		
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
-		int lMax = 10;
+		int lMax = 9;
 		int kIncrement = 2;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);

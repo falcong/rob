@@ -104,35 +104,14 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 			Supplier receivingSupplier = orderedSuppliers[i];
 			int recSup = receivingSupplier.getId();
 			int residualAvailability = problem.getSupplier(recSup).getResidual(product, sol);
+			int recCell = problem.getCell(recSup, product);
 			
-			if(recSup!=supplier && ){
-				;
+			if(recSup!=supplier && !cellsToEmpty.contains(recCell) && residualAvailability>0){
+				int quantityToMove = Math.min(quantity, residualAvailability);
+				sol.moveQuantity(product, supplier, recSup, quantityToMove, problem);
+				quantity -= quantityToMove; 
 			}
-		}
-			
-			
-		//////////
-		q = quantità da spostare
-		
-		for(int i=1; i<=numS && q>0; i++){
-			sric = supo[i];
-			ar = avr[sric,p]
-			ok = (sric != s) && (sric non app ls) && ar>0
-			if(ok){
-				qtomove = min(q, ar)
-				sposto in sol
-				q -= qtomove
-			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}		
 	}
 	
 	

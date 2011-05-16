@@ -2,6 +2,7 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import io.ProblemParser;
@@ -10,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import rob.Problem;
+import rob.Solution;
+import rob.Supplier;
 import rob.Utility;
 
 public class ProblemTest {
@@ -41,5 +44,34 @@ public class ProblemTest {
 		int randSupId = p.getRandomSupplierId(new HashSet<Integer>());
 		assertTrue(randSupId == 1 || randSupId == 2);
 	}
+	
+	@Test
+	public final void testCellIsEmptiable(){
+		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+		Problem problem = pp.parse("problema1.txt");
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 42, 53};
+		int [] s2={0, 9, 0, 10};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		Solution solution=new Solution(matrix,problem);
+		int cell = 1;
+		ArrayList<Integer> otherCellsToEmpty=new ArrayList<Integer>();
+		boolean e=problem.cellIsEmptiable(cell, solution, otherCellsToEmpty);
+		assertTrue(e);
+		otherCellsToEmpty.add(4);
+		boolean e1=problem.cellIsEmptiable(cell, solution, otherCellsToEmpty);
+		assertTrue(!e1);
+
+		int cell2 = 2;
+		ArrayList<Integer> otherCellsToEmpty2=new ArrayList<Integer>();
+		boolean e2=problem.cellIsEmptiable(cell2, solution, otherCellsToEmpty2);
+		assertTrue(!e2);
+		
+
+	}
+
 
 }

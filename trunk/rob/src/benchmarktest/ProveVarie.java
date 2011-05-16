@@ -12,6 +12,7 @@ import rob.Utility;
 import solutionhandlers.AdvancedNeighbourGenerator;
 import solutionhandlers.AdvancedNeighbourGenerator2;
 import solutionhandlers.BanSupplierNeighbourGenerator;
+import solutionhandlers.BanSupplierNeighbourGenerator2;
 import solutionhandlers.BasicNeighbourGenerator;
 import solutionhandlers.EmptyCellsNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
@@ -226,5 +227,28 @@ public class ProveVarie {
 		Solution finalSol = vns.execute(lSol);
 		System.out.println("fo VNS(lines) = "+finalSol.getObjectiveFunction());
 	}
-	
+
+	@Test
+	public void prova11(){
+		ProblemParser parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+		//62
+		Problem problem = parser.parse("Cap.50.100.3.2.10.2.ctqd");
+		SolutionGenerator gen = new TrivialSolutionGenerator(problem);
+		Solution tSol = gen.generate();
+		System.out.println("fo lines = "+tSol.getObjectiveFunction());
+		
+		AdvancedNeighbourGenerator2 nGen = new AdvancedNeighbourGenerator2(problem);
+		LocalSearch ls = new LocalSearch(5, 5, SuccessorChoiceMethod.BEST_IMPROVEMENT, nGen, problem);
+		
+		Solution iSol=ls.execute(tSol);
+		
+		EmptyCellsNeighbourGenerator ecGen = new EmptyCellsNeighbourGenerator(problem);
+		VNS vnsInternal = new VNS(5, ls, ecGen, problem);
+		
+		BanSupplierNeighbourGenerator2 banGen = new BanSupplierNeighbourGenerator2(problem);
+		VNS vnsExternal = new VNS((int)(2), vnsInternal, banGen, problem,1,-1);
+		
+		Solution finalSol = vnsExternal.execute(iSol);
+		System.out.println("fo VNS(lines) = "+finalSol.getObjectiveFunction());
+	}
 }

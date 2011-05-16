@@ -224,4 +224,11 @@ public class Problem {
 		Arrays.sort(suppliersCopy, 1, dimension, comparator);
 		return suppliersCopy;
 	}
+	
+	public Supplier[] sortByBoughtQuantity(Solution solution) {
+		Supplier[] suppliersCopy=suppliers.clone();
+		BoughtQuantityComparator comparator= new BoughtQuantityComparator(solution);
+		Arrays.sort(suppliersCopy, 1, dimension, comparator);
+		return suppliersCopy;
+	}
 }

@@ -5,7 +5,7 @@ import rob.Solution;
 import rob.Utility;
 import solutionhandlers.NeighbourGenerator;
 
-public class VNS extends Algorithm {
+public class VNS extends Algorithm implements Runnable {
 	protected int kMax;
 	protected Algorithm afterShaking;
 	protected Solution currentSolution;
@@ -44,7 +44,26 @@ public class VNS extends Algorithm {
 	}
 	
 	public Solution execute(Solution startSolution){
-		Solution solution=startSolution;
+		if(r<=-1 && t<=0){
+			errore;
+		}
+		
+		this.startSolution = startSolution;
+		
+		//lancio VNS come thread
+		Thread vnsT = new Thread(new VNS(VNS...............));
+		vnsT.start();
+		
+		if(t>0){
+			Thread timerT  = new Thread(new Timer(t,vnsT));
+			timerT.start();
+		}
+		
+		
+		
+		
+		
+/*		Solution solution=startSolution;
 		long startTime=System.currentTimeMillis();
 		
 		for(int i=0;i<=restarts;i++){
@@ -54,7 +73,7 @@ public class VNS extends Algorithm {
 				return currentSolution;
 			}
 		}
-		return solution;
+		return solution;*/
 	}
 
 	private Solution runVNS(Solution startSolution) {
@@ -171,5 +190,21 @@ public class VNS extends Algorithm {
 	
 	public void setIncrement(int value){
 		this.increment=value;
+	}
+
+	@Override
+	public void run() {
+		
+		long startTime=System.currentTimeMillis();
+		
+		for(int i=0;i<=restarts;i++){
+			solution=runVNS(solution);
+			if (maximumTime>0 && System.currentTimeMillis()-startTime>=maximumTime){
+				System.err.println("Warning: La VNS sta impiegando più tempo di quello specificato. Termino e ritorno l'ultimo risultato.");
+				return currentSolution;
+			}
+		}
+		return solution;
+		
 	}
 }

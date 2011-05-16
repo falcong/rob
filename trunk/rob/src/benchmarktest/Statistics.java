@@ -287,7 +287,7 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		final int FILE_NUMBER = 5;
+		final int FILE_NUMBER = 9;
 		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
@@ -299,9 +299,9 @@ public class Statistics {
 				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);*/
 		
 		//local search
-		int maxNeighboursNumber = 10;
+		int maxNeighboursNumber = 100;
 		int maxStepsNumber = 15;
-		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.FIRST_IMPROVEMENT;
+		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);
@@ -309,8 +309,8 @@ public class Statistics {
 		
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
-		int lMax = 1;
-		int kIncrement = 2;
+		int lMax = 13;
+		int kIncrement = 3;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, outputFile, intLabel);
@@ -321,7 +321,7 @@ public class Statistics {
       	//s0 = soluzione lines
       	LinesSolutionGenerator linesGenerator = new LinesSolutionGenerator(problem);
       	Solution s0 = linesGenerator.generate();
-      	int kMax = 25;
+      	int kMax = 5;
       	BanSupplierNeighbourGenerator extShaking = new BanSupplierNeighbourGenerator(problem);
       	int numRestarts = 1000000;
       	int time = -1;

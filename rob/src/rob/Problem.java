@@ -1,6 +1,7 @@
 package rob;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 
 import rob.Supplier;
@@ -215,5 +216,12 @@ public class Problem {
 	
 	public int getCell(int supplier,int product){
 		return (supplier-1)*numProducts+product;
+	}
+	
+	public Supplier[] sortByCurrentPrice(int product, Solution solution) {
+		Supplier[] suppliersCopy=suppliers.clone();
+		CurrentPriceComparator comparator= new CurrentPriceComparator(solution,product);
+		Arrays.sort(suppliersCopy, 1, dimension, comparator);
+		return suppliersCopy;
 	}
 }

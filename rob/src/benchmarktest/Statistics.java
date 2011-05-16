@@ -287,7 +287,7 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		final int FILE_NUMBER = 2;
+		final int FILE_NUMBER = 3;
 		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
@@ -310,10 +310,12 @@ public class Statistics {
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
 		int lMax = 10;
+		int kIncrement = 2;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, outputFile, intLabel);
 		intVNS.setCplex(cplex);
+		intVNS.setIncrement(kIncrement);
 		
 		//vns esterna
       	//s0 = soluzione lines

@@ -73,13 +73,20 @@ public class LocalSearch extends Algorithm {
 		Solution best=solution;
 		for (int created=0;created<maxNeighboursNumber;created++){
 			Solution neighbour=generator.generate(solution, 1);
-			if(neighbour.getObjectiveFunction()<best.getObjectiveFunction())
+			if(neighbour.getObjectiveFunction()<best.getObjectiveFunction()){
 				best=neighbour;
+			}	
 		}
-		if(best!=solution) //ritorno best solo se è cambiato rispetto a solution
+		if(best!=solution){ 
+			//ritorno best solo se è cambiato rispetto a solution
+			//stampa n° vicini generati
+			printNumNeighbours(maxNeighboursNumber);
 			return best;
-		else
+		}else{
+			//stampa n° vicini generati
+			printNumNeighbours(maxNeighboursNumber);
 			return null;
+		}
 	}
 
 	
@@ -157,7 +164,7 @@ public class LocalSearch extends Algorithm {
 			break;
 		case 2:
 			//eseguiti step-1 passi (maxStepsNumber)
-			Utility.write(statisticsFile, "\t\t\t"+(step-1)+"\t");
+			Utility.write(statisticsFile, "\t"+(step-1)+"\t"+System.getProperty("line.separator"));
 			break;
 		}
 	}

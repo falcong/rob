@@ -1,5 +1,6 @@
 package solutionhandlers;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import rob.Problem;
@@ -16,8 +17,8 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	HashSet<Integer> dontAdd;
 	HashSet<Integer> dropped;
 	
-	HashSet<Integer> cellsToEmpty;
-	HashSet<Integer> cellsNotEmptyable;
+	ArrayList<Integer> cellsToEmpty;
+	ArrayList<Integer> cellsNotEmptiable;
 	
 	public EmptyCellsNeighbourGenerator(Problem problem) {
 		this.problem=problem;
@@ -30,9 +31,9 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	
 	
 	@Override
-	public Solution generate(Solution solution, int distance){
+	public Solution generate(Solution s0, int distance){
 		//lista delle celle da svuotare
-		cellsToEmpty = new HashSet<Integer>();
+		cellsToEmpty = new ArrayList<Integer>();
 		
 		while(cellsToEmpty.size()<distance){
 			if(cellsFinished()){
@@ -44,45 +45,27 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 			//cella random
 			int cell = (int)(Math.random()*totalCells+1);
 			
-			if(cellsToEmpty.contains(cell) || cellsNotEmptyable.contains(cell)){
+			if(cellsToEmpty.contains(cell) || cellsNotEmptiable.contains(cell)){
 				//la cella è già stata scelta o scartata precedentemente
-				continue;
-			}else if(isEmpty(cell) || false){//TODO
+			}else if(isEmpty(s0, cell) || !problem.cellIsEmptiable(cell, s0, cellsToEmpty)){
 				//scarto la cella perchè vuota o non svuotabile
-				;
-			}	
-				
-				
-		}
-		
-		//TODO
-		return null;
-			//////////////////////////////////
-/*			if(c app lns || c app ls){
-				continue							//Problem.isEmptyable(Solution celle lista)
-			}else if(c è vuota || c non svuotabile){//svuotabile deve tener conto di tutte le celle in ls scelte prima
-				lns.add(c);
-				continue;
-			}else {
-				//c è piena e svuotabile e non è nelle liste
-				ls.add(c);
+				cellsNotEmptiable.add(cell);
+			}else{
+				//cella ok: la aggiungo alla lista delle celle da svuotare
+				cellsToEmpty.add(cell);
 			}
-				
+		}
+		//lista celle da svuotare riempita
+		
+		//risultato
+		Solution s1 = new Solution(s0);
+	
+		//svuoto tutte le celle da svuotare
+		for(int i=0; i<cellsToEmpty.size(); i++){
+			empty(s1, cellsToEmpty.get(i));
 		}
 		
-		Solution s1 = copy di solution
-		//ls ok
-		for(int i=0;i<ls.length;i++){
-			svuota(s1, ls[i]);//non riempie celle app ls
-		}
-		return s1;*/
-		
-		
-		
-		
-		
-		
-		
+		return s1;
 	}
 	
 	
@@ -90,7 +73,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	 * restituisce true se ho finito le celle
 	 */
 	private boolean cellsFinished(){
-		if(cellsToEmpty.size()+cellsNotEmptyable.size()==totalCells){
+		if(cellsToEmpty.size()+cellsNotEmptiable.size()==totalCells){
 			return true;
 		}else{
 			return false;
@@ -98,12 +81,9 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	}
 
 	
-
-	
-	
 	public boolean isEmpty(Solution sol, int cell){
-		int product = problem.getProduct(cell);
-		int supplier = problem.getSupplier(cell);
+		int product = problem.getProductFromCell(cell);
+		int supplier = problem.getSupplierFromCell(cell);
 		if(sol.getQuantity(supplier, product)==0){
 			return true;
 		}else{

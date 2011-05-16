@@ -183,4 +183,21 @@ public class Problem {
 	public int maxSegmentActivable(int supplier){
 		return suppliers[supplier].activatedSegment(getMaxQuantityBuyable(supplier));
 	}
+	
+	public boolean cellIsEmptiable(){
+		//TODO
+		return false;
+	}
+	
+	public int getSupplier (int cell, int product,int numProducts) {
+		return (cell-product)/numProducts+1;
+	}
+	
+	public int getProduct (int cell, int numProducts) {
+		return (cell-1)%numProducts+1;
+	}
+	
+	public int getCell(int supplier,int product){
+		return (supplier-1)*numProducts+product;
+	}
 }

@@ -287,7 +287,7 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		final int FILE_NUMBER = 1;
+		final int FILE_NUMBER = 2;
 		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
@@ -299,7 +299,7 @@ public class Statistics {
 				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);
 		
 		//local search
-		int maxNeighboursNumber = 50;
+		int maxNeighboursNumber = 10;
 		int maxStepsNumber = 100;
 		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.FIRST_IMPROVEMENT;
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);

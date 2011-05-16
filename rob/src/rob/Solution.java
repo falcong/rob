@@ -246,5 +246,4 @@ public void print(){
 		
 		return sum;
 	}
-
 }

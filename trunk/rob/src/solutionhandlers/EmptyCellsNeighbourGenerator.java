@@ -34,6 +34,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	public Solution generate(Solution s0, int distance){
 		//lista delle celle da svuotare
 		cellsToEmpty = new ArrayList<Integer>();
+		cellsNotEmptiable = new ArrayList<Integer>();
 		
 		while(cellsToEmpty.size()<distance){
 			if(cellsFinished()){

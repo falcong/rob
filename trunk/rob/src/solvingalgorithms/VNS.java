@@ -127,7 +127,7 @@ public class VNS extends Algorithm {
 				//label + 0 + time + 1 tab + fo + 1tab + 4 tab + new line
 				Utility.write(outputFile, label+0+"\t"+(long)(System.currentTimeMillis()/1000)+"\t"+
 						currentSolution.getObjectiveFunction()+"\t\t\t\t"+
-						currentSolution.calcDistance(cplex)+
+						//currentSolution.calcDistance(cplex)+
 						System.getProperty("line.separator"));
 				//console
 				System.out.println(label+0+"\t"+currentSolution.getObjectiveFunction());
@@ -144,7 +144,7 @@ public class VNS extends Algorithm {
 				//label + 1 + time + 1 tab + fo + 1tab + k + 1 tab + 3 tab + new line
 				Utility.write(outputFile, label+1+"\t"+(long)(System.currentTimeMillis()/1000)+"\t"+
 						sol.getObjectiveFunction()+"\t"+k+"\t\t\t"+
-						sol.calcDistance(cplex)+
+						//sol.calcDistance(cplex)+
 						System.getProperty("line.separator"));
 				//console
 				System.out.println(label+1+"\t"+sol.getObjectiveFunction());
@@ -161,7 +161,7 @@ public class VNS extends Algorithm {
 				//label + 2 + time + 1 tab + fo + 1tab + 4 tab + new line
 				Utility.write(outputFile, label+2+"\t"+(long)(System.currentTimeMillis()/1000)+"\t"+
 						sol.getObjectiveFunction()+"\t\t\t\t"+
-						sol.calcDistance(cplex)+
+						//sol.calcDistance(cplex)+
 						System.getProperty("line.separator"));
 				//console
 				System.out.println(label+2+"\t"+sol.getObjectiveFunction());

@@ -287,7 +287,7 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		final int FILE_NUMBER = 3;
+		final int FILE_NUMBER = 5;
 		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
@@ -295,8 +295,8 @@ public class Statistics {
 		Problem problem = probParser.parse(problemName);
 		
 		//ottimo
-		Solution cplex = new Solution(Utility.getConfigParameter("input")+
-				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);
+/*		Solution cplex = new Solution(Utility.getConfigParameter("input")+
+				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);*/
 		
 		//local search
 		int maxNeighboursNumber = 10;
@@ -309,12 +309,12 @@ public class Statistics {
 		
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
-		int lMax = 9;
+		int lMax = 1;
 		int kIncrement = 2;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, outputFile, intLabel);
-		intVNS.setCplex(cplex);
+		//intVNS.setCplex(cplex);
 		intVNS.setIncrement(kIncrement);
 		
 		//vns esterna
@@ -328,7 +328,7 @@ public class Statistics {
       	String extLabel = "e";
       	VNS extVNS = new VNS(kMax, intVNS, extShaking, problem, numRestarts, time);
       	extVNS.setStatistics(1, outputFile, extLabel);
-      	extVNS.setCplex(cplex);
+      	//extVNS.setCplex(cplex);
 		
 		//cancello eventuale contenuto file
 		PrintStream out = Utility.openOutFile(outputFile, false);

@@ -300,7 +300,7 @@ public class Statistics {
 		
 		//local search
 		int maxNeighboursNumber = 10;
-		int maxStepsNumber = 100;
+		int maxStepsNumber = 15;
 		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.FIRST_IMPROVEMENT;
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,

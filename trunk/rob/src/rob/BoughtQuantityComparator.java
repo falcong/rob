@@ -14,11 +14,11 @@ public class BoughtQuantityComparator implements Comparator<Supplier> {
 		int totalS1=solution.totalQuantityBought(s1.getId());
 		int totalS2=solution.totalQuantityBought(s2.getId());
 		if(totalS1<totalS2)
-			return -1;
+			return 1;
 		else if (totalS1==totalS2)
 			return 0;
 		else
-			return 1;
+			return -1;
 	}
 
 }

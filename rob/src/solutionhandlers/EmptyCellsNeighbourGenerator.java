@@ -16,6 +16,9 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	HashSet<Integer> dontAdd;
 	HashSet<Integer> dropped;
 	
+	HashSet<Integer> cellsToEmpty;
+	HashSet<Integer> cellsNotEmptyable;
+	
 	public EmptyCellsNeighbourGenerator(Problem problem) {
 		this.problem=problem;
 		this.numSuppliers = problem.getDimension();
@@ -25,7 +28,83 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 		dropped=new HashSet<Integer>();
 	}
 	
+	
 	@Override
+	public Solution generate(Solution solution, int distance){
+		//lista delle celle da svuotare
+		cellsToEmpty = new HashSet<Integer>();
+		
+		while(cellsToEmpty.size()<distance){
+			if(cellsFinished()){
+				System.err.println("Warning EmptyCellsNG: "+cellsToEmpty.size()+"celle svuotabili " +
+						"[anzichè "+distance+"]");
+				break;
+			}
+			
+			//cella random
+			int cell = (int)(Math.random()*totalCells+1);
+			
+			if(cellsToEmpty.contains(cell) || cellsNotEmptyable.contains(cell)){
+				//la cella è già stata scelta o scartata precedentemente
+				continue;
+			}else if(isEmpty(cell) || false){
+				//scarto la cella perchè vuota o non svuotabile
+				;
+			}	
+				
+				
+		}
+		
+
+		return null;
+			//////////////////////////////////
+/*			if(c app lns || c app ls){
+				continue							//Problem.isEmptyable(Solution celle lista)
+			}else if(c è vuota || c non svuotabile){//svuotabile deve tener conto di tutte le celle in ls scelte prima
+				lns.add(c);
+				continue;
+			}else {
+				//c è piena e svuotabile e non è nelle liste
+				ls.add(c);
+			}
+				
+		}
+		
+		Solution s1 = copy di solution
+		//ls ok
+		for(int i=0;i<ls.length;i++){
+			svuota(s1, ls[i]);//non riempie celle app ls
+		}
+		return s1;*/
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	/*
+	 * restituisce true se ho finito le celle
+	 */
+	private boolean cellsFinished(){
+		if(cellsToEmpty.size()+cellsNotEmptyable.size()==totalCells){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	private boolean isEmpty(int cell){
+		if(true);
+		return true;
+	}
+	
+	
+/*	@Override
 	public Solution generate(Solution solution, int distance){
 		//copia di solution da modificare
 		Solution result=new Solution(solution);
@@ -61,12 +140,12 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 		dropped.clear();
 		dontAdd.clear();
 		return result;
-		/*
+		
 		 * nota: sostituire una cella in un'iterazione che non è la prima rende possibile che tale cella sia stata riempita 
 		 * in un'iterazione precedente. 
-		 */
+		 
 		//TODO tenere traccia delle celle di destinazione degli spostamenti e impedire che ciò si verifichi??
-	}
+	}*/
 
 	private boolean blacklistsFull() {
 		if (dropped.size()+dontAdd.size()==totalCells){

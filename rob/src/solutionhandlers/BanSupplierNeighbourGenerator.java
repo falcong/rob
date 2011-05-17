@@ -43,7 +43,7 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator{
 	 * Se gli altri mercati non sono sufficienti a contenere i suoi prodotti svuota tutto
 	 * quello è possibile spostare mantenendo l'ammissibilità
 	 */
-	private void emptySupplier(int bannedSupId, HashSet<Integer> banned, Solution solution) {
+	protected void emptySupplier(int bannedSupId, HashSet<Integer> banned, Solution solution) {
 		int startSupplier = problem.getRandomSupplierId(banned);
 		int numSuppliers=problem.getDimension();
 		int s=startSupplier;

@@ -44,19 +44,20 @@ public class VNS extends Algorithm implements Runnable {
 	}
 	
 	public Solution execute(Solution startSolution){
-		if(r<=-1 && t<=0){
-			errore;
+		if(restarts<=-1 || maximumTime<=0){
+			throw new Error("Errore: non è stata specificata alcuna condizione di terminazione per la VNS");
 		}
 		
 		currentSolution = startSolution;
 		
 		//lancio VNS come thread
-		Thread vnsT = new Thread(this);//secondo costruttore
-		vnsT.start();
+		Thread vnsThread = new Thread(this);
+		vnsThread.start();
 		
-		if(t>0){
-			Thread timerT  = new Thread(new Timer(t,vnsT));
-			timerT.start();
+		//lancio il timer per fermare la VNS se è specificata una condizione di terminazione sul tempo
+		if(maximumTime>0){
+			Thread timerThread  = new Thread(new Timer(maximumTime,vnsThread));
+			timerThread.start();
 		}
 		
 		
@@ -195,10 +196,8 @@ public class VNS extends Algorithm implements Runnable {
 
 	@Override
 	public void run() {
-		
 		for(int i=0;i<=restarts;i++){
-			runVNS(solution);
+			runVNS();
 		}
-		
 	}
 }

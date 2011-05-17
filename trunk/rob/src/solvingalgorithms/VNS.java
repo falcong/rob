@@ -48,10 +48,10 @@ public class VNS extends Algorithm implements Runnable {
 			errore;
 		}
 		
-		this.startSolution = startSolution;
+		currentSolution = startSolution;
 		
 		//lancio VNS come thread
-		Thread vnsT = new Thread(new VNS(VNS...............));
+		Thread vnsT = new Thread(this);//secondo costruttore
 		vnsT.start();
 		
 		if(t>0){
@@ -76,8 +76,9 @@ public class VNS extends Algorithm implements Runnable {
 		return solution;*/
 	}
 
-	private Solution runVNS(Solution startSolution) {
-		currentSolution=startSolution;
+	private void runVNS(){
+	//private Solution runVNS(Solution startSolution) {
+		//currentSolution=startSolution;
 		//stampa s0
 		printS0();
 		int k=1;
@@ -99,7 +100,7 @@ public class VNS extends Algorithm implements Runnable {
 
 		}
 		System.out.println("Raggiunto kmax=" +k);
-		return currentSolution;
+		//return currentSolution;
 	}
 	
 
@@ -195,16 +196,9 @@ public class VNS extends Algorithm implements Runnable {
 	@Override
 	public void run() {
 		
-		long startTime=System.currentTimeMillis();
-		
 		for(int i=0;i<=restarts;i++){
-			solution=runVNS(solution);
-			if (maximumTime>0 && System.currentTimeMillis()-startTime>=maximumTime){
-				System.err.println("Warning: La VNS sta impiegando più tempo di quello specificato. Termino e ritorno l'ultimo risultato.");
-				return currentSolution;
-			}
+			runVNS(solution);
 		}
-		return solution;
 		
 	}
 }

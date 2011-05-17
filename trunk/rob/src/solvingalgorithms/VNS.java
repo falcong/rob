@@ -5,7 +5,7 @@ import rob.Solution;
 import rob.Utility;
 import solutionhandlers.NeighbourGenerator;
 
-public class VNS extends Algorithm implements Runnable {
+public class VNS extends Algorithm {
 	protected int kMax;
 	protected Algorithm afterShaking;
 	protected Solution currentSolution;
@@ -44,27 +44,7 @@ public class VNS extends Algorithm implements Runnable {
 	}
 	
 	public Solution execute(Solution startSolution){
-		if(restarts<=-1 || maximumTime<=0){
-			throw new Error("Errore: non è stata specificata alcuna condizione di terminazione per la VNS");
-		}
-		
-		currentSolution = startSolution;
-		
-		//lancio VNS come thread
-		Thread vnsThread = new Thread(this);
-		vnsThread.start();
-		
-		//lancio il timer per fermare la VNS se è specificata una condizione di terminazione sul tempo
-		if(maximumTime>0){
-			Thread timerThread  = new Thread(new Timer(maximumTime,vnsThread));
-			timerThread.start();
-		}
-		
-		
-		
-		
-		
-/*		Solution solution=startSolution;
+		Solution solution=startSolution;
 		long startTime=System.currentTimeMillis();
 		
 		for(int i=0;i<=restarts;i++){
@@ -74,12 +54,11 @@ public class VNS extends Algorithm implements Runnable {
 				return currentSolution;
 			}
 		}
-		return solution;*/
+		return solution;
 	}
 
-	private void runVNS(){
-	//private Solution runVNS(Solution startSolution) {
-		//currentSolution=startSolution;
+	private Solution runVNS(Solution startSolution) {
+		currentSolution=startSolution;
 		//stampa s0
 		printS0();
 		int k=1;
@@ -101,7 +80,7 @@ public class VNS extends Algorithm implements Runnable {
 
 		}
 		System.out.println("Raggiunto kmax=" +k);
-		//return currentSolution;
+		return currentSolution;
 	}
 	
 
@@ -192,12 +171,5 @@ public class VNS extends Algorithm implements Runnable {
 	
 	public void setIncrement(int value){
 		this.increment=value;
-	}
-
-	@Override
-	public void run() {
-		for(int i=0;i<=restarts;i++){
-			runVNS();
-		}
 	}
 }

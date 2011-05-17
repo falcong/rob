@@ -18,7 +18,9 @@ import rob.Solution;
 import rob.Utility;
 import solutionhandlers.AdvancedNeighbourGenerator;
 import solutionhandlers.AdvancedNeighbourGenerator2;
+import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BanSupplierNeighbourGenerator;
+import solutionhandlers.DirectionedBanNeighbourGenerator;
 import solutionhandlers.EmptyCellsNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
 import solutionhandlers.NeighbourGenerator;
@@ -287,7 +289,7 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		final int FILE_NUMBER = 9;
+		final int FILE_NUMBER = 11;
 		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
@@ -299,8 +301,8 @@ public class Statistics {
 				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);*/
 		
 		//local search
-		int maxNeighboursNumber = 100;
-		int maxStepsNumber = 15;
+		int maxNeighboursNumber = 1;
+		int maxStepsNumber = 1;
 		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
@@ -309,8 +311,8 @@ public class Statistics {
 		
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
-		int lMax = 13;
-		int kIncrement = 3;
+		int lMax = 0;
+		int kIncrement = 1;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, outputFile, intLabel);
@@ -321,10 +323,10 @@ public class Statistics {
       	//s0 = soluzione lines
       	LinesSolutionGenerator linesGenerator = new LinesSolutionGenerator(problem);
       	Solution s0 = linesGenerator.generate();
-      	int kMax = 5;
-      	BanSupplierNeighbourGenerator extShaking = new BanSupplierNeighbourGenerator(problem);
-      	int numRestarts = 1000000;
-      	int time = -1;
+      	int kMax = 10;
+      	DirectionedBanNeighbourGenerator extShaking = new DirectionedBanNeighbourGenerator(problem);
+      	int numRestarts = -1;
+      	int time = 1000;
       	String extLabel = "e";
       	VNS extVNS = new VNS(kMax, intVNS, extShaking, problem, numRestarts, time);
       	extVNS.setStatistics(1, outputFile, extLabel);

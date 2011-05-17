@@ -10,7 +10,6 @@ public class VNS extends Algorithm {
 	protected Algorithm afterShaking;
 	protected Solution currentSolution;
 	protected NeighbourGenerator generator;
-	private long maximumTime; //tempo massimo dopo cui arrestare la ricerca. Se disabilitato è =-1
 	//numero di volte in cui far ripartire la ricerca
 	protected int restarts;
 	/*
@@ -30,39 +29,54 @@ public class VNS extends Algorithm {
 		this.kMax=kMax;
 		this.problem=problem;
 		this.generator=generator;
-		maximumTime=-1;
+		//non ho limiti temporali
+		finalTime = -1;
 		restarts=0;
 	}
 	
+	//maximumTime espresso in secondi
 	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem, int restarts,int maximumTime){
 		this.afterShaking=afterShaking;
 		this.kMax=kMax;
 		this.problem=problem;
 		this.generator=generator;
-		this.maximumTime=maximumTime;
+		if(maximumTime==-1){
+			finalTime = -1;
+		}else{
+			finalTime = System.currentTimeMillis()+maximumTime*1000;
+		}
 		this.restarts=restarts;
 	}
 	
 	public Solution execute(Solution startSolution){
-		Solution solution=startSolution;
-		long startTime=System.currentTimeMillis();
+		if(restarts<=-1 && finalTime<=0){
+			throw new Error("VNS lanciata senza alcun limite");
+		}
 		
-		for(int i=0;i<=restarts;i++){
-			solution=runVNS(solution);
-			if (maximumTime>0 && System.currentTimeMillis()-startTime>=maximumTime){
-				System.err.println("Warning: La VNS sta impiegando più tempo di quello specificato. Termino e ritorno l'ultimo risultato.");
+		currentSolution = startSolution;
+		
+		
+		for(int i=0;i<=restarts  ||  restarts==-1;i++){
+			//controllo di non avere superato tempo max
+			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
 				return currentSolution;
 			}
+			//eseguo 1 main loop
+			runVNS();
 		}
-		return solution;
+		return currentSolution;
 	}
 
-	private Solution runVNS(Solution startSolution) {
-		currentSolution=startSolution;
+	private void runVNS(){
 		//stampa s0
 		printS0();
 		int k=1;
-		while(k<=kMax) {
+		while(k<=kMax){
+			//controllo di non avere superato tempo max
+			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+				return;
+			}
+			
 			Solution y=shaking(k);
 			//stampa s1
 			printS1(y, k);
@@ -80,7 +94,6 @@ public class VNS extends Algorithm {
 
 		}
 		System.out.println("Raggiunto kmax=" +k);
-		return currentSolution;
 	}
 	
 
@@ -90,14 +103,6 @@ public class VNS extends Algorithm {
 	 */
 	protected Solution shaking(int k){
 		return generator.generate(currentSolution, k);
-	}
-
-	public void setMaximumTime(long maximumTime) {
-		this.maximumTime = maximumTime;
-	}
-
-	public long getMaximumTime() {
-		return maximumTime;
 	}
 	
 	@Override
@@ -171,5 +176,9 @@ public class VNS extends Algorithm {
 	
 	public void setIncrement(int value){
 		this.increment=value;
+	}
+
+	public void setFinalTime(long finalTime){
+		this.finalTime = finalTime;
 	}
 }

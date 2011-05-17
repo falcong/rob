@@ -38,6 +38,11 @@ public class LocalSearch extends Algorithm {
 		printS0(currentSolution, false);
 		int step;
 		for (step=1;step<=maxStepsNumber;step++) {
+			//controllo di non avere superato tempo max
+			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+				return currentSolution;
+			}
+			
 			//stampa step
 			printStep(step);
 			Solution successor;
@@ -72,6 +77,11 @@ public class LocalSearch extends Algorithm {
 	private Solution bestImprovementExploration(Solution solution) {
 		Solution best=solution;
 		for (int created=0;created<maxNeighboursNumber;created++){
+			//controllo di non avere superato tempo max
+			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+				return best;
+			}
+			
 			Solution neighbour=generator.generate(solution, 1);
 			if(neighbour.getObjectiveFunction()<best.getObjectiveFunction()){
 				best=neighbour;
@@ -93,6 +103,11 @@ public class LocalSearch extends Algorithm {
 	private Solution firstImprovementExploration(Solution solution) {
 		int visited;
 		for(visited=1;visited<=maxNeighboursNumber;visited++) {
+			//controllo di non avere superato tempo max
+			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+				return solution;
+			}
+			
 			//stampa vicino
 			printNeighbour(visited);
 			Solution neighbour=generator.generate(solution, 1);

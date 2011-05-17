@@ -11,6 +11,7 @@ public class BanFullNeighbourGenerator extends BanSupplierNeighbourGenerator{
 	
 	public BanFullNeighbourGenerator(Problem problem) {
 		super(problem);
+		this.problem=problem;
 	}
 	
 	@Override

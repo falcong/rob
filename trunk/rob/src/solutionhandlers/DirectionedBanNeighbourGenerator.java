@@ -11,6 +11,7 @@ public class DirectionedBanNeighbourGenerator extends
 
 	public DirectionedBanNeighbourGenerator(Problem problem) {
 		super(problem);
+		this.problem=problem;
 	}
 
 	/*
@@ -28,6 +29,8 @@ public class DirectionedBanNeighbourGenerator extends
 				continue;
 			Supplier [] orderedSuppliers = problem.sortByCurrentPrice(p, solution);
 			for(int s=1; s<=problem.getDimension();s++){
+				if(s==bannedSupId)
+					continue;
 				int residual = orderedSuppliers[s].getResidual(p, solution);
 				if (residual<=0)
 					continue;

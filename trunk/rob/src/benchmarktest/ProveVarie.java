@@ -12,7 +12,7 @@ import rob.Utility;
 import solutionhandlers.AdvancedNeighbourGenerator;
 import solutionhandlers.AdvancedNeighbourGenerator2;
 import solutionhandlers.BanSupplierNeighbourGenerator;
-import solutionhandlers.BanSupplierNeighbourGenerator2;
+import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BasicNeighbourGenerator;
 import solutionhandlers.EmptyCellsNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
@@ -245,7 +245,7 @@ public class ProveVarie {
 		EmptyCellsNeighbourGenerator ecGen = new EmptyCellsNeighbourGenerator(problem);
 		VNS vnsInternal = new VNS(5, ls, ecGen, problem);
 		
-		BanSupplierNeighbourGenerator2 banGen = new BanSupplierNeighbourGenerator2(problem);
+		BanFullNeighbourGenerator banGen = new BanFullNeighbourGenerator(problem);
 		VNS vnsExternal = new VNS((int)(2), vnsInternal, banGen, problem,1,-1);
 		
 		Solution finalSol = vnsExternal.execute(iSol);

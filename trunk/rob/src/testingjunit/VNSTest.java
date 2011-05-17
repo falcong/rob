@@ -71,7 +71,7 @@ public class VNSTest {
 		NeighbourGenerator nGenerator=new BasicNeighbourGenerator(problem);
 		LocalSearch localSearch=new LocalSearch(100, 100, SuccessorChoiceMethod.FIRST_IMPROVEMENT, nGenerator, problem);
 		VNS vnsSearch=new VNS(50, localSearch, nGenerator, problem);
-		vnsSearch.setMaximumTime(5000);
+		vnsSearch.setFinalTime(System.currentTimeMillis()+5000);
 		Solution startSolution=sGenerator.generate();
 		System.out.println("Funzione obiettivo startSolution:" + startSolution.getObjectiveFunction());
 		Solution result=vnsSearch.execute(startSolution);

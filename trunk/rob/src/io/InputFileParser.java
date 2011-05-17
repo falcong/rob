@@ -148,7 +148,7 @@ public class InputFileParser extends Parser {
 		
 		String maximumTimeProperty=readProperty("VNS.MaximumTime");
 		if(maximumTimeProperty!=null) {
-			vns.setMaximumTime(Integer.parseInt(maximumTimeProperty)*1000);
+			vns.setFinalTime(System.currentTimeMillis()+Integer.parseInt(maximumTimeProperty)*1000);
 		}
 		return vns;
 	}

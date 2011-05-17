@@ -1,4 +1,4 @@
-package solvingalgorithms;
+package solvingalgorithms; 
 
 import rob.Problem;
 import rob.Solution;

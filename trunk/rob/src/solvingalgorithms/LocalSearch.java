@@ -229,6 +229,10 @@ public class LocalSearch extends Algorithm {
 			break;
 		}
 	}
+	
+	public void setFinalTime(long finalTime){
+		this.finalTime = finalTime;
+	}
 }
 
 

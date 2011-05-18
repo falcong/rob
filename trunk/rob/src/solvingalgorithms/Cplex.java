@@ -188,4 +188,11 @@ public class Cplex extends Algorithm {
 		this.problem=problem;
 		
 	}
+
+	//non usato
+	@Override
+	public void setFinalTime(long finalTime) {
+		// TODO Auto-generated method stub
+		
+	}
 }

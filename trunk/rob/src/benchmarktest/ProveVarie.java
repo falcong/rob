@@ -14,6 +14,7 @@ import solutionhandlers.AdvancedNeighbourGenerator2;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BasicNeighbourGenerator;
+import solutionhandlers.DirectionedBanNeighbourGenerator;
 import solutionhandlers.EmptyCellsNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
 import solutionhandlers.SolutionGenerator;
@@ -233,22 +234,21 @@ public class ProveVarie {
 		ProblemParser parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
 		//62
 		Problem problem = parser.parse("Cap.50.100.3.2.10.2.ctqd");
-		SolutionGenerator gen = new TrivialSolutionGenerator(problem);
-		Solution tSol = gen.generate();
-		System.out.println("fo lines = "+tSol.getObjectiveFunction());
+		SolutionGenerator gen = new LinesSolutionGenerator(problem);
+		Solution startSol = gen.generate();
+		System.out.println("fo lines = "+startSol.getObjectiveFunction());
 		
 		AdvancedNeighbourGenerator2 nGen = new AdvancedNeighbourGenerator2(problem);
-		LocalSearch ls = new LocalSearch(5, 5, SuccessorChoiceMethod.BEST_IMPROVEMENT, nGen, problem);
-		
-		Solution iSol=ls.execute(tSol);
+		LocalSearch ls = new LocalSearch(10, 10, SuccessorChoiceMethod.BEST_IMPROVEMENT, nGen, problem);
 		
 		EmptyCellsNeighbourGenerator ecGen = new EmptyCellsNeighbourGenerator(problem);
 		VNS vnsInternal = new VNS(5, ls, ecGen, problem);
+		vnsInternal.setIncrement(2);
 		
-		BanFullNeighbourGenerator banGen = new BanFullNeighbourGenerator(problem);
-		VNS vnsExternal = new VNS((int)(2), vnsInternal, banGen, problem,1,-1);
+		DirectionedBanNeighbourGenerator banGen = new DirectionedBanNeighbourGenerator(problem);
+		VNS vnsExternal = new VNS(4, vnsInternal, banGen, problem,1,-1);
 		
-		Solution finalSol = vnsExternal.execute(iSol);
+		Solution finalSol = vnsExternal.execute(startSol);
 		System.out.println("fo VNS(lines) = "+finalSol.getObjectiveFunction());
 	}
 }

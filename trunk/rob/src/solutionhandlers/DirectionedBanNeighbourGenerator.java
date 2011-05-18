@@ -29,13 +29,15 @@ public class DirectionedBanNeighbourGenerator extends
 				continue;
 			Supplier [] orderedSuppliers = problem.sortByCurrentPrice(p, solution);
 			for(int s=1; s<=problem.getDimension();s++){
-				if(s==bannedSupId)
+				Supplier currentSupplier = orderedSuppliers[s];
+				int currentSupId = currentSupplier.getId();
+				if(currentSupId==bannedSupId ||banned.contains(currentSupId))
 					continue;
-				int residual = orderedSuppliers[s].getResidual(p, solution);
+				int residual = currentSupplier.getResidual(p, solution);
 				if (residual<=0)
 					continue;
 				int quantity=Math.min(residual, quantityToMove);
-				solution.moveQuantity(p, bannedSupId, s, quantity, problem);
+				solution.moveQuantity(p, bannedSupId, currentSupId, quantity, problem);
 				quantityToMove-=quantity;
 			}
 		}

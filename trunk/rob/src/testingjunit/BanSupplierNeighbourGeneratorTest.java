@@ -13,6 +13,8 @@ import solutionhandlers.AdvancedNeighbourGenerator;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.DirectionedBanNeighbourGenerator;
+import solutionhandlers.RandomSolutionGenerator;
+import solutionhandlers.TrivialSolutionGenerator;
 
 public class BanSupplierNeighbourGeneratorTest {
 
@@ -80,6 +82,46 @@ public class BanSupplierNeighbourGeneratorTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution=new Solution(matrix,problem);
+		
+		BanSupplierNeighbourGenerator generator = new DirectionedBanNeighbourGenerator(problem);
+		
+		//prima
+		solution.print();
+		
+		//dopo
+		Solution result=generator.generate(solution,1);
+		assertTrue(result.isAdmissible(problem));
+		result.print();
+	}
+	
+	
+	@Test
+	public final void testBanFullNeighbourGeneratorBigProblem() {
+		ProblemParser parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+		//62
+		Problem problem = parser.parse("Cap.50.100.3.2.80.4.ctqd");
+		TrivialSolutionGenerator gen = new TrivialSolutionGenerator(problem);
+		Solution solution = gen.generate();		
+		
+		BanSupplierNeighbourGenerator generator = new BanFullNeighbourGenerator(problem);
+		
+		//prima
+		solution.print();
+		
+		//dopo
+		Solution result=generator.generate(solution,1);
+		assertTrue(result.isAdmissible(problem));
+		result.print();
+	}
+	
+	@Test
+	public final void testDirectionedNeighbourGeneratorBigProblem() {
+		ProblemParser parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+		//62
+		Problem problem = parser.parse("Cap.50.100.3.2.80.4.ctqd");
+		RandomSolutionGenerator gen = new RandomSolutionGenerator(problem);
+		Solution solution = gen.generate();		
+		
 		
 		BanSupplierNeighbourGenerator generator = new DirectionedBanNeighbourGenerator(problem);
 		

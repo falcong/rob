@@ -28,6 +28,8 @@ import solutionhandlers.TrivialSolutionGenerator;
 import solvingalgorithms.LocalSearch;
 import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
 import solvingalgorithms.VNS;
+import solvingalgorithms.VNS1;
+import solvingalgorithms.VNS2;
 
 public class Statistics {
 	@Test
@@ -289,7 +291,7 @@ public class Statistics {
 	@Test
 	public void statistic5(){
 		int statistic = 5;
-		final int FILE_NUMBER = 11;
+		final int FILE_NUMBER = 12;
 		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		//prob 62
 		String problemName = "Cap.50.100.3.2.10.2.ctqd";
@@ -301,9 +303,9 @@ public class Statistics {
 				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);*/
 		
 		//local search
-		int maxNeighboursNumber = 1000;
-		int maxStepsNumber = 1000;
-		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.FIRST_IMPROVEMENT;
+		int maxNeighboursNumber = 50;
+		int maxStepsNumber = 10;
+		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);
@@ -311,26 +313,41 @@ public class Statistics {
 		
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
-		int lMax = 0;
-		int kIncrement = 3;
+		int lMax = 2500;
+		//int kIncrement = 1;
+		int zeroIncrement = 3;
+		int firstIncrement = 10;
+		int secondIncrement = 100;
+		int firstThreshold = 13;
+		int secondThreshold = 100;
 		String intLabel = "i";
-		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
+		VNS2 intVNS = new VNS2(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, outputFile, intLabel);
 		//intVNS.setCplex(cplex);
-		intVNS.setIncrement(kIncrement);
+		//intVNS.setIncrement(kIncrement);
+		intVNS.setZeroIncrement(zeroIncrement);
+		intVNS.setFirstIncrement(firstIncrement);
+		intVNS.setSecondIncrement(secondIncrement);
+		intVNS.setFirstThreshold(firstThreshold);
+		intVNS.setSecondThreshold(secondThreshold);
+		
 		
 		//vns esterna
       	//s0 = soluzione lines
       	LinesSolutionGenerator linesGenerator = new LinesSolutionGenerator(problem);
       	Solution s0 = linesGenerator.generate();
-      	int kMax = 10;
-      	DirectionedBanNeighbourGenerator extShaking = new DirectionedBanNeighbourGenerator(problem);
+      	int kMax = 5;
+      	BanFullNeighbourGenerator extShaking = new BanFullNeighbourGenerator(problem);
       	int numRestarts = -1;
-      	int time = 1000;
+      	int time = 3600;
       	String extLabel = "e";
+      	//int firstIncrement = 4;
+      	//int secondIncrement = 1;
       	VNS extVNS = new VNS(kMax, intVNS, extShaking, problem, numRestarts, time);
       	extVNS.setStatistics(1, outputFile, extLabel);
       	//extVNS.setCplex(cplex);
+      	//extVNS.setFirstIncrement(firstIncrement);
+      	//extVNS.setSecondIncrement(secondIncrement);
 		
 		//cancello eventuale contenuto file
 		PrintStream out = Utility.openOutFile(outputFile, false);

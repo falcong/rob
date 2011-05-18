@@ -246,10 +246,4 @@ public void print(){
 		
 		return sum;
 	}
-	
-	
-	//t
-/*	public void incQuantity(int s, int p, int q){
-		solutionMatrix[s][p] = solutionMatrix[s][p]+q;
-	}*/
 }

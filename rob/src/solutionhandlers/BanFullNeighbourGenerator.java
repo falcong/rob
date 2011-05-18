@@ -1,3 +1,11 @@
+/*
+ * m = n° tot fornitori
+ * ordina i fornitori in base al numero totale di prodotti acquistati (decrescente)
+ * fra i primi m/2 fornitori ne estrae k casuali
+ * ogni fornitore viene svuotato così:
+ * scarico tutti i prodotti in un fornitore casuale, se non sufficiente continuo con i successivi
+ */
+
 package solutionhandlers;
 
 import java.util.HashSet;
@@ -20,7 +28,12 @@ public class BanFullNeighbourGenerator extends BanSupplierNeighbourGenerator{
 		Solution result=new Solution(solution);
 		
 		Supplier [] orderedSuppliers=problem.sortByBoughtQuantity(solution);
+		//o
 		int suppliersPoolSize=(int)(problem.getDimension()/2);
+		//fo
+		//m
+		//int suppliersPoolSize=25;
+		//fm
 		//Costruisco una lista di distance fornitori casuali che voglio "bandire"
 		HashSet<Integer> banned = new HashSet<Integer>();
 		int [] banArray=new int[distance];

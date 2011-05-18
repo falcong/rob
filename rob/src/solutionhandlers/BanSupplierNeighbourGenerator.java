@@ -1,3 +1,9 @@
+/*
+ * pesca k fornitori casuali (presso cui quantità totale comprata >= 1)
+ * ogni fornitore viene svuotato così:
+ * scarico tutti i prodotti in un fornitore casuale, se non sufficiente continuo con i successivi
+ */
+
 package solutionhandlers;
 
 import java.util.HashSet;

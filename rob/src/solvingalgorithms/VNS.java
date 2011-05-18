@@ -45,6 +45,7 @@ public class VNS extends Algorithm {
 		}else{
 			finalTime = System.currentTimeMillis()+maximumTime*1000;
 		}
+		afterShaking.setFinalTime(finalTime);
 		this.restarts=restarts;
 	}
 	
@@ -180,5 +181,6 @@ public class VNS extends Algorithm {
 
 	public void setFinalTime(long finalTime){
 		this.finalTime = finalTime;
+		afterShaking.setFinalTime(finalTime);
 	}
 }

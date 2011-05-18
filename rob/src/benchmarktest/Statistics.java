@@ -301,9 +301,9 @@ public class Statistics {
 				System.getProperty("file.separator")+"cplex_solution_"+problemName+".txt", problem);*/
 		
 		//local search
-		int maxNeighboursNumber = 1;
-		int maxStepsNumber = 1;
-		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
+		int maxNeighboursNumber = 1000;
+		int maxStepsNumber = 1000;
+		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.FIRST_IMPROVEMENT;
 		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);
@@ -312,7 +312,7 @@ public class Statistics {
 		//vns interna
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem);
 		int lMax = 0;
-		int kIncrement = 1;
+		int kIncrement = 3;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem);
 		intVNS.setStatistics(1, outputFile, intLabel);

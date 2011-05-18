@@ -189,10 +189,13 @@ public class Cplex extends Algorithm {
 		
 	}
 
-	//non usato
+	//non usati
 	@Override
 	public void setFinalTime(long finalTime) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void setStartTime(long startTime){
 	}
 }

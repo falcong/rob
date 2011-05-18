@@ -31,6 +31,8 @@ public class VNS extends Algorithm {
 		this.generator=generator;
 		//non ho limiti temporali
 		finalTime = -1;
+		afterShaking.setFinalTime(finalTime);
+		afterShaking.setStartTime(System.currentTimeMillis());
 		restarts=0;
 	}
 	
@@ -46,6 +48,7 @@ public class VNS extends Algorithm {
 			finalTime = System.currentTimeMillis()+maximumTime*1000;
 		}
 		afterShaking.setFinalTime(finalTime);
+		this.setStartTime(System.currentTimeMillis());
 		this.restarts=restarts;
 	}
 	
@@ -68,7 +71,7 @@ public class VNS extends Algorithm {
 		return currentSolution;
 	}
 
-	private void runVNS(){
+	protected void runVNS(){
 		//stampa s0
 		printS0();
 		int k=1;
@@ -125,13 +128,15 @@ public class VNS extends Algorithm {
 	}
 		
 	
-	private void printS0(){
+	protected void printS0(){
 		switch(info){
 			case 0: 
 				break;
 			case 1:
+				//tempo trascorso in secondi dal lancio della VNS
+				long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
 				//label + 0 + time + 1 tab + fo + 1tab + 4 tab + new line
-				Utility.write(outputFile, label+0+"\t"+(long)(System.currentTimeMillis()/1000)+"\t"+
+				Utility.write(outputFile, label+0+"\t"+elapsedTime+"\t"+
 						currentSolution.getObjectiveFunction()+"\t\t\t\t"+
 						//currentSolution.calcDistance(cplex)+
 						System.getProperty("line.separator"));
@@ -142,13 +147,15 @@ public class VNS extends Algorithm {
 	}
 	
 	
-	private void printS1(Solution sol, int k){
+	protected void printS1(Solution sol, int k){
 		switch(info){
 			case 0: 
 				break;
 			case 1:
+				//tempo trascorso in secondi dal lancio della VNS
+				long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
 				//label + 1 + time + 1 tab + fo + 1tab + k + 1 tab + 3 tab + new line
-				Utility.write(outputFile, label+1+"\t"+(long)(System.currentTimeMillis()/1000)+"\t"+
+				Utility.write(outputFile, label+1+"\t"+elapsedTime+"\t"+
 						sol.getObjectiveFunction()+"\t"+k+"\t\t\t"+
 						//sol.calcDistance(cplex)+
 						System.getProperty("line.separator"));
@@ -159,13 +166,15 @@ public class VNS extends Algorithm {
 	}
 	
 	
-	private void printS2(Solution sol){
+	protected void printS2(Solution sol){
 		switch(info){
 			case 0: 
 				break;
 			case 1:
+				//tempo trascorso in secondi dal lancio della VNS
+				long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
 				//label + 2 + time + 1 tab + fo + 1tab + 4 tab + new line
-				Utility.write(outputFile, label+2+"\t"+(long)(System.currentTimeMillis()/1000)+"\t"+
+				Utility.write(outputFile, label+2+"\t"+elapsedTime+"\t"+
 						sol.getObjectiveFunction()+"\t\t\t\t"+
 						//sol.calcDistance(cplex)+
 						System.getProperty("line.separator"));
@@ -182,5 +191,10 @@ public class VNS extends Algorithm {
 	public void setFinalTime(long finalTime){
 		this.finalTime = finalTime;
 		afterShaking.setFinalTime(finalTime);
+	}
+	
+	public void setStartTime(long startTime){
+		this.startTime = startTime;
+		afterShaking.setStartTime(startTime);
 	}
 }

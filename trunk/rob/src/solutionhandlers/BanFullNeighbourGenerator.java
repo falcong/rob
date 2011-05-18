@@ -28,12 +28,7 @@ public class BanFullNeighbourGenerator extends BanSupplierNeighbourGenerator{
 		Solution result=new Solution(solution);
 		
 		Supplier [] orderedSuppliers=problem.sortByBoughtQuantity(solution);
-		//o
 		int suppliersPoolSize=(int)(problem.getDimension()/2);
-		//fo
-		//m
-		//int suppliersPoolSize=25;
-		//fm
 		//Costruisco una lista di distance fornitori casuali che voglio "bandire"
 		HashSet<Integer> banned = new HashSet<Integer>();
 		int [] banArray=new int[distance];

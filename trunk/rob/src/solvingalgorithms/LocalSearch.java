@@ -233,6 +233,11 @@ public class LocalSearch extends Algorithm {
 	public void setFinalTime(long finalTime){
 		this.finalTime = finalTime;
 	}
+	
+	
+	public void setStartTime(long startTime){
+		this.startTime = startTime;
+	}
 }
 
 

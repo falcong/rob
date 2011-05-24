@@ -9,7 +9,6 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import rob.Utility;
-import solutionhandlers.AdvancedNeighbourGenerator;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.DirectionedBanNeighbourGenerator;

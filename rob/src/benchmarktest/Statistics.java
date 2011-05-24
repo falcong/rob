@@ -18,7 +18,6 @@ import rob.Problem;
 import rob.Solution;
 import rob.Utility;
 import solutionhandlers.AdvancedNeighbourGenerator;
-import solutionhandlers.AdvancedNeighbourGenerator2;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.DirectionedBanNeighbourGenerator;
@@ -146,7 +145,7 @@ public class Statistics {
 	      	Solution s0 = trivGenerator.generate();
 	      	
 
-			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
 	      	locSearch.setStatistics(1, outputFile);
@@ -274,7 +273,7 @@ public class Statistics {
 	      	Solution s0 = linesGenerator.generate();
 	      	
 
-			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
 	      	locSearch.setStatistics(1, outputFile);
@@ -315,7 +314,7 @@ public class Statistics {
 		int maxNeighboursNumber = 50;
 		int maxStepsNumber = 1000;
 		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
-		AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+		AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);
       	locSearch.setStatistics(2, outputFile);
@@ -411,7 +410,7 @@ public class Statistics {
 	      	Solution s0 = linesGenerator.generate();
 	      	
 
-			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
 	      	locSearch.setStatistics(1, outputFile);
@@ -475,7 +474,7 @@ public class Statistics {
 	      	Solution s0 = trivialGenerator.generate();
 	      	
 
-			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
 	      	locSearch.setStatistics(1, outputFile);
@@ -549,7 +548,7 @@ public class Statistics {
 			int maxNeighboursNumber = 50;
 			int maxStepsNumber = 10;
 			SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
-			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
 			
@@ -653,7 +652,7 @@ public class Statistics {
 			int maxNeighboursNumber = 50;
 			int maxStepsNumber = 10;
 			SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
-			AdvancedNeighbourGenerator2 neighGenerator = new AdvancedNeighbourGenerator2(problem);
+			AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
 	      	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
 	      			neighGenerator, problem);
 			

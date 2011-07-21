@@ -15,10 +15,86 @@ import solutionhandlers.TrivialSolutionGenerator;
 public class SolutionTest {
 	Problem problem;
 	ProblemParser parser;
+	
 	@Before
 	public final void setUp() {
 		parser= new ProblemParser(Utility.getConfigParameter("problemsPath"));
 	}
+	
+	//test di Solution()
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testSolution1() {
+		
+	}
+	
+	//test di Solution(String, Problem)
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testSolutionString1() {
+		
+	}
+	
+	//test di calcDistance()
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testCalcDistance1() {
+		
+	}
+	
+	//test di export()
+	/*
+	 * 
+	 */
+	@Test
+	public final void testExport1() {
+		
+	}
+	
+	//test di isAdmissible()
+	/*
+	 * caso generale sol ok + sol ko
+	 */
+	@Test
+	public final void testIsAdmissible1() {
+		
+	}
+	
+	//test di moveQuantity()
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testMoveQuantity1() {
+		
+	}
+	
+	//test di totalQuantityBought()
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testTotalQuantityBought1() {
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Test
 	public final void testObjectiveFunction() {
 		problem=parser.parse("problema1.txt");
@@ -32,7 +108,7 @@ public class SolutionTest {
 		Solution solution=new Solution(matrix,problem);
 		assertEquals(20150.52, solution.getObjectiveFunction(), 0.01);
 	}
-	@Test
+/*	@Test
 	public final void testIsAdmissible1() {
 		problem=parser.parse("problema1.txt");
 		int [] s0={0, 0, 0, 0};
@@ -44,7 +120,7 @@ public class SolutionTest {
 		matrix[2]=s2;
 		Solution solution = new Solution(matrix,problem);
 		assertTrue(solution.isAdmissible(problem));
-	}
+	}*/
 	
 	@Test
 	public final void testIsAdmissible2() {

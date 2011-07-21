@@ -60,7 +60,6 @@ public class Problem {
 	 * Restituisce un fornitore scelto a caso non contenuto in suppBlacklist
 	 */
 	public Supplier getRandomSupplier(HashSet<Integer> suppBlacklist) {
-		
 		int id = getRandomSupplierId(suppBlacklist);
 		if(id==0)
 			return null;
@@ -186,6 +185,17 @@ public class Problem {
 		return suppliers[supplier].activatedSegment(getMaxQuantityBuyable(supplier));
 	}
 	
+	/*
+	 * Precondizione: cell contiene almeno 1 prodotto acquistato.
+	 * Restituisce true se almeno 1 prodotto acquistato in cell è spostabile presso un altro fornitore.
+	 * 
+	 * C 				= insieme di tutte le celle della stessa colonna di cell escluso cell
+	 * C_vietate		= intersezione(C; otherCellsToEmpty)
+	 * C_riempibili		= C\C_vietate
+	 * Q_tot_vietato	= quantità totale di prodotti comprati presso le C_vietate
+	 * D_effettiva		= (disponibilità residua totale delle C_riempibili)-Q_tot_vietato
+	 * cell per essere svuotata può utilizzare solamente D_effettiva
+	 */
 	public boolean cellIsEmptiable(int cell, Solution solution, ArrayList<Integer> otherCellsToEmpty){
 		int product=getProductFromCell(cell);
 		//int supplierId= getSupplierFromCell(cell);

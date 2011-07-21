@@ -17,6 +17,50 @@ public class SupplierTest {
 	public void setUp() throws Exception {
 	}
 
+	//test di activatedSegment()
+	/*
+	 * 4 casi di test : es tre fascie di sconto con limiti 100 e 200
+	 * 50,99,100,250
+	 */
+	@Test
+	public final void testActivatedSegment1(){
+		
+	}
+	
+	//test di checkAvailability()
+	/*
+	 * 3 casi di test : -1, 0, n
+	 * 
+	 */
+	@Test
+	public final void checkAvailability1(){
+		
+	}
+	
+	//TODO getAveragePrice() và tolto controllare che il testing vecchio dopo la rimozione abbia esito positivo 
+	//test di ()
+	/*
+	 * 3 casi di test : -1, 0, n
+	 * 
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Test
 	public final void testGetAveragePriceInt() {
 		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));

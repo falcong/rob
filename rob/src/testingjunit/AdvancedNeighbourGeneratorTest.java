@@ -19,19 +19,133 @@ public class AdvancedNeighbourGeneratorTest {
 	
 	//test di generate()
 	/*
-	 * casi di test:
-	 *1. creare una solution dove il fornitore scelto sia unico e tutti gli altri non retrocedano
-	 *2. creare una solution dove per far scattare un fornitore almeno un'altro fornitore deve retrocedere 
-	 *(non posso far forzare il fornitore da far scattare)
+	 * Forzo il metodo a far scattare il fornitore1 (i prodotti acquistati presso il fornitore2 non possono
+	 * essere aumentati perché la disponibilità è già esaurita).
 	 */
 	@Test
 	public final void testGenerate1(){
+		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("testInput"));
+		Problem problem=pp.parse("problema1.txt");
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 0, 0};
+		int [] s2={0, 9, 42, 63};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
 		
+		//prima
+		//solution1 = soluzione iniziale
+		Solution solution1 = new Solution(matrix,problem);
+		assertTrue(solution1.isAdmissible(problem));
+		Supplier sup1 = problem.getSupplier(1);
+		Supplier sup2 = problem.getSupplier(2);
+		//fasce di sconto attive inizialmente
+		int sup1Segment1 = sup1.activatedSegment(solution1);
+		int sup2Segment1 = sup2.activatedSegment(solution1);
+		
+		//provo il metodo più volte perchè non è deterministico
+		final int N = 10;
+		for (int i = 0; i < N; i++) {
+			System.out.println("esecuzione "+(i+1));
+			System.out.println("prima:\n" + "fascia s1 = " + sup1Segment1
+					+ "\n" + "fascia s2 = " + sup2Segment1 + "\n");
+			//chiamata metodo
+			//solution2 = soluzione restituita dal metodo
+			AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(
+					problem);
+			System.out.println("chiamata generate");
+			Solution solution2 = generator.generate(solution1, 0);
+			//dopo
+			assertTrue(solution2.isAdmissible(problem));
+			int sup1Segment2 = sup1.activatedSegment(solution2);
+			int sup2Segment2 = sup2.activatedSegment(solution2);
+			System.out.println("\ndopo:\n" + "fascia s1 = " + sup1Segment2
+					+ "\n" + "fascia s2 = " + sup2Segment2 + "\n");
+			assertTrue(sup1Segment2 == sup1Segment1 + 1);
+			assertTrue(sup2Segment2 == sup2Segment1);
+		}
+	}
+	
+	/*
+	 * sol iniziale:
+	 * 51	52	53
+	 * 9	42	63
+	 * 
+	 *  Necessariamente deve scattare fornitore1 e retrocedere fornitore2, cioè
+	 *  sol finale
+	 *  52	52	53
+	 *  8	42	63
+	 */
+	@Test
+	public final void testGenerate2(){
+		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("testInput"));
+		Problem problem=pp.parse("problema2.txt");
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 52, 53};
+		int [] s2={0, 9, 42, 63};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		//prima
+		//solution1 = soluzione iniziale
+		Solution solution1 = new Solution(matrix,problem);
+		assertTrue(solution1.isAdmissible(problem));
+		Supplier sup1 = problem.getSupplier(1);
+		Supplier sup2 = problem.getSupplier(2);
+		//fasce di sconto attive inizialmente
+		int sup1Segment1 = sup1.activatedSegment(solution1);
+		int sup2Segment1 = sup2.activatedSegment(solution1);
+		
+		//TODO
+		/*
+		 * fare sol2 attesa
+		 * controllare che sol2attesa = sol2
+		 */
+		//solution2expected 
+/*		s02={0, 0, 0, 0};
+		s12={0, 52, 52, 53};
+		s22={0, 8, 42, 63};
+		matrix[0]=s22;
+		matrix[1]=s21;
+		matrix[2]=s22;*/
+		
+		
+		
+		//provo il metodo più volte perchè non è deterministico
+		final int N = 10;
+		for (int i = 0; i < N; i++) {
+			System.out.println("esecuzione "+(i+1));
+			System.out.println("prima:\n" + "fascia s1 = " + sup1Segment1
+					+ "\n" + "fascia s2 = " + sup2Segment1 + "\n");
+			//chiamata metodo
+			//solution2 = soluzione restituita dal metodo
+			AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(
+					problem);
+			System.out.println("chiamata generate");
+			Solution solution2 = generator.generate(solution1, 0);
+			//dopo
+			assertTrue(solution2.isAdmissible(problem));
+			int sup1Segment2 = sup1.activatedSegment(solution2);
+			int sup2Segment2 = sup2.activatedSegment(solution2);
+			System.out.println("\ndopo:\n" + "fascia s1 = " + sup1Segment2
+					+ "\n" + "fascia s2 = " + sup2Segment2 + "\n");
+			assertTrue(sup1Segment2 == sup1Segment1 + 1);
+			assertTrue(sup2Segment2 == sup2Segment1);
+		}
 	}
 	
 	
 	
-	
+	//temp
+	/*
+	 *  casi di test:
+	 *1. creare una solution dove il fornitore scelto sia unico e tutti gli altri non retrocedano
+	 *2. creare una solution dove per far scattare un fornitore almeno un'altro fornitore deve retrocedere 
+	 *(non posso far forzare il fornitore da far scattare)
+	 */
 	
 	
 
@@ -108,58 +222,7 @@ public class AdvancedNeighbourGeneratorTest {
 //		assertEquals(1, generator.findTargetSupplierPublic(solution));
 //	}
 //	
-	@Test
-	public final void testGenerate(){
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem problem=pp.parse("problema3.txt");
-		Supplier s = problem.getSupplier(1);
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 0, 0};
-		int [] s2={0, 9, 42, 63};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		
-		//prima
-		Solution solution1 = new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible(problem));
-		Supplier sup1 = problem.getSupplier(1);
-		Supplier sup2 = problem.getSupplier(2);
-		int sup1Segment1 = sup1.activatedSegment(solution1);
-		int sup2Segment1 = sup2.activatedSegment(solution1);
-		System.out.println("prima\n"+
-				"fascia s1 = "+sup1Segment1+"\n"+
-				"fascia s2 = "+sup2Segment1);
-		//solution1.print();
-		
-		//chiamata metodo
-		AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(problem);
-		Solution solution2 = generator.generate(solution1, 0);
-		
-		//dopo
-		assertTrue(solution2.isAdmissible(problem));
-		int sup1Segment2 = sup1.activatedSegment(solution2);
-		int sup2Segment2 = sup2.activatedSegment(solution2);
-		System.out.println("\ndopo\n"+
-				"fascia s1 = "+sup1Segment2+"\n"+
-				"fascia s2 = "+sup2Segment2);
-		//solution2.print();
-		assertTrue(sup1Segment2==sup1Segment1+1);
-	}
+
 	
-	@Test
-	public final void testGenerate2(){
-		ProblemParser parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		//62
-		Problem problem = parser.parse("Cap.100.100.5.1.10.1.ctqd");
-		SolutionGenerator gen = new TrivialSolutionGenerator(problem);
-		Solution tSol = gen.generate();
-		System.out.println("fo trivial="+tSol.getObjectiveFunction());
-		AdvancedNeighbourGenerator nGen = new AdvancedNeighbourGenerator(problem);
-		
-		Solution neighbour=nGen.generate(tSol, 1);
-		System.out.println("fo vicino="+neighbour.getObjectiveFunction());
-		assertTrue(neighbour.isAdmissible(problem));
-		}
+
 }

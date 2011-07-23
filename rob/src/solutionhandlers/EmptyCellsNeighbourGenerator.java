@@ -82,7 +82,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 	}
 
 	
-	public boolean isEmpty(Solution sol, int cell){
+	private boolean isEmpty(Solution sol, int cell){
 		int product = problem.getProductFromCell(cell);
 		int supplier = problem.getSupplierFromCell(cell);
 		if(sol.getQuantity(supplier, product)==0){

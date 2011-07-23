@@ -114,6 +114,8 @@ public class Utility {
 	/*
 	 * legge da config.txt il parametro specificato
 	 * [restituisce null se il parametro non viene trovato]
+	 * Se parameter è presente più volte viene restituito il primo valore.
+	 * Il file non deve contenere linee vuote.
 	 */
 	public static String getConfigParameter(String parameter) throws Error {
 		try{

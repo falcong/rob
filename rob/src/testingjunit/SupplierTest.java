@@ -33,52 +33,87 @@ public class SupplierTest {
 	 * 
 	 */
 	@Test
-	public final void checkAvailability1(){
+	public final void testCheckAvailability1(){
 		
 	}
 	
-	//TODO getAveragePrice() và tolto controllare che il testing vecchio dopo la rimozione abbia esito positivo 
-	//test di ()
+	//test di getDiscountedPrice
 	/*
-	 * 3 casi di test : -1, 0, n
-	 * 
+	 * 4 casi di test : es tre fascie di sconto con limiti 100 e 200
+	 * 50,99,100,250
 	 */
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@Test
-	public final void testGetAveragePriceInt() {
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem p = pp.parse("Cap.10.40.3.1.10.1.ctqd");
-		Supplier s = p.getSupplier(1);
-		System.out.println(s.getAveragePrice(1));
+	public final void testGetDiscountedPrice1(){
 		
 	}
 	
+	//test di getResidual(int, int[][])
+	/*
+	 * caso generale
+	 */
 	@Test
-	public final void testGetAveragePriceInt2() {
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem p = pp.parse("problema1.txt");
-		Supplier s = p.getSupplier(2);
-		//System.out.println(s.getAveragePrice(2));
-		assertEquals(s.getAveragePrice(2), -1, 0.01);
+	public final void testGetResidual1(){
 		
 	}
+	
+	//test di getResidual(int, Solution)
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testGetResidualSolution1(){
+		
+	}
+	
+	//test di getTotalResidualAvailability()
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testGetTotalResidualAvailability1(){
+		
+	}
+	
+	//test di quantityToIncreaseSegment()
+	/*
+	 * 4 casi di test : es tre fascie di sconto con limiti 100 e 200
+	 * 50,99,100,250
+	 */
+	@Test
+	public final void testQuantityToIncreaseSegment1(){
+		
+	}
+	
+	//test di quantityToNotDecreaseSegment()
+	/*
+	 * caso generico + soglia + soglia-1
+	 */
+	@Test
+	public final void testQuantityToNotDecreaseSegment1(){
+		
+	}
+	
+	//test di setPrices()
+	/*
+	 * caso generale
+	 */
+	@Test
+	public final void testSetPrices1(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	@Test
 	public final void testActivatedSegment() {

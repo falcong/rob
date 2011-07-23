@@ -16,6 +16,25 @@ import solutionhandlers.TrivialSolutionGenerator;
 
 
 public class AdvancedNeighbourGeneratorTest {
+	
+	//test di generate()
+	/*
+	 * casi di test:
+	 *1. creare una solution dove il fornitore scelto sia unico e tutti gli altri non retrocedano
+	 *2. creare una solution dove per far scattare un fornitore almeno un'altro fornitore deve retrocedere 
+	 *(non posso far forzare il fornitore da far scattare)
+	 */
+	@Test
+	public final void testGenerate1(){
+		
+	}
+	
+	
+	
+	
+	
+	
+
 //	@Test
 //	public final void testFindSupplierImproveablePublic(){
 //		/*

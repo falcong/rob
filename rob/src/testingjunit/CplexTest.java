@@ -25,6 +25,10 @@ public class CplexTest {
 		parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
 	}
 
+	//test di execute()
+	/*
+	 * caso generale: solo ammissibilità
+	 */
 	@Test
 	public final void testExecute() {
 		problem = parser.parse("problema1.txt");

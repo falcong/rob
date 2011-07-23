@@ -21,6 +21,28 @@ public class BanSupplierNeighbourGeneratorTest {
 	public void setUp() throws Exception {
 	}
 
+	//test di generate()
+	/*
+	 * caso generale solo controllo ammissibilità
+	 */
+	@Test
+	public final void testGenerate1(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Test
 	public final void testBanSupplierNeighbourGenerator() {
 		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));

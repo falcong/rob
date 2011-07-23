@@ -13,6 +13,36 @@ import solutionhandlers.EmptyCellsRandomNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
 
 public class EmptyCellsRandomNeighbourGeneratorTest {
+	
+	//test di scramble()
+	/*
+	 * casi:
+	 * - generale
+	 * - ratio = 0
+	 */
+	@Test
+	public final void testScramble1(){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Test
 	public final void testScramble(){
 		//prob 63

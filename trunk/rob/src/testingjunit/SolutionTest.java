@@ -32,7 +32,10 @@ public class SolutionTest {
 	
 	//test di Solution(String, Problem)
 	/*
-	 * caso generale
+	 * caso generale:
+	 * creo file con sol
+	 * importo
+	 * controllo che sol importata sia = sol del file
 	 */
 	@Test
 	public final void testSolutionString1() {
@@ -50,7 +53,11 @@ public class SolutionTest {
 	
 	//test di export()
 	/*
-	 * 
+	 * caso generale:
+	 * new sol
+	 * exp
+	 * imp
+	 * controllo =
 	 */
 	@Test
 	public final void testExport1() {

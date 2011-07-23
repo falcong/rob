@@ -237,33 +237,6 @@ public class Supplier {
 		return prices[product][segment];
 	}
 
-	/*
-	 * Restituisce il prezzo medio del prodotto p [media pesata dei prezzi di p nelle varie fasce di sconto]
-	 * Se il prodotto non è presente restituisce -1
-	 */
-	public double getAveragePrice(int p) {
-		if(availability[p]==-1){
-			return -1;
-		}
-		
-		double sum		= 0;
-		int weightsSum	= 0;
-		double price;
-		int weight = 0;
-		
-		for(int r=0; r<numSegments; r++){
-			price		= prices[p][r];
-			weight	= lowerBounds[r+1]-lowerBounds[r];
-			sum 			+= price * weight;
-			weightsSum	+= weight;
-		}
-		price	= prices[p][numSegments];
-		sum 			+= price * weight;
-		weightsSum	+= weight;
-		
-		return sum/weightsSum;
-	}
-
 	public void setNumOfferedProducts(int numOfferedProducts) {
 		this.numOfferedProducts = numOfferedProducts;
 	}

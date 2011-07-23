@@ -30,9 +30,15 @@ public class LocalSearchTest {
 	public void setUp() throws Exception {
 		parser= new ProblemParser(Utility.getConfigParameter("problemsPath"));
 	}
-
+	
+	//test di execute()
+	/*
+	 * 2 casi: best first + best improvement
+	 * [2 casi generali ammissibilità e fo <=]
+	 * testare n volte
+	 */
 	@Test
-	public final void testExecuteBestFirst() {
+	public final void testExecute1() {
 		problem=parser.parse("Cap.50.100.5.1.10.1.ctqd");
 		nGenerator=new BasicNeighbourGenerator(problem);
 		sGenerator=new TrivialSolutionGenerator(problem);

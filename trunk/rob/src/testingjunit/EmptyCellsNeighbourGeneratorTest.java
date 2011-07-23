@@ -21,6 +21,18 @@ public class EmptyCellsNeighbourGeneratorTest {
 	public void setUp() throws Exception {
 	}
 
+	//test di generate()
+	/*
+	 * caso generale, solo ammissibilità
+	 */
+	@Test
+	public final void testGenerate(){
+		
+	}
+	
+	
+	
+	
 	@Test
 	public final void testEmptyCellsNeighbourGenerator() {
 		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));

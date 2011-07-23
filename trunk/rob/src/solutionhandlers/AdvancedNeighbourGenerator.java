@@ -1,3 +1,6 @@
+/*
+ * questa classe è utilizzata per generare un vicino nella Local Search
+ */
 package solutionhandlers;
 
 import java.util.Arrays;
@@ -5,8 +8,6 @@ import java.util.Arrays;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
-
-
 
 public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 	protected Problem problem;

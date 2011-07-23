@@ -32,6 +32,7 @@ public class VNS extends Algorithm {
 		//non ho limiti temporali
 		finalTime = -1;
 		afterShaking.setFinalTime(finalTime);
+		//TODO startTime non deve essere settato
 		afterShaking.setStartTime(System.currentTimeMillis());
 		restarts=0;
 	}

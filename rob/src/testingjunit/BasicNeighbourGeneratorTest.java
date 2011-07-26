@@ -19,7 +19,7 @@ public class BasicNeighbourGeneratorTest {
 	 * Caso generale (controllo distanza).
 	 */
 	@Test
-	public void testGenerate1() {
+	public final void testGenerate1() {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName();
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		

@@ -24,8 +24,9 @@ public class AdvancedNeighbourGeneratorTest {
 	 */
 	@Test
 	public final void testGenerate1(){
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("testInput"));
-		Problem problem=pp.parse("problema1.txt");
+		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		final String PROBLEM_NAME = "problema1.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 0, 0};
 		int [] s2={0, 9, 42, 63};
@@ -79,8 +80,9 @@ public class AdvancedNeighbourGeneratorTest {
 	 */
 	@Test
 	public final void testGenerate2(){
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("testInput"));
-		Problem problem=pp.parse("problema2.txt");
+		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		final String PROBLEM_NAME = "problema2.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 53};
 		int [] s2={0, 9, 42, 63};
@@ -93,52 +95,28 @@ public class AdvancedNeighbourGeneratorTest {
 		//solution1 = soluzione iniziale
 		Solution solution1 = new Solution(matrix,problem);
 		assertTrue(solution1.isAdmissible(problem));
-		Supplier sup1 = problem.getSupplier(1);
-		Supplier sup2 = problem.getSupplier(2);
-		//fasce di sconto attive inizialmente
-		int sup1Segment1 = sup1.activatedSegment(solution1);
-		int sup2Segment1 = sup2.activatedSegment(solution1);
 		
-		//TODO
-		/*
-		 * fare sol2 attesa
-		 * controllare che sol2attesa = sol2
-		 */
 		//solution2expected 
-/*		s02={0, 0, 0, 0};
-		s12={0, 52, 52, 53};
-		s22={0, 8, 42, 63};
-		matrix[0]=s22;
+		int s20[] = {0, 0, 0, 0};
+		int s21[] = {0, 52, 52, 53};
+		int s22[] = {0, 8, 42, 63};
+		matrix[0]=s20;
 		matrix[1]=s21;
-		matrix[2]=s22;*/
+		matrix[2]=s22;
+		Solution solution2Expected = new Solution(matrix,problem);
+		assertTrue(solution2Expected.isAdmissible(problem));
 		
+		//solution2 = generate(solution1)
+		AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(problem);
+		//il parametro in ingresso 0 viene ignorato
+		Solution solution2 = generator.generate(solution1, 0);
 		
-		
-		//provo il metodo più volte perchè non è deterministico
-		final int N = 10;
-		for (int i = 0; i < N; i++) {
-			System.out.println("esecuzione "+(i+1));
-			System.out.println("prima:\n" + "fascia s1 = " + sup1Segment1
-					+ "\n" + "fascia s2 = " + sup2Segment1 + "\n");
-			//chiamata metodo
-			//solution2 = soluzione restituita dal metodo
-			AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(
-					problem);
-			System.out.println("chiamata generate");
-			Solution solution2 = generator.generate(solution1, 0);
-			//dopo
-			assertTrue(solution2.isAdmissible(problem));
-			int sup1Segment2 = sup1.activatedSegment(solution2);
-			int sup2Segment2 = sup2.activatedSegment(solution2);
-			System.out.println("\ndopo:\n" + "fascia s1 = " + sup1Segment2
-					+ "\n" + "fascia s2 = " + sup2Segment2 + "\n");
-			assertTrue(sup1Segment2 == sup1Segment1 + 1);
-			assertTrue(sup2Segment2 == sup2Segment1);
-		}
+		//controllo che solution2 = solution2Expected (se e solo se distanza=0)
+		assertTrue(solution2.calcDistance(solution2Expected)==0);	
 	}
 	
 	
-	
+	//TODO cancellare tutto quello che viene dopo!
 	//temp
 	/*
 	 *  casi di test:

@@ -1,5 +1,3 @@
-//MOD
-//era tutto commentato
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -20,16 +18,22 @@ public class CplexTest {
 
 	//test di execute()
 	/*
-	 * caso generale: solo ammissibilità
+	 * Caso generale.
 	 */
-	//@Test
-/*	public final void testExecute1() {
-		problem = parser.parse("problema1.txt");
-		//problem = parser.parse("Cap.100.100.5.1.10.5.ctqd");
-		//problem = parser.parse("Cap.50.100.5.2.10.1.ctqd");
-		Cplex c = new Cplex(problem);
-		Solution s = c.execute(null);
-		System.out.println("funzione obiettivo = "+s.getObjectiveFunction());
-	}*/
-
+	@Test
+	public final void testExecute1() {
+		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		
+		final String PROBLEM_NAME = "Cap.10.40.3.1.99.1.ctqd";
+		Problem problem=pp.parse(PROBLEM_NAME);
+		
+		Cplex cplexSolver = new Cplex(problem);
+		Solution sol = cplexSolver.execute(null);
+		double objFunction = sol.getObjectiveFunction();
+		
+		final double expectedObjFunction = 9575.00;	
+		final double tolerance = 0.10;
+		
+		assertEquals(expectedObjFunction, objFunction, tolerance);
+	}
 }

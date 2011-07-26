@@ -20,7 +20,7 @@ public class BanFullNeighbourGeneratorTest {
 	 */
 	//TODO aggiungere controllo che sol1 != sol0 qui e in tutti i metodi analoghi
 	@Test
-	public void testGenerate1() {
+	public final void testGenerate1() {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		

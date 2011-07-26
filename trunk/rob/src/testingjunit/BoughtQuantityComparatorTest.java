@@ -12,21 +12,16 @@ import rob.Solution;
 import rob.Supplier;
 
 public class BoughtQuantityComparatorTest {
-	Problem problem;
-	Supplier sup1, sup2;
+	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 	
-	@Before
-	public void setUp() throws Exception{
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
-		
-		final String PROBLEM_NAME = "problema3.txt";
-		problem = pp.parse(PROBLEM_NAME);
-		
-		final int sup1Id = 1;
-		sup1 = problem.getSupplier(sup1Id);
-		final int sup2Id = 2;
-		sup2 = problem.getSupplier(sup2Id);
-	}
+	final String PROBLEM_NAME = "problema3.txt";
+	Problem problem = pp.parse(PROBLEM_NAME);
+	
+	final int sup1Id = 1;
+	Supplier sup1 = problem.getSupplier(sup1Id);
+	final int sup2Id = 2;
+	Supplier sup2 = problem.getSupplier(sup2Id);
+	
 	
 	/*
 	 * sup1 < sup2

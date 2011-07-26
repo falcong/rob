@@ -16,6 +16,7 @@ import solutionhandlers.RandomSolutionGenerator;
 import solutionhandlers.TrivialSolutionGenerator;
 
 public class BanSupplierNeighbourGeneratorTest {
+	final String CLASS_NAME = this.getClass().getName();
 
 	@Before
 	public void setUp() throws Exception {
@@ -23,29 +24,30 @@ public class BanSupplierNeighbourGeneratorTest {
 
 	//test di generate()
 	/*
-	 * caso generale solo controllo ammissibilità
+	 * Caso generale.
 	 */
 	@Test
 	public final void testGenerate1(){
+		final String methodName = new Exception().getStackTrace()[0].getMethodName();
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
-		final String PROBLEM_NAME = "Cap.50.200.5.1.80.2.ctqd";
+		final String PROBLEM_NAME = "Cap.10.40.3.2.99.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);
+		final int numSuppliers = problem.getDimension();
 		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();
 		assertTrue(sol0.isAdmissible(problem));
-		//primo numero nel nome del problema
-		final int NUM_SUPPLIERS = 50; 
+
 		
-		BanFullNeighbourGenerator banGenerator = new BanFullNeighbourGenerator(problem); 
+		BanSupplierNeighbourGenerator banGenerator = new BanSupplierNeighbourGenerator(problem); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
 		final int N = 100;
 		for(int i=1; i<=N; i++){
 			//provo tutte le possibili distanze
-			final int MAX_DISTANCE = NUM_SUPPLIERS/2;
+			final int MAX_DISTANCE = numSuppliers/2;
 			for(int distance = 1; distance<=MAX_DISTANCE; distance++){
 				Solution sol1 = banGenerator.generate(sol0, distance);
 				//controllo ammissibilità della soluzione generata dal metodo
@@ -53,13 +55,13 @@ public class BanSupplierNeighbourGeneratorTest {
 				
 				
 				if(!ok){
-					System.out.println("fallimento del metodo con:\n"+
+					System.out.println("fallimento di "+CLASS_NAME+"."+methodName+"\n"+
 							"num di test = "+i+"\n"+
 							"distance = "+distance);
-					//final String FILE_NAME_SOL0 = CLASS_NAME+"_"+methodName+"_"+i+"_"+distance+"_sol0";
-					//final String FILE_NAME_SOL1 = CLASS_NAME+"_"+methodName+"_"+i+"_"+distance+"_sol1";
-					//sol0.export(FILE_NAME_SOL0);
-					//sol1.export(FILE_NAME_SOL1);
+					final String FILE_NAME_SOL0 = CLASS_NAME+"_"+methodName+"_"+i+"_"+distance+"_sol0";
+					final String FILE_NAME_SOL1 = CLASS_NAME+"_"+methodName+"_"+i+"_"+distance+"_sol1";
+					sol0.export(FILE_NAME_SOL0);
+					sol1.export(FILE_NAME_SOL1);
 				}
 				
 				assertTrue(ok);
@@ -79,8 +81,8 @@ public class BanSupplierNeighbourGeneratorTest {
 	
 	
 	
-	
-	@Test
+	//TODO cancellare tutto!
+	/*@Test
 	public final void testBanSupplierNeighbourGenerator() {
 		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
 		Problem problem = pp.parse("problema1.txt");
@@ -191,5 +193,5 @@ public class BanSupplierNeighbourGeneratorTest {
 		assertTrue(result.isAdmissible(problem));
 		result.print();
 	}
-
+*/
 }

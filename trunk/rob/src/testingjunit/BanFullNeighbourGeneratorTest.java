@@ -16,8 +16,9 @@ public class BanFullNeighbourGeneratorTest {
 	
 	//test di generate()
 	/*
-	 * caso generale -> solo ammissibilità sol
+	 * Caso generale.
 	 */
+	//TODO aggiungere controllo che sol1 != sol0 qui e in tutti i metodi analoghi
 	@Test
 	public void testGenerate1() {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
@@ -25,8 +26,7 @@ public class BanFullNeighbourGeneratorTest {
 		
 		final String PROBLEM_NAME = "Cap.10.100.3.1.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);
-		//primo numero nel nome del problema
-		final int NUM_SUPPLIERS = 10; 
+		final int numSuppliers = problem.getDimension(); 
 		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
 		//sol0 0 sol iniziale casuale
@@ -39,7 +39,7 @@ public class BanFullNeighbourGeneratorTest {
 		final int N = 100;
 		for(int i=1; i<=N; i++){
 			//provo tutte le possibili distanze
-			final int MAX_DISTANCE = NUM_SUPPLIERS/2;
+			final int MAX_DISTANCE = numSuppliers/2;
 			for(int distance = 1; distance<=MAX_DISTANCE; distance++){
 				Solution sol1 = banGenerator.generate(sol0, distance);
 				//controllo ammissibilità della soluzione generata dal metodo
@@ -47,7 +47,7 @@ public class BanFullNeighbourGeneratorTest {
 				
 				
 				if(!ok){
-					System.out.println("fallimento del metodo con:\n"+
+					System.out.println("fallimento di "+CLASS_NAME+"."+methodName+"\n"+
 							"num di test = "+i+"\n"+
 							"distance = "+distance);
 					final String FILE_NAME_SOL0 = CLASS_NAME+"_"+methodName+"_"+i+"_"+distance+"_sol0";

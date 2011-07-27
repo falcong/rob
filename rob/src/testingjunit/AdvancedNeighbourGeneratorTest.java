@@ -26,7 +26,7 @@ public class AdvancedNeighbourGeneratorTest {
 	public final void testGenerate1(){
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema1.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 0, 0};
 		int [] s2={0, 9, 42, 63};

@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import rob.Problem;
 import rob.Solution;
+import solutionhandlers.LinesSolutionGenerator;
+import solutionhandlers.RandomSolutionGenerator;
 import solvingalgorithms.Cplex;
 
 public class LinesSolutionGeneratorTest {
@@ -20,16 +22,12 @@ public class LinesSolutionGeneratorTest {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.50.40.3.1.10.1.ctqd";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
-		Cplex cplexSolver = new Cplex(problem);
-		Solution sol = cplexSolver.execute(null);
-		double objFunction = sol.getObjectiveFunction();
-		
-		final double expectedObjFunction = 9575.00;	
-		final double tolerance = 0.10;
-		
-		assertEquals(expectedObjFunction, objFunction, tolerance);
+		LinesSolutionGenerator generator = new LinesSolutionGenerator(problem);
+		//sol generata
+		Solution sol = generator.generate();
+		//controllo ammissibilità
+		assertTrue(sol.isAdmissible(problem));
 	}
-
 }

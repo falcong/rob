@@ -31,7 +31,6 @@ public class BanFullNeighbourGeneratorTest {
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();
-		assertTrue(sol0.isAdmissible(problem));
 		
 		BanFullNeighbourGenerator banGenerator = new BanFullNeighbourGenerator(problem); 
 		

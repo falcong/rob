@@ -36,7 +36,6 @@ public class EmptyCellsNeighbourGeneratorTest {
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();
-		assertTrue(sol0.isAdmissible(problem));
 		
 		EmptyCellsNeighbourGenerator emptyGenerator = new EmptyCellsNeighbourGenerator(problem); 
 		

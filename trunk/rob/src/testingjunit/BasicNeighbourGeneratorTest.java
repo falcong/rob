@@ -36,7 +36,7 @@ public class BasicNeighbourGeneratorTest {
 		BasicNeighbourGenerator basicGenerator = new BasicNeighbourGenerator(problem); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
-		final int N = 100;
+		final int N = 10;
 		for(int i=1; i<=N; i++){
 			//provo tutte le possibili distanze
 			final int MAX_DISTANCE = 100;

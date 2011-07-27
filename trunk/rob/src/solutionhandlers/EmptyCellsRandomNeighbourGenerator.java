@@ -64,8 +64,10 @@ public class EmptyCellsRandomNeighbourGenerator extends EmptyCellsNeighbourGener
 	}
 	
 	/*
-	 * altera l'ordine in maniera casuale dei primi ratio*array.length elementi
+	 * Altera l'ordine in maniera casuale dei primi floor(ratio * (array.length-1)) elementi.
+	 * array[0] non viene considerato.
 	 */
+	//TODO fare scramble che non riceve ratio...
 	public Supplier[] scramble(Supplier array[], double ratio){
 		//numero elementi da "mischiare"
 		int elementsToMove = (int)((array.length-1)*ratio);

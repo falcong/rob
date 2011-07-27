@@ -36,7 +36,7 @@ public class BanFullNeighbourGeneratorTest {
 		BanFullNeighbourGenerator banGenerator = new BanFullNeighbourGenerator(problem); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
-		final int N = 100;
+		final int N = 10;
 		for(int i=1; i<=N; i++){
 			//provo tutte le possibili distanze
 			final int MAX_DISTANCE = numSuppliers/2;

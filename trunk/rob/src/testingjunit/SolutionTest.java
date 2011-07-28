@@ -1,4 +1,3 @@
-//annarosa
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -16,11 +15,6 @@ import solutionhandlers.TrivialSolutionGenerator;
 
 public class SolutionTest {
 	ProblemParser pp=new ProblemParser(Constants.INPUT_PATH);
-	
-//	@Before
-//	public final void setUp() {
-//		
-//	}
 	
 	//test di Solution()
 	/*
@@ -208,6 +202,21 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testTotalQuantityBought1() {
-	
+		final String PROBLEM_NAME="problema14.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 52, 24};
+		int [] s2={0, 9, 13, 39};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		Solution solution=new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER = 2;
+		//quantità totale acquistata presso il fornitore 2
+		final int TOTAL_QUANTITY = 61;
+		assertEquals(TOTAL_QUANTITY, solution.totalQuantityBought(SUPPLIER));
 	}
 }

@@ -18,15 +18,6 @@ import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
 import solvingalgorithms.VNS;
 
 public class VNSTest {
-	//test di VNS(int, Algorithm, NeighbourGenerator, Problem, int,int)
-	/*
-	 * caso generale
-	 */
-	@Test
-	public final void testVNS1(){
-		//cosa c'era da testare qui?????
-	}
-	
 	//test di execute()
 	/*
 	 * caso generale ammissibilità + fo <=

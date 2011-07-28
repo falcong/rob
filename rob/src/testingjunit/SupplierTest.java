@@ -236,43 +236,165 @@ public class SupplierTest {
 	public final void testGetResidualSolution1(){
 		
 	}
-	 /*
-	//test di getTotalResidualAvailability()
-	
-	 * caso generale
 	 
-	@Test
-	public final void testGetTotalResidualAvailability1(){
+	//test di getTotalResidualAvailability()
+	/*
+	 * Caso generale.
+	 */
+	 @Test
+	 public final void testGetTotalResidualAvailability1(){
+		final String PROBLEM_NAME = "problema1.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 40, 53};
+		int [] s2={0, 9, 2, 10};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER);
+		//disponibilità totale residua presso il fornitore 2
+		final int TOTAL_AVAILABILITY = 93;
+		
+		assertEquals(TOTAL_AVAILABILITY, supplier.getTotalResidualAvailability(solution));
 	}
 	
 	//test di quantityToIncreaseSegment()
-	
+	/*
 	 * 4 casi di test : es tre fascie di sconto con limiti 100 e 200
 	 * 50,99,100,250
-	 
+	 */
+	/*
+	 * quantitàTotale = 21
+	 */
 	@Test
 	public final void testQuantityToIncreaseSegment1(){
+		final String PROBLEM_NAME = "problema15.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 40, 53};
+		int [] s2={0, 9, 2, 10};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER);
+		//quantità necessaria per far scattare la fascia di sconto attiva nel secondo fornitore
+		final int QUANTITY = 9;
+		
+		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+	}
+	
+	/*
+	 * quantitàTotale = 29
+	 */
+	@Test
+	public final void testQuantityToIncreaseSegment2(){
+		final String PROBLEM_NAME = "problema15.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 40, 45};
+		int [] s2={0, 9, 2, 18};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER);
+		//quantità necessaria per far scattare la fascia di sconto attiva nel secondo fornitore
+		final int QUANTITY = 1;
+		
+		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+	}
+	
+	/*
+	 * quantitàTotale = 30
+	 */
+	@Test
+	public final void testQuantityToIncreaseSegment3(){
+		final String PROBLEM_NAME = "problema15.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 40, 44};
+		int [] s2={0, 9, 2, 19};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER);
+		//quantità necessaria per far scattare la fascia di sconto attiva nel secondo fornitore
+		final int QUANTITY = 30;
+		
+		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+	}
+	
+	/*
+	 * quantitàTotale = 74
+	 */
+	@Test
+	public final void testQuantityToIncreaseSegment4(){
+		final String PROBLEM_NAME = "problema15.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 40, 0};
+		int [] s2={0, 9, 2, 63};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER);
+		//quantità necessaria per saturare il secondo fornitore
+		final int QUANTITY = 40;
+		
+		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
 	}
 	
 	//test di quantityToNotDecreaseSegment()
-	
+	/*
 	 * caso generico + soglia + soglia-1
-	 
+	 */
 	@Test
 	public final void testQuantityToNotDecreaseSegment1(){
 		
 	}
 	
 	//test di setPrices()
-	
+	/*
 	 * caso generale
-	 
+	 */
 	@Test
 	public final void testSetPrices1(){
 		
-	}*/
+	}
 	
 	
 	

@@ -1,4 +1,4 @@
-//claudio
+//annarosa
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -10,17 +10,17 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import rob.Utility;
+import solutionhandlers.RandomSolutionGenerator;
 import solutionhandlers.SolutionGenerator;
 import solutionhandlers.TrivialSolutionGenerator;
 
 public class SolutionTest {
-	Problem problem;
-	ProblemParser parser;
+	ProblemParser pp=new ProblemParser(Constants.INPUT_PATH);
 	
-	@Before
-	public final void setUp() {
-		parser= new ProblemParser(Utility.getConfigParameter("problemsPath"));
-	}
+//	@Before
+//	public final void setUp() {
+//		
+//	}
 	
 	//test di Solution()
 	/*
@@ -28,7 +28,18 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testSolution1() {
-		
+		final String PROBLEM_NAME="problema10.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 30, 10, 40};
+		int [] s2={0, 20, 32, 23};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		Solution solution=new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		assertEquals(19346.75, solution.getObjectiveFunction(), 0.01);		
 	}
 	
 	//test di Solution(String, Problem)
@@ -40,7 +51,25 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testSolutionString1() {
+		final String PROBLEM_NAME="problema10.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
 		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 30, 10, 40};
+		int [] s2={0, 20, 32, 23};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution expectedSolution=new Solution(matrix,problem);
+		
+		final String inputFileName=PROBLEM_NAME+"_Solution.txt";
+		final String filePath = Constants.INPUT_PATH+System.getProperty("file.separator")+inputFileName;
+		
+		Solution importedSolution=new Solution(filePath,problem);
+		
+		assertTrue(expectedSolution.calcDistance(importedSolution)==0);
 	}
 	
 	//test di calcDistance()
@@ -49,7 +78,26 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testCalcDistance1() {
+		Problem problem=pp.parse("problema11.txt");
+		int [] A0={0, 0, 0, 0};
+		int [] A1={0, 41, 42, 24};
+		int [] A2={0, 19, 0, 39};
+		int [][] matrixA=new int[3][];
+		matrixA[0]=A0;
+		matrixA[1]=A1;
+		matrixA[2]=A2;
+		Solution solutionA=new Solution(matrixA,problem);
 		
+		int [] B0={0, 0, 0, 0};
+		int [] B1={0, 40, 42, 25};
+		int [] B2={0, 20, 0, 38};
+		int [][] matrixB=new int[3][];
+		matrixB[0]=B0;
+		matrixB[1]=B1;
+		matrixB[2]=B2;
+		Solution solutionB=new Solution(matrixB,problem);
+		assertTrue(solutionA.isAdmissible(problem)&&solutionB.isAdmissible(problem));
+		assertEquals(2,solutionA.calcDistance(solutionB));
 	}
 	
 	//test di export()
@@ -62,16 +110,59 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testExport1() {
+		final String PROBLEM_NAME="Cap.50.40.5.1.10.1.ctqd";
+		Problem problem=pp.parse(PROBLEM_NAME);
+		SolutionGenerator sg=new RandomSolutionGenerator(problem);
+		Solution sol = sg.generate();
 		
+		final String outputFileName=PROBLEM_NAME+"_Solution.txt";
+		final String filePath = Constants.OUTPUT_PATH+System.getProperty("file.separator")+outputFileName;
+		
+		sol.export(filePath);
+		
+		Solution importedSol = new Solution(filePath,problem);
+		
+		assertTrue(sol.calcDistance(importedSol)==0);
+		assertTrue(sol.getObjectiveFunction()==importedSol.getObjectiveFunction());		
 	}
 	
 	//test di isAdmissible()
 	/*
-	 * caso generale sol ok + sol ko
+	 * Soluzione ammissibile
 	 */
 	@Test
 	public final void testIsAdmissible1() {
+		final String PROBLEM_NAME="problema12.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
 		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 40, 50, 25};
+		int [] s2={0, 20, 10, 38};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+	}
+	
+	/*
+	 * Soluzione non ammissibile
+	 */
+	@Test
+	public final void testIsAdmissible2() {
+		final String PROBLEM_NAME="problema12.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 40, 50, 25};
+		int [] s2={0, 20, 50, 38}; //valore non ammissible
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(!solution.isAdmissible(problem));
 	}
 	
 	//test di moveQuantity()
@@ -80,7 +171,35 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testMoveQuantity1() {
+		final String PROBLEM_NAME="problema13.txt";
+		Problem problem=pp.parse(PROBLEM_NAME);
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 51, 52, 24};
+		int [] s2={0, 9, 13, 39};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		Solution solution=new Solution(matrix,problem);
 		
+		final int QUANTITY=10;
+		final int PRODUCT=2;
+		final int SUP_FROM=1;
+		final int SUP_TO=2;
+		
+		int [] expectedS0={0, 0, 0, 0};
+		int [] expectedS1={0, s1[1], s1[2]-QUANTITY, s1[3]};
+		int [] expectedS2={0, s2[1], s2[2]+QUANTITY, s2[3]}; //ho spostato QUANTITY unità da s1[2] a s2[2]
+		int [][] expectedMatrix=new int[3][];
+		expectedMatrix[0]=expectedS0;
+		expectedMatrix[1]=expectedS1;
+		expectedMatrix[2]=expectedS2;
+		
+		
+		Solution expectedSol=new Solution(expectedMatrix,problem);
+		
+		solution.moveQuantity(PRODUCT, SUP_FROM, SUP_TO, QUANTITY, problem); //solution dovrebbe diventare uguale a expectedSol (distanza=0)
+		assertEquals(0,solution.calcDistance(expectedSol)); 
 	}
 	
 	//test di totalQuantityBought()
@@ -89,160 +208,6 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testTotalQuantityBought1() {
-		
+	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@Test
-	public final void testObjectiveFunction() {
-		problem=parser.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 42, 24};
-		int [] s2={0, 9, 0, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution=new Solution(matrix,problem);
-		assertEquals(20150.52, solution.getObjectiveFunction(), 0.01);
-	}
-/*	@Test
-	public final void testIsAdmissible1() {
-		problem=parser.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 42, 24};
-		int [] s2={0, 9, 0, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
-	}*/
-	
-	@Test
-	public final void testIsAdmissible2() {
-		problem=parser.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 52, 42, 24};
-		int [] s2={0, 8, 0, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution = new Solution(matrix,problem);
-		assertTrue(!solution.isAdmissible(problem));
-	}
-	
-	@Test
-	public final void testIsAdmissible3() {
-		problem=parser.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 41, 24};
-		int [] s2={0, 9, 1, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution = new Solution(matrix,problem);
-		assertTrue(!solution.isAdmissible(problem));
-	}
-	
-	@Test
-	public final void testIsAdmissible4() {
-		problem=parser.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 41, 24};
-		int [] s2={0, 10, 0, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution = new Solution(matrix,problem);
-		assertTrue(!solution.isAdmissible(problem));
-	}
-	
-	@Test
-	public final void testCalcDistance() {
-		problem=parser.parse("problema1.txt");
-		int [] A0={0, 0, 0, 0};
-		int [] A1={0, 51, 42, 24};
-		int [] A2={0, 9, 0, 39};
-		int [][] matrixA=new int[3][];
-		matrixA[0]=A0;
-		matrixA[1]=A1;
-		matrixA[2]=A2;
-		Solution solutionA=new Solution(matrixA,problem);
-		
-		int [] B0={0, 0, 0, 0};
-		int [] B1={0, 50, 42, 25};
-		int [] B2={0, 10, 0, 38};
-		int [][] matrixB=new int[3][];
-		matrixB[0]=B0;
-		matrixB[1]=B1;
-		matrixB[2]=B2;
-		Solution solutionB=new Solution(matrixB,problem);
-		
-		assertEquals(2,solutionA.calcDistance(solutionB));
-	}
-	
-	@Test
-	public final void testMoveQuantity() {
-		problem=parser.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 42, 24};
-		int [] s2={0, 9, 0, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution=new Solution(matrix,problem);
-		
-		int [] newS0={0, 0, 0, 0};
-		int [] newS1={0, 50, 42, 24};
-		int [] newS2={0, 10, 0, 39}; //ho spostato un unità da s1[1] a s2[1]
-		int [][] newMatrix=new int[3][];
-		newMatrix[0]=newS0;
-		newMatrix[1]=newS1;
-		newMatrix[2]=newS2;
-		Solution newSol=new Solution(newMatrix,problem);
-		
-		solution.moveQuantity(1, 1, 2, 1, problem); //solution dovrebbe diventare uguale a newSol (distanza=0)
-		assertEquals(0,solution.calcDistance(newSol)); 
-	}
-	
-	@Test
-	public final void testImportExport() {
-		problem=parser.parse("problema1.txt");
-		SolutionGenerator generator=new TrivialSolutionGenerator(problem);
-		Solution sol = generator.generate();
-		sol.export(Utility.getConfigParameter("proveVarie")+System.getProperty("file.separator")+
-				"mySol.txt");
-		Solution sol2= new Solution(Utility.getConfigParameter("proveVarie")+
-				System.getProperty("file.separator")+"mySol.txt",problem);
-		assertEquals(0,sol.calcDistance(sol2));
-	}
-	
-	@Test
-	public final void testTotalQuantityBought() {
-		problem=parser.parse("Cap.50.100.3.2.80.2.ctqd");
-		
-		SolutionGenerator generator=new TrivialSolutionGenerator(problem);
-		//soluzione trivial di 56
-		Solution sol = generator.generate();
-	
-		//fornitore 39
-		assertEquals(283, sol.totalQuantityBought(39));
-	}
-	
 }

@@ -109,6 +109,7 @@ public class UtilityTest {
 	public void testGetConfigParameter3(){
 		final String PARAMETER = "testValueR";
 		final String EXPECTED_VALUE = "Test1";
+		
 		try{
 			String value = Utility.getConfigParameter(PARAMETER);
 			assertTrue(value.equals(EXPECTED_VALUE));

@@ -32,8 +32,8 @@ public class CplexTest {
 		double objFunction = sol.getObjectiveFunction();
 		
 		final double expectedObjFunction = 9575.00;	
-		final double tolerance = 0.10;
+		final double TOLERANCE = 0.10;
 		
-		assertEquals(expectedObjFunction, objFunction, tolerance);
+		assertEquals(expectedObjFunction, objFunction, TOLERANCE);
 	}
 }

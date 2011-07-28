@@ -180,6 +180,13 @@ public class Problem {
 		return sum;
 	}
 	
+	/*
+	 * Usato solo dal testing.
+	 */
+	public int getTotalDeman(){
+		return totalDemand;
+	}
+	
 	//restituisce la massima fascia di sconto attivabile di supplier
 	public int maxSegmentActivable(int supplier){
 		return suppliers[supplier].activatedSegment(getMaxQuantityBuyable(supplier));

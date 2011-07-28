@@ -1,19 +1,32 @@
-//abiola
+//annarosa
 package testingjunit;
 
 import static org.junit.Assert.*;
+import io.ProblemParser;
 
 import org.junit.Test;
 
-public class TrivialSolutionGeneratorTest {
+import rob.Problem;
+import rob.Solution;
+import solutionhandlers.TrivialSolutionGenerator;
 
+public class TrivialSolutionGeneratorTest {
 	//test di generate()
 	/*
-	 * caso generale: solo ammissibilità
+	 * Caso generale.
 	 */
 	@Test
-	public final void testGenerate1() {
-		fail("Not yet implemented");
+	public void testGenerate() {
+		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		
+		final String PROBLEM_NAME = "Cap.50.100.3.1.99.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		TrivialSolutionGenerator generator = new TrivialSolutionGenerator(problem);
+		//sol generata
+		Solution sol = generator.generate();
+		//controllo ammissibilità
+		assertTrue(sol.isAdmissible(problem));
 	}
 
 }

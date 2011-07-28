@@ -25,7 +25,7 @@ public class VNSTest {
 	 */
 	@Test
 	public final void testVNS1(){
-		//cosa c'era da testare qui??
+		//cosa c'era da testare qui?????
 	}
 	
 	//test di execute()

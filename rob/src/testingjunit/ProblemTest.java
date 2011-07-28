@@ -1,3 +1,4 @@
+//claudio
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -145,7 +146,7 @@ public class ProblemTest {
 	
 	
 	
-	
+	//TODO eliminare
 	@Test
 	public final void testGetMaxQuantityBuyable(){
 		p = parser.parse("problema1.txt");

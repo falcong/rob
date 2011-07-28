@@ -51,7 +51,8 @@ public class Solution {
 	}
 	
 	/*
-	 * file = nome completo [incluso il path]
+	 * Costruttore che importa la soluzione da un file (file = nome completo [incluso il path])
+	 * Precondizione: i dati devono essere nel formato usato dal metodo export(), con i valori separati da \t
 	 */
 	public Solution(String file,Problem problem) {
 		numSuppliers = problem.getDimension();

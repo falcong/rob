@@ -82,8 +82,8 @@ public class ProblemParserTest {
 		//price<fornitore><prodotto><fascia>
 		double price111 = PRICE11*(100-DISCOUNT11)/100.0;
 		double price211 = PRICE21*(100-DISCOUNT21)/100.0;
-		final double tolerance = 0.1;
-		assertEquals(price111, problem.getSupplier(SUPPLIER1_ID).getPrice(product1Id, SEGMENT1_ID), tolerance);
-		assertEquals(price211, problem.getSupplier(SUPPLIER2_ID).getPrice(product1Id, SEGMENT1_ID), tolerance);
+		final double TOLERANCE = 0.1;
+		assertEquals(price111, problem.getSupplier(SUPPLIER1_ID).getPrice(product1Id, SEGMENT1_ID), TOLERANCE);
+		assertEquals(price211, problem.getSupplier(SUPPLIER2_ID).getPrice(product1Id, SEGMENT1_ID), TOLERANCE);
 	}
 }

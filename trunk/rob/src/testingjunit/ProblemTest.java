@@ -1,4 +1,3 @@
-//TODO claudio finito
 package testingjunit;
 
 import static org.junit.Assert.*;

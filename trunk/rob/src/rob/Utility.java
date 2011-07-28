@@ -149,6 +149,10 @@ public class Utility {
 		}
 	}
 	
+	/*
+	 * Questo metodo clona una matrice.
+	 * PRecondizione: presuppone sempre che la riga e la colonna 0 siano inutilizzate e riempite di zeri.
+	 */
 	public static int[][] cloneMatrix(int [][] matrix){
 		int[][] newMatrix = new int[matrix.length][];
 		newMatrix[0]=new int[matrix[0].length];

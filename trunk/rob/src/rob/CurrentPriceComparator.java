@@ -13,12 +13,10 @@ public class CurrentPriceComparator implements Comparator<Supplier> {
 	
 	@Override
 	public int compare(Supplier s1, Supplier s2) {
-		//TODO errore: getDiscountedPrice deve ricevere la quantità totale di prodotti acquistati
-		//sistemare qui e sotto la riga analoga
-		double priceS1 = s1.getDiscountedPrice(product, solution.getQuantity(s1.getId(), product));
+		double priceS1 = s1.getDiscountedPrice(product, solution.totalQuantityBought(s1.getId()));
 		if(priceS1<0)
 			priceS1=Double.MAX_VALUE;
-		double priceS2 = s2.getDiscountedPrice(product, solution.getQuantity(s2.getId(), product));
+		double priceS2 = s2.getDiscountedPrice(product, solution.totalQuantityBought(s2.getId()));
 		if(priceS2<0)
 			priceS2=Double.MAX_VALUE;
 

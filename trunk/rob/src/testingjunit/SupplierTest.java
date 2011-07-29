@@ -1,4 +1,3 @@
-//abiola
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -227,16 +226,40 @@ public class SupplierTest {
 		
 		assertTrue(resAvailability == resAvailabilityExpected);
 	}
-	 
-	//test di getResidual(int, Solution)
 	
-	 /*caso generale
-	 
-	@Test
+	//test di getResidual(int, Solution)
+	/*
+	 *Caso generale
+	 */
+	 @Test
 	public final void testGetResidualSolution1(){
+		final String PROBLEM_NAME = "problema8_abiola.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 30, 0};
+		int [] s2={0, 40, 12, 63};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER2_ID = 2;
+		final int PRODUCT2_ID = 2;
+		
+		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
+		int availability = supplier.getAvailability(PRODUCT2_ID);
+		
+		int resAvailabilityExpected = availability - matrix[SUPPLIER2_ID][PRODUCT2_ID];
+		int resAvailability = supplier.getResidual(PRODUCT2_ID, solution);
+		
+		assertTrue(resAvailability == resAvailabilityExpected);
 		
 	}
-	 
+	
 	//test di getTotalResidualAvailability()
 	/*
 	 * Caso generale.
@@ -380,20 +403,124 @@ public class SupplierTest {
 	
 	//test di quantityToNotDecreaseSegment()
 	/*
-	 * caso generico + soglia + soglia-1
+	 *Caso generico
 	 */
 	@Test
 	public final void testQuantityToNotDecreaseSegment1(){
+		final String PROBLEM_NAME = "problema8_abiola.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 32, 23};
+		int [] s2={0, 40, 10, 40};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER2_ID = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
+		//quantità necessaria per saturare il secondo fornitore
+		final int QUANTITY = 30;
+		
+		assertEquals(QUANTITY, supplier.quantityToNotDecreaseSegment(solution));
 	}
 	
-	//test di setPrices()
+	/*
+	 *Caso soglia
+	 */
+	@Test
+	public final void testQuantityToNotDecreaseSegment2(){
+		final String PROBLEM_NAME = "problema8_abiola.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 32, 53};
+		int [] s2={0, 40, 10, 10};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER2_ID = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
+		//quantità necessaria per saturare il secondo fornitore
+		final int QUANTITY = 0;
+		
+		assertEquals(QUANTITY, supplier.quantityToNotDecreaseSegment(solution));
+	}
+	
+	/*
+	 *Caso con quantità 1
+	 */
+	@Test
+	public final void testQuantityToNotDecreaseSegment3(){
+		final String PROBLEM_NAME = "problema8_abiola.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 31, 53};
+		int [] s2={0, 40, 11, 10};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER2_ID = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
+		//quantità necessaria per saturare il secondo fornitore
+		final int QUANTITY = 1;
+		
+		assertEquals(QUANTITY, supplier.quantityToNotDecreaseSegment(solution));
+	}
+	
+	//test di setPrices
 	/*
 	 * caso generale
 	 */
 	@Test
 	public final void testSetPrices1(){
+		final String PROBLEM_NAME = "problema8_abiola.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 30, 0};
+		int [] s2={0, 40, 12, 63};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible(problem));
+		
+		final int SUPPLIER2_ID = 2;
+
+		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
+		int numSegments = problem.getNumSegments(SUPPLIER2_ID);
+		int numProducts = supplier.getNumOfferedProducts();
+		
+		final double TOLERANCE = 0.1;
+		final int [] DISCOUNTS = {0, 3, 5, 20};
+		
+		supplier.setPrices(numSegments, DISCOUNTS);
+		double [][] expectedPrice = supplier.getPrices();
+		
+		for(int i=1; i<=numProducts; i++){
+			for(int j=1; j<=numSegments;j++){
+				double discountedPriceProduct = supplier.getPrice(i, j);
+				assertEquals(expectedPrice[i][j], discountedPriceProduct, TOLERANCE);
+			}
+		}	
 	}
 	
 	

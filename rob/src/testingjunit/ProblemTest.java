@@ -59,7 +59,13 @@ public class ProblemTest {
 	@Test
 	public final void testCellIsEmptiable1(){
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -88,7 +94,13 @@ public class ProblemTest {
 	@Test
 	public final void testCellIsEmptiable2(){
 		final String PROBLEM_NAME = "problema7a.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -117,7 +129,13 @@ public class ProblemTest {
 	@Test
 	public final void testCellIsEmptiable3(){
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -147,7 +165,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetCell1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int SUPPLIER = 1;
 		final int PRODUCT = 1;
@@ -162,7 +186,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetCell2(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int SUPPLIER = 7;
 		final int PRODUCT = 53;
@@ -177,7 +207,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetCell3(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int SUPPLIER = 10;
 		final int PRODUCT = 100;

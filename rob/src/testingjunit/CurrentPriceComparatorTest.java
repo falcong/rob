@@ -20,7 +20,13 @@ public class CurrentPriceComparatorTest {
 	@Test
 	public void testCompare1() {
 		final String PROBLEM_NAME = "problema4.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final int sup1Id = 1;
 		Supplier sup1 = problem.getSupplier(sup1Id);
 		final int sup2Id = 2;
@@ -48,7 +54,13 @@ public class CurrentPriceComparatorTest {
 	@Test
 	public void testCompare2() {
 		final String PROBLEM_NAME = "problema5.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final int sup1Id = 1;
 		Supplier sup1 = problem.getSupplier(sup1Id);
 		final int sup2Id = 2;
@@ -76,7 +88,13 @@ public class CurrentPriceComparatorTest {
 	@Test
 	public void testCompare3() {
 		final String PROBLEM_NAME = "problema5.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final int sup1Id = 1;
 		Supplier sup1 = problem.getSupplier(sup1Id);
 		final int sup2Id = 2;

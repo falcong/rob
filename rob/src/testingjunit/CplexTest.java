@@ -25,7 +25,13 @@ public class CplexTest {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.40.3.1.99.1.ctqd";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Cplex cplexSolver = new Cplex(problem);
 		Solution sol = cplexSolver.execute(null);

@@ -26,7 +26,13 @@ public class AdvancedNeighbourGeneratorTest {
 	public final void testGenerate1(){
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema1.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 0, 0};
 		int [] s2={0, 9, 42, 63};
@@ -82,7 +88,13 @@ public class AdvancedNeighbourGeneratorTest {
 	public final void testGenerate2(){
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema2.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 53};
 		int [] s2={0, 9, 42, 63};

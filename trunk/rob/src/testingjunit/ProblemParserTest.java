@@ -30,7 +30,13 @@ public class ProblemParserTest {
 	
 	private final void testParse(String problemName) {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
-		Problem problem = pp.parse(problemName);
+		Problem problem;
+		try {
+			problem = pp.parse(problemName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		//controllo che tutti i dati del problema siano corretti
 		//NAME

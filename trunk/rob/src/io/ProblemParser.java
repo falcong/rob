@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 
@@ -11,9 +13,9 @@ import rob.Problem;
 import rob.Supplier;
 
 public class ProblemParser extends Parser{
-	static int numProducts;
-	static String file;
-	static String problemsPath;
+	int numProducts;
+	String file;
+	String problemsPath;
 	
 	public ProblemParser(String path) {
 		problemsPath = path;
@@ -22,23 +24,23 @@ public class ProblemParser extends Parser{
 	/*
 	 * crea Problem descritto nel file problemFile [formato di Manerba]
 	 */
-	public Problem parse(String problemFile){
+	public Problem parse(String problemFile) throws Exception{
 		file = problemsPath + File.separator + problemFile;
 		
 		//leggo da file i vari valori
 		//NAME
 		String name;
 		if((name = readAttribute("NAME"))	==	null){
-			System.out.println("Attenzione:");
-			System.out.println("Nel file "+file+" non è stato trovato l'attributo NAME\n");
+			System.err.println("Attenzione:");
+			System.err.println("Nel file "+file+" non è stato trovato l'attributo NAME\n");
 			name = "senza nome";
 		}
 		
 		//TYPE
 		String type;
 		if((type = readAttribute("TYPE"))	==	null){
-			System.out.println("Attenzione:");
-			System.out.println("Nel file "+file+" non è stato trovato l'attributo TYPE\n");
+			System.err.println("Attenzione:");
+			System.err.println("Nel file "+file+" non è stato trovato l'attributo TYPE\n");
 			type = "non specificato";
 		}
 			
@@ -46,8 +48,8 @@ public class ProblemParser extends Parser{
 		String temp;
 		int problemClass;
 		if((temp = readAttribute("CLASS"))	==	null){
-			System.out.println("Attenzione:");
-			System.out.println("Nel file "+file+" non è stato trovato l'attributo CLASS\n");
+			System.err.println("Attenzione:");
+			System.err.println("Nel file "+file+" non è stato trovato l'attributo CLASS\n");
 			problemClass = -1;
 		}else{
 			problemClass = Integer.parseInt(temp);
@@ -56,9 +58,9 @@ public class ProblemParser extends Parser{
 		//DIMENSION
 		int dimension=-1;
 		if((temp = readAttribute("DIMENSION"))	==	null){
-			System.out.println("Attenzione:");
-			System.out.println("Nel file "+file+" non è stato trovato l'attributo DIMENSION (=numero dei fornitori)");
-			System.out.println("Il programma verrà terminato");
+			System.err.println("Attenzione:");
+			System.err.println("Nel file "+file+" non è stato trovato l'attributo DIMENSION (=numero dei fornitori)");
+			System.err.println("Il programma verrà terminato");
 			System.exit(1);
 		}else{
 			dimension = Integer.parseInt(temp);
@@ -67,8 +69,8 @@ public class ProblemParser extends Parser{
 		//MAX_N_RANGE
 		int maxNRange;
 		if((temp = readAttribute("MAX_N_RANGE"))	==	null){
-			System.out.println("Attenzione:");
-			System.out.println("Nel file "+file+" non è stato trovato l'attributo MAX_N_RANGE\n");
+			System.err.println("Attenzione:");
+			System.err.println("Nel file "+file+" non è stato trovato l'attributo MAX_N_RANGE\n");
 			maxNRange = -1;
 		}else{
 			maxNRange = Integer.parseInt(temp);
@@ -89,8 +91,7 @@ public class ProblemParser extends Parser{
 	 * attribute può essere "NAME", "TYPE", "CLASS", "DIMENSION", "MAX_N_RANGE";
 	 * (restituisce null se l'attributo non viene trovato)
 	 */
-	//t
-	private static String readAttribute(String attribute){
+	private String readAttribute(String attribute){
 		String value = null;
 		try{
 			FileInputStream fstream = new FileInputStream(file);
@@ -121,11 +122,12 @@ public class ProblemParser extends Parser{
 	 * legge dal file contenente la descrizione del problema la domanda dei vari prodotti
 	 * e la restituisce; restituisce null se DEMAND_SECTION non viene trovata
 	 */
-	//t
-	private static int[] readDemandSection(){
+	private int[] readDemandSection() throws Exception{
 		int demand[] = null;
 		try{
-			FileInputStream fstream = new FileInputStream(file);
+			FileInputStream fstream;
+			
+			fstream = new FileInputStream(file);
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			
@@ -165,10 +167,7 @@ public class ProblemParser extends Parser{
 							//id del prodotto
 							int productId = Integer.parseInt(lineElements[0]);
 							if(productId<1 || productId>numProducts){
-								System.out.println("Errore:");
-								System.out.println("In DEMAND_SECTION del file "+file+" il prodotto "+productId+" non è accettabile");
-								System.out.println("Il programma verrà terminato");
-								System.exit(1);
+								error("In DEMAND_SECTION del file "+file+" il prodotto "+productId+" non è accettabile");
 							}
 							//domanda
 							int productDemand = Integer.parseInt(lineElements[1]);
@@ -178,6 +177,7 @@ public class ProblemParser extends Parser{
 					//controllo che siano state specificate tutte le domande
 					for(int i=1; i<=demand.length-1; i++){
 						if(demand[i]==-1){
+							//lanciaW("asdasdasdasdads", valoreDefault)
 							System.out.println("Attenzione:");
 							System.out.println("In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata");
 							System.out.println("Ad essa verrà assegnato il valore di default 0\n");
@@ -187,8 +187,15 @@ public class ProblemParser extends Parser{
 				}
 			}
 			in.close();
-		}catch(Exception e){
+		}catch(FileNotFoundException e){
 			System.err.println("Errore: " + e.getMessage());
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.err.println("Errore: " + e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.err.println("Errore: " + e.getMessage());
+			e.printStackTrace();
 		}
 		return demand;
 	}
@@ -197,8 +204,7 @@ public class ProblemParser extends Parser{
 	/*
 	 * legge il file contenente la descrizione del problema e crea l'array con i supplier
 	 */
-	//t
-	private static Supplier[] makeSuppliers(int numSuppliers){
+	private Supplier[] makeSuppliers(int numSuppliers){
 		Supplier suppliers[] = null;
 		try{
 			FileInputStream fstream = new FileInputStream(file);
@@ -380,7 +386,7 @@ public class ProblemParser extends Parser{
 	 * ...
 	 */
 	//t
-	private static void setOffer(Supplier supplier, int offert[], int numProducts){
+	private void setOffer(Supplier supplier, int offert[], int numProducts){
 		int basePrices[]		= new int[numProducts+1];
 		int availability[]		= new int[numProducts+1];
 		for(int i=0; i<=numProducts; i++){
@@ -411,4 +417,16 @@ public class ProblemParser extends Parser{
 		
 		return;
 	}
+	
+	private void error(String message) throws Exception{
+		System.err.println("Errore:");
+		System.err.println(message);
+		System.err.println("Il programma verrà terminato.");
+		throw new Exception(message);
+	}
+	
+	private void lanciaE(){
+		;
+	}
+	
 }

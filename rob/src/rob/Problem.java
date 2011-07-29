@@ -245,7 +245,14 @@ public class Problem {
 	public Supplier[] sortByBoughtQuantity(Solution solution) {
 		Supplier[] suppliersCopy=suppliers.clone();
 		BoughtQuantityComparator comparator= new BoughtQuantityComparator(solution);
-		Arrays.sort(suppliersCopy, 1, dimension, comparator);
-		return suppliersCopy;
+		//ordino l'array in base alle quantità totali acquistate in senso crescente
+		Arrays.sort(suppliersCopy, 1, dimension+1, comparator);
+		//inverto l'ordine dell'array per avere l'ordine decrescente
+		Supplier result[] = new Supplier[dimension+1];
+		result[0] = null;
+		for(int i=1; i<=dimension; i++){
+			result[i] = suppliersCopy[dimension-i+1];
+		}
+		return result;
 	}
 }

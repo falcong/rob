@@ -220,9 +220,14 @@ public class ProblemParser extends Parser{
 					}
 				}
 			}
-			//non ho trovato OFFER_SECTION dunque restituisco null
+			//non ho trovato OFFER_SECTION dunque interrompo il programma
 			if(!end){
-				return suppliers;
+				/*
+				 * risolve fallimento di ProblemParser.parse2
+				 */
+				if(suppliers==null){
+					throw new Error("Nel file di input del problema mancano i fornitori. Il programma verrà terminato");
+				}
 			}
 			
 			//line=OFFER_SECTION
@@ -362,6 +367,7 @@ public class ProblemParser extends Parser{
 		}catch(Exception e){
 			System.err.println("Errore: " + e.getMessage());
 		}
+		
 		return suppliers; 
 	}
 	

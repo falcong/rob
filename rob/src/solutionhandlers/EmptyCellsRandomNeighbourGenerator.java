@@ -86,6 +86,7 @@ public class EmptyCellsRandomNeighbourGenerator extends EmptyCellsNeighbourGener
 			}while(alreadyChosen.contains(randomSup));
 			
 			result[i] = array[randomSup];
+			alreadyChosen.add(randomSup);
 		}
 		
 		//i restanti supllier li mantengo nello stesso ordine 

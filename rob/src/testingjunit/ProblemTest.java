@@ -10,6 +10,7 @@ import io.ProblemParser;
 import org.junit.Before;
 import org.junit.Test;
 
+import rob.BoughtQuantityComparator;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;

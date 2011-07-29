@@ -23,7 +23,11 @@ public class EmptyCellsRandomNeighbourGeneratorTest {
 	public final void testScramble1(){
 		//per controllare che floor() funzioni correttamente
 		final double RATIO = 0.53; 
-		testScramble(RATIO);
+		
+		final int N = 100;
+		for(int i=1; i<=N; i++){
+			testScramble(RATIO);
+		}
 	}	
 	
 	/*
@@ -55,24 +59,6 @@ public class EmptyCellsRandomNeighbourGeneratorTest {
 		
 		//numero dei primi fornitori il cui ordine è stato alterato
 		final int NUM_DISORDERED_SUPPLIERS = (int)(numSuppliers*ratio);
-		//TODO eliminare
-		//numero degli ultimi fornitori il cui ordine non è stato alterato
-		//final int NUM_UNALTERED_SUPPLIERS = 5;
-		
-		//TODO eliminare
-		//temp
-/*		for(int i=1; i<=10; i++){
-			System.out.print(array0[i].getId()+"\t");
-		}
-		System.out.println();
-		
-		for(int i=1; i<=10; i++){
-			System.out.print(array1[i].getId()+"\t");
-		}
-		System.out.println();
-		System.exit(0);*/
-		//end_temp
-		
 		
 		/*
 		 * Controllo che i primi NUM_DISORDERED_SUPPLIERS fornitori non vengano eliminati o duplicati

@@ -229,7 +229,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetSupplierFromCell1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int CELL = 1;
 		final int SUPPLIER = 1;

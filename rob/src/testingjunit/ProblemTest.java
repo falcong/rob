@@ -59,7 +59,7 @@ public class ProblemTest {
 	@Test
 	public final void testCellIsEmptiable1(){
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -94,7 +94,7 @@ public class ProblemTest {
 	@Test
 	public final void testCellIsEmptiable2(){
 		final String PROBLEM_NAME = "problema7a.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -129,7 +129,7 @@ public class ProblemTest {
 	@Test
 	public final void testCellIsEmptiable3(){
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -165,7 +165,7 @@ public class ProblemTest {
 	@Test
 	public final void testGetCell1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -186,7 +186,7 @@ public class ProblemTest {
 	@Test
 	public final void testGetCell2(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -207,7 +207,7 @@ public class ProblemTest {
 	@Test
 	public final void testGetCell3(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -229,7 +229,7 @@ public class ProblemTest {
 	@Test
 	public final void testGetSupplierFromCell1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -249,7 +249,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetSupplierFromCell2(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int CELL = 653;
 		final int SUPPLIER = 7;
@@ -263,7 +269,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetSupplierFromCell3(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int CELL = 1000;
 		final int SUPPLIER = 10;
@@ -278,7 +290,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetProductFromCell1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int CELL = 1;
 		final int PRODUCT = 1;
@@ -292,7 +310,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetProductFromCell2(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int CELL = 653;
 		final int PRODUCT = 53;
@@ -306,7 +330,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetProductFromCell3(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int CELL = 1000;
 		final int PRODUCT = 100;
@@ -321,7 +351,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetMaxQuantityBuyable1(){
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int SUPPLIER = 2;
 		/*
@@ -340,7 +376,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetRandomSupplierId1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final int NUM_SUPPLIERS = problem.getDimension();
 		
 		HashSet<Integer> blackList = new HashSet<Integer>();
@@ -362,7 +404,13 @@ public class ProblemTest {
 	@Test
 	public final void testGetRandomSupplierId2(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final int NUM_SUPPLIERS = problem.getDimension();
 		
 		//black list contiene tutti i fornitori
@@ -387,7 +435,13 @@ public class ProblemTest {
 	@Test
 	public final void testMaxSegmentActivable1(){
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int SUPPLIER = 3;
 		//massima fascia di sconto raggiungibile per fornitore 3
@@ -403,7 +457,13 @@ public class ProblemTest {
 	@Test
 	public final void testSortByBoughtQuantity1(){
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -433,7 +493,13 @@ public class ProblemTest {
 	@Test
 	public final void testSortByCurrentPrice1(){
 		final String PROBLEM_NAME = "problema9.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int s0[] = {0, 0, 0, 0};
 		int s1[] = {0, 51, 42, 53};

@@ -58,7 +58,13 @@ public class SupplierTest {
 	}
 	
 	private final void testActivatedSegment(String problemName, int activatedSegmentExpected){
-		Problem problem = pp.parse(problemName);
+		Problem problem = null;
+		try {
+			problem = pp.parse(problemName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		RandomSolutionGenerator generator = new RandomSolutionGenerator(problem);
 		Solution solution = generator.generate();
@@ -101,7 +107,13 @@ public class SupplierTest {
 	}
 	
 	private final void testCheckAvailability(String problemName, boolean bool){
-		Problem problem = pp.parse(problemName);
+		Problem problem = null;
+		try {
+			problem = pp.parse(problemName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final int SUPPLIER1_ID = 1;
 		final int PRODUCT1_ID = 1;
 		
@@ -179,7 +191,13 @@ public class SupplierTest {
 	}
 	private final void testGetDiscountedPrice(int matrix [][]){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Solution solution = new Solution(matrix,problem);
 		assertTrue(solution.isAdmissible(problem));
 		
@@ -202,7 +220,13 @@ public class SupplierTest {
 	@Test
 	public final void testGetResidual1(){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};
@@ -234,7 +258,13 @@ public class SupplierTest {
 	 @Test
 	public final void testGetResidualSolution1(){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};
@@ -267,7 +297,13 @@ public class SupplierTest {
 	 @Test
 	 public final void testGetTotalResidualAvailability1(){
 		final String PROBLEM_NAME = "problema1.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 53};
@@ -299,7 +335,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToIncreaseSegment1(){
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 53};
@@ -326,7 +368,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToIncreaseSegment2(){
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 45};
@@ -353,7 +401,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToIncreaseSegment3(){
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 44};
@@ -380,7 +434,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToIncreaseSegment4(){
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 0};
@@ -408,7 +468,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToNotDecreaseSegment1(){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 32, 23};
@@ -435,7 +501,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToNotDecreaseSegment2(){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 32, 53};
@@ -462,7 +534,13 @@ public class SupplierTest {
 	@Test
 	public final void testQuantityToNotDecreaseSegment3(){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 31, 53};
@@ -490,7 +568,13 @@ public class SupplierTest {
 	@Test
 	public final void testSetPrices1(){
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};

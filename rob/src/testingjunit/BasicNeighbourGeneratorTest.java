@@ -24,7 +24,7 @@ public class BasicNeighbourGeneratorTest {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.100.3.2.10.1.ctqd";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {

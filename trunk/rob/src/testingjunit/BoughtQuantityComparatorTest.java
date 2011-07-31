@@ -15,13 +15,26 @@ public class BoughtQuantityComparatorTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 	
 	final String PROBLEM_NAME = "problema3.txt";
-	Problem problem = pp.parse(PROBLEM_NAME);
+	Problem problem = setProblem();
 	
 	final int sup1Id = 1;
 	Supplier sup1 = problem.getSupplier(sup1Id);
 	final int sup2Id = 2;
 	Supplier sup2 = problem.getSupplier(sup2Id);
 	
+	//TODO vedere1
+	public Problem setProblem(){
+		Problem problem = null;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//TODO vedere 6 in realtà qui non sarebbe meglio lanciare errore?
+			fail("Il parser non è stato in grado di creare il problema.");
+		}
+		return problem;
+	}
 	
 	/*
 	 * sup1 < sup2

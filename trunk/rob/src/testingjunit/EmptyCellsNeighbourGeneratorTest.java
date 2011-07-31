@@ -28,7 +28,7 @@ public class EmptyCellsNeighbourGeneratorTest {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.40.5.2.70.1.ctqd";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {

@@ -20,7 +20,13 @@ public class RandomSolutionGeneratorTest {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.50.100.3.2.10.1.ctqd";
-		Problem problem = pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		final int N = 100;
 		

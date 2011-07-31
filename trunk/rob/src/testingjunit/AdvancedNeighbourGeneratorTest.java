@@ -1,3 +1,4 @@
+//aaaaaaaaaa
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -26,7 +27,8 @@ public class AdvancedNeighbourGeneratorTest {
 	public final void testGenerate1(){
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema1.txt";
-		Problem problem;
+		//TODO vedere 5
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -88,7 +90,7 @@ public class AdvancedNeighbourGeneratorTest {
 	public final void testGenerate2(){
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema2.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {

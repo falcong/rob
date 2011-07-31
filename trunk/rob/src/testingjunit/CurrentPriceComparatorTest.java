@@ -20,7 +20,7 @@ public class CurrentPriceComparatorTest {
 	@Test
 	public void testCompare1() {
 		final String PROBLEM_NAME = "problema4.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class CurrentPriceComparatorTest {
 	@Test
 	public void testCompare2() {
 		final String PROBLEM_NAME = "problema5.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {
@@ -88,7 +88,7 @@ public class CurrentPriceComparatorTest {
 	@Test
 	public void testCompare3() {
 		final String PROBLEM_NAME = "problema5.txt";
-		Problem problem;
+		Problem problem = null;
 		try {
 			problem = pp.parse(PROBLEM_NAME);
 		} catch (Exception e) {

@@ -14,29 +14,37 @@ public class ProblemParserTest {
 	 * Caso generico.
 	 */
 	@Test
+	//TODO vedere 2
 	public final void testParse1(){
 		String PROBLEM = "problema6.txt";
-		testParse(PROBLEM);
+		try {
+			testParse(PROBLEM);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//vedere 7 solo qui terrei fallimento tutti altri errori
+			fail("Il parser non è stato in grado di creare il problema");
+		}
 	}
 	
 	/*
 	 * Input malformattato: manca OFFER_SECTION
 	 */
 	@Test
+	//TODO vedere8 bisogna andare al todo9 ed eliminare lancio errore per avere test ok
+	//(mettere eccezione al posto di errore)
 	public final void testParse2(){
 		String PROBLEM = "problema6a.txt";
-		testParse(PROBLEM);
+		try {
+			testParse(PROBLEM);
+		} catch (Exception e) {
+			assertTrue("L'input malformattato ha generato l'eccezione prevista.", true);
+		}
 	}
 	
-	private final void testParse(String problemName) {
+	private final void testParse(String problemName) throws Exception {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
-		Problem problem;
-		try {
-			problem = pp.parse(problemName);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(problemName);
 		
 		//controllo che tutti i dati del problema siano corretti
 		//NAME

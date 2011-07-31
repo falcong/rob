@@ -31,7 +31,13 @@ public class VNSTest {
 		final int MAX_NEIGHBOUR_NUMBER = 10;
 		final int MAX_STEPS_NUMBER = 10;
 		
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		RandomSolutionGenerator sGenerator=new RandomSolutionGenerator(problem);
 		NeighbourGenerator nGenerator=new BasicNeighbourGenerator(problem);

@@ -26,7 +26,17 @@ public class Rob {
 		//String problemName = "Cap.50.100.3.2.10.1.ctqd";
 		
 		ProblemParser probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem problem = probParser.parse(problemName);
+		Problem problem = null;
+		//TODO vedere 3
+		try {
+			problem = probParser.parse(problemName);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
+								"(il parser non è stato in grado di leggere il problema).");
+			System.exit(1);
+		}
 		
 		//ottimo
 /*		Solution cplex = new Solution(Utility.getConfigParameter("input")+

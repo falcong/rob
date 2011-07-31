@@ -23,7 +23,13 @@ public class SolutionTest {
 	@Test
 	public final void testSolution1() {
 		final String PROBLEM_NAME="problema10.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 30, 10, 40};
 		int [] s2={0, 20, 32, 23};
@@ -46,7 +52,13 @@ public class SolutionTest {
 	@Test
 	public final void testSolutionString1() {
 		final String PROBLEM_NAME="problema10.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 30, 10, 40};
@@ -72,7 +84,14 @@ public class SolutionTest {
 	 */
 	@Test
 	public final void testCalcDistance1() {
-		Problem problem=pp.parse("problema11.txt");
+		final String PROBLEM_NAME="problema11.txt";
+		Problem problem = null;
+		try {
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int [] A0={0, 0, 0, 0};
 		int [] A1={0, 41, 42, 24};
 		int [] A2={0, 19, 0, 39};
@@ -105,7 +124,13 @@ public class SolutionTest {
 	@Test
 	public final void testExport1() {
 		final String PROBLEM_NAME="Cap.50.40.5.1.10.1.ctqd";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SolutionGenerator sg=new RandomSolutionGenerator(problem);
 		Solution sol = sg.generate();
 		
@@ -127,7 +152,13 @@ public class SolutionTest {
 	@Test
 	public final void testIsAdmissible1() {
 		final String PROBLEM_NAME="problema12.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 40, 50, 25};
@@ -146,7 +177,13 @@ public class SolutionTest {
 	@Test
 	public final void testIsAdmissible2() {
 		final String PROBLEM_NAME="problema12.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 40, 50, 25};
@@ -166,7 +203,13 @@ public class SolutionTest {
 	@Test
 	public final void testMoveQuantity1() {
 		final String PROBLEM_NAME="problema13.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 24};
 		int [] s2={0, 9, 13, 39};
@@ -203,7 +246,13 @@ public class SolutionTest {
 	@Test
 	public final void testTotalQuantityBought1() {
 		final String PROBLEM_NAME="problema14.txt";
-		Problem problem=pp.parse(PROBLEM_NAME);
+		Problem problem = null;
+		try{
+			problem = pp.parse(PROBLEM_NAME);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 24};
 		int [] s2={0, 9, 13, 39};

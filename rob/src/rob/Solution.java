@@ -54,29 +54,25 @@ public class Solution {
 	 * Costruttore che importa la soluzione da un file (file = nome completo [incluso il path])
 	 * Precondizione: i dati devono essere nel formato usato dal metodo export(), con i valori separati da \t
 	 */
-	public Solution(String file,Problem problem) {
+	public Solution(String file,Problem problem) throws Exception {
 		numSuppliers = problem.getDimension();
 		numProducts = problem.getNumProducts();
 		solutionMatrix = new int[numSuppliers+1][numProducts+1];
 		Arrays.fill(solutionMatrix[0], 0);
-		try {
-			FileInputStream fstream = new FileInputStream(file);
-
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			String line;
-			int supplier=1;
-			while ((line = br.readLine()) != null){
-				String [] lineArray=line.split("\t");
-				solutionMatrix[supplier][0]=0;
-				for (int i=1;i<=numProducts;i++){
-					solutionMatrix[supplier][i]= Integer.parseInt(lineArray[i-1]);
-				}
-				supplier++;
+		
+		BufferedReader bufferedReader = Utility.openInFile(file);
+		String line;
+		int supplier=1;
+		while ((line = bufferedReader.readLine()) != null){
+			String [] lineArray=line.split("\t");
+			solutionMatrix[supplier][0]=0;
+			for (int i=1;i<=numProducts;i++){
+				solutionMatrix[supplier][i]= Integer.parseInt(lineArray[i-1]);
 			}
-		} catch (IOException e) {
-			throw new Error("Errore: " + e.getMessage());
+			supplier++;
 		}
+		bufferedReader.close();
+			
 		objectiveFunction=calcObjectiveFunction(problem);
 	}
 	

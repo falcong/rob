@@ -18,7 +18,7 @@ public class FileSolutionGenerator extends SolutionGenerator {
 	}
 
 	@Override
-	public Solution generate() {
+	public Solution generate() throws Exception {
 		return new Solution(importFile,problem);
 	}
 

@@ -24,18 +24,12 @@ public class EmptyCellsNeighbourGeneratorTest {
 	 * Caso generale.
 	 */
 	@Test
-	public final void testGenerate1(){
+	public final void testGenerate1() throws Exception{
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.40.5.2.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		final int numSuppliers = problem.getDimension();
 		final int numProducts = problem.getNumProducts();
 		final int numCells = numSuppliers*numProducts;

@@ -21,7 +21,7 @@ public class EmptyCellsRandomNeighbourGeneratorTest {
 	 * Caso generale.
 	 */
 	@Test
-	public final void testScramble1(){
+	public final void testScramble1() throws Exception{
 		//per controllare che floor() funzioni correttamente
 		final double RATIO = 0.53; 
 		
@@ -35,21 +35,15 @@ public class EmptyCellsRandomNeighbourGeneratorTest {
 	 * ratio = 0
 	 */ 
 	@Test
-	public final void testScramble2(){
+	public final void testScramble2() throws Exception{
 		final double RATIO = 0; 
 		testScramble(RATIO);
 	}	
 	
-	private final void testScramble(double ratio){
+	private final void testScramble(double ratio) throws Exception{
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int numSuppliers = problem.getDimension();
 		//array0 = input

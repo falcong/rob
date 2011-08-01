@@ -19,15 +19,9 @@ public class CurrentPriceComparatorTest {
 	 * sup1 < sup2
 	 */
 	@Test
-	public void testCompare1() {
+	public void testCompare1() throws Exception {
 		final String PROBLEM_NAME = "problema4.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		final int sup1Id = 1;
 		Supplier sup1 = problem.getSupplier(sup1Id);
 		final int sup2Id = 2;
@@ -53,15 +47,9 @@ public class CurrentPriceComparatorTest {
 	 * sup1 = sup2
 	 */
 	@Test
-	public void testCompare2() {
+	public void testCompare2() throws Exception {
 		final String PROBLEM_NAME = "problema5.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		final int sup1Id = 1;
 		Supplier sup1 = problem.getSupplier(sup1Id);
 		final int sup2Id = 2;
@@ -87,15 +75,9 @@ public class CurrentPriceComparatorTest {
 	 * sup1 > sup2
 	 */
 	@Test
-	public void testCompare3() {
+	public void testCompare3() throws Exception {
 		final String PROBLEM_NAME = "problema5.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		final int sup1Id = 1;
 		Supplier sup1 = problem.getSupplier(sup1Id);
 		final int sup2Id = 2;

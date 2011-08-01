@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import rob.Problem;
 import rob.Solution;
-import rob.Utility;
 import solutionhandlers.BasicNeighbourGenerator;
 import solutionhandlers.NeighbourGenerator;
 import solutionhandlers.RandomSolutionGenerator;
@@ -16,6 +15,8 @@ import solvingalgorithms.Algorithm;
 import solvingalgorithms.LocalSearch;
 import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
 import solvingalgorithms.VNS;
+import util.Constants;
+import util.Utility;
 
 public class VNSTest {
 	//test di execute()

@@ -9,11 +9,12 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
-import rob.Utility;
 import solutionhandlers.AdvancedNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
 import solutionhandlers.SolutionGenerator;
 import solutionhandlers.TrivialSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 
 public class AdvancedNeighbourGeneratorTest {
@@ -24,17 +25,14 @@ public class AdvancedNeighbourGeneratorTest {
 	 * essere aumentati perché la disponibilità è già esaurita).
 	 */
 	@Test
-	public final void testGenerate1(){
+	public final void testGenerate1() throws Exception{
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema1.txt";
 		//TODO vedere 5
 		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		problem = pp.parse(PROBLEM_NAME);
+
+
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 0, 0};
 		int [] s2={0, 9, 42, 63};

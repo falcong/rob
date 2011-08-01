@@ -8,10 +8,11 @@ import org.junit.Test;
 
 import rob.Problem;
 import rob.Solution;
-import rob.Utility;
 import solutionhandlers.RandomSolutionGenerator;
 import solutionhandlers.SolutionGenerator;
 import solutionhandlers.TrivialSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 public class SolutionTest {
 	ProblemParser pp=new ProblemParser(Constants.INPUT_PATH);

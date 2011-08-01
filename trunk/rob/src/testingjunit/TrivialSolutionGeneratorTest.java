@@ -8,6 +8,7 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import solutionhandlers.TrivialSolutionGenerator;
+import util.Constants;
 
 public class TrivialSolutionGeneratorTest {
 	//test di generate()

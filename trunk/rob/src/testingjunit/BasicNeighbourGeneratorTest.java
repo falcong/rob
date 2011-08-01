@@ -10,6 +10,7 @@ import rob.Solution;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.BasicNeighbourGenerator;
 import solutionhandlers.RandomSolutionGenerator;
+import util.Constants;
 
 public class BasicNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();
@@ -19,18 +20,14 @@ public class BasicNeighbourGeneratorTest {
 	 * Caso generale (controllo distanza).
 	 */
 	@Test
-	public final void testGenerate1() {
+	public final void testGenerate1() throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName();
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.100.3.2.10.1.ctqd";
 		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		problem = pp.parse(PROBLEM_NAME);
+		
 		final int NUM_SUPPLIERS = problem.getDimension();
 		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);

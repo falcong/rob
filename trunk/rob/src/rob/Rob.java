@@ -11,6 +11,8 @@ import solutionhandlers.TrivialSolutionGenerator;
 import solvingalgorithms.LocalSearch;
 import solvingalgorithms.VNS;
 import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
+import util.Constants;
+import util.Utility;
 
 public class Rob {
 		
@@ -34,8 +36,8 @@ public class Rob {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
-								"(il parser non è stato in grado di leggere il problema).");
-			System.exit(1);
+								"(il parser non è stato in grado di leggere il problema).");		
+			System.exit(Constants.ERROR_PARSER);
 		}
 		
 		//ottimo

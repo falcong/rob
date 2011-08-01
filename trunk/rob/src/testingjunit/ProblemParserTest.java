@@ -31,16 +31,10 @@ public class ProblemParserTest {
 	/*
 	 * Input malformattato: manca OFFER_SECTION
 	 */
-	@Test
-	//TODO vedere8 bisogna andare al todo9 ed eliminare lancio errore per avere test ok
-	//(mettere eccezione al posto di errore)
-	public final void testParse2(){
+	@Test(expected = Exception.class)
+	public final void testParse2() throws Exception{
 		String PROBLEM = "problema6a.txt";
-		try {
-			testParse(PROBLEM);
-		} catch (Exception e) {
-			assertTrue("L'input malformattato ha generato l'eccezione prevista.", true);
-		}
+		testParse(PROBLEM);
 	}
 	
 	private final void testParse(String problemName) throws Exception {

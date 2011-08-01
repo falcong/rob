@@ -11,11 +11,14 @@ import java.io.InputStreamReader;
 
 import rob.Problem;
 import rob.Supplier;
+import util.Utility;
 
 public class ProblemParser extends Parser{
 	int numProducts;
 	String file;
 	String problemsPath;
+	
+	final int NOT_FOUND = -1;
 	
 	public ProblemParser(String path) {
 		problemsPath = path;
@@ -29,52 +32,27 @@ public class ProblemParser extends Parser{
 		
 		//leggo da file i vari valori
 		//NAME
-		String name;
-		if((name = readAttribute("NAME"))	==	null){
-			System.err.println("Attenzione:");
-			System.err.println("Nel file "+file+" non è stato trovato l'attributo NAME\n");
-			name = "senza nome";
-		}
+		final String ATTRIBUTE = "NAME";
+		String defaultStringValue = "senza nome";
+		String name = readAttribute(ATTRIBUTE, defaultStringValue);
 		
 		//TYPE
-		String type;
-		if((type = readAttribute("TYPE"))	==	null){
-			System.err.println("Attenzione:");
-			System.err.println("Nel file "+file+" non è stato trovato l'attributo TYPE\n");
-			type = "non specificato";
-		}
+		final String TYPE = "TYPE";
+		defaultStringValue = "non specificato";
+		String type = readAttribute(TYPE, defaultStringValue);
 			
 		//CLASS
-		String temp;
-		int problemClass;
-		if((temp = readAttribute("CLASS"))	==	null){
-			System.err.println("Attenzione:");
-			System.err.println("Nel file "+file+" non è stato trovato l'attributo CLASS\n");
-			problemClass = -1;
-		}else{
-			problemClass = Integer.parseInt(temp);
-		}
+		final String CLASS = "CLASS";
+		int defaultIntValue = -1;
+		int problemClass = Integer.parseInt(readAttribute(CLASS, Integer.toString(defaultIntValue)));
 		
 		//DIMENSION
-		int dimension=-1;
-		if((temp = readAttribute("DIMENSION"))	==	null){
-			System.err.println("Attenzione:");
-			System.err.println("Nel file "+file+" non è stato trovato l'attributo DIMENSION (=numero dei fornitori)");
-			System.err.println("Il programma verrà terminato");
-			System.exit(1);
-		}else{
-			dimension = Integer.parseInt(temp);
-		}
+		final String DIMENSION = "DIMENSION";
+		int dimension = readMandatoryAttribute(DIMENSION);
 		
 		//MAX_N_RANGE
-		int maxNRange;
-		if((temp = readAttribute("MAX_N_RANGE"))	==	null){
-			System.err.println("Attenzione:");
-			System.err.println("Nel file "+file+" non è stato trovato l'attributo MAX_N_RANGE\n");
-			maxNRange = -1;
-		}else{
-			maxNRange = Integer.parseInt(temp);
-		}
+		final String MAX_N_RANGE = "MAX_N_RANGE";
+		int maxNRange = readAttribute(MAX_N_RANGE, -1);
 		
 		//leggo DEMAND_SECTION
 		int demand[] = readDemandSection();
@@ -91,31 +69,25 @@ public class ProblemParser extends Parser{
 	 * attribute può essere "NAME", "TYPE", "CLASS", "DIMENSION", "MAX_N_RANGE";
 	 * (restituisce null se l'attributo non viene trovato)
 	 */
-	private String readAttribute(String attribute) throws Exception{
+	private String readAttributeFromFile(String attribute) throws Exception{
 		String value = null;
-		try{
-			FileInputStream fstream = new FileInputStream(file);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			
-			int tagLength = attribute.length();
-			String line;
-			boolean found = false;
-			while((line = br.readLine()) != null	&&	!found){
-				if(line.length()>=tagLength){
-					String temp=line.substring(0,tagLength);
-					if(temp.equals(attribute)){
-						found = true;
-						String lineElements[] = line.split("\\s[\\s]*");
-						value=lineElements[2];
-					}
+		BufferedReader bufferedReader = Utility.openInFile(file);
+		
+		int tagLength = attribute.length();
+		String line;
+		boolean found = false;
+		while((line = bufferedReader.readLine()) != null	&&	!found){
+			if(line.length()>=tagLength){
+				String temp=line.substring(0,tagLength);
+				if(temp.equals(attribute)){
+					found = true;
+					String lineElements[] = line.split("\\s[\\s]*");
+					value=lineElements[2];
 				}
 			}
-			in.close();
-		}catch(Exception e){
-			System.err.println("Errore: " + e.getMessage());
-			throw e;
 		}
+		bufferedReader.close();
+	
 		return value;
 	}
 	
@@ -125,82 +97,67 @@ public class ProblemParser extends Parser{
 	 */
 	private int[] readDemandSection() throws Exception{
 		int demand[] = null;
-		try{
-			FileInputStream fstream;
+		BufferedReader bufferedReader = Utility.openInFile(file);
+		
+		String line;
+		String lineElements[];
+		
+		while((line = bufferedReader.readLine()) != null){
+			lineElements = line.split("\\s[\\s]*");
 			
-			fstream = new FileInputStream(file);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			
-			String line;
-			String lineElements[];
-			
-			while((line = br.readLine()) != null){
-				lineElements = line.split("\\s[\\s]*");
+			if(line.length()==0){
+				//ignoro eventuali linee vuote
+				;
+			}else if(lineElements[0].charAt(0) == '#'){
+				//ignoro eventuali commenti
+				;
+			}else if(lineElements[0].equals("DEMAND_SECTION")){
+				//leggo la prima riga che indica il numero di prodotti
+				line = bufferedReader.readLine();
+				numProducts = Integer.parseInt(line);
 				
-				if(line.length()==0){
-					//ignoro eventuali linee vuote
-					;
-				}else if(lineElements[0].charAt(0) == '#'){
-					//ignoro eventuali commenti
-					;
-				}else if(lineElements[0].equals("DEMAND_SECTION")){
-					//leggo la prima riga che indica il numero di prodotti
-					line = br.readLine();
-					numProducts = Integer.parseInt(line);
+				//leggo le altre righe (con la domanda di ogni prodotto)
+				//non viene utilizzato demand[0]
+				demand = new int[numProducts+1];
+				//demand[k]=-1 significa che per il prodotto k la domanda non è stata specificata
+				for(int i = 0; i<=demand.length-1; i++){
+					demand[i]=NOT_FOUND;
+				}
+				//vale true quando raggiungo la fine DEMAND_SECTION
+				boolean end = false;
+				while(!end){
+					line = bufferedReader.readLine();
+					lineElements = line.split("\\s[\\s]*");
 					
-					//leggo le altre righe (con la domanda di ogni prodotto)
-					//non viene utilizzato demand[0]
-					demand = new int[numProducts+1];
-					//demand[k]=-1 significa che per il prodotto k la domanda non è stata specificata
-					for(int i = 0; i<=demand.length-1; i++){
-						demand[i]=-1;
-					}
-					//vale true quando raggiungo la fine DEMAND_SECTION
-					boolean end = false;
-					while(!end){
-						line = br.readLine();
-						lineElements = line.split("\\s[\\s]*");
-						
-						if(lineElements[0].equals("OFFER_SECTION")){
-							end = true;
-						}else{
-							//id del prodotto
-							int productId = Integer.parseInt(lineElements[0]);
-							if(productId<1 || productId>numProducts){
-								error("In DEMAND_SECTION del file "+file+" il prodotto "+productId+" non è accettabile");
-							}
-							//domanda
-							int productDemand = Integer.parseInt(lineElements[1]);
-							demand[productId] = productDemand;
+					if(lineElements[0].equals("OFFER_SECTION")){
+						end = true;
+					}else{
+						//id del prodotto
+						int productId = Integer.parseInt(lineElements[0]);
+						if(productId<1 || productId>numProducts){
+							Utility.exception("In DEMAND_SECTION del file "+file+" il prodotto "+productId+" non è accettabile");
 						}
+						//domanda
+						int productDemand = Integer.parseInt(lineElements[1]);
+						demand[productId] = productDemand;
 					}
-					//controllo che siano state specificate tutte le domande
-					for(int i=1; i<=demand.length-1; i++){
-						if(demand[i]==-1){
-							//lanciaW("asdasdasdasdads", valoreDefault)
-							System.out.println("Attenzione:");
-							System.out.println("In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata");
-							System.out.println("Ad essa verrà assegnato il valore di default 0\n");
-							demand[i]=0;
-						}
+				}
+				/*
+				 * Controllo che siano state specificate tutte le domande; per i prodotti la cui domanda non è stata 
+				 * specificata assegno domanda pari a 0
+				 */
+				for(int i=1; i<=demand.length-1; i++){
+					if(demand[i]==NOT_FOUND){
+						final int DEFAULT_VALUE = 0;
+						System.err.println("Attenzione:"+
+								"In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata"+
+								"Ad essa verrà assegnato il valore di default "+DEFAULT_VALUE+"\n");
+						demand[i]=DEFAULT_VALUE;
 					}
 				}
 			}
-			in.close();
-		}catch(FileNotFoundException e){
-			System.err.println("Errore: " + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		} catch (NumberFormatException e) {
-			System.err.println("Errore: " + e.getMessage());
-			e.printStackTrace();
-			throw e;
-		} catch (IOException e) {
-			System.err.println("Errore: " + e.getMessage());
-			e.printStackTrace();
-			throw e;
 		}
+		bufferedReader.close();
 		return demand;
 	}
 	
@@ -208,175 +165,171 @@ public class ProblemParser extends Parser{
 	/*
 	 * legge il file contenente la descrizione del problema e crea l'array con i supplier
 	 */
-	private Supplier[] makeSuppliers(int numSuppliers){
+	//TODO spezzare
+	private Supplier[] makeSuppliers(int numSuppliers) throws Exception{
 		Supplier suppliers[] = null;
-		try{
-			FileInputStream fstream = new FileInputStream(file);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			
-			String line;
-			String lineElements[];
-			
-			//mi porto alla riga OFFER_SECTION
-			String tag = "OFFER_SECTION";
-			//vale true quando ho raggiunto OFFER_SECTION
-			boolean end = false;
-			while(!end	&&	(line = br.readLine()) != null){
-				if(line.length() >= tag.length()){
-					line = line.substring(0,tag.length());
-					if(line.equals(tag)){
-						end = true;
-					}
-				}
-			}
-			//non ho trovato OFFER_SECTION dunque interrompo il programma
-			if(!end){
-				/*
-				 * risolve fallimento di ProblemParser.parse2
-				 */
-				if(suppliers==null){
-					throw new Error("Nel file di input del problema mancano i fornitori. Il programma verrà terminato");
-				}
-			}
-			
-			//line=OFFER_SECTION
-			//leggo tuttte le righe di OFFER_SECTION
-			tag = "DISCOUNT_SECTION";
-			int tagLength = tag.length();
-			//String temp;
-			//suppliers[0] non è usato
-			suppliers = new Supplier[numSuppliers+1];
-			for(int i=0; i<=suppliers.length-1; i++){
-				suppliers[i]=null;
-			}
-			int supplierId;
-			Supplier supplier;
-			//end = true quando raggiungo la fine di OFFER_SECTION
-			//[raggiungo la riga DISCOUNT_SECTION]
-			end = false;
-			while(!end){
-				line = br.readLine();
-				
-				if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
-					end = true;	
-				}else{
-					lineElements = line.split("\\s[\\s]*");
-					
-					supplierId = Integer.parseInt(lineElements[0]);
-					if(supplierId<1 || supplierId>numSuppliers){
-						System.out.println("Errore:");
-						System.out.println("Nella sezione OFFER_SECTION del file "+file+" il supplier "+supplierId+" non è consentito");
-						System.out.println("Il programma verrà terminato");
-						System.exit(1);
-					}
-					supplier = new Supplier(supplierId);
-					
-					int numOfferedProducts = Integer.parseInt(lineElements[1]);
-					supplier.setNumOfferedProducts(numOfferedProducts);
-					
-					/*
-					 * contiene i prodotti offerti da supplierId con il relativo costo e disponibilità
-					 * offert[0]=id-prodotto1;	offert[1]=costo-p1;	offert[2]=disponibilità-p1;
-					 * offert[3]=id-p2;			offert[4]=costo-p2;	offert[5]=disponibilità-p2;
-					 * ...
-					 */
-					int offert[] = new int[lineElements.length-2];
-					for(int i=0; i<=offert.length-1; i++){
-						offert[i] = Integer.parseInt(lineElements[i+2]);
-					}
-					
-					setOffer(supplier, offert, numProducts);
-					suppliers[supplierId] = supplier;
-				}
-			}
-			//ho finito di analizzare OFFER_SECTION
-			//controllo che siano stati forniti tutti i fornitori
-			for(int i=1; i<=suppliers.length-1; i++){
-				if(suppliers[i]==null){
-					System.out.println("Errore:");
-					System.out.println("In OFFER_SECTION non è stato specificato il fornitore "+i);
-					System.out.println("Il programma verrà terminato");
-					System.exit(1);
-				}
-			}
-			
-			//line=DISCOUNT_SECTION
-			//ora leggo tutte le righe di DISCOUNT_SECTION
-			tag = "EOF";
-			tagLength = tag.length();
-			//per controllare che in DISCOUNT_SECTION siano definiti tutti i fornitori
-			boolean definedSupplier[]	= new boolean[numSuppliers+1];
-			for(int i=0; i<=definedSupplier.length-1; i++){
-				definedSupplier[i] = false;
-			}
-			/*
-			 * end = true quando raggiungo la fine di DISCOUNT_SECTION
-			 * (=raggiungo la riga EOF)
-			 */
-			end = false;
-			while(!end){
-				line = br.readLine();
-				
-				if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
+		
+		BufferedReader bufferedReader = Utility.openInFile(file);
+		
+		String line;
+		String lineElements[];
+		
+		//mi porto alla riga OFFER_SECTION
+		String tag = "OFFER_SECTION";
+		//vale true quando ho raggiunto OFFER_SECTION
+		boolean end = false;
+		while(!end	&&	(line = bufferedReader.readLine()) != null){
+			if(line.length() >= tag.length()){
+				line = line.substring(0,tag.length());
+				if(line.equals(tag)){
 					end = true;
-				}else{
-					lineElements = line.split("\\s[\\s]*");
-					
-					supplierId = Integer.parseInt(lineElements[0]);
-					if(supplierId<1 || supplierId>numSuppliers){
-						System.out.println("Errore:");
-						System.out.println("Nella sezione DISCOUNT_SECTION del file "+file+" il supplier "+supplierId+" non è consentito");
-						System.out.println("Il programma verrà terminato");
-						System.exit(1);
-					}
-					definedSupplier[supplierId] = true;
-					
-					//numero fasce di sconto senza contare quella 0 (prezzo base)
-					int numBands = Integer.parseInt(lineElements[1]);
-					//controllo che siano definiti lower bounds e sconti per ogni fascia
-					if(lineElements.length	!=	numBands*2+2){
-						System.out.println("Errore:");
-						System.out.println("In DISCOUNT_SECTION non sono state specificate correttamente le fasce di sconto per il fornitore "+supplierId);
-						System.out.println("Il programma verrà terminato");
-						System.exit(1);
-					}
-					
-					//discounts[r] = sconto percentuale della fascia r; discount[0] = 0
-					int discounts[]		= new int[numBands+1];
-					discounts[0]		= 0;
-					
-					/*
-					 * lowerBounds[r] = lower bound della fascia r di sconto;
-					 * lowerBounds[0] = 1
-					 */
-					int lowerBounds[]	= new int[numBands+1];
-					lowerBounds[0]		= 1;
-					
-					//leggo da lineElements i lower bounds e le percentuali di sconto per le varie fasce
-					for(int i=2; i<=lineElements.length-2; i+=2){
-						lowerBounds[i/2]		= Integer.parseInt(lineElements[i]);
-						discounts[i/2]			= Integer.parseInt(lineElements[i+1]);
-					}
-					
-					suppliers[supplierId].setPrices(numBands, discounts);
-					suppliers[supplierId].setLowerBounds(lowerBounds);
 				}
 			}
-			//controllo che in DISCOUNT_SECTION siano stati definiti tutti i fornitori
-			for(int i=1; i<=definedSupplier.length-1; i++){
-				if(!definedSupplier[i]){
+		}
+		//non ho trovato OFFER_SECTION dunque interrompo il programma
+		if(!end){
+			/*
+			 * risolve fallimento di ProblemParser.parse2
+			 */
+			if(suppliers==null){
+				throw new Error("Nel file di input del problema mancano i fornitori. Il programma verrà terminato");
+			}
+		}
+		
+		//line=OFFER_SECTION
+		//leggo tuttte le righe di OFFER_SECTION
+		tag = "DISCOUNT_SECTION";
+		int tagLength = tag.length();
+		//String temp;
+		//suppliers[0] non è usato
+		suppliers = new Supplier[numSuppliers+1];
+		for(int i=0; i<=suppliers.length-1; i++){
+			suppliers[i]=null;
+		}
+		int supplierId;
+		Supplier supplier;
+		//end = true quando raggiungo la fine di OFFER_SECTION
+		//[raggiungo la riga DISCOUNT_SECTION]
+		end = false;
+		while(!end){
+			line = bufferedReader.readLine();
+			
+			if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
+				end = true;	
+			}else{
+				lineElements = line.split("\\s[\\s]*");
+				
+				supplierId = Integer.parseInt(lineElements[0]);
+				if(supplierId<1 || supplierId>numSuppliers){
 					System.out.println("Errore:");
-					System.out.println("In DISCOUNT_SECTION non è stato definito il supplier "+i);
+					System.out.println("Nella sezione OFFER_SECTION del file "+file+" il supplier "+supplierId+" non è consentito");
 					System.out.println("Il programma verrà terminato");
 					System.exit(1);
 				}
+				supplier = new Supplier(supplierId);
+				
+				int numOfferedProducts = Integer.parseInt(lineElements[1]);
+				supplier.setNumOfferedProducts(numOfferedProducts);
+				
+				/*
+				 * contiene i prodotti offerti da supplierId con il relativo costo e disponibilità
+				 * offert[0]=id-prodotto1;	offert[1]=costo-p1;	offert[2]=disponibilità-p1;
+				 * offert[3]=id-p2;			offert[4]=costo-p2;	offert[5]=disponibilità-p2;
+				 * ...
+				 */
+				int offert[] = new int[lineElements.length-2];
+				for(int i=0; i<=offert.length-1; i++){
+					offert[i] = Integer.parseInt(lineElements[i+2]);
+				}
+				
+				setOffer(supplier, offert, numProducts);
+				suppliers[supplierId] = supplier;
 			}
-			
-			in.close();
-		}catch(Exception e){
-			System.err.println("Errore: " + e.getMessage());
 		}
+		//ho finito di analizzare OFFER_SECTION
+		//controllo che siano stati forniti tutti i fornitori
+		for(int i=1; i<=suppliers.length-1; i++){
+			if(suppliers[i]==null){
+				System.out.println("Errore:");
+				System.out.println("In OFFER_SECTION non è stato specificato il fornitore "+i);
+				System.out.println("Il programma verrà terminato");
+				System.exit(1);
+			}
+		}
+		
+		//line=DISCOUNT_SECTION
+		//ora leggo tutte le righe di DISCOUNT_SECTION
+		tag = "EOF";
+		tagLength = tag.length();
+		//per controllare che in DISCOUNT_SECTION siano definiti tutti i fornitori
+		boolean definedSupplier[]	= new boolean[numSuppliers+1];
+		for(int i=0; i<=definedSupplier.length-1; i++){
+			definedSupplier[i] = false;
+		}
+		/*
+		 * end = true quando raggiungo la fine di DISCOUNT_SECTION
+		 * (=raggiungo la riga EOF)
+		 */
+		end = false;
+		while(!end){
+			line = bufferedReader.readLine();
+			
+			if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
+				end = true;
+			}else{
+				lineElements = line.split("\\s[\\s]*");
+				
+				supplierId = Integer.parseInt(lineElements[0]);
+				if(supplierId<1 || supplierId>numSuppliers){
+					System.out.println("Errore:");
+					System.out.println("Nella sezione DISCOUNT_SECTION del file "+file+" il supplier "+supplierId+" non è consentito");
+					System.out.println("Il programma verrà terminato");
+					System.exit(1);
+				}
+				definedSupplier[supplierId] = true;
+				
+				//numero fasce di sconto senza contare quella 0 (prezzo base)
+				int numBands = Integer.parseInt(lineElements[1]);
+				//controllo che siano definiti lower bounds e sconti per ogni fascia
+				if(lineElements.length	!=	numBands*2+2){
+					System.out.println("Errore:");
+					System.out.println("In DISCOUNT_SECTION non sono state specificate correttamente le fasce di sconto per il fornitore "+supplierId);
+					System.out.println("Il programma verrà terminato");
+					System.exit(1);
+				}
+				
+				//discounts[r] = sconto percentuale della fascia r; discount[0] = 0
+				int discounts[]		= new int[numBands+1];
+				discounts[0]		= 0;
+				
+				/*
+				 * lowerBounds[r] = lower bound della fascia r di sconto;
+				 * lowerBounds[0] = 1
+				 */
+				int lowerBounds[]	= new int[numBands+1];
+				lowerBounds[0]		= 1;
+				
+				//leggo da lineElements i lower bounds e le percentuali di sconto per le varie fasce
+				for(int i=2; i<=lineElements.length-2; i+=2){
+					lowerBounds[i/2]		= Integer.parseInt(lineElements[i]);
+					discounts[i/2]			= Integer.parseInt(lineElements[i+1]);
+				}
+				
+				suppliers[supplierId].setPrices(numBands, discounts);
+				suppliers[supplierId].setLowerBounds(lowerBounds);
+			}
+		}
+		//controllo che in DISCOUNT_SECTION siano stati definiti tutti i fornitori
+		for(int i=1; i<=definedSupplier.length-1; i++){
+			if(!definedSupplier[i]){
+				System.out.println("Errore:");
+				System.out.println("In DISCOUNT_SECTION non è stato definito il supplier "+i);
+				System.out.println("Il programma verrà terminato");
+				System.exit(1);
+			}
+		}
+		
+		bufferedReader.close();
 		
 		return suppliers; 
 	}
@@ -422,15 +375,41 @@ public class ProblemParser extends Parser{
 		return;
 	}
 	
-	private void error(String message) throws Exception{
-		System.err.println("Errore:");
-		System.err.println(message);
-		System.err.println("Il programma verrà terminato.");
-		throw new Exception(message);
+	//TODO pensare a nome migliore
+	/*
+	 * Legge il valore di attribute (di tipo String) e lo restituisce. Nel caso in cui non dovesse riuscire a leggerlo
+	 * restituisce defaultValue.
+	 */
+	private String readAttribute(String attribute, String defaultValue) throws Exception{
+		String value;
+		if((value = readAttributeFromFile(attribute))	==	null){
+			value = defaultValue;
+			
+			System.err.println("Attenzione:\n"+
+					"Nel file "+file+" non è stato trovato l'attributo "+attribute+".\n"+
+					"Ad esso verrà assegnato il valore "+defaultValue);
+		}	
+			
+		return value;
 	}
 	
-	private void lanciaE(){
-		;
+	/*
+	 * Legge il valore di attribute (di tipo int) e lo restituisce. Nel caso in cui non dovesse riuscire a leggerlo
+	 * restituisce defaultValue.
+	 */
+	private int readAttribute(String attribute, int defaultValue) throws Exception{
+		return Integer.parseInt((readAttribute(attribute, Integer.toString(defaultValue))));
 	}
 	
+	/*
+	 * Legge il valore di attribute (di tipo int) e lo restituisce. Nel caso in cui non dovesse riuscire a leggerlo
+	 * lancia un'eccezione.
+	 */
+	private int readMandatoryAttribute(String attribute) throws Exception{
+		int value = readAttribute(attribute, NOT_FOUND);
+		if(value==NOT_FOUND){
+			Utility.exception("Nel file "+file+" non è stato trovato l'attributo "+attribute);
+		}
+		return value;
+	}
 }

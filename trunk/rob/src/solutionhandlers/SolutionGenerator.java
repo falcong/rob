@@ -14,7 +14,7 @@ public abstract class SolutionGenerator {
 	public SolutionGenerator(){
 	}
 
-	public abstract Solution generate();	
+	public abstract Solution generate() throws Exception;	
 	
 	public void setProblem(Problem problem) {
 		this.problem=problem;

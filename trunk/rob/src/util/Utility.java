@@ -117,18 +117,15 @@ public class Utility {
 	 * Se parameter è presente più volte viene restituito il primo valore.
 	 * Il file non deve contenere linee vuote.
 	 */
-	public static String getConfigParameter(String parameter) throws Error {
-		try{
-			FileInputStream fstream = new FileInputStream("config.txt");
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+	public static String getConfigParameter(String parameter) throws Exception {
+			BufferedReader bufferedReader = Utility.openInFile(Constants.CONFIG_FILE);
 			
 			String line;
 			boolean found = false;
 			String lineElements[] = null;
 			String tag;
 			String value = null;
-			while((line = br.readLine()) != null	&&	!found){
+			while((line = bufferedReader.readLine()) != null	&&	!found){
 				if (line.charAt(0)=='#')
 					continue;
 				lineElements = line.split("[\\s]*=[\\s]*");
@@ -142,11 +139,9 @@ public class Utility {
 					value= null;
 				}
 			}
+			bufferedReader.close();
+			
 			return value;
-		}catch(Exception e){
-			System.err.println("Errore: " + e.getMessage());
-			throw new Error(e.getMessage());
-		}
 	}
 	
 	/*
@@ -183,10 +178,20 @@ public class Utility {
 	    	FileOutputStream fileOutputStream = new FileOutputStream(fileName, append);
 	    	return new PrintStream(fileOutputStream);
 	    }catch (IOException e) {
+	    	//TODO eliminare try catch e fare throws
 	    	throw new Error(e);
 	    }
 	}
 	
+	/*
+	 * Apre un file il lettura e restituisce il corrispondente. 
+	 */
+	public static BufferedReader openInFile(String fileName) throws Exception{
+		FileInputStream fileInputStream = new FileInputStream(fileName);
+		DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+		InputStreamReader inputStreamReader = new InputStreamReader(dataInputStream);
+		return new BufferedReader(inputStreamReader);
+	}
 	
 	/*
 	 * scrive info in modalità append in outFile
@@ -197,4 +202,12 @@ public class Utility {
 		out.close();
 	}
 	
+	/*
+	 * Lancia un'eccezione contenente message. 
+	 */
+	public static void exception(String message) throws Exception{
+		System.err.println("Errore:");
+		System.err.println(message);
+		throw new Exception(message);
+	}
 }

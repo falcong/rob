@@ -17,23 +17,37 @@ import util.Utility;
 public class Rob {
 		
 	public static void main(String[] args){
+		//TODO eliminare queste variabili e sistemare qui inizio
 		int statistic = 5;
 		final int FILE_NUMBER = 15;
-		String outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
+		//TODO fare file di output
+		String outputFile;
+		try {
+			outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			//TODO fattorizzare
+			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
+					"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");		
+			System.exit(Constants.ERROR_CONFIG);
+		}
 		//prob 62
-		String problemName = "Cap.50.100.3.2.10.2.ctqd";
-		//prob 70
-		//String problemName = "Cap.100.100.5.1.80.2.ctqd";
-		//prob 63
-		//String problemName = "Cap.50.100.3.2.10.1.ctqd";
+		final String PROBLEM_NAME = "Cap.50.100.3.2.10.2.ctqd";
 		
-		ProblemParser probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+		ProblemParser probParser;
+		try {
+			probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
+					"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");			
+			System.exit(Constants.ERROR_CONFIG);
+		}
 		Problem problem = null;
 		//TODO vedere 3
 		try {
-			problem = probParser.parse(problemName);
+			problem = probParser.parse(PROBLEM_NAME);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
 								"(il parser non è stato in grado di leggere il problema).");		

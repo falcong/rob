@@ -91,7 +91,7 @@ public class ProblemParser extends Parser{
 	 * attribute può essere "NAME", "TYPE", "CLASS", "DIMENSION", "MAX_N_RANGE";
 	 * (restituisce null se l'attributo non viene trovato)
 	 */
-	private String readAttribute(String attribute){
+	private String readAttribute(String attribute) throws Exception{
 		String value = null;
 		try{
 			FileInputStream fstream = new FileInputStream(file);
@@ -114,6 +114,7 @@ public class ProblemParser extends Parser{
 			in.close();
 		}catch(Exception e){
 			System.err.println("Errore: " + e.getMessage());
+			throw e;
 		}
 		return value;
 	}
@@ -190,12 +191,15 @@ public class ProblemParser extends Parser{
 		}catch(FileNotFoundException e){
 			System.err.println("Errore: " + e.getMessage());
 			e.printStackTrace();
+			throw e;
 		} catch (NumberFormatException e) {
 			System.err.println("Errore: " + e.getMessage());
 			e.printStackTrace();
+			throw e;
 		} catch (IOException e) {
 			System.err.println("Errore: " + e.getMessage());
 			e.printStackTrace();
+			throw e;
 		}
 		return demand;
 	}

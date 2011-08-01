@@ -78,13 +78,8 @@ public class UtilityTest {
 	public void testGetConfigParameter1(){
 		final String PARAMETER = "testValue";
 		final String EXPECTED_VALUE = "C:\\This\\Is\\A\\Test";
-		try{
-			String value = Utility.getConfigParameter(PARAMETER);
-			assertTrue(value.equals(EXPECTED_VALUE));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
+		String value = Utility.getConfigParameter(PARAMETER);
+		assertTrue(value.equals(EXPECTED_VALUE));
 	}
 	
 	/*
@@ -93,31 +88,19 @@ public class UtilityTest {
 	@Test
 	public void testGetConfigParameter2(){
 		final String PARAMETER = "nonExisting";
-		try{
-			String value = Utility.getConfigParameter(PARAMETER);
-			assertTrue(value==null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
+		String value = Utility.getConfigParameter(PARAMETER);
+		assertTrue(value==null);
 	}
 	
 	/*
 	 * parametro presente più volte (è attesto che il metodo si fermi alla prima occorrenza, quindi deve restituire il primo valore)
 	 */
 	@Test
-	public void testGetConfigParameter3(){
+	public void testGetConfigParameter3() {
 		final String PARAMETER = "testValueR";
 		final String EXPECTED_VALUE = "Test1";
-		
-		try{
-			String value = Utility.getConfigParameter(PARAMETER);
-			assertTrue(value.equals(EXPECTED_VALUE));
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail(e.getMessage());
-		}
+		String value = Utility.getConfigParameter(PARAMETER);
+		assertTrue(value.equals(EXPECTED_VALUE));
 	}
 	
 	//test di openOutFile()

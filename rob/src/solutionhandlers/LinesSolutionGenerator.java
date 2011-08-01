@@ -6,7 +6,7 @@ import java.util.HashSet;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
-import rob.Utility;
+import util.Utility;
 
 public class LinesSolutionGenerator extends SolutionGenerator {
 

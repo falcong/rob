@@ -8,6 +8,7 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import solutionhandlers.RandomSolutionGenerator;
+import util.Constants;
 
 public class RandomSolutionGeneratorTest {
 

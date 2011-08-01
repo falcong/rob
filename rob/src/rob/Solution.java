@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Arrays;
 
-import rob.Utility;
+import util.Utility;
 
 public class Solution {
 	/*

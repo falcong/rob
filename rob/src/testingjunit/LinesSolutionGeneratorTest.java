@@ -10,6 +10,7 @@ import rob.Solution;
 import solutionhandlers.LinesSolutionGenerator;
 import solutionhandlers.RandomSolutionGenerator;
 import solvingalgorithms.Cplex;
+import util.Constants;
 
 public class LinesSolutionGeneratorTest {
 

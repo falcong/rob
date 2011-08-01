@@ -8,12 +8,13 @@ import org.junit.Test;
 
 import rob.Problem;
 import rob.Solution;
-import rob.Utility;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.DirectionedBanNeighbourGenerator;
 import solutionhandlers.RandomSolutionGenerator;
 import solutionhandlers.TrivialSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 public class BanSupplierNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();
@@ -27,18 +28,14 @@ public class BanSupplierNeighbourGeneratorTest {
 	 * Caso generale.
 	 */
 	@Test
-	public final void testGenerate1(){
+	public final void testGenerate1() throws Exception{
 		final String methodName = new Exception().getStackTrace()[0].getMethodName();
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.40.3.2.99.1.ctqd";
 		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		problem = pp.parse(PROBLEM_NAME);
+		
 		final int numSuppliers = problem.getDimension();
 		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);

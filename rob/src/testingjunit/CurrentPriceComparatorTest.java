@@ -10,6 +10,7 @@ import rob.CurrentPriceComparator;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
+import util.Constants;
 
 public class CurrentPriceComparatorTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

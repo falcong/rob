@@ -8,9 +8,10 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
-import rob.Utility;
 import solutionhandlers.EmptyCellsRandomNeighbourGenerator;
 import solutionhandlers.LinesSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 public class EmptyCellsRandomNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

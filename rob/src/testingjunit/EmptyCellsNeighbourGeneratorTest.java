@@ -8,12 +8,13 @@ import org.junit.Test;
 
 import rob.Problem;
 import rob.Solution;
-import rob.Utility;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.BanSupplierNeighbourGenerator;
 import solutionhandlers.EmptyCellsNeighbourGenerator;
 import solutionhandlers.RandomSolutionGenerator;
 import solutionhandlers.TrivialSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 public class EmptyCellsNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

@@ -9,8 +9,9 @@ import org.junit.Test;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
-import rob.Utility;
 import solutionhandlers.RandomSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 public class SupplierTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

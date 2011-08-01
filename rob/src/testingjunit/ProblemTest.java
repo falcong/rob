@@ -14,7 +14,8 @@ import rob.BoughtQuantityComparator;
 import rob.Problem;
 import rob.Solution;
 import rob.Supplier;
-import rob.Utility;
+import util.Constants;
+import util.Utility;
 
 public class ProblemTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

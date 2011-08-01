@@ -12,6 +12,7 @@ import solutionhandlers.BasicNeighbourGenerator;
 import solutionhandlers.RandomSolutionGenerator;
 import solvingalgorithms.LocalSearch;
 import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
+import util.Constants;
 
 public class LocalSearchTest {
 	final String CLASS_NAME = this.getClass().getName();

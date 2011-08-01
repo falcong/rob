@@ -8,10 +8,11 @@ import org.junit.Test;
 
 //MOD rob2.Problem
 import rob.Problem;
-import rob.Utility;
 //MOD
 import rob.Solution;
 import solvingalgorithms.Cplex;
+import util.Constants;
+import util.Utility;
 
 public class CplexTest {
 	

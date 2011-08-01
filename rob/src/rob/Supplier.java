@@ -1,7 +1,7 @@
 package rob;
 
 import rob.Solution;
-import rob.Utility;
+import util.Utility;
 
 public class Supplier {
 	private int id;

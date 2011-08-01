@@ -7,9 +7,10 @@ import org.junit.Test;
 
 import rob.Problem;
 import rob.Solution;
-import rob.Utility;
 import solutionhandlers.BanFullNeighbourGenerator;
 import solutionhandlers.RandomSolutionGenerator;
+import util.Constants;
+import util.Utility;
 
 public class BanFullNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();
@@ -20,18 +21,14 @@ public class BanFullNeighbourGeneratorTest {
 	 */
 	//TODO aggiungere controllo che sol1 != sol0 qui e in tutti i metodi analoghi
 	@Test
-	public final void testGenerate1() {
+	public final void testGenerate1() throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.100.3.1.10.1.ctqd";
 		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    problem = pp.parse(PROBLEM_NAME);
+		
 		final int numSuppliers = problem.getDimension(); 
 		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);

@@ -2,8 +2,8 @@ package solvingalgorithms;
 
 import rob.Problem;
 import rob.Solution;
-import rob.Utility;
 import solutionhandlers.NeighbourGenerator;
+import util.Utility;
 
 public class LocalSearch extends Algorithm {
 	public enum SuccessorChoiceMethod{

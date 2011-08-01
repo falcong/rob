@@ -85,16 +85,10 @@ public class AdvancedNeighbourGeneratorTest {
 	 *  8	42	63
 	 */
 	@Test
-	public final void testGenerate2(){
+	public final void testGenerate2() throws Exception{
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "problema2.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 53};
 		int [] s2={0, 9, 42, 63};

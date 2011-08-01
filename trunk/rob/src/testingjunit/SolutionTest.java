@@ -84,15 +84,9 @@ public class SolutionTest {
 	 * caso generale
 	 */
 	@Test
-	public final void testCalcDistance1() {
+	public final void testCalcDistance1() throws Exception {
 		final String PROBLEM_NAME="problema11.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] A0={0, 0, 0, 0};
 		int [] A1={0, 41, 42, 24};
 		int [] A2={0, 19, 0, 39};

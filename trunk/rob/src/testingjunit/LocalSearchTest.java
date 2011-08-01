@@ -22,7 +22,7 @@ public class LocalSearchTest {
 	 * Caso generale con first improvement. 
 	 */
 	@Test
-	public final void testExecute1(){
+	public final void testExecute1() throws Exception{
 		final SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.FIRST_IMPROVEMENT;
 		testExecute(successorChoice);
 	}
@@ -31,22 +31,16 @@ public class LocalSearchTest {
 	 * Caso generale con best improvement.
 	 */
 	@Test
-	public final void testExecute2(){
+	public final void testExecute2() throws Exception{
 		final SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
 		testExecute(successorChoice);
 	}
 	
-	private final void testExecute(SuccessorChoiceMethod successorChoice) {
+	private final void testExecute(SuccessorChoiceMethod successorChoice) throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "Cap.10.100.5.1.10.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		RandomSolutionGenerator generator = new RandomSolutionGenerator(problem);
 		Solution sol0 = generator.generate();

@@ -58,15 +58,9 @@ public class ProblemTest {
 	 * Caso generale con cell svuotabile.
 	 */
 	@Test
-	public final void testCellIsEmptiable1(){
+	public final void testCellIsEmptiable1() throws Exception{
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -93,15 +87,9 @@ public class ProblemTest {
 	 * cell non svuotabile perchè le disponibilità residue di tutte le altre celle della stessa colonna sono 0. 
 	 */
 	@Test
-	public final void testCellIsEmptiable2(){
+	public final void testCellIsEmptiable2() throws Exception{
 		final String PROBLEM_NAME = "problema7a.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -128,15 +116,9 @@ public class ProblemTest {
 	 * cell non svuotabile perchè tutte le altre celle della stessa colonna appartengono a otherCellsToEmpty.
 	 */
 	@Test
-	public final void testCellIsEmptiable3(){
+	public final void testCellIsEmptiable3() throws Exception{
 		final String PROBLEM_NAME = "problema7.txt";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0 = {0, 0, 0};
 		int [] s1 = {0, 50, 40};
@@ -164,15 +146,9 @@ public class ProblemTest {
 	 * input =  1, 1
 	 */
 	@Test
-	public final void testGetCell1(){
+	public final void testGetCell1() throws Exception{
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		final int SUPPLIER = 1;
 		final int PRODUCT = 1;
@@ -185,15 +161,9 @@ public class ProblemTest {
 	 * caso generale (input = 7, 53)
 	 */
 	@Test
-	public final void testGetCell2(){
+	public final void testGetCell2() throws Exception{
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		final int SUPPLIER = 7;
 		final int PRODUCT = 53;
@@ -206,15 +176,9 @@ public class ProblemTest {
 	 * input = ultimo_fornitore, ultimo_prodotto
 	 */
 	@Test
-	public final void testGetCell3(){
+	public final void testGetCell3() throws Exception{
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		final int SUPPLIER = 10;
 		final int PRODUCT = 100;
@@ -228,15 +192,9 @@ public class ProblemTest {
 	 * cella = 1
 	 */
 	@Test
-	public final void testGetSupplierFromCell1(){
+	public final void testGetSupplierFromCell1() throws Exception{
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		final int CELL = 1;
 		final int SUPPLIER = 1;
@@ -248,15 +206,9 @@ public class ProblemTest {
 	 * caso generale (cella = 653)
 	 */
 	@Test
-	public final void testGetSupplierFromCell2(){
+	public final void testGetSupplierFromCell2() throws Exception{
 		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
-		Problem problem = null;
-		try {
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		final int CELL = 653;
 		final int SUPPLIER = 7;

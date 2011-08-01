@@ -131,7 +131,7 @@ public class SupplierTest {
      *Caso in cui si ricade nella prima fascia di sconto
      */
 	@Test
-	public final void testGetDiscountedPrice1(){
+	public final void testGetDiscountedPrice1() throws Exception{
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 0, 0};
 		int [] s2={0, 40, 42, 63};
@@ -148,7 +148,7 @@ public class SupplierTest {
      *Caso in cui si ricade su un boundary (=49)
      */
 	@Test
-	public final void testGetDiscountedPrice2(){
+	public final void testGetDiscountedPrice2() throws Exception{
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 19, 30, 0};
 		int [] s2={0, 41, 12, 63};
@@ -164,7 +164,7 @@ public class SupplierTest {
      *Caso in cui si ricade dopo l'ultimo boundary (> 70)
      */
 	@Test
-	public final void testGetDiscountedPrice3(){
+	public final void testGetDiscountedPrice3() throws Exception{
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 27};
 		int [] s2={0, 40, 12, 36};
@@ -179,7 +179,7 @@ public class SupplierTest {
      *Caso in cui si ricade sul primo boundary (=50)
      */
 	@Test
-	public final void testGetDiscountedPrice4(){
+	public final void testGetDiscountedPrice4() throws Exception{
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};
 		int [] s2={0, 40, 12, 63};
@@ -190,15 +190,9 @@ public class SupplierTest {
 		
 		testGetDiscountedPrice(matrix);	
 	}
-	private final void testGetDiscountedPrice(int matrix [][]){
+	private final void testGetDiscountedPrice(int matrix [][]) throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		Solution solution = new Solution(matrix,problem);
 		assertTrue(solution.isAdmissible(problem));
 		
@@ -219,15 +213,9 @@ public class SupplierTest {
 	 *Caso generale
 	 */ 
 	@Test
-	public final void testGetResidual1(){
+	public final void testGetResidual1() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};
@@ -257,15 +245,9 @@ public class SupplierTest {
 	 *Caso generale
 	 */
 	 @Test
-	public final void testGetResidualSolution1(){
+	public final void testGetResidualSolution1() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};
@@ -296,15 +278,9 @@ public class SupplierTest {
 	 * Caso generale.
 	 */
 	 @Test
-	 public final void testGetTotalResidualAvailability1(){
+	 public final void testGetTotalResidualAvailability1() throws Exception{
 		final String PROBLEM_NAME = "problema1.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 53};
@@ -334,15 +310,9 @@ public class SupplierTest {
 	 * quantitàTotale = 21
 	 */
 	@Test
-	public final void testQuantityToIncreaseSegment1(){
+	public final void testQuantityToIncreaseSegment1() throws Exception{
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 53};
@@ -367,15 +337,9 @@ public class SupplierTest {
 	 * quantitàTotale = 29
 	 */
 	@Test
-	public final void testQuantityToIncreaseSegment2(){
+	public final void testQuantityToIncreaseSegment2() throws Exception{
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 45};
@@ -400,15 +364,9 @@ public class SupplierTest {
 	 * quantitàTotale = 30
 	 */
 	@Test
-	public final void testQuantityToIncreaseSegment3(){
+	public final void testQuantityToIncreaseSegment3() throws Exception{
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 44};
@@ -433,15 +391,9 @@ public class SupplierTest {
 	 * quantitàTotale = 74
 	 */
 	@Test
-	public final void testQuantityToIncreaseSegment4(){
+	public final void testQuantityToIncreaseSegment4() throws Exception{
 		final String PROBLEM_NAME = "problema15.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 40, 0};
@@ -467,15 +419,9 @@ public class SupplierTest {
 	 *Caso generico
 	 */
 	@Test
-	public final void testQuantityToNotDecreaseSegment1(){
+	public final void testQuantityToNotDecreaseSegment1() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 32, 23};
@@ -500,15 +446,9 @@ public class SupplierTest {
 	 *Caso soglia
 	 */
 	@Test
-	public final void testQuantityToNotDecreaseSegment2(){
+	public final void testQuantityToNotDecreaseSegment2() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 32, 53};
@@ -533,15 +473,9 @@ public class SupplierTest {
 	 *Caso con quantità 1
 	 */
 	@Test
-	public final void testQuantityToNotDecreaseSegment3(){
+	public final void testQuantityToNotDecreaseSegment3() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 31, 53};
@@ -567,15 +501,9 @@ public class SupplierTest {
 	 * caso generale
 	 */
 	@Test
-	public final void testSetPrices1(){
+	public final void testSetPrices1() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};

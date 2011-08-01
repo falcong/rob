@@ -25,20 +25,14 @@ public class VNSTest {
 	 * n volte
 	 */
 	@Test
-	public final void testExecute1() {
+	public final void testExecute1() throws Exception {
 		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
 		final String PROBLEM_NAME = "Cap.50.40.3.1.70.1.ctqd";
 		final int K_MAX=5;
 		final int MAX_NEIGHBOUR_NUMBER = 10;
 		final int MAX_STEPS_NUMBER = 10;
 		
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		RandomSolutionGenerator sGenerator=new RandomSolutionGenerator(problem);
 		NeighbourGenerator nGenerator=new BasicNeighbourGenerator(problem);

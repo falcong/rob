@@ -22,15 +22,9 @@ public class SolutionTest {
 	 * caso generale
 	 */
 	@Test
-	public final void testSolution1() {
+	public final void testSolution1() throws Exception {
 		final String PROBLEM_NAME="problema10.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 30, 10, 40};
 		int [] s2={0, 20, 32, 23};
@@ -51,15 +45,9 @@ public class SolutionTest {
 	 * controllo che sol importata sia = sol del file
 	 */
 	@Test
-	public final void testSolutionString1() {
+	public final void testSolutionString1() throws Exception {
 		final String PROBLEM_NAME="problema10.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 30, 10, 40};
@@ -117,15 +105,9 @@ public class SolutionTest {
 	 * controllo =
 	 */
 	@Test
-	public final void testExport1() {
+	public final void testExport1() throws Exception {
 		final String PROBLEM_NAME="Cap.50.40.5.1.10.1.ctqd";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		SolutionGenerator sg=new RandomSolutionGenerator(problem);
 		Solution sol = sg.generate();
 		
@@ -145,15 +127,9 @@ public class SolutionTest {
 	 * Soluzione ammissibile
 	 */
 	@Test
-	public final void testIsAdmissible1() {
+	public final void testIsAdmissible1() throws Exception {
 		final String PROBLEM_NAME="problema12.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 40, 50, 25};
@@ -170,15 +146,9 @@ public class SolutionTest {
 	 * Soluzione non ammissibile
 	 */
 	@Test
-	public final void testIsAdmissible2() {
+	public final void testIsAdmissible2() throws Exception {
 		final String PROBLEM_NAME="problema12.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 40, 50, 25};
@@ -196,15 +166,9 @@ public class SolutionTest {
 	 * caso generale
 	 */
 	@Test
-	public final void testMoveQuantity1() {
+	public final void testMoveQuantity1() throws Exception {
 		final String PROBLEM_NAME="problema13.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 24};
 		int [] s2={0, 9, 13, 39};
@@ -239,15 +203,9 @@ public class SolutionTest {
 	 * caso generale
 	 */
 	@Test
-	public final void testTotalQuantityBought1() {
+	public final void testTotalQuantityBought1() throws Exception {
 		final String PROBLEM_NAME="problema14.txt";
-		Problem problem = null;
-		try{
-			problem = pp.parse(PROBLEM_NAME);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 51, 52, 24};
 		int [] s2={0, 9, 13, 39};

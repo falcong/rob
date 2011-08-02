@@ -19,9 +19,10 @@ public class ProblemParser extends Parser{
 	String file;
 	String problemsPath;
 	
-	//TODO eventualmente spostare dove sono usate
+	//TODO eventualmente spostare dove sono usate; sistemare e raggruppare
 	final int NOT_FOUND = -1;
 	final int DEMAND_NOT_FOUND = -1;
+	final int PRODUCT_NOT_PRESENT = -1;
 	
 	final char COMMENT_DELIMITER = '#';
 	final String DEMAND_SECTION_DELIMITER = "DEMAND_SECTION";
@@ -29,6 +30,7 @@ public class ProblemParser extends Parser{
 	final String DISCOUNT_SECTION_DELIMITER = "DISCOUNT_SECTION";
 	//separatore dei vari valori nel file che descrive il problema
 	final String SEPARATOR = "\\s[\\s]*";
+	final String STRING_TO_STRIP = "[\\s]*:[\\s]*";
 	
 	public ProblemParser(String path) {
 		problemsPath = path;
@@ -252,7 +254,7 @@ public class ProblemParser extends Parser{
 		while(!end){
 			line = inputFile.readLine();
 			
-			if(line.replaceAll("[\\s]*:[\\s]*", "").equals(endTag)){
+			if(line.replaceAll(STRING_TO_STRIP, "").equals(endTag)){
 				//confronto le stringhe a meno dei : e degli spazi finali
 				end = true;	
 			}else{
@@ -286,6 +288,8 @@ public class ProblemParser extends Parser{
 				suppliers[supplierId] = supplier;
 			}
 		}
+		inputFile.close();
+		
 		//ho finito di analizzare OFFER_SECTION
 		//controllo che siano stati forniti tutti i fornitori
 		for(int i=1; i<=suppliers.length-1; i++){
@@ -297,52 +301,52 @@ public class ProblemParser extends Parser{
 	}
 	
 	/*
-	 *
+	 * Legge in inputFile DISCOUNT_SECTION e setta i valori letti ai suppliers.
 	 */
-	//TODO
-	private void readDiscountSection(int numSuppliers, Supplier[] suppliers,
-			BufferedReader inputFile) throws IOException {
-		String line;
-		String[] lineElements;
-		String tag;
-		boolean found;
-		int tagLength;
+	private void readDiscountSection(int numSuppliers, Supplier[] suppliers, 
+										BufferedReader inputFile) throws Exception {
+		//mi porto alla linea DISCOUNT_SECTION
+		findLine(inputFile, DISCOUNT_SECTION_DELIMITER);
+		
 		int supplierId;
-		//line=DISCOUNT_SECTION
-		//ora leggo tutte le righe di DISCOUNT_SECTION
-		tag = "EOF";
-		tagLength = tag.length();
+		String tag = "EOF";
 		//per controllare che in DISCOUNT_SECTION siano definiti tutti i fornitori
 		boolean definedSupplier[]	= new boolean[numSuppliers+1];
-		for(int i=0; i<=definedSupplier.length-1; i++){
-			definedSupplier[i] = false;
-		}
-		/*
-		 * end = true quando raggiungo la fine di DISCOUNT_SECTION
-		 * (=raggiungo la riga EOF)
-		 */
-		found = false;
-		while(!found){
+		Arrays.fill(definedSupplier, false);
+		//end = true quando raggiungo la fine di DISCOUNT_SECTION [=raggiungo la riga EOF].
+		boolean end = false;
+		String line;
+		String[] lineElements;
+		//ora leggo tutte le righe di DISCOUNT_SECTION
+		while(!end){
 			line = inputFile.readLine();
 			
-			if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
-				found = true;
+			if(line.replaceAll(STRING_TO_STRIP, "").equals(tag)){
+				//confronto le stringhe a meno dei : e degli spazi finali
+				end = true;
 			}else{
 				lineElements = line.split(SEPARATOR);
 				
+				//il primo elemento della riga è il supplierId
 				supplierId = Integer.parseInt(lineElements[0]);
 				if(supplierId<1 || supplierId>numSuppliers){
-					System.out.println("Errore:");
-					System.out.println("Nella sezione DISCOUNT_SECTION del file "+file+" il supplier "+supplierId+" non è consentito");
-					System.out.println("Il programma verrà terminato");
-					System.exit(1);
+					Utility.exception("Nella sezione DISCOUNT_SECTION del file "+file+" il supplier "+
+										supplierId+" non è valido.\n");
 				}
 				definedSupplier[supplierId] = true;
 				
-				//numero fasce di sconto senza contare quella 0 (prezzo base)
-				int numBands = Integer.parseInt(lineElements[1]);
-				//controllo che siano definiti lower bounds e sconti per ogni fascia
-				if(lineElements.length	!=	numBands*2+2){
+				/*
+				 * numero fasce di sconto senza contare quella 0 (prezzo base);
+				 * è il secondo elemento della riga
+				 */
+				int numSegments = Integer.parseInt(lineElements[1]);
+				/*
+				 * controllo che la riga presenti il giusto numero di elementi. Devono essere presenti
+				 * idSupplier, numSegments e 1 coppia di valori per ogni fascia di sconto 
+				 * 
+				 */
+				//TODO siamo arrivati qui
+				if(lineElements.length	!=	numSegments*2+2){
 					System.out.println("Errore:");
 					System.out.println("In DISCOUNT_SECTION non sono state specificate correttamente le fasce di sconto per il fornitore "+supplierId);
 					System.out.println("Il programma verrà terminato");
@@ -350,14 +354,14 @@ public class ProblemParser extends Parser{
 				}
 				
 				//discounts[r] = sconto percentuale della fascia r; discount[0] = 0
-				int discounts[]		= new int[numBands+1];
+				int discounts[]		= new int[numSegments+1];
 				discounts[0]		= 0;
 				
 				/*
 				 * lowerBounds[r] = lower bound della fascia r di sconto;
 				 * lowerBounds[0] = 1
 				 */
-				int lowerBounds[]	= new int[numBands+1];
+				int lowerBounds[]	= new int[numSegments+1];
 				lowerBounds[0]		= 1;
 				
 				//leggo da lineElements i lower bounds e le percentuali di sconto per le varie fasce
@@ -366,7 +370,7 @@ public class ProblemParser extends Parser{
 					discounts[i/2]			= Integer.parseInt(lineElements[i+1]);
 				}
 				
-				suppliers[supplierId].setPrices(numBands, discounts);
+				suppliers[supplierId].setPrices(numSegments, discounts);
 				suppliers[supplierId].setLowerBounds(lowerBounds);
 			}
 		}
@@ -385,34 +389,31 @@ public class ProblemParser extends Parser{
 	
 	
 	/*
-	 * Setta in supplier i prezzi base e le disponibilità dei prodotti (contenuti in offer);
-	 * numProducts = numero di prodotti totale;
+	 * Setta in supplier i prezzi base e le disponibilità dei prodotti (contenuti in offer).
+	 * numProducts = numero di prodotti totale.
 	 * offer[0]=id_prodotto1;	offer[1]=costo_p1;	offer[2]=disponibilità_p1;
 	 * offer[3]=id_p2;			offer[4]=costo_p2;	offer[5]=disponibilità_p2;
 	 * ...
 	 */
-	//TODO
-	private void setOffer(Supplier supplier, int offert[], int numProducts){
+	private void setOffer(Supplier supplier, int offer[], int numProducts) throws Exception{
 		//basePrices[0] e availability[0] non sono utilizzati
 		int basePrices[]		= new int[numProducts+1];
 		int availability[]		= new int[numProducts+1];
-		for(int i=0; i<=numProducts; i++){
-			basePrices[i]	=-1;
-			availability[i]	=-1;
-		}
+		/*Prima di leggere la riga non so quali prodotti saranno presenti in supplier dunque indico che non è
+		 * presente alcun prodotto
+		 */
+		Arrays.fill(basePrices, PRODUCT_NOT_PRESENT);
+		Arrays.fill(availability, PRODUCT_NOT_PRESENT);
 		
-		//i = id-prodotto; i+1 = costo; i+2 = disponibilità;
-		//TODO cambiare nome a i
-		for(int i=0; i<=offert.length-3; i+=3){
-			int productId			= offert[i];
-			int basePrice			= offert[i+1];
-			int productAvailability	= offert[i+2];
+		//leggo tutte le triplette (prodotto, costo, disponibilità) presenti in offer
+		for(int i=0; i<=offer.length-3; i+=3){
+			int productId			= offer[i];
+			int basePrice			= offer[i+1];
+			int productAvailability	= offer[i+2];
 			
 			if(productId<1 || productId>numProducts){
-				System.out.println("Errore:");
-				System.out.println("In OFFER_SECTION di "+file+" il prodotto "+productId+" del fornitore "+supplier.getId()+" non è ammesso");
-				System.out.println("Il programma verrà terminato");
-				System.exit(1);
+				Utility.exception("In OFFER_SECTION di "+file+" il prodotto "+productId+" del fornitore "+
+									supplier.getId()+" non è ammesso");
 			}
 			basePrices[productId]	= basePrice;
 			availability[productId]	= productAvailability;

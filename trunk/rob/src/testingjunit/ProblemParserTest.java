@@ -16,16 +16,9 @@ public class ProblemParserTest {
 	 */
 	@Test
 	//TODO vedere 2
-	public final void testParse1(){
+	public final void testParse1() throws Exception{
 		String PROBLEM = "problema6.txt";
-		try {
-			testParse(PROBLEM);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			//vedere 7 solo qui terrei fallimento tutti altri errori
-			fail("Il parser non è stato in grado di creare il problema");
-		}
+		testParse(PROBLEM);
 	}
 	
 	/*

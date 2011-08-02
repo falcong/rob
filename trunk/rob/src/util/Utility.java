@@ -118,30 +118,33 @@ public class Utility {
 	 * Il file non deve contenere linee vuote.
 	 */
 	public static String getConfigParameter(String parameter) throws Exception {
-			BufferedReader bufferedReader = Utility.openInFile(Constants.CONFIG_FILE);
-			
-			String line;
-			boolean found = false;
-			String lineElements[] = null;
-			String tag;
-			String value = null;
-			while((line = bufferedReader.readLine()) != null	&&	!found){
-				if (line.charAt(0)=='#')
-					continue;
-				lineElements = line.split("[\\s]*=[\\s]*");
-				tag = lineElements[0];
-				value = lineElements[1];
+		final char COMMENT_DELIMITER = '#';
+		final String SEPARATOR = "[\\s]*=[\\s]*";
+	
+		BufferedReader bufferedReader = Utility.openInFile(Constants.CONFIG_FILE);
+		
+		String line;
+		boolean found = false;
+		String lineElements[] = null;
+		String tag;
+		String value = null;
+		while((line = bufferedReader.readLine()) != null	&&	!found){
+			if (line.charAt(0)==COMMENT_DELIMITER)
+				continue;
+			lineElements = line.split(SEPARATOR);
+			tag = lineElements[0];
+			value = lineElements[1];
 
-				
-				if(tag.equalsIgnoreCase(parameter)){
-					found = true;
-				}else{
-					value= null;
-				}
-			}
-			bufferedReader.close();
 			
-			return value;
+			if(tag.equalsIgnoreCase(parameter)){
+				found = true;
+			}else{
+				value= null;
+			}
+		}
+		bufferedReader.close();
+		
+		return value;
 	}
 	
 	/*

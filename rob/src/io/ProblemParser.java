@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 
 import rob.Problem;
@@ -18,14 +19,18 @@ public class ProblemParser extends Parser{
 	String file;
 	String problemsPath;
 	
+	//TODO eventualmente spostare dove sono usate
 	final int NOT_FOUND = -1;
+	final char COMMENT_DELIMITER = '#';
+	final String DEMAND_SECTION_DELIMITER = "DEMAND_SECTION";
+	final String OFFER_SECTION_DELIMITER = "OFFER_SECTION";
 	
 	public ProblemParser(String path) {
 		problemsPath = path;
 	}
 
 	/*
-	 * crea Problem descritto nel file problemFile [formato di Manerba]
+	 * Crea Problem descritto nel file problemFile [formato di Manerba].
 	 */
 	public Problem parse(String problemFile) throws Exception{
 		file = problemsPath + File.separator + problemFile;
@@ -92,44 +97,41 @@ public class ProblemParser extends Parser{
 	}
 	
 	/*
-	 * legge dal file contenente la descrizione del problema la domanda dei vari prodotti
-	 * e la restituisce; restituisce null se DEMAND_SECTION non viene trovata
+	 * Legge dal file contenente la descrizione del problema la domanda dei vari prodotti
+	 * e la restituisce; lancia una eccezione se DEMAND_SECTION non viene trovata.
 	 */
 	private int[] readDemandSection() throws Exception{
 		int demand[] = null;
-		BufferedReader bufferedReader = Utility.openInFile(file);
-		
+		BufferedReader inputFile = Utility.openInFile(file);
 		String line;
 		String lineElements[];
 		
-		while((line = bufferedReader.readLine()) != null){
-			lineElements = line.split("\\s[\\s]*");
+		while((line = inputFile.readLine()) != null){
+			final String SEPARATOR = "\\s[\\s]*";
+			lineElements = line.split(SEPARATOR);
 			
-			if(line.length()==0){
+			if(line.isEmpty()){
 				//ignoro eventuali linee vuote
 				;
-			}else if(lineElements[0].charAt(0) == '#'){
+			}else if(lineElements[0].charAt(0) == COMMENT_DELIMITER){
 				//ignoro eventuali commenti
 				;
-			}else if(lineElements[0].equals("DEMAND_SECTION")){
+			}else if(lineElements[0].equals(DEMAND_SECTION_DELIMITER)){
 				//leggo la prima riga che indica il numero di prodotti
-				line = bufferedReader.readLine();
+				line = inputFile.readLine();
 				numProducts = Integer.parseInt(line);
 				
-				//leggo le altre righe (con la domanda di ogni prodotto)
-				//non viene utilizzato demand[0]
+				//leggo le altre righe (con la domanda di ogni prodotto), non viene utilizzato demand[0]  
 				demand = new int[numProducts+1];
-				//demand[k]=-1 significa che per il prodotto k la domanda non è stata specificata
-				for(int i = 0; i<=demand.length-1; i++){
-					demand[i]=NOT_FOUND;
-				}
+				//demand[k]=NOT_FOUND significa che per il prodotto k la domanda non è stata specificata
+				Arrays.fill(demand, NOT_FOUND);
 				//vale true quando raggiungo la fine DEMAND_SECTION
 				boolean end = false;
 				while(!end){
-					line = bufferedReader.readLine();
+					line = inputFile.readLine();
 					lineElements = line.split("\\s[\\s]*");
 					
-					if(lineElements[0].equals("OFFER_SECTION")){
+					if(lineElements[0].equals(OFFER_SECTION_DELIMITER)){
 						end = true;
 					}else{
 						//id del prodotto
@@ -149,15 +151,18 @@ public class ProblemParser extends Parser{
 				for(int i=1; i<=demand.length-1; i++){
 					if(demand[i]==NOT_FOUND){
 						final int DEFAULT_VALUE = 0;
-						System.err.println("Attenzione:"+
-								"In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata"+
-								"Ad essa verrà assegnato il valore di default "+DEFAULT_VALUE+"\n");
+						Utility.warning("In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata"+
+								"Ad essa verrà assegnato il valore di default "+DEFAULT_VALUE+".\n");
 						demand[i]=DEFAULT_VALUE;
 					}
 				}
 			}
 		}
-		bufferedReader.close();
+		inputFile.close();
+		if(demand==null){
+			//lancio 1 eccezione perchè non ho trovato DEMAND_SECTION
+			Utility.exception("Non è stata trovata la sezione DEMAND_SECTION.");
+		}
 		return demand;
 	}
 	
@@ -385,9 +390,8 @@ public class ProblemParser extends Parser{
 		if((value = readAttributeFromFile(attribute))	==	null){
 			value = defaultValue;
 			
-			System.err.println("Attenzione:\n"+
-					"Nel file "+file+" non è stato trovato l'attributo "+attribute+".\n"+
-					"Ad esso verrà assegnato il valore "+defaultValue);
+			Utility.warning("Nel file "+file+" non è stato trovato l'attributo "+attribute+".\n"+
+					"Ad esso verrà assegnato il valore "+defaultValue+".\n");
 		}	
 			
 		return value;

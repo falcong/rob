@@ -210,4 +210,12 @@ public class Utility {
 		System.err.println(message);
 		throw new Exception(message);
 	}
+	
+	/*
+	 * Stampa un messaggio di warning.
+	 */
+	public static void warning(String message){
+		System.err.println("Attenzione:");
+		System.err.println(message);
+	}
 }

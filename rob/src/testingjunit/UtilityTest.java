@@ -75,7 +75,7 @@ public class UtilityTest {
 	 * caso generico
 	 */
 	@Test
-	public void testGetConfigParameter1(){
+	public void testGetConfigParameter1() throws Exception{
 		final String PARAMETER = "testValue";
 		final String EXPECTED_VALUE = "C:\\This\\Is\\A\\Test";
 		String value = Utility.getConfigParameter(PARAMETER);
@@ -86,7 +86,7 @@ public class UtilityTest {
 	 * parametro assente
 	 */
 	@Test
-	public void testGetConfigParameter2(){
+	public void testGetConfigParameter2() throws Exception{
 		final String PARAMETER = "nonExisting";
 		String value = Utility.getConfigParameter(PARAMETER);
 		assertTrue(value==null);
@@ -96,7 +96,7 @@ public class UtilityTest {
 	 * parametro presente più volte (è attesto che il metodo si fermi alla prima occorrenza, quindi deve restituire il primo valore)
 	 */
 	@Test
-	public void testGetConfigParameter3() {
+	public void testGetConfigParameter3() throws Exception {
 		final String PARAMETER = "testValueR";
 		final String EXPECTED_VALUE = "Test1";
 		String value = Utility.getConfigParameter(PARAMETER);
@@ -134,6 +134,12 @@ public class UtilityTest {
 		file.close();
 		
 		assertTrue(verifyOutput(lines, fullFilePath)); 
+	}
+	
+	//TODO implementare test
+	@Test
+	public final void testOpenInFile(){
+		;
 	}
 	
 	//test di write()
@@ -181,43 +187,4 @@ public class UtilityTest {
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-//	@Test
-//	public void testGetConfigParameter(){
-//		try{
-//			String value = Utility.getConfigParameter("testValue");
-//			String expectedValue = "C:\\This\\Is\\A\\Test";
-//			assertTrue(value.equalsIgnoreCase(expectedValue));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			fail(e.getMessage());
-//		}
-//	}
-//	
-	
-/*	@Test
-	public void testOpenOutFile(){
-		//apro
-		String fileName = Utility.getConfigParameter("proveVarie")+"\\prova1.txt";
-		PrintStream file = Utility.openOutFile(fileName, true);
-		
-		//scrivo
-		file.println("ciao pippo\n");
-		
-		//chiudo
-		file.close();
-	}
-	*/
-	
-
 }

@@ -21,7 +21,7 @@ public class Rob {
 		int statistic = 5;
 		final int FILE_NUMBER = 15;
 		//TODO fare file di output
-		String outputFile;
+		String outputFile = null;
 		try {
 			outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		} catch (Exception e1) {
@@ -34,7 +34,7 @@ public class Rob {
 		//prob 62
 		final String PROBLEM_NAME = "Cap.50.100.3.2.10.2.ctqd";
 		
-		ProblemParser probParser;
+		ProblemParser probParser = null;
 		try {
 			probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
 		} catch (Exception e1) {

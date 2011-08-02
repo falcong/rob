@@ -21,9 +21,14 @@ public class ProblemParser extends Parser{
 	
 	//TODO eventualmente spostare dove sono usate
 	final int NOT_FOUND = -1;
+	final int DEMAND_NOT_FOUND = -1;
+	
 	final char COMMENT_DELIMITER = '#';
 	final String DEMAND_SECTION_DELIMITER = "DEMAND_SECTION";
 	final String OFFER_SECTION_DELIMITER = "OFFER_SECTION";
+	final String DISCOUNT_SECTION_DELIMITER = "DISCOUNT_SECTION";
+	//separatore dei vari valori nel file che descrive il problema
+	final String SEPARATOR = "\\s[\\s]*";
 	
 	public ProblemParser(String path) {
 		problemsPath = path;
@@ -70,23 +75,22 @@ public class ProblemParser extends Parser{
 
 	
 	/*
-	 * legge il valore di attribute come String;
-	 * attribute può essere "NAME", "TYPE", "CLASS", "DIMENSION", "MAX_N_RANGE";
-	 * (restituisce null se l'attributo non viene trovato)
+	 * Legge il valore di attribute come String.
+	 * Attribute può essere ad esempio "NAME", "TYPE", "CLASS", "DIMENSION", "MAX_N_RANGE", ...
+	 * Restituisce null se l'attributo non viene trovato.
 	 */
 	private String readAttributeFromFile(String attribute) throws Exception{
 		String value = null;
 		BufferedReader bufferedReader = Utility.openInFile(file);
 		
-		int tagLength = attribute.length();
 		String line;
 		boolean found = false;
 		while((line = bufferedReader.readLine()) != null	&&	!found){
-			if(line.length()>=tagLength){
-				String temp=line.substring(0,tagLength);
+			if(line.length()>=attribute.length()){
+				String temp=line.substring(0,attribute.length());
 				if(temp.equals(attribute)){
 					found = true;
-					String lineElements[] = line.split("\\s[\\s]*");
+					String lineElements[] = line.split(SEPARATOR);
 					value=lineElements[2];
 				}
 			}
@@ -106,58 +110,22 @@ public class ProblemParser extends Parser{
 		String line;
 		String lineElements[];
 		
-		while((line = inputFile.readLine()) != null){
-			final String SEPARATOR = "\\s[\\s]*";
+		findLine(inputFile, DEMAND_SECTION_DELIMITER);
+		demand = readDemandFromFile(inputFile);
+		
+		//temp
+/*		while((line = inputFile.readLine()) != null){
 			lineElements = line.split(SEPARATOR);
 			
-			if(line.isEmpty()){
-				//ignoro eventuali linee vuote
-				;
-			}else if(lineElements[0].charAt(0) == COMMENT_DELIMITER){
-				//ignoro eventuali commenti
+			if(line.isEmpty() || lineElements[0].charAt(0) == COMMENT_DELIMITER){
+				//ignoro eventuali linee vuote o i commenti
 				;
 			}else if(lineElements[0].equals(DEMAND_SECTION_DELIMITER)){
-				//leggo la prima riga che indica il numero di prodotti
-				line = inputFile.readLine();
-				numProducts = Integer.parseInt(line);
-				
-				//leggo le altre righe (con la domanda di ogni prodotto), non viene utilizzato demand[0]  
-				demand = new int[numProducts+1];
-				//demand[k]=NOT_FOUND significa che per il prodotto k la domanda non è stata specificata
-				Arrays.fill(demand, NOT_FOUND);
-				//vale true quando raggiungo la fine DEMAND_SECTION
-				boolean end = false;
-				while(!end){
-					line = inputFile.readLine();
-					lineElements = line.split("\\s[\\s]*");
-					
-					if(lineElements[0].equals(OFFER_SECTION_DELIMITER)){
-						end = true;
-					}else{
-						//id del prodotto
-						int productId = Integer.parseInt(lineElements[0]);
-						if(productId<1 || productId>numProducts){
-							Utility.exception("In DEMAND_SECTION del file "+file+" il prodotto "+productId+" non è accettabile");
-						}
-						//domanda
-						int productDemand = Integer.parseInt(lineElements[1]);
-						demand[productId] = productDemand;
-					}
-				}
-				/*
-				 * Controllo che siano state specificate tutte le domande; per i prodotti la cui domanda non è stata 
-				 * specificata assegno domanda pari a 0
-				 */
-				for(int i=1; i<=demand.length-1; i++){
-					if(demand[i]==NOT_FOUND){
-						final int DEFAULT_VALUE = 0;
-						Utility.warning("In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata"+
-								"Ad essa verrà assegnato il valore di default "+DEFAULT_VALUE+".\n");
-						demand[i]=DEFAULT_VALUE;
-					}
-				}
+				demand = readDemandFromFile(inputFile);
 			}
-		}
+		}*/
+		//fine_temp
+		
 		inputFile.close();
 		if(demand==null){
 			//lancio 1 eccezione perchè non ho trovato DEMAND_SECTION
@@ -165,89 +133,156 @@ public class ProblemParser extends Parser{
 		}
 		return demand;
 	}
+
+	/*
+	 * Legge la sezione DEMAND_SECTION di inputFile e restituisce un array contenente le domande.
+	 */
+	private int[] readDemandFromFile(BufferedReader inputFile) throws Exception {
+		int[] demand = null;
+		String line;
+		String[] lineElements;
+		//leggo la prima riga che indica il numero di prodotti
+		line = inputFile.readLine();
+		numProducts = Integer.parseInt(line);
+		
+		//leggo le altre righe (con la domanda di ogni prodotto), non viene utilizzato demand[0]  
+		demand = new int[numProducts+1];
+		/*
+		 * demand[k]=DEMAND_NOT_FOUND significa che per il prodotto k la domanda non è stata specificata.
+		 * All'inizio presuppongo di non trovare alcuna domanda.
+		 */
+		Arrays.fill(demand, DEMAND_NOT_FOUND);
+		
+		//vale true quando raggiungo la fine DEMAND_SECTION
+		boolean end = false;
+		while(!end){
+			line = inputFile.readLine();
+			lineElements = line.split(SEPARATOR);
+			
+			if(lineElements[0].equals(OFFER_SECTION_DELIMITER)){
+				end = true;
+			}else{
+				//id del prodotto
+				int productId = Integer.parseInt(lineElements[0]);
+				if(productId<1 || productId>numProducts){
+					Utility.exception("In DEMAND_SECTION del file "+file+" il prodotto "+productId+" non è accettabile");
+				}
+				//domanda
+				int productDemand = Integer.parseInt(lineElements[1]);
+				demand[productId] = productDemand;
+			}
+		}
+		completeDemand(demand);
+		return demand;
+	}
+
+	/*
+	 * Controllo che siano state specificate tutte le domande; per i prodotti la cui domanda non è stata 
+	 * specificata assegno domanda pari a DEFAULT_VALUE.
+	 */
+	private void completeDemand(int[] demand) {
+		final int DEFAULT_VALUE = 0;
+		for(int i=1; i<=demand.length-1; i++){
+			if(demand[i]==DEMAND_NOT_FOUND){
+				Utility.warning("In DEMAND_SECTION del file "+file+" la domanda del prodotto "+i+" non è stata specificata"+
+						"Ad essa verrà assegnato il valore di default "+DEFAULT_VALUE+".\n");
+				demand[i]=DEFAULT_VALUE;
+			}
+		}
+	}
 	
 	
 	/*
-	 * legge il file contenente la descrizione del problema e crea l'array con i supplier
+	 * Legge il file contenente la descrizione del problema e crea l'array con i supplier.
 	 */
-	//TODO spezzare
 	private Supplier[] makeSuppliers(int numSuppliers) throws Exception{
 		Supplier suppliers[] = null;
+		BufferedReader inputFile = Utility.openInFile(file);
 		
-		BufferedReader bufferedReader = Utility.openInFile(file);
+		suppliers = readOfferSection(numSuppliers, inputFile);
+		readDiscountSection(numSuppliers, suppliers, inputFile);
 		
+		return suppliers; 
+	}
+
+	/*
+	 * Porta inputFile alla riga uguale a tag in inputFile.
+	 */
+	private void findLine(BufferedReader inputFile, String tag)throws Exception {
 		String line;
-		String lineElements[];
-		
-		//mi porto alla riga OFFER_SECTION
-		String tag = "OFFER_SECTION";
-		//vale true quando ho raggiunto OFFER_SECTION
-		boolean end = false;
-		while(!end	&&	(line = bufferedReader.readLine()) != null){
-			if(line.length() >= tag.length()){
+		//mi porto alla riga tag
+		//vale true quando ho raggiunto tag
+		boolean found = false;
+		while(!found	&&	(line = inputFile.readLine()) != null){
+			if(line.length()>=tag.length()){
 				line = line.substring(0,tag.length());
 				if(line.equals(tag)){
-					end = true;
+					found = true;	
 				}
 			}
 		}
-		//non ho trovato OFFER_SECTION dunque interrompo il programma
-		if(!end){
-			/*
-			 * risolve fallimento di ProblemParser.parse2
-			 */
-			if(suppliers==null){
-				throw new Error("Nel file di input del problema mancano i fornitori. Il programma verrà terminato");
-			}
+		//non ho trovato OFFER_SECTION dunque lancio un'eccezione
+		if(!found){
+			Utility.exception("Nel file del problema non è stato possibile trovare il tag "+tag+".\n");
 		}
+	}
+
+	/*
+	 * Legge OFFER_SECTION di inputFile e restituisce un array di fornitori settati con i valori trovati in
+	 * OFFER_SECTION.
+	 */
+	private Supplier[] readOfferSection(int numSuppliers, BufferedReader inputFile) throws Exception {
+		Supplier[] suppliers;
 		
-		//line=OFFER_SECTION
-		//leggo tuttte le righe di OFFER_SECTION
-		tag = "DISCOUNT_SECTION";
-		int tagLength = tag.length();
-		//String temp;
+		//mi porto alla riga OFFER_SECTION
+		findLine(inputFile, OFFER_SECTION_DELIMITER);
+		
 		//suppliers[0] non è usato
 		suppliers = new Supplier[numSuppliers+1];
-		for(int i=0; i<=suppliers.length-1; i++){
-			suppliers[i]=null;
-		}
+		Arrays.fill(suppliers, null);
+		
 		int supplierId;
 		Supplier supplier;
-		//end = true quando raggiungo la fine di OFFER_SECTION
-		//[raggiungo la riga DISCOUNT_SECTION]
-		end = false;
+		//found = true quando raggiungo la fine di OFFER_SECTION [=raggiungo la riga DISCOUNT_SECTION].
+		boolean end = false;
+		String line;
+		String[] lineElements;
+		String endTag = DISCOUNT_SECTION_DELIMITER;
+		//leggo tuttte le righe di OFFER_SECTION
 		while(!end){
-			line = bufferedReader.readLine();
+			line = inputFile.readLine();
 			
-			if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
+			if(line.replaceAll("[\\s]*:[\\s]*", "").equals(endTag)){
+				//confronto le stringhe a meno dei : e degli spazi finali
 				end = true;	
 			}else{
-				lineElements = line.split("\\s[\\s]*");
+				lineElements = line.split(SEPARATOR);
 				
+				//il primo elemento della riga è il supplierId
 				supplierId = Integer.parseInt(lineElements[0]);
 				if(supplierId<1 || supplierId>numSuppliers){
-					System.out.println("Errore:");
-					System.out.println("Nella sezione OFFER_SECTION del file "+file+" il supplier "+supplierId+" non è consentito");
-					System.out.println("Il programma verrà terminato");
-					System.exit(1);
+					Utility.exception("Nella sezione OFFER_SECTION del file "+file+" il supplier "+supplierId+
+										" non è valido"+".\n");
 				}
 				supplier = new Supplier(supplierId);
 				
+				// il secondo elemento della riga è il numOfferedProducts 
 				int numOfferedProducts = Integer.parseInt(lineElements[1]);
 				supplier.setNumOfferedProducts(numOfferedProducts);
 				
 				/*
-				 * contiene i prodotti offerti da supplierId con il relativo costo e disponibilità
-				 * offert[0]=id-prodotto1;	offert[1]=costo-p1;	offert[2]=disponibilità-p1;
-				 * offert[3]=id-p2;			offert[4]=costo-p2;	offert[5]=disponibilità-p2;
+				 * offer contiene i prodotti offerti da supplierId con il relativo costo e disponibilità.
+				 * offer[0]=id_prodotto1;	offer[1]=costo_p1;	offer[2]=disponibilità_p1;
+				 * offer[3]=id_p2;			offer[4]=costo_p2;	offer[5]=disponibilità_p2;
 				 * ...
+				 * Copio in offer tutti gli elementi di lineElements a partire da quello n° 2
 				 */
-				int offert[] = new int[lineElements.length-2];
-				for(int i=0; i<=offert.length-1; i++){
-					offert[i] = Integer.parseInt(lineElements[i+2]);
+				int offer[] = new int[lineElements.length-2];
+				for(int i=0; i<=offer.length-1; i++){
+					offer[i] = Integer.parseInt(lineElements[i+2]);
 				}
 				
-				setOffer(supplier, offert, numProducts);
+				setOffer(supplier, offer, numProducts);
 				suppliers[supplierId] = supplier;
 			}
 		}
@@ -255,13 +290,24 @@ public class ProblemParser extends Parser{
 		//controllo che siano stati forniti tutti i fornitori
 		for(int i=1; i<=suppliers.length-1; i++){
 			if(suppliers[i]==null){
-				System.out.println("Errore:");
-				System.out.println("In OFFER_SECTION non è stato specificato il fornitore "+i);
-				System.out.println("Il programma verrà terminato");
-				System.exit(1);
+				Utility.exception("In OFFER_SECTION non è stato specificato il fornitore "+i+".\n");
 			}
 		}
-		
+		return suppliers;
+	}
+	
+	/*
+	 *
+	 */
+	//TODO
+	private void readDiscountSection(int numSuppliers, Supplier[] suppliers,
+			BufferedReader inputFile) throws IOException {
+		String line;
+		String[] lineElements;
+		String tag;
+		boolean found;
+		int tagLength;
+		int supplierId;
 		//line=DISCOUNT_SECTION
 		//ora leggo tutte le righe di DISCOUNT_SECTION
 		tag = "EOF";
@@ -275,14 +321,14 @@ public class ProblemParser extends Parser{
 		 * end = true quando raggiungo la fine di DISCOUNT_SECTION
 		 * (=raggiungo la riga EOF)
 		 */
-		end = false;
-		while(!end){
-			line = bufferedReader.readLine();
+		found = false;
+		while(!found){
+			line = inputFile.readLine();
 			
 			if(line.length()>=tagLength	&&	line.substring(0, tagLength).equals(tag)){
-				end = true;
+				found = true;
 			}else{
-				lineElements = line.split("\\s[\\s]*");
+				lineElements = line.split(SEPARATOR);
 				
 				supplierId = Integer.parseInt(lineElements[0]);
 				if(supplierId<1 || supplierId>numSuppliers){
@@ -334,21 +380,20 @@ public class ProblemParser extends Parser{
 			}
 		}
 		
-		bufferedReader.close();
-		
-		return suppliers; 
+		inputFile.close();
 	}
 	
 	
 	/*
-	 * setta in supplier i prezzi base e le disponibilità dei prodotti (contenuti in offert);
+	 * Setta in supplier i prezzi base e le disponibilità dei prodotti (contenuti in offer);
 	 * numProducts = numero di prodotti totale;
-	 * offert[0]=id-prodotto1;	offert[1]=costo-p1;	offert[2]=disponibilità-p1;
-	 * offert[3]=id-p2;			offert[4]=costo-p2;	offert[5]=disponibilità-p2;
+	 * offer[0]=id_prodotto1;	offer[1]=costo_p1;	offer[2]=disponibilità_p1;
+	 * offer[3]=id_p2;			offer[4]=costo_p2;	offer[5]=disponibilità_p2;
 	 * ...
 	 */
-	//t
+	//TODO
 	private void setOffer(Supplier supplier, int offert[], int numProducts){
+		//basePrices[0] e availability[0] non sono utilizzati
 		int basePrices[]		= new int[numProducts+1];
 		int availability[]		= new int[numProducts+1];
 		for(int i=0; i<=numProducts; i++){
@@ -357,6 +402,7 @@ public class ProblemParser extends Parser{
 		}
 		
 		//i = id-prodotto; i+1 = costo; i+2 = disponibilità;
+		//TODO cambiare nome a i
 		for(int i=0; i<=offert.length-3; i+=3){
 			int productId			= offert[i];
 			int basePrice			= offert[i+1];
@@ -380,7 +426,6 @@ public class ProblemParser extends Parser{
 		return;
 	}
 	
-	//TODO pensare a nome migliore
 	/*
 	 * Legge il valore di attribute (di tipo String) e lo restituisce. Nel caso in cui non dovesse riuscire a leggerlo
 	 * restituisce defaultValue.
@@ -389,9 +434,8 @@ public class ProblemParser extends Parser{
 		String value;
 		if((value = readAttributeFromFile(attribute))	==	null){
 			value = defaultValue;
-			
 			Utility.warning("Nel file "+file+" non è stato trovato l'attributo "+attribute+".\n"+
-					"Ad esso verrà assegnato il valore "+defaultValue+".\n");
+					"Ad esso verrà assegnato il valore "+value+".\n");
 		}	
 			
 		return value;

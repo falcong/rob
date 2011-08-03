@@ -58,10 +58,4 @@ public class BasicNeighbourGenerator extends NeighbourGenerator{
 
 		return neighbour;
 	}
-	
-	@Override
-	public void setProblem(Problem problem) {
-		this.problem=problem;
-	}
-	
 }

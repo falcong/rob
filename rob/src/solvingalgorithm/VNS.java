@@ -5,7 +5,7 @@ import data.Problem;
 import data.Solution;
 import util.Utility;
 
-public class VNS extends Algorithm {
+public class VNS extends Algorithm{
 	protected int kMax;
 	protected Algorithm afterShaking;
 	protected Solution currentSolution;
@@ -109,14 +109,6 @@ public class VNS extends Algorithm {
 	protected Solution shaking(int k){
 		return generator.generate(currentSolution, k);
 	}
-	
-	@Override
-	public void setProblem(Problem problem) {
-		this.problem=problem;
-		generator.setProblem(problem);
-		afterShaking.setProblem(problem);
-	}
-
 	
 	public void setStatistics(int info, String outputFile, String label){
 		this.info = info;

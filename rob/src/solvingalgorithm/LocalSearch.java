@@ -5,7 +5,7 @@ import data.Problem;
 import data.Solution;
 import util.Utility;
 
-public class LocalSearch extends Algorithm {
+public class LocalSearch extends Algorithm{
 	public enum SuccessorChoiceMethod{
 		FIRST_IMPROVEMENT, BEST_IMPROVEMENT 
 	}
@@ -124,13 +124,6 @@ public class LocalSearch extends Algorithm {
 		//#n° vicini generati
 		return null;
 	}
-
-	@Override
-	public void setProblem(Problem problem) {
-		this.problem=problem;
-		generator.setProblem(problem);
-	}
-
 
 	public void setStatistics(int info,String outputFile){
 		this.info = info;

@@ -115,12 +115,4 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 			}
 		}		
 	}
-	
-
-	@Override
-	public void setProblem(Problem problem) {
-		this.problem=problem;
-		this.numSuppliers = problem.getDimension();
-		this.numProducts = problem.getNumProducts();
-	}
 }

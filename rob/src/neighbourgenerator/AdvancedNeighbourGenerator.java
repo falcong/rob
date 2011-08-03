@@ -58,17 +58,10 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 	}
 
 	
-//	private void orderSuppliersByGapToNextSegment(Solution solution) {
-//		IncreaseSegmentComparator comparator=new IncreaseSegmentComparator(solution);
-//		Arrays.sort(suppliersList, 1, suppliersList.length, comparator);
-//	}
-
-	
-	@Override
+/*	@Override
 	public void setProblem(Problem problem) {
 		this.problem=problem;
-		//suppliersList=problem.getSuppliers().clone();
-	}
+	}*/
 	
 	/*
 	 * modifica solution in maniera tale che in targetSupplier la fascia di sconto attiva aumenti di 1;

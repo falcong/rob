@@ -5,7 +5,7 @@ import data.Problem;
 import data.Solution;
 import util.Utility;
 
-public class LocalSearch extends Algorithm{
+public class LocalSearch extends TemporizedAlgorithm{
 	public enum SuccessorChoiceMethod{
 		FIRST_IMPROVEMENT, BEST_IMPROVEMENT 
 	}
@@ -39,9 +39,9 @@ public class LocalSearch extends Algorithm{
 		int step;
 		for (step=1;step<=maxStepsNumber;step++) {
 			//controllo di non avere superato tempo max
-			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+			/*if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
 				return currentSolution;
-			}
+			}*/
 			
 			//stampa step
 			printStep(step);
@@ -79,9 +79,9 @@ public class LocalSearch extends Algorithm{
 		Solution best=solution;
 		for (int created=0;created<maxNeighboursNumber;created++){
 			//controllo di non avere superato tempo max
-			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+			/*if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
 				return best;
-			}
+			}*/
 			
 			Solution neighbour=generator.generate(solution, 1);
 			if(neighbour.getObjectiveFunction()<best.getObjectiveFunction()){
@@ -105,9 +105,9 @@ public class LocalSearch extends Algorithm{
 		int visited;
 		for(visited=1;visited<=maxNeighboursNumber;visited++) {
 			//controllo di non avere superato tempo max
-			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+			/*if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
 				return solution;
-			}
+			}*/
 			
 			//stampa vicino
 			printNeighbour(visited);
@@ -222,15 +222,6 @@ public class LocalSearch extends Algorithm{
 			System.out.println("\t"+sol.getObjectiveFunction());
 			break;
 		}
-	}
-	
-	public void setFinalTime(long finalTime){
-		this.finalTime = finalTime;
-	}
-	
-	
-	public void setStartTime(long startTime){
-		this.startTime = startTime;
 	}
 }
 

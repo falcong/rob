@@ -182,13 +182,4 @@ public class Cplex extends Algorithm {
          return null;
       }
 	}
-	
-	//non fanno nulla
-	public void setFinalTime(long finalTime){
-		;
-	}
-	
-	public void setStartTime(long finalTime){
-		;
-	}
 }

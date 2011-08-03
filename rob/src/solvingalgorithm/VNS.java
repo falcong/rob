@@ -5,7 +5,7 @@ import data.Problem;
 import data.Solution;
 import util.Utility;
 
-public class VNS extends Algorithm{
+public class VNS extends TemporizedAlgorithm{
 	protected int kMax;
 	protected Algorithm afterShaking;
 	protected Solution currentSolution;
@@ -29,11 +29,8 @@ public class VNS extends Algorithm{
 		this.kMax=kMax;
 		this.problem=problem;
 		this.generator=generator;
-		//non ho limiti temporali
-		finalTime = -1;
-		afterShaking.setFinalTime(finalTime);
+
 		//TODO startTime non deve essere settato
-		afterShaking.setStartTime(System.currentTimeMillis());
 		restarts=0;
 	}
 	
@@ -43,29 +40,29 @@ public class VNS extends Algorithm{
 		this.kMax=kMax;
 		this.problem=problem;
 		this.generator=generator;
-		if(maximumTime==-1){
+/*		if(maximumTime==-1){
 			finalTime = -1;
 		}else{
 			finalTime = System.currentTimeMillis()+maximumTime*1000;
 		}
 		afterShaking.setFinalTime(finalTime);
 		this.setStartTime(System.currentTimeMillis());
-		this.restarts=restarts;
+		this.restarts=restarts;*/
 	}
 	
 	public Solution execute(Solution startSolution){
-		if(restarts<=-1 && finalTime<=0){
+/*		if(restarts<=-1 && finalTime<=0){
 			throw new Error("VNS lanciata senza alcun limite");
-		}
+		}*/
 		
 		currentSolution = startSolution;
 		
 		
 		for(int i=0;i<=restarts  ||  restarts==-1;i++){
 			//controllo di non avere superato tempo max
-			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+/*			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
 				return currentSolution;
-			}
+			}*/
 			//eseguo 1 main loop
 			runVNS();
 		}
@@ -78,9 +75,9 @@ public class VNS extends Algorithm{
 		int k=1;
 		while(k<=kMax){
 			//controllo di non avere superato tempo max
-			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
+/*			if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
 				return;
-			}
+			}*/
 			
 			Solution y=shaking(k);
 			//stampa s1
@@ -127,12 +124,12 @@ public class VNS extends Algorithm{
 				break;
 			case 1:
 				//tempo trascorso in secondi dal lancio della VNS
-				long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
+				//long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
 				//label + 0 + time + 1 tab + fo + 1tab + 4 tab + new line
-				Utility.write(outputFile, label+0+"\t"+elapsedTime+"\t"+
+				/*Utility.write(outputFile, label+0+"\t"+elapsedTime+"\t"+
 						currentSolution.getObjectiveFunction()+"\t\t\t\t"+
 						//currentSolution.calcDistance(cplex)+
-						System.getProperty("line.separator"));
+						System.getProperty("line.separator"));*/
 				//console
 				System.out.println(label+0+"\t"+currentSolution.getObjectiveFunction());
 				break;
@@ -146,12 +143,12 @@ public class VNS extends Algorithm{
 				break;
 			case 1:
 				//tempo trascorso in secondi dal lancio della VNS
-				long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
+				//long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
 				//label + 1 + time + 1 tab + fo + 1tab + k + 1 tab + 3 tab + new line
-				Utility.write(outputFile, label+1+"\t"+elapsedTime+"\t"+
+				/*Utility.write(outputFile, label+1+"\t"+elapsedTime+"\t"+
 						sol.getObjectiveFunction()+"\t"+k+"\t\t\t"+
 						//sol.calcDistance(cplex)+
-						System.getProperty("line.separator"));
+						System.getProperty("line.separator"));*/
 				//console
 				System.out.println(label+1+"\t"+sol.getObjectiveFunction());
 				break;
@@ -165,12 +162,12 @@ public class VNS extends Algorithm{
 				break;
 			case 1:
 				//tempo trascorso in secondi dal lancio della VNS
-				long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
+				//long elapsedTime = (System.currentTimeMillis()-startTime)/1000;
 				//label + 2 + time + 1 tab + fo + 1tab + 4 tab + new line
-				Utility.write(outputFile, label+2+"\t"+elapsedTime+"\t"+
+				/*Utility.write(outputFile, label+2+"\t"+elapsedTime+"\t"+
 						sol.getObjectiveFunction()+"\t\t\t\t"+
 						//sol.calcDistance(cplex)+
-						System.getProperty("line.separator"));
+						System.getProperty("line.separator"));*/
 				//console
 				System.out.println(label+2+"\t"+sol.getObjectiveFunction());
 				break;
@@ -179,15 +176,5 @@ public class VNS extends Algorithm{
 	
 	public void setIncrement(int value){
 		this.increment=value;
-	}
-
-	public void setFinalTime(long finalTime){
-		this.finalTime = finalTime;
-		afterShaking.setFinalTime(finalTime);
-	}
-	
-	public void setStartTime(long startTime){
-		this.startTime = startTime;
-		afterShaking.setStartTime(startTime);
 	}
 }

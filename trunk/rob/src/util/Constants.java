@@ -16,6 +16,9 @@ public class Constants {
 	//percorso della cartella contenente i file di output per il testing
 	public final static String OUTPUT_PATH;
 	
+	public final static int INT_NOT_USED = -1;
+	public final static boolean BOOLEAN_NOT_USED = false;
+	
 	static{
 		try {
 			//percorso della cartella contenente i file di input per il testing

@@ -16,7 +16,7 @@ public abstract class Algorithm{
 	
 	public abstract Solution execute(Solution startSolution);
 	
-	public abstract void setProblem(Problem problem);
+	//public abstract void setProblem(Problem problem);
 	
 	public abstract void setFinalTime(long finalTime);
 	

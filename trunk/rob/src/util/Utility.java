@@ -214,7 +214,7 @@ public class Utility {
 		throw new Exception(message);
 	}
 	
-	/*
+	/**
 	 * Stampa un messaggio di warning.
 	 */
 	public static void warning(String message){

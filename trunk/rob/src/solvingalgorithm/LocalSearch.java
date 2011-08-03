@@ -1,4 +1,4 @@
-package solvingalgorithms;
+package solvingalgorithm;
 
 import neighbourgenerator.NeighbourGenerator;
 import data.Problem;
@@ -46,6 +46,7 @@ public class LocalSearch extends Algorithm {
 			//stampa step
 			printStep(step);
 			Solution successor;
+			//TODO eliminare switch con polimorfismo (state o strategy?)
 			switch(successorChoice) {
 			case FIRST_IMPROVEMENT: successor=firstImprovementExploration(currentSolution);break;
 			case BEST_IMPROVEMENT: successor=bestImprovementExploration(currentSolution);break;

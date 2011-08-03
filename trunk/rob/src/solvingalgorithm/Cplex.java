@@ -1,4 +1,4 @@
-package solvingalgorithms;
+package solvingalgorithm;
 
 import data.Problem;
 import data.Solution;

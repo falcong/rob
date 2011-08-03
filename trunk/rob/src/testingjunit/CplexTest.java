@@ -11,7 +11,7 @@ import data.Solution;
 
 //MOD rob2.Problem
 //MOD
-import solvingalgorithms.Cplex;
+import solvingalgorithm.Cplex;
 import util.Constants;
 import util.Utility;
 

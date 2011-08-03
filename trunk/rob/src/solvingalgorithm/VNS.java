@@ -1,4 +1,4 @@
-package solvingalgorithms; 
+package solvingalgorithm; 
 
 import neighbourgenerator.NeighbourGenerator;
 import data.Problem;

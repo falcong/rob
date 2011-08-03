@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 import rob.Problem;
 import rob.Supplier;
+import util.Constants;
 import util.Utility;
 
 public class ProblemParser extends Parser{
@@ -19,7 +20,6 @@ public class ProblemParser extends Parser{
 	String file;
 	String problemsPath;
 	
-	//TODO eventualmente spostare dove sono usate; sistemare e raggruppare
 	final int NOT_FOUND = -1;
 	final int DEMAND_NOT_FOUND = -1;
 	final int PRODUCT_NOT_PRESENT = -1;
@@ -28,6 +28,7 @@ public class ProblemParser extends Parser{
 	final String DEMAND_SECTION_DELIMITER = "DEMAND_SECTION";
 	final String OFFER_SECTION_DELIMITER = "OFFER_SECTION";
 	final String DISCOUNT_SECTION_DELIMITER = "DISCOUNT_SECTION";
+	
 	//separatore dei vari valori nel file che descrive il problema
 	final String SEPARATOR = "\\s[\\s]*";
 	final String STRING_TO_STRIP = "[\\s]*:[\\s]*";
@@ -115,19 +116,6 @@ public class ProblemParser extends Parser{
 		findLine(inputFile, DEMAND_SECTION_DELIMITER);
 		demand = readDemandFromFile(inputFile);
 		
-		//temp
-/*		while((line = inputFile.readLine()) != null){
-			lineElements = line.split(SEPARATOR);
-			
-			if(line.isEmpty() || lineElements[0].charAt(0) == COMMENT_DELIMITER){
-				//ignoro eventuali linee vuote o i commenti
-				;
-			}else if(lineElements[0].equals(DEMAND_SECTION_DELIMITER)){
-				demand = readDemandFromFile(inputFile);
-			}
-		}*/
-		//fine_temp
-		
 		inputFile.close();
 		if(demand==null){
 			//lancio 1 eccezione perchè non ho trovato DEMAND_SECTION
@@ -153,7 +141,8 @@ public class ProblemParser extends Parser{
 		 * demand[k]=DEMAND_NOT_FOUND significa che per il prodotto k la domanda non è stata specificata.
 		 * All'inizio presuppongo di non trovare alcuna domanda.
 		 */
-		Arrays.fill(demand, DEMAND_NOT_FOUND);
+		demand[0]= Constants.INT_NOT_USED;
+		Arrays.fill(demand, 1, demand.length, DEMAND_NOT_FOUND);
 		
 		//vale true quando raggiungo la fine DEMAND_SECTION
 		boolean end = false;
@@ -199,10 +188,9 @@ public class ProblemParser extends Parser{
 	 */
 	private Supplier[] makeSuppliers(int numSuppliers) throws Exception{
 		Supplier suppliers[] = null;
-		BufferedReader inputFile = Utility.openInFile(file);
 		
-		suppliers = readOfferSection(numSuppliers, inputFile);
-		readDiscountSection(numSuppliers, suppliers, inputFile);
+		suppliers = readOfferSection(numSuppliers, file);
+		readDiscountSection(numSuppliers, suppliers, file);
 		
 		return suppliers; 
 	}
@@ -230,11 +218,12 @@ public class ProblemParser extends Parser{
 	}
 
 	/*
-	 * Legge OFFER_SECTION di inputFile e restituisce un array di fornitori settati con i valori trovati in
+	 * Legge OFFER_SECTION di file e restituisce un array di fornitori settati con i valori trovati in
 	 * OFFER_SECTION.
 	 */
-	private Supplier[] readOfferSection(int numSuppliers, BufferedReader inputFile) throws Exception {
+	private Supplier[] readOfferSection(int numSuppliers, String file) throws Exception {
 		Supplier[] suppliers;
+		BufferedReader inputFile = Utility.openInFile(file);
 		
 		//mi porto alla riga OFFER_SECTION
 		findLine(inputFile, OFFER_SECTION_DELIMITER);
@@ -301,10 +290,11 @@ public class ProblemParser extends Parser{
 	}
 	
 	/*
-	 * Legge in inputFile DISCOUNT_SECTION e setta i valori letti ai suppliers.
+	 * Legge in file DISCOUNT_SECTION e setta i valori letti ai suppliers.
 	 */
 	private void readDiscountSection(int numSuppliers, Supplier[] suppliers, 
-										BufferedReader inputFile) throws Exception {
+										String file) throws Exception {
+		BufferedReader inputFile = Utility.openInFile(file);
 		//mi porto alla linea DISCOUNT_SECTION
 		findLine(inputFile, DISCOUNT_SECTION_DELIMITER);
 		
@@ -312,7 +302,9 @@ public class ProblemParser extends Parser{
 		String tag = "EOF";
 		//per controllare che in DISCOUNT_SECTION siano definiti tutti i fornitori
 		boolean definedSupplier[]	= new boolean[numSuppliers+1];
-		Arrays.fill(definedSupplier, false);
+		definedSupplier[0] = Constants.BOOLEAN_NOT_USED;
+		Arrays.fill(definedSupplier, 1, definedSupplier.length,false);
+		
 		//end = true quando raggiungo la fine di DISCOUNT_SECTION [=raggiungo la riga EOF].
 		boolean end = false;
 		String line;
@@ -321,8 +313,8 @@ public class ProblemParser extends Parser{
 		while(!end){
 			line = inputFile.readLine();
 			
-			if(line.replaceAll(STRING_TO_STRIP, "").equals(tag)){
-				//confronto le stringhe a meno dei : e degli spazi finali
+			if(line.trim().equals(tag)){
+				//confronto le stringhe a meno degli spazi iniziali e finali
 				end = true;
 			}else{
 				lineElements = line.split(SEPARATOR);
@@ -345,24 +337,21 @@ public class ProblemParser extends Parser{
 				 * idSupplier, numSegments e 1 coppia di valori per ogni fascia di sconto 
 				 * 
 				 */
-				//TODO siamo arrivati qui
-				if(lineElements.length	!=	numSegments*2+2){
-					System.out.println("Errore:");
-					System.out.println("In DISCOUNT_SECTION non sono state specificate correttamente le fasce di sconto per il fornitore "+supplierId);
-					System.out.println("Il programma verrà terminato");
-					System.exit(1);
+				if(lineElements.length	!=	2+numSegments*2){
+					Utility.exception("In DISCOUNT_SECTION non sono state specificate correttamente le fasce di sconto per " +
+							"il fornitore "+supplierId);
 				}
 				
 				//discounts[r] = sconto percentuale della fascia r; discount[0] = 0
 				int discounts[]		= new int[numSegments+1];
-				discounts[0]		= 0;
+				discounts[0]		= Constants.INT_NOT_USED;
 				
 				/*
 				 * lowerBounds[r] = lower bound della fascia r di sconto;
 				 * lowerBounds[0] = 1
 				 */
 				int lowerBounds[]	= new int[numSegments+1];
-				lowerBounds[0]		= 1;
+				lowerBounds[0]		= Constants.INT_NOT_USED;
 				
 				//leggo da lineElements i lower bounds e le percentuali di sconto per le varie fasce
 				for(int i=2; i<=lineElements.length-2; i+=2){
@@ -377,10 +366,7 @@ public class ProblemParser extends Parser{
 		//controllo che in DISCOUNT_SECTION siano stati definiti tutti i fornitori
 		for(int i=1; i<=definedSupplier.length-1; i++){
 			if(!definedSupplier[i]){
-				System.out.println("Errore:");
-				System.out.println("In DISCOUNT_SECTION non è stato definito il supplier "+i);
-				System.out.println("Il programma verrà terminato");
-				System.exit(1);
+				Utility.exception("In DISCOUNT_SECTION non è stato definito il supplier "+i+".\n");
 			}
 		}
 		
@@ -402,8 +388,10 @@ public class ProblemParser extends Parser{
 		/*Prima di leggere la riga non so quali prodotti saranno presenti in supplier dunque indico che non è
 		 * presente alcun prodotto
 		 */
-		Arrays.fill(basePrices, PRODUCT_NOT_PRESENT);
-		Arrays.fill(availability, PRODUCT_NOT_PRESENT);
+		basePrices[0] = Constants.INT_NOT_USED;
+		availability[0] = Constants.INT_NOT_USED;
+		Arrays.fill(basePrices, 1, basePrices.length, PRODUCT_NOT_PRESENT);
+		Arrays.fill(availability, 1, availability.length, PRODUCT_NOT_PRESENT);
 		
 		//leggo tutte le triplette (prodotto, costo, disponibilità) presenti in offer
 		for(int i=0; i<=offer.length-3; i+=3){

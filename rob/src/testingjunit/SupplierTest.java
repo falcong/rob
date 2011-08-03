@@ -6,10 +6,11 @@ import io.ProblemParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import rob.Problem;
-import rob.Solution;
-import rob.Supplier;
-import solutionhandlers.RandomSolutionGenerator;
+import data.Problem;
+import data.Solution;
+import data.Supplier;
+
+import solutiongenerator.RandomSolutionGenerator;
 import util.Constants;
 import util.Utility;
 

@@ -5,7 +5,8 @@ import io.ProblemParser;
 
 import org.junit.Test;
 
-import rob.Problem;
+import data.Problem;
+
 import util.Constants;
 
 public class ProblemParserTest {

@@ -2,14 +2,16 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 
+import neighbourgenerator.BasicNeighbourGenerator;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import data.Problem;
+import data.Solution;
+
 import io.ProblemParser;
-import rob.Problem;
-import rob.Solution;
-import solutionhandlers.BasicNeighbourGenerator;
-import solutionhandlers.RandomSolutionGenerator;
+import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithms.LocalSearch;
 import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
 import util.Constants;

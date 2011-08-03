@@ -6,11 +6,12 @@ import io.ProblemParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import rob.CurrentPriceComparator;
-import rob.Problem;
-import rob.Solution;
-import rob.Supplier;
+import data.Problem;
+import data.Solution;
+import data.Supplier;
+
 import util.Constants;
+import util.CurrentPriceComparator;
 
 public class CurrentPriceComparatorTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

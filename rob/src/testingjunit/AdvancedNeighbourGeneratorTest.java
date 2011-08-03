@@ -4,15 +4,17 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
+import neighbourgenerator.AdvancedNeighbourGenerator;
+
 import org.junit.Test;
 
-import rob.Problem;
-import rob.Solution;
-import rob.Supplier;
-import solutionhandlers.AdvancedNeighbourGenerator;
-import solutionhandlers.LinesSolutionGenerator;
-import solutionhandlers.SolutionGenerator;
-import solutionhandlers.TrivialSolutionGenerator;
+import data.Problem;
+import data.Solution;
+import data.Supplier;
+
+import solutiongenerator.LinesSolutionGenerator;
+import solutiongenerator.SolutionGenerator;
+import solutiongenerator.TrivialSolutionGenerator;
 import util.Constants;
 import util.Utility;
 

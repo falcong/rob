@@ -3,12 +3,14 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
+import neighbourgenerator.BanFullNeighbourGenerator;
+
 import org.junit.Test;
 
-import rob.Problem;
-import rob.Solution;
-import solutionhandlers.BanFullNeighbourGenerator;
-import solutionhandlers.RandomSolutionGenerator;
+import data.Problem;
+import data.Solution;
+
+import solutiongenerator.RandomSolutionGenerator;
 import util.Constants;
 import util.Utility;
 

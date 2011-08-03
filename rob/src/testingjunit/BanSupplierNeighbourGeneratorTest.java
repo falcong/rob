@@ -3,16 +3,18 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
+import neighbourgenerator.BanFullNeighbourGenerator;
+import neighbourgenerator.BanSupplierNeighbourGenerator;
+import neighbourgenerator.DirectionedBanNeighbourGenerator;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import rob.Problem;
-import rob.Solution;
-import solutionhandlers.BanFullNeighbourGenerator;
-import solutionhandlers.BanSupplierNeighbourGenerator;
-import solutionhandlers.DirectionedBanNeighbourGenerator;
-import solutionhandlers.RandomSolutionGenerator;
-import solutionhandlers.TrivialSolutionGenerator;
+import data.Problem;
+import data.Solution;
+
+import solutiongenerator.RandomSolutionGenerator;
+import solutiongenerator.TrivialSolutionGenerator;
 import util.Constants;
 import util.Utility;
 

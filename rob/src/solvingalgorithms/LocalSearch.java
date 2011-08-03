@@ -1,8 +1,8 @@
 package solvingalgorithms;
 
-import rob.Problem;
-import rob.Solution;
-import solutionhandlers.NeighbourGenerator;
+import neighbourgenerator.NeighbourGenerator;
+import data.Problem;
+import data.Solution;
 import util.Utility;
 
 public class LocalSearch extends Algorithm {

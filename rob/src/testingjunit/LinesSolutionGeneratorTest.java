@@ -5,10 +5,11 @@ import io.ProblemParser;
 
 import org.junit.Test;
 
-import rob.Problem;
-import rob.Solution;
-import solutionhandlers.LinesSolutionGenerator;
-import solutionhandlers.RandomSolutionGenerator;
+import data.Problem;
+import data.Solution;
+
+import solutiongenerator.LinesSolutionGenerator;
+import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithms.Cplex;
 import util.Constants;
 

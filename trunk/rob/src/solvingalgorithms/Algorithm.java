@@ -1,7 +1,7 @@
 package solvingalgorithms;
 
-import rob.Problem;
-import rob.Solution;
+import data.Problem;
+import data.Solution;
 
 public abstract class Algorithm{
 	Problem problem;

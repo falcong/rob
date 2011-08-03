@@ -1,12 +1,12 @@
 package solvingalgorithms;
 
+import data.Problem;
+import data.Solution;
+import data.Supplier;
 import ilog.concert.IloException;
 import ilog.concert.IloIntVar;
 import ilog.concert.IloLinearNumExpr;
 import ilog.cplex.IloCplex;
-import rob.Problem;
-import rob.Solution;
-import rob.Supplier;
 
 public class Cplex extends Algorithm {
 

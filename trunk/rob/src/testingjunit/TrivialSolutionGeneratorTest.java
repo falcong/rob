@@ -5,9 +5,10 @@ import io.ProblemParser;
 
 import org.junit.Test;
 
-import rob.Problem;
-import rob.Solution;
-import solutionhandlers.TrivialSolutionGenerator;
+import data.Problem;
+import data.Solution;
+
+import solutiongenerator.TrivialSolutionGenerator;
 import util.Constants;
 
 public class TrivialSolutionGeneratorTest {

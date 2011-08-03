@@ -6,10 +6,11 @@ import io.ProblemParser;
 import org.junit.Before;
 import org.junit.Test;
 
+import data.Problem;
+import data.Solution;
+
 //MOD rob2.Problem
-import rob.Problem;
 //MOD
-import rob.Solution;
 import solvingalgorithms.Cplex;
 import util.Constants;
 import util.Utility;

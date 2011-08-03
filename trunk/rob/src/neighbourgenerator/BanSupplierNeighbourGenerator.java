@@ -83,9 +83,4 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator{
 		}
 		
 	}
-
-	@Override
-	public void setProblem(Problem problem) {
-		this.problem=problem;
-	}
 }

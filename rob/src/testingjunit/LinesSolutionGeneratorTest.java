@@ -10,7 +10,7 @@ import data.Solution;
 
 import solutiongenerator.LinesSolutionGenerator;
 import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithms.Cplex;
+import solvingalgorithm.Cplex;
 import util.Constants;
 
 public class LinesSolutionGeneratorTest {

@@ -88,6 +88,7 @@ public class Problem {
 	/*
 	 * Metodo overloaded che non richiede in ingresso una blacklist e genera automaticamente una blacklist vuota
 	 */
+	//TODO vedere le dipendenze con altri 2
 	public Supplier getRandomSupplier() {
 		HashSet<Integer> blacklist = new HashSet<Integer>();
 		return getRandomSupplier(blacklist);

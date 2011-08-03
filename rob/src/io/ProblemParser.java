@@ -190,8 +190,8 @@ public class ProblemParser extends Parser{
 	private Supplier[] makeSuppliers(int numSuppliers) throws Exception{
 		Supplier suppliers[] = null;
 		
-		suppliers = readOfferSection(numSuppliers, file);
-		readDiscountSection(numSuppliers, suppliers, file);
+		suppliers = readOfferSection(numSuppliers);
+		readDiscountSection(numSuppliers, suppliers);
 		
 		return suppliers; 
 	}
@@ -222,7 +222,7 @@ public class ProblemParser extends Parser{
 	 * Legge OFFER_SECTION di file e restituisce un array di fornitori settati con i valori trovati in
 	 * OFFER_SECTION.
 	 */
-	private Supplier[] readOfferSection(int numSuppliers, String file) throws Exception {
+	private Supplier[] readOfferSection(int numSuppliers) throws Exception {
 		Supplier[] suppliers;
 		BufferedReader inputFile = Utility.openInFile(file);
 		
@@ -293,8 +293,7 @@ public class ProblemParser extends Parser{
 	/*
 	 * Legge in file DISCOUNT_SECTION e setta i valori letti ai suppliers.
 	 */
-	private void readDiscountSection(int numSuppliers, Supplier[] suppliers, 
-										String file) throws Exception {
+	private void readDiscountSection(int numSuppliers, Supplier[] suppliers) throws Exception {
 		BufferedReader inputFile = Utility.openInFile(file);
 		//mi porto alla linea DISCOUNT_SECTION
 		findLine(inputFile, DISCOUNT_SECTION_DELIMITER);

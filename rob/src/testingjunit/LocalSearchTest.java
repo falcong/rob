@@ -12,8 +12,8 @@ import data.Solution;
 
 import io.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithms.LocalSearch;
-import solvingalgorithms.LocalSearch.SuccessorChoiceMethod;
+import solvingalgorithm.LocalSearch;
+import solvingalgorithm.LocalSearch.SuccessorChoiceMethod;
 import util.Constants;
 
 public class LocalSearchTest {

@@ -11,6 +11,8 @@ public class Timer extends Observable {
 	}
 	
 	public void start(){
-		;
+		//controllo che non venga chiamato 2 volte
+		setChanged();
+		notifyObservers();
 	}
 }

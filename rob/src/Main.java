@@ -69,7 +69,7 @@ public class Main {
 		AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);
-      	locSearch.setStatistics(2, outputFile);
+      	//locSearch.setStatistics(2, outputFile);
 		
 		//vns interna
       	double ratio = 12/50;
@@ -78,7 +78,7 @@ public class Main {
 		int kIncrement = 1;
 		String intLabel = "i";
 		VNS intVNS = new VNS(lMax, locSearch, intShaking, problem, -1, 2000);
-		intVNS.setStatistics(1, outputFile, intLabel);
+		//intVNS.setStatistics(1, outputFile, intLabel);
 		//intVNS.setCplex(cplex);
 		intVNS.setIncrement(kIncrement);
 		

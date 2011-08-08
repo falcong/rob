@@ -38,7 +38,7 @@ public class LocalSearch extends TemporizedAlgorithm{
 	public Solution execute(Solution startSolution){
 		if(timer!=null){
 			timer.addObserver(this);
-			timer.start();
+			startTimer();
 		}
 		
 		Solution currentSolution=startSolution;

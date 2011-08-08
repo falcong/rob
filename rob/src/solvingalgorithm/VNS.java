@@ -7,7 +7,7 @@ import util.Utility;
 
 public class VNS extends TemporizedAlgorithm{
 	protected int kMax;
-	protected Algorithm afterShaking;
+	protected TemporizedAlgorithm afterShaking;
 	protected Solution currentSolution;
 	protected NeighbourGenerator generator;
 	//numero di volte in cui far ripartire la ricerca
@@ -15,7 +15,7 @@ public class VNS extends TemporizedAlgorithm{
 	final int INFINITY = -1;
 	int increment=1;
 	
-	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem){
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, Problem problem){
 		this.afterShaking=afterShaking;
 		this.kMax=kMax;
 		this.problem=problem;
@@ -24,7 +24,7 @@ public class VNS extends TemporizedAlgorithm{
 	}
 	
 	//maximumTime espresso in secondi
-	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem, int restarts,
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, Problem problem, int restarts,
 			int maximumTime){
 		this(kMax, afterShaking, generator, problem);
 		this.restarts = restarts;
@@ -32,14 +32,14 @@ public class VNS extends TemporizedAlgorithm{
 	}
 	
 	//maximumTime espresso in secondi
-	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, Problem problem,
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, Problem problem,
 			int maximumTime){
 		this(kMax, afterShaking, generator, problem);
 		this.restarts = INFINITY;
 		timer = new Timer(maximumTime);
 	}
 	
-	public VNS(int kMax, Algorithm afterShaking, NeighbourGenerator generator, int restarts, Problem problem){
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, int restarts, Problem problem){
 		this(kMax, afterShaking, generator, problem);
 		this.restarts = restarts;
 	}
@@ -47,13 +47,14 @@ public class VNS extends TemporizedAlgorithm{
 	public Solution execute(Solution startSolution){
 		if(timer!=null){
 			timer.addObserver(this);
-			timer.start();
+			timer.addObserver(afterShaking);
+			startTimer();
 		}
 		
 		currentSolution = startSolution;
 		
 		//eseguo restarts+1 VNS
-		for(int i=0;i<=restarts  ||  restarts==INFINITY;i++){
+		for(int i=0;(i<=restarts  ||  restarts==INFINITY) && !stop;i++){
 			runVNS();
 		}
 		return currentSolution;
@@ -79,7 +80,7 @@ public class VNS extends TemporizedAlgorithm{
 			}
 
 		}
-		System.out.println("Raggiunto kmax=" +k);
+		System.out.println("Raggiunto kmax=" +(k-1));
 	}
 	
 

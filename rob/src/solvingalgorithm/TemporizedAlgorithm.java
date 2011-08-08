@@ -20,4 +20,10 @@ public abstract class TemporizedAlgorithm extends Algorithm implements Observer 
 	public void update(Observable o, Object arg) {
 		stop = true;
 	}
+	
+	public void startTimer(){
+		if(!timer.getStatus()){
+			timer.run();
+		}
+	}
 }

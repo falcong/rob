@@ -85,10 +85,6 @@ public class VNSTest {
 		
 		final long TOLERANCE = 1000;
 		assertEquals(MAX_TIME, executionTime, TOLERANCE);
-		
-		System.out.println("prima");
-		
-		System.out.println("dopo");
 	}
 	
 	

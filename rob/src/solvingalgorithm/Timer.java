@@ -30,6 +30,7 @@ public class Timer extends Observable implements Runnable {
 		notifyObservers();
 		started = false;
 	}
+	
 	public boolean getStatus(){
 		return started;
 	}

@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import neighbourgenerator.BasicNeighbourGenerator;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import data.Problem;

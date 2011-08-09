@@ -8,12 +8,9 @@ import neighbourgenerator.EmptyCellsRandomNeighbourGenerator;
 import org.junit.Test;
 
 import data.Problem;
-import data.Solution;
 import data.Supplier;
 
-import solutiongenerator.LinesSolutionGenerator;
 import util.Constants;
-import util.Utility;
 
 public class EmptyCellsRandomNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

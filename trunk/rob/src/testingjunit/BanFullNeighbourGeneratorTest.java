@@ -12,7 +12,6 @@ import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
 import util.Constants;
-import util.Utility;
 
 public class BanFullNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

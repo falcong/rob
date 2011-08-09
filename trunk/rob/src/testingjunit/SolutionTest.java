@@ -2,8 +2,8 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
+import io.SolutionParser;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import data.Problem;
@@ -11,9 +11,7 @@ import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
 import solutiongenerator.SolutionGenerator;
-import solutiongenerator.TrivialSolutionGenerator;
 import util.Constants;
-import util.Utility;
 
 public class SolutionTest {
 	ProblemParser pp=new ProblemParser(Constants.INPUT_PATH);
@@ -63,7 +61,8 @@ public class SolutionTest {
 		final String inputFileName=PROBLEM_NAME+"_Solution.txt";
 		final String filePath = Constants.INPUT_PATH+System.getProperty("file.separator")+inputFileName;
 		
-		Solution importedSolution=new Solution(filePath,problem);
+		SolutionParser solParser = new SolutionParser(problem);
+		Solution importedSolution = solParser.parse(filePath);
 		
 		assertTrue(expectedSolution.calcDistance(importedSolution)==0);
 	}
@@ -117,7 +116,8 @@ public class SolutionTest {
 		
 		sol.export(filePath);
 		
-		Solution importedSol = new Solution(filePath,problem);
+		SolutionParser solParser = new SolutionParser(problem);
+		Solution importedSol = solParser.parse(filePath);
 		
 		assertTrue(sol.calcDistance(importedSol)==0);
 		assertTrue(sol.getObjectiveFunction()==importedSol.getObjectiveFunction());		

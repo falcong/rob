@@ -5,8 +5,6 @@ import java.util.Observer;
 
 import solvingalgorithm.Algorithm;
 
-import data.Solution;
-
 public abstract class TemporizedAlgorithm extends Algorithm implements Observer {
 	/*
 	 * indica quando l'esecuzione dell'algoritmo deve terminare perché è stato esaurito il tempo massimo di esecuzione

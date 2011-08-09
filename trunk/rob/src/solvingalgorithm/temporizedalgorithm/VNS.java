@@ -3,7 +3,6 @@ package solvingalgorithm.temporizedalgorithm;
 import neighbourgenerator.NeighbourGenerator;
 import data.Problem;
 import data.Solution;
-import util.Utility;
 
 public class VNS extends TemporizedAlgorithm{
 	protected int kMax;

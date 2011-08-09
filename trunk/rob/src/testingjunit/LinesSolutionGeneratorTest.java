@@ -9,8 +9,6 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.LinesSolutionGenerator;
-import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithm.Cplex;
 import util.Constants;
 
 public class LinesSolutionGeneratorTest {

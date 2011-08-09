@@ -1,6 +1,5 @@
 package neighbourgenerator;
 
-import data.Problem;
 import data.Solution;
 
 public abstract class NeighbourGenerator {

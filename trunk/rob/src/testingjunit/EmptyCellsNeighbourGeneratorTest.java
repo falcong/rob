@@ -3,20 +3,15 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
-import neighbourgenerator.BanFullNeighbourGenerator;
-import neighbourgenerator.BanSupplierNeighbourGenerator;
 import neighbourgenerator.EmptyCellsNeighbourGenerator;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import data.Problem;
 import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
-import solutiongenerator.TrivialSolutionGenerator;
 import util.Constants;
-import util.Utility;
 
 public class EmptyCellsNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

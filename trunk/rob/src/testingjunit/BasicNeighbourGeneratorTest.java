@@ -3,7 +3,6 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
-import neighbourgenerator.BanSupplierNeighbourGenerator;
 import neighbourgenerator.BasicNeighbourGenerator;
 
 import org.junit.Test;

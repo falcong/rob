@@ -12,6 +12,7 @@ import data.Solution;
 
 import solutiongenerator.LinesSolutionGenerator;
 import solutiongenerator.TrivialSolutionGenerator;
+import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
@@ -114,6 +115,10 @@ public class Main {
 		 */
 		//extVNS.execute(s0);
 		intVNS.execute(lineSol);
+		
+		//TODO
+		//fare esempio con cplex [...]
+		Cplex cplex;
 		
 	}
 }

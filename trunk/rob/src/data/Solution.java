@@ -3,7 +3,7 @@ package data;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import util.Utility;
+import java.util.Arrays;
 
 public class Solution {
 	/*
@@ -34,7 +34,7 @@ public class Solution {
 	public Solution(Solution sol) {
 		numSuppliers=sol.getNumSuppliers();
 		numProducts=sol.getNumProducts();
-		solutionMatrix=Utility.cloneMatrix(sol.getSolutionMatrix());
+		solutionMatrix=cloneMatrix(sol.getSolutionMatrix());
 		objectiveFunction=sol.getObjectiveFunction();
 	}
 	
@@ -46,7 +46,15 @@ public class Solution {
 	
 	public void print(){
 		System.out.println("Soluzione: (matrice fornitori*prodotti):");
-		Utility.printMatrix2D(getSolutionMatrix(), "f", "p", 1, 1, 2, 2, 2, 2);
+		
+		//ricavo una matrice di double contenente gli stessi valori di solutionMatrix
+		double tempMatrix[][] = new double[solutionMatrix.length][];
+		for(int i = 0; i<solutionMatrix.length; i++){
+			for(int j = 0; j<solutionMatrix[1].length; j++){
+				tempMatrix[i][j] = solutionMatrix[i][j];
+			}
+		}
+		DataPrinter.printMatrix2D(tempMatrix, "f", "p", 1, 1, 2, 2, 2, 2);
 		System.out.println("");
 		
 		System.out.println("funzione obiettivo = "+this.getObjectiveFunction());
@@ -210,5 +218,22 @@ public class Solution {
 		}
 		
 		return sum;
+	}
+	
+	/*
+	 * Questo metodo clona una matrice.
+	 * PRecondizione: presuppone sempre che la riga e la colonna 0 siano inutilizzate e riempite di zeri.
+	 */
+	private int[][] cloneMatrix(int [][] matrix){
+		int[][] newMatrix = new int[matrix.length][];
+		newMatrix[0]=new int[matrix[0].length];
+		Arrays.fill(newMatrix[0], 0);
+		for (int i=1; i<matrix.length;i++) {
+			newMatrix[i]=new int[matrix[i].length];
+			for(int j=1;j< matrix[i].length;j++) {
+				newMatrix[i][j]=matrix[i][j];
+			}
+		}
+		return newMatrix;
 	}
 }

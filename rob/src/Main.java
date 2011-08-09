@@ -12,9 +12,9 @@ import data.Solution;
 
 import solutiongenerator.LinesSolutionGenerator;
 import solutiongenerator.TrivialSolutionGenerator;
-import solvingalgorithm.LocalSearch;
-import solvingalgorithm.VNS;
-import solvingalgorithm.LocalSearch.SuccessorChoiceMethod;
+import temporizedalgorithm.VNS;
+import temporizedalgorithm.localsearch.LocalSearch;
+import temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
 import util.Constants;
 import util.Utility;
 

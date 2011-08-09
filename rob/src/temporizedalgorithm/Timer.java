@@ -1,4 +1,4 @@
-package solvingalgorithm;
+package temporizedalgorithm;
 
 import java.util.Observable;
 

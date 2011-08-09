@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import comparator.BoughtQuantityComparator;
-import comparator.CurrentPriceComparator;
+
 
 
 import data.Supplier;
+import data.comparator.BoughtQuantityComparator;
+import data.comparator.CurrentPriceComparator;
 
 
 public class Problem {

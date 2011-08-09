@@ -5,11 +5,12 @@ import io.ProblemParser;
 
 import org.junit.Test;
 
-import comparator.CurrentPriceComparator;
+
 
 import data.Problem;
 import data.Solution;
 import data.Supplier;
+import data.comparator.CurrentPriceComparator;
 
 import util.Constants;
 

@@ -17,56 +17,6 @@ import util.Utility;
 
 
 public class UtilityTest {
-
-	//test di cloneArray()
-	/*
-	 * caso generale: controllare che gli oggetti siano differenti
-	 */
-	@Test
-	public final void testCloneArray1(){
-		int [] originalArray = {1, 4 ,2, 7};
-		int [] clonedArray = Utility.cloneArray(originalArray);
-		//controllo lunghezza
-		assertTrue(originalArray.length==clonedArray.length);
-		//controllo uguaglianza elementi
-		for(int i=0; i<originalArray.length;i++)
-			assertTrue(originalArray[i]==clonedArray[i]);
-		//controllo che sia diverso il riferimento in memoria
-		assertTrue(originalArray!=clonedArray);
-	}
-	
-	//test di cloneMatrix()
-	/*
-	 * caso generale: controllare che gli oggetti siano differenti
-	 */
-	@Test
-	public final void testCloneMatrix1(){
-		final int COLUMNS = 5;
-		final int ROWS = 3;
-		int [] originalRow0 = {0, 0 , 0, 0, 0};
-		int [] originalRow1 = {0, 5 , 20, 2, 5};
-		int [] originalRow2 = {0, 2 , 23, 4, 6};
-		
-		int [][] originalMatrix = new int[ROWS][COLUMNS];
-		originalMatrix[0] = originalRow0;
-		originalMatrix[1] = originalRow1;
-		originalMatrix[2] = originalRow2;
-		
-		int [][] clonedMatrix = Utility.cloneMatrix(originalMatrix);
-		
-		//controllo uguaglianza elementi
-		for(int i=0; i<originalMatrix.length;i++) {
-			for(int j=0; j<originalMatrix[i].length;j++) {
-				assertTrue(originalMatrix[i][j]==clonedMatrix[i][j]);
-			}
-			//controllo ciascuna riga abbia riferimento diverso
-			assertTrue(originalMatrix[i]!=clonedMatrix[i]);
-		}
-				
-		//controllo che sia diverso il riferimento in memoria
-		assertTrue(originalMatrix!=clonedMatrix);
-		
-	}
 	
 	//test di getConfigParameter
 	/*

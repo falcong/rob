@@ -1,7 +1,6 @@
 package data;
 
 import data.Solution;
-import util.Utility;
 
 public class Supplier {
 	private int id;
@@ -183,7 +182,7 @@ public class Supplier {
 		//matrice dei prezzi (prodotti*fasce)
 		if(prices!=null){
 			System.out.println("Matrice dei prezzi (prodotti*fasce-sconto):");
-			Utility.printMatrix2D(prices, "p", "f", 1, 0, 2, 3, 2, 2);
+			DataPrinter.printMatrix2D(prices, "p", "f", 1, 0, 2, 3, 2, 2);
 		}
 		
 		//availability

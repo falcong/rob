@@ -7,8 +7,6 @@ import data.Problem;
 import data.Solution;
 import data.Supplier;
 
-import util.Utility;
-
 public class LinesSolutionGenerator extends SolutionGenerator {
 
 	int suppliersNumber;
@@ -20,7 +18,7 @@ public class LinesSolutionGenerator extends SolutionGenerator {
 		super(problem);
 		suppliersNumber = problem.getDimension();
 		productsNumber = problem.getNumProducts();
-		residualDemand=Utility.cloneArray(problem.getDemand());
+		residualDemand = problem.getDemand().clone();
 	}
 	
 	public LinesSolutionGenerator () {
@@ -31,7 +29,7 @@ public class LinesSolutionGenerator extends SolutionGenerator {
 		this.problem=problem;
 		suppliersNumber = problem.getDimension();
 		productsNumber = problem.getNumProducts();
-		residualDemand=Utility.cloneArray(problem.getDemand());
+		residualDemand = problem.getDemand().clone();
 	}
 
 	@Override
@@ -80,7 +78,7 @@ public class LinesSolutionGenerator extends SolutionGenerator {
 		for (int supId = 0; supId <= suppliersNumber; supId++) {
 			Arrays.fill(solutionMatrix[supId], 0);
 		}
-		int[] tempResidualDemand=Utility.cloneArray(residualDemand);
+		int[] tempResidualDemand = residualDemand.clone();
 		makeLine(sup, solutionMatrix, tempResidualDemand);
 		//riempio il resto della domanda con lo stesso principio di Trivial
 		for (int p=1; p<=productsNumber;p++){

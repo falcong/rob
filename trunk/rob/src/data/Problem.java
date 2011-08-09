@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
-import util.BoughtQuantityComparator;
-import util.CurrentPriceComparator;
+import comparator.BoughtQuantityComparator;
+import comparator.CurrentPriceComparator;
+
 
 import data.Supplier;
 

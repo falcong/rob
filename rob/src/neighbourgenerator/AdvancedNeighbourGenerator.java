@@ -3,11 +3,8 @@
  */
 package neighbourgenerator;
 
-import java.util.Arrays;
-
 import data.Problem;
 import data.Solution;
-import data.Supplier;
 
 
 public class AdvancedNeighbourGenerator extends NeighbourGenerator {

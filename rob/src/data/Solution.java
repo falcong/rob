@@ -1,11 +1,8 @@
 package data;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Arrays;
 
@@ -45,38 +42,12 @@ public class Solution {
 	}
 	
 	
-	//t
 	public int getQuantity(int supplier, int product){
 		return getSolutionMatrix()[supplier][product];
 	}
 	
-	/*
-	 * Costruttore che importa la soluzione da un file (file = nome completo [incluso il path])
-	 * Precondizione: i dati devono essere nel formato usato dal metodo export(), con i valori separati da \t
-	 */
-	public Solution(String file,Problem problem) throws Exception {
-		numSuppliers = problem.getDimension();
-		numProducts = problem.getNumProducts();
-		solutionMatrix = new int[numSuppliers+1][numProducts+1];
-		Arrays.fill(solutionMatrix[0], 0);
-		
-		BufferedReader bufferedReader = Utility.openInFile(file);
-		String line;
-		int supplier=1;
-		while ((line = bufferedReader.readLine()) != null){
-			String [] lineArray=line.split("\t");
-			solutionMatrix[supplier][0]=0;
-			for (int i=1;i<=numProducts;i++){
-				solutionMatrix[supplier][i]= Integer.parseInt(lineArray[i-1]);
-			}
-			supplier++;
-		}
-		bufferedReader.close();
-			
-		objectiveFunction=calcObjectiveFunction(problem);
-	}
 	
-public void print(){
+	public void print(){
 		System.out.println("Soluzione: (matrice fornitori*prodotti):");
 		Utility.printMatrix2D(getSolutionMatrix(), "f", "p", 1, 1, 2, 2, 2, 2);
 		System.out.println("");

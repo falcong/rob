@@ -12,11 +12,7 @@ import data.Problem;
 import data.Solution;
 import data.Supplier;
 
-import solutiongenerator.LinesSolutionGenerator;
-import solutiongenerator.SolutionGenerator;
-import solutiongenerator.TrivialSolutionGenerator;
 import util.Constants;
-import util.Utility;
 
 
 public class AdvancedNeighbourGeneratorTest {

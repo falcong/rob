@@ -3,7 +3,6 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import data.Problem;
@@ -12,7 +11,6 @@ import data.Supplier;
 
 import solutiongenerator.RandomSolutionGenerator;
 import util.Constants;
-import util.Utility;
 
 public class SupplierTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

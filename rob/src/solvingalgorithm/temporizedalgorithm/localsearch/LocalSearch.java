@@ -6,7 +6,6 @@ import data.Problem;
 import data.Solution;
 import solvingalgorithm.temporizedalgorithm.TemporizedAlgorithm;
 import solvingalgorithm.temporizedalgorithm.Timer;
-import util.Utility;
 
 public class LocalSearch extends TemporizedAlgorithm{
 	

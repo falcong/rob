@@ -10,7 +10,6 @@ import java.util.HashSet;
 
 import data.Problem;
 import data.Solution;
-import data.Supplier;
 
 
 public class BanSupplierNeighbourGenerator extends NeighbourGenerator{

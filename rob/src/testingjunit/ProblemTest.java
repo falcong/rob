@@ -7,16 +7,13 @@ import java.util.HashSet;
 
 import io.ProblemParser;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import data.Problem;
 import data.Solution;
 import data.Supplier;
 
-import util.BoughtQuantityComparator;
 import util.Constants;
-import util.Utility;
 
 public class ProblemTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

@@ -13,12 +13,10 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithm.Algorithm;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
 import util.Constants;
-import util.Utility;
 
 public class VNSTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

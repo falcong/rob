@@ -1,4 +1,4 @@
-package temporizedalgorithm; 
+package solvingalgorithm.temporizedalgorithm; 
 
 import neighbourgenerator.NeighbourGenerator;
 import data.Problem;

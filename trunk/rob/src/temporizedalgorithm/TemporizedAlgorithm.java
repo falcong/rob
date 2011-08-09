@@ -1,7 +1,9 @@
-package solvingalgorithm;
+package temporizedalgorithm;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import solvingalgorithm.Algorithm;
 
 import data.Solution;
 
@@ -11,7 +13,7 @@ public abstract class TemporizedAlgorithm extends Algorithm implements Observer 
 	 */
 	protected boolean stop = false;
 	//di default non c'è un tempo massimo
-	Timer timer = null;
+	protected Timer timer = null;
 	
 	/*
 	 * Chiamando questo metodo si ha l'interruzione dell'algoritmo

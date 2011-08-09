@@ -4,7 +4,7 @@ import data.Problem;
 import data.Solution;
 
 public abstract class Algorithm{
-	Problem problem;
+	protected Problem problem;
 	
 	public abstract Solution execute(Solution startSolution);
 }

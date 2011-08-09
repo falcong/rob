@@ -1,8 +1,10 @@
-package solvingalgorithm;
+package temporizedalgorithm.localsearch;
 
 import neighbourgenerator.NeighbourGenerator;
 import data.Problem;
 import data.Solution;
+import temporizedalgorithm.TemporizedAlgorithm;
+import temporizedalgorithm.Timer;
 import util.Utility;
 
 public class LocalSearch extends TemporizedAlgorithm{

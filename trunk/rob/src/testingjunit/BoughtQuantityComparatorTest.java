@@ -6,11 +6,12 @@ import io.ProblemParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import comparator.BoughtQuantityComparator;
+
 
 import data.Problem;
 import data.Solution;
 import data.Supplier;
+import data.comparator.BoughtQuantityComparator;
 
 import util.Constants;
 

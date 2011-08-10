@@ -20,10 +20,9 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 	 * alla successiva fascia di sconto (facendo in modo per quanto possibile che negli altri
 	 * fornitori la fascia di sconto attiva non diminuisca)
 	 * Restituisce la nuova soluzione trovata
-	 * il parametro di ingresso distance non viene utilizzato
 	 */
 	@Override
-	public Solution generate(Solution currentSolution, int distance){
+	public Solution generate(Solution currentSolution){
 		int numSuppliers=problem.getDimension();
 		//orderSuppliersByGapToNextSegment(currentSolution);
 		Solution solution=null;

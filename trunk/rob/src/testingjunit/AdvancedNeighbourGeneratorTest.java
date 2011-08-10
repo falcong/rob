@@ -59,7 +59,7 @@ public class AdvancedNeighbourGeneratorTest {
 			AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(
 					problem);
 			System.out.println("chiamata generate");
-			Solution solution2 = generator.generate(solution1, 0);
+			Solution solution2 = generator.generate(solution1);
 			//dopo
 			assertTrue(solution2.isAdmissible(problem));
 			int sup1Segment2 = sup1.activatedSegment(solution2);
@@ -112,7 +112,7 @@ public class AdvancedNeighbourGeneratorTest {
 		//solution2 = generate(solution1)
 		AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(problem);
 		//il parametro in ingresso 0 viene ignorato
-		Solution solution2 = generator.generate(solution1, 0);
+		Solution solution2 = generator.generate(solution1);
 		
 		//controllo che solution2 = solution2Expected (se e solo se distanza=0)
 		assertTrue(solution2.calcDistance(solution2Expected)==0);	

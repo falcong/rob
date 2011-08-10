@@ -9,7 +9,6 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.TrivialSolutionGenerator;
-import util.Constants;
 
 public class TrivialSolutionGeneratorTest {
 	//test di generate()

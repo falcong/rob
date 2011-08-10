@@ -10,7 +10,6 @@ import data.Solution;
 import data.Supplier;
 
 import solutiongenerator.RandomSolutionGenerator;
-import util.Constants;
 
 public class SupplierTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

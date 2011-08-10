@@ -11,7 +11,6 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
-import util.Constants;
 
 public class BasicNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

@@ -11,7 +11,6 @@ import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
 import solutiongenerator.SolutionGenerator;
-import util.Constants;
 
 public class SolutionTest {
 	ProblemParser pp=new ProblemParser(Constants.INPUT_PATH);

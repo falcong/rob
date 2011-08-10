@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import data.Problem;
 
-import util.Constants;
 
 public class ProblemParserTest {
 

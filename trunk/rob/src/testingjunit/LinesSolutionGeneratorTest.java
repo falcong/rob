@@ -9,7 +9,6 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.LinesSolutionGenerator;
-import util.Constants;
 
 public class LinesSolutionGeneratorTest {
 

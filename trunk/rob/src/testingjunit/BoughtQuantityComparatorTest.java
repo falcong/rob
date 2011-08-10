@@ -13,7 +13,6 @@ import data.Solution;
 import data.Supplier;
 import data.comparator.BoughtQuantityComparator;
 
-import util.Constants;
 
 public class BoughtQuantityComparatorTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

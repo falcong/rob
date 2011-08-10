@@ -10,29 +10,23 @@ import data.Supplier;
 
 
 public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
-	protected Problem problem;
-	protected int numSuppliers;
-	protected int numProducts;
-	protected int totalCells;
+	private Problem problem;
+	private int numSuppliers;
+	private int numProducts;
+	private int totalCells;
 	private double randomizationFactor;
 	
-
-	protected HashSet<Integer> dontAdd;
-	protected HashSet<Integer> dropped;
+	private ArrayList<Integer> cellsToEmpty;
+	private ArrayList<Integer> cellsNotEmptiable;
 	
-	protected ArrayList<Integer> cellsToEmpty;
-	protected ArrayList<Integer> cellsNotEmptiable;
-	
-	final int DEFAULT_RAND_FACTOR = 0;
+	private final int DEFAULT_RAND_FACTOR = 0;
 	
 	public EmptyCellsNeighbourGenerator(Problem problem) {
 		this.problem=problem;
 		this.numSuppliers = problem.getDimension();
 		this.numProducts = problem.getNumProducts();
 		this.randomizationFactor = DEFAULT_RAND_FACTOR;
-		dontAdd = new HashSet<Integer>();
 		totalCells=numSuppliers*numProducts;
-		dropped=new HashSet<Integer>();
 	}
 	
 	public EmptyCellsNeighbourGenerator(Problem problem, double randomizationFactor) {
@@ -88,7 +82,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 	/*
 	 * restituisce true se ho finito le celle
 	 */
-	protected boolean cellsFinished(){
+	private boolean cellsFinished(){
 		if(cellsToEmpty.size()+cellsNotEmptiable.size()==totalCells){
 			return true;
 		}else{
@@ -108,7 +102,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 	}
 	
 	
-	protected void empty(Solution sol, int cell){
+	private void empty(Solution sol, int cell){
 		int supplier = problem.getSupplierFromCell(cell);
 		int product = problem.getProductFromCell(cell);
 		

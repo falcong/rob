@@ -3,8 +3,8 @@ package io;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
@@ -26,14 +26,9 @@ public class Io {
 	/*
 	 * apre un file su cui scrivere e restituisce il Print Stream corrispondente
 	 */
-	public static PrintStream openOutFile(String fileName, boolean append){
-	    try{
+	public static PrintStream openOutFile(String fileName, boolean append) throws FileNotFoundException{
 	    	FileOutputStream fileOutputStream = new FileOutputStream(fileName, append);
 	    	return new PrintStream(fileOutputStream);
-	    }catch (IOException e) {
-	    	//TODO eliminare try catch e fare throws
-	    	throw new Error(e);
-	    }
 	}
 	
 	

@@ -3,8 +3,6 @@
 import io.Io;
 import io.ProblemParser;
 
-import java.io.PrintStream;
-
 import neighbourgenerator.AdvancedNeighbourGenerator;
 import neighbourgenerator.EmptyCellsNeighbourGenerator;
 
@@ -104,10 +102,7 @@ public class Main {
       	extVNS.setStatistics(1, outputFile, extLabel);*/
       	//extVNS.setCplex(cplex);
 		
-		//cancello eventuale contenuto file
-		PrintStream out = Io.openOutFile(outputFile, false);
-		out.print("");
-		out.close();
+
 		
 		/*
 		 * lancio VNS: verrà interrotta manualmente!

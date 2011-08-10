@@ -15,7 +15,6 @@ public class ProblemParserTest {
 	 * Caso generico.
 	 */
 	@Test
-	//TODO vedere 2
 	public final void testParse1() throws Exception{
 		String PROBLEM = "problema6.txt";
 		testParse(PROBLEM);
@@ -58,22 +57,27 @@ public class ProblemParserTest {
 		
 		//OFFER_SECTION
 		//PRICE<fornitore><prodotto>
+		final int SUPPLIER1_ID = 1;
+		final int SUPPLIER2_ID = 2;
 		final int PRICE11 = 101;
-		final int PRICE12 = 102;
 		final int PRICE21 = 201;
 		final int PRICE22 = 102;
+		assertEquals(PRICE11, (int)problem.getSupplier(SUPPLIER1_ID).getBasePrice(product1Id));
+		assertEquals(PRICE22, (int)problem.getSupplier(SUPPLIER2_ID).getBasePrice(product2Id));
+		
 		//AVAILABILITY<fornitore><prodotto>
 		final int AVAILABILITY11 = 51;
 		final int AVAILABILITY12 = 52;
 		final int AVAILABILITY21 = 9;
 		final int AVAILABILITY22 = 42;
+		//TODO arrivati qui
+		assertEquals(PRICE11, (int)problem.getSupplier(SUPPLIER1_ID).getBasePrice(product1Id));
 		
 		//OFFER_SECTION
 		//LOWER_BOUND<fornitore> della fascia di sconto 1
 		final int LOWER_BOUND1 = 50;
 		final int LOWER_BOUND2 = 10;
-		final int SUPPLIER1_ID = 1;
-		final int SUPPLIER2_ID = 2;
+
 		final int SEGMENT1_ID = 1;
 		assertTrue(problem.getSupplier(SUPPLIER1_ID).getLowerBounds()[SEGMENT1_ID] == LOWER_BOUND1);
 		assertTrue(problem.getSupplier(SUPPLIER2_ID).getLowerBounds()[SEGMENT1_ID] == LOWER_BOUND2);

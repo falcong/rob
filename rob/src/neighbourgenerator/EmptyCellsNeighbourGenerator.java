@@ -14,6 +14,8 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 	protected int numSuppliers;
 	protected int numProducts;
 	protected int totalCells;
+	private double randomizationFactor;
+	
 
 	protected HashSet<Integer> dontAdd;
 	protected HashSet<Integer> dropped;
@@ -21,13 +23,21 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 	protected ArrayList<Integer> cellsToEmpty;
 	protected ArrayList<Integer> cellsNotEmptiable;
 	
+	final int DEFAULT_RAND_FACTOR = 0;
+	
 	public EmptyCellsNeighbourGenerator(Problem problem) {
 		this.problem=problem;
 		this.numSuppliers = problem.getDimension();
 		this.numProducts = problem.getNumProducts();
+		this.randomizationFactor = DEFAULT_RAND_FACTOR;
 		dontAdd = new HashSet<Integer>();
 		totalCells=numSuppliers*numProducts;
 		dropped=new HashSet<Integer>();
+	}
+	
+	public EmptyCellsNeighbourGenerator(Problem problem, double randomizationFactor) {
+		this(problem);
+		this.randomizationFactor = randomizationFactor;
 	}
 	
 	public Solution generate(Solution solution){
@@ -119,4 +129,41 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 			}
 		}		
 	}
+	
+	/*
+	 * Altera l'ordine in maniera casuale dei primi floor(ratio * (array.length-1)) elementi.
+	 * array[0] non viene considerato.
+	 */
+	public Supplier[] scramble(Supplier array[]){
+		//numero elementi da "mischiare"
+		int elementsToMove = (int)((array.length-1)*randomizationFactor);
+		
+		Supplier result[] = new Supplier[array.length];
+		
+		//result[0] non usato
+		result[0] = null;
+		
+		HashSet<Integer> alreadyChosen = new HashSet<Integer>();
+		//"mischio" i primi elementsToMove elementi
+		int randomSup;
+		for(int i=1; i<=elementsToMove; i++){
+			do{
+				randomSup = (int)(Math.random()*elementsToMove+1);
+			}while(alreadyChosen.contains(randomSup));
+			
+			result[i] = array[randomSup];
+			alreadyChosen.add(randomSup);
+		}
+		
+		//i restanti supllier li mantengo nello stesso ordine 
+		for(int i=elementsToMove+1; i<=array.length-1; i++){
+			result[i] = array[i];
+		}
+		
+		return result;
+	}
+	
+   public void setRandomizationFactor(double randomizationFactor){
+	   this.randomizationFactor = randomizationFactor;
+   }
 }

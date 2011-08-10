@@ -6,7 +6,7 @@ import io.ProblemParser;
 import java.io.PrintStream;
 
 import neighbourgenerator.AdvancedNeighbourGenerator;
-import neighbourgenerator.EmptyCellsRandomNeighbourGenerator;
+import neighbourgenerator.EmptyCellsNeighbourGenerator;
 
 import data.Problem;
 import data.Solution;
@@ -73,7 +73,7 @@ public class Main {
 		
 		//vns interna
       	double ratio = 12/50;
-		EmptyCellsRandomNeighbourGenerator intShaking = new EmptyCellsRandomNeighbourGenerator(problem, ratio);
+		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem, ratio);
 		int lMax = 10;
 		int kIncrement = 1;
 		String intLabel = "i";

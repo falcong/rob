@@ -3,11 +3,8 @@ package io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.util.Arrays;
-
 import data.Problem;
 import data.Supplier;
-
-
 import util.Utility;
 
 public class ProblemParser extends Parser{

@@ -2,7 +2,6 @@ package solutiongenerator;
 
 import java.util.Arrays;
 import java.util.HashSet;
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -11,10 +10,6 @@ import data.Supplier;
 public class TrivialSolutionGenerator extends SolutionGenerator {
 	public TrivialSolutionGenerator(Problem problem) {
 		super(problem);
-	}
-	
-	// Costruttore che crea un generatore vuoto
-	public TrivialSolutionGenerator() {
 	}
 	
 	@Override
@@ -47,6 +42,7 @@ public class TrivialSolutionGenerator extends SolutionGenerator {
 		}
 		return new Solution(purchased,problem);
 	}
+	
 	
 	/*
 	 * restituisce il fornitore con il prezzo base [fascia zero] di product più basso escludendo i fornitori contenuti in exclude

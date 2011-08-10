@@ -2,7 +2,6 @@ package solutiongenerator;
 
 import java.util.Arrays;
 import java.util.HashSet;
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -21,16 +20,6 @@ public class LinesSolutionGenerator extends SolutionGenerator {
 		residualDemand = problem.getDemand().clone();
 	}
 	
-	public LinesSolutionGenerator () {
-	}
-	
-	@Override
-	public void setProblem(Problem problem){
-		this.problem=problem;
-		suppliersNumber = problem.getDimension();
-		productsNumber = problem.getNumProducts();
-		residualDemand = problem.getDemand().clone();
-	}
 
 	@Override
 	public Solution generate() {

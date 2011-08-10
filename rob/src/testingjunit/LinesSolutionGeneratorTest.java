@@ -2,12 +2,9 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
-
 import org.junit.Test;
-
 import data.Problem;
 import data.Solution;
-
 import solutiongenerator.LinesSolutionGenerator;
 
 public class LinesSolutionGeneratorTest {

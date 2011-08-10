@@ -8,13 +8,15 @@ import data.Problem;
 import data.Supplier;
 
 
-import util.Constants;
 import util.Utility;
 
 public class ProblemParser extends Parser{
 	int numProducts;
 	String file;
 	String problemsPath;
+	
+	final int INT_NOT_USED = -1;
+	final boolean BOOLEAN_NOT_USED = false;
 	
 	final int NOT_FOUND = -1;
 	final int DEMAND_NOT_FOUND = -1;
@@ -80,7 +82,7 @@ public class ProblemParser extends Parser{
 	 */
 	private String readAttributeFromFile(String attribute) throws Exception{
 		String value = null;
-		BufferedReader bufferedReader = Utility.openInFile(file);
+		BufferedReader bufferedReader = Io.openInFile(file);
 		
 		String line;
 		boolean found = false;
@@ -105,7 +107,7 @@ public class ProblemParser extends Parser{
 	 */
 	private int[] readDemandSection() throws Exception{
 		int demand[] = null;
-		BufferedReader inputFile = Utility.openInFile(file);
+		BufferedReader inputFile = Io.openInFile(file);
 		String line;
 		String lineElements[];
 		
@@ -137,7 +139,7 @@ public class ProblemParser extends Parser{
 		 * demand[k]=DEMAND_NOT_FOUND significa che per il prodotto k la domanda non è stata specificata.
 		 * All'inizio presuppongo di non trovare alcuna domanda.
 		 */
-		demand[0]= Constants.INT_NOT_USED;
+		demand[0]= INT_NOT_USED;
 		Arrays.fill(demand, 1, demand.length, DEMAND_NOT_FOUND);
 		
 		//vale true quando raggiungo la fine DEMAND_SECTION
@@ -219,7 +221,7 @@ public class ProblemParser extends Parser{
 	 */
 	private Supplier[] readOfferSection(int numSuppliers) throws Exception {
 		Supplier[] suppliers;
-		BufferedReader inputFile = Utility.openInFile(file);
+		BufferedReader inputFile = Io.openInFile(file);
 		
 		//mi porto alla riga OFFER_SECTION
 		findLine(inputFile, OFFER_SECTION_DELIMITER);
@@ -289,7 +291,7 @@ public class ProblemParser extends Parser{
 	 * Legge in file DISCOUNT_SECTION e setta i valori letti ai suppliers.
 	 */
 	private void readDiscountSection(int numSuppliers, Supplier[] suppliers) throws Exception {
-		BufferedReader inputFile = Utility.openInFile(file);
+		BufferedReader inputFile = Io.openInFile(file);
 		//mi porto alla linea DISCOUNT_SECTION
 		findLine(inputFile, DISCOUNT_SECTION_DELIMITER);
 		
@@ -297,7 +299,7 @@ public class ProblemParser extends Parser{
 		String tag = "EOF";
 		//per controllare che in DISCOUNT_SECTION siano definiti tutti i fornitori
 		boolean definedSupplier[]	= new boolean[numSuppliers+1];
-		definedSupplier[0] = Constants.BOOLEAN_NOT_USED;
+		definedSupplier[0] = BOOLEAN_NOT_USED;
 		Arrays.fill(definedSupplier, 1, definedSupplier.length,false);
 		
 		//end = true quando raggiungo la fine di DISCOUNT_SECTION [=raggiungo la riga EOF].
@@ -339,14 +341,14 @@ public class ProblemParser extends Parser{
 				
 				//discounts[r] = sconto percentuale della fascia r; discount[0] = 0
 				int discounts[]		= new int[numSegments+1];
-				discounts[0]		= Constants.INT_NOT_USED;
+				discounts[0]		= INT_NOT_USED;
 				
 				/*
 				 * lowerBounds[r] = lower bound della fascia r di sconto;
 				 * lowerBounds[0] = 1
 				 */
 				int lowerBounds[]	= new int[numSegments+1];
-				lowerBounds[0]		= Constants.INT_NOT_USED;
+				lowerBounds[0]		= INT_NOT_USED;
 				
 				//leggo da lineElements i lower bounds e le percentuali di sconto per le varie fasce
 				for(int i=2; i<=lineElements.length-2; i+=2){
@@ -383,8 +385,8 @@ public class ProblemParser extends Parser{
 		/*Prima di leggere la riga non so quali prodotti saranno presenti in supplier dunque indico che non è
 		 * presente alcun prodotto
 		 */
-		basePrices[0] = Constants.INT_NOT_USED;
-		availability[0] = Constants.INT_NOT_USED;
+		basePrices[0] = INT_NOT_USED;
+		availability[0] = INT_NOT_USED;
 		Arrays.fill(basePrices, 1, basePrices.length, PRODUCT_NOT_PRESENT);
 		Arrays.fill(availability, 1, availability.length, PRODUCT_NOT_PRESENT);
 		

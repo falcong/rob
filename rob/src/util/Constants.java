@@ -1,5 +1,7 @@
 package util;
 
+import io.Io;
+
 
 public class Constants {
 	//file di configurazione
@@ -16,15 +18,12 @@ public class Constants {
 	//percorso della cartella contenente i file di output per il testing
 	public final static String OUTPUT_PATH;
 	
-	public final static int INT_NOT_USED = -1;
-	public final static boolean BOOLEAN_NOT_USED = false;
-	
 	static{
 		try {
 			//percorso della cartella contenente i file di input per il testing
-			INPUT_PATH = Utility.getConfigParameter("testInput");		
+			INPUT_PATH = Io.getConfigParameter("testInput");		
 			//percorso della cartella contenente i file di output per il testing
-			OUTPUT_PATH = Utility.getConfigParameter("testOutput");
+			OUTPUT_PATH = Io.getConfigParameter("testOutput");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException("Non è stato possibile leggere il parametro testInput o testOutput");

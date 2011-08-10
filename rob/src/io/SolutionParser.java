@@ -3,7 +3,6 @@ package io;
 import java.io.BufferedReader;
 import java.util.Arrays;
 
-import util.Utility;
 import data.Problem;
 import data.Solution;
 
@@ -25,7 +24,7 @@ public class SolutionParser extends Parser {
 		int solutionMatrix[][] = new int[numSuppliers+1][numProducts+1];
 		Arrays.fill(solutionMatrix[0], 0);
 		
-		BufferedReader bufferedReader = Utility.openInFile(file);
+		BufferedReader bufferedReader = Io.openInFile(file);
 		String line;
 		int supplier=1;
 		while ((line = bufferedReader.readLine()) != null){

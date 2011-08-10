@@ -1,5 +1,6 @@
 
 
+import io.Io;
 import io.ProblemParser;
 
 import java.io.PrintStream;
@@ -28,7 +29,7 @@ public class Main {
 		//TODO fare file di output
 		String outputFile = null;
 		try {
-			outputFile = Utility.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
+			outputFile = Io.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			//TODO fattorizzare
@@ -41,7 +42,7 @@ public class Main {
 		
 		ProblemParser probParser = null;
 		try {
-			probParser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
+			probParser = new ProblemParser(Io.getConfigParameter("problemsPath"));
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
@@ -106,7 +107,7 @@ public class Main {
       	//extVNS.setCplex(cplex);
 		
 		//cancello eventuale contenuto file
-		PrintStream out = Utility.openOutFile(outputFile, false);
+		PrintStream out = Io.openOutFile(outputFile, false);
 		out.print("");
 		out.close();
 		

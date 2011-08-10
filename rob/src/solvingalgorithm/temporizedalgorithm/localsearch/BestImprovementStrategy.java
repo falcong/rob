@@ -14,7 +14,7 @@ public class BestImprovementStrategy extends ExplorationStrategy {
 					return best;
 				}*/
 				
-				Solution neighbour=generator.generate(solution, 1);
+				Solution neighbour=generator.generate(solution);
 				if(neighbour.getObjectiveFunction()<best.getObjectiveFunction()){
 					best=neighbour;
 				}	

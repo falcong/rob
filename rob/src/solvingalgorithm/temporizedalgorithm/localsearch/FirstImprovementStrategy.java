@@ -17,7 +17,7 @@ public class FirstImprovementStrategy extends ExplorationStrategy {
 			
 			//stampa vicino
 			//printNeighbour(visited);
-			Solution neighbour=generator.generate(solution, 1);
+			Solution neighbour=generator.generate(solution);
 			if (neighbour.getObjectiveFunction()<solution.getObjectiveFunction()){
 				//stampa n° vicini generati
 				//printNumNeighbours(visited);

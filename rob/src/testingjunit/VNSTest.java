@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 import io.ProblemParser;
 
 import neighbourgenerator.BasicNeighbourGenerator;
-import neighbourgenerator.NeighbourGenerator;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +25,7 @@ public class VNSTest {
 	VNS vnsSearch;
 	Solution startSolution;
 	RandomSolutionGenerator sGenerator;
-	NeighbourGenerator nGenerator;
+	BasicNeighbourGenerator nGenerator;
 	//tempo massimo di esecuzione per la VNS
 	final long MAX_TIME = 2000;
 	
@@ -46,6 +44,7 @@ public class VNSTest {
 	@Test
 	public final void testExecute1() throws Exception {
 		LocalSearch localSearch=new LocalSearch(MAX_NEIGHBOUR_NUMBER, MAX_STEPS_NUMBER, StrategyName.FIRST_IMPROVEMENT, nGenerator, problem);
+		//nGenerator=new BasicNeighbourGenerator(problem);
 		vnsSearch=new VNS(K_MAX, localSearch, nGenerator, problem);
 		startSolution=sGenerator.generate();
 		

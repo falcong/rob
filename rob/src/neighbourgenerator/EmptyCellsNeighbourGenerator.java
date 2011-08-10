@@ -9,7 +9,7 @@ import data.Supplier;
 
 
 
-public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
+public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
 	protected Problem problem;
 	protected int numSuppliers;
 	protected int numProducts;
@@ -30,6 +30,10 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator{
 		dropped=new HashSet<Integer>();
 	}
 	
+	public Solution generate(Solution solution){
+		final int DISTANCE = 1;
+		return generate(solution, DISTANCE);
+	}
 	
 	@Override
 	public Solution generate(Solution s0, int distance){

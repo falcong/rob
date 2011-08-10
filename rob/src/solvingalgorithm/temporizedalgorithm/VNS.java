@@ -1,6 +1,6 @@
 package solvingalgorithm.temporizedalgorithm; 
 
-import neighbourgenerator.NeighbourGenerator;
+import neighbourgenerator.DistancedNeighbourGenerator;
 import data.Problem;
 import data.Solution;
 
@@ -8,13 +8,13 @@ public class VNS extends TemporizedAlgorithm{
 	protected int kMax;
 	protected TemporizedAlgorithm afterShaking;
 	protected Solution currentSolution;
-	protected NeighbourGenerator generator;
+	protected DistancedNeighbourGenerator generator;
 	//numero di volte in cui far ripartire la ricerca
 	protected int restarts;
 	final int INFINITY = -1;
 	int increment=1;
 	
-	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, Problem problem){
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, DistancedNeighbourGenerator generator, Problem problem){
 		this.afterShaking=afterShaking;
 		this.kMax=kMax;
 		this.problem=problem;
@@ -23,7 +23,7 @@ public class VNS extends TemporizedAlgorithm{
 	}
 	
 	//maximumTime espresso in secondi
-	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, Problem problem, int restarts,
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, DistancedNeighbourGenerator generator, Problem problem, int restarts,
 			int maximumTime){
 		this(kMax, afterShaking, generator, problem);
 		this.restarts = restarts;
@@ -31,14 +31,14 @@ public class VNS extends TemporizedAlgorithm{
 	}
 	
 	//maximumTime espresso in secondi
-	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, Problem problem,
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, DistancedNeighbourGenerator generator, Problem problem,
 			int maximumTime){
 		this(kMax, afterShaking, generator, problem);
 		this.restarts = INFINITY;
 		timer = new Timer(maximumTime);
 	}
 	
-	public VNS(int kMax, TemporizedAlgorithm afterShaking, NeighbourGenerator generator, int restarts, Problem problem){
+	public VNS(int kMax, TemporizedAlgorithm afterShaking, DistancedNeighbourGenerator generator, int restarts, Problem problem){
 		this(kMax, afterShaking, generator, problem);
 		this.restarts = restarts;
 	}

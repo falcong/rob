@@ -12,10 +12,15 @@ import data.Problem;
 import data.Solution;
 
 
-public class BanSupplierNeighbourGenerator extends NeighbourGenerator{
+public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
 	protected Problem problem;
 	public BanSupplierNeighbourGenerator(Problem problem) {
 		this.problem=problem;
+	}
+	
+	public Solution generate(Solution solution){
+		final int DISTANCE = 1;
+		return generate(solution, DISTANCE);
 	}
 	
 	@Override

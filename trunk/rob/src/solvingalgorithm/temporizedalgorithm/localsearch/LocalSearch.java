@@ -11,7 +11,7 @@ public class LocalSearch extends TemporizedAlgorithm{
 	
 	ExplorationStrategy strategy;
 	
-	public enum SuccessorChoiceMethod{
+	public enum StrategyName{
 		FIRST_IMPROVEMENT, BEST_IMPROVEMENT 
 	}
 	
@@ -19,7 +19,7 @@ public class LocalSearch extends TemporizedAlgorithm{
 	private int maxStepsNumber; //numero massimo di passi prima di arrestare
 	private NeighbourGenerator generator;
 	
-	public LocalSearch(int maxNeighboursNumber, int maxStepsNumber, SuccessorChoiceMethod successorChoice,
+	public LocalSearch(int maxNeighboursNumber, int maxStepsNumber, StrategyName successorChoice,
 			NeighbourGenerator generator, Problem problem){
 		this.problem=problem;
 		this.maxNeighboursNumber=maxNeighboursNumber;
@@ -34,7 +34,7 @@ public class LocalSearch extends TemporizedAlgorithm{
 	}
 	
 	//maximumTime espresso in secondi
-	public LocalSearch(int maxNeighboursNumber, int maxStepsNumber, SuccessorChoiceMethod successorChoice,
+	public LocalSearch(int maxNeighboursNumber, int maxStepsNumber, StrategyName successorChoice,
 			NeighbourGenerator generator, Problem problem, int maxTime){
 		this(maxTime, maxTime, successorChoice, generator, problem);
 		timer = new Timer(maxTime);

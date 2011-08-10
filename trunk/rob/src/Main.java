@@ -16,7 +16,7 @@ import solutiongenerator.TrivialSolutionGenerator;
 import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
-import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
+import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
 
 public class Main {
 		
@@ -65,7 +65,7 @@ public class Main {
 		//local search
 		int maxNeighboursNumber = 50;
 		int maxStepsNumber = 1000;
-		SuccessorChoiceMethod successorChoice = SuccessorChoiceMethod.BEST_IMPROVEMENT;
+		StrategyName successorChoice = StrategyName.BEST_IMPROVEMENT;
 		AdvancedNeighbourGenerator neighGenerator = new AdvancedNeighbourGenerator(problem);
       	LocalSearch locSearch = new LocalSearch(maxNeighboursNumber, maxStepsNumber, successorChoice,
       			neighGenerator, problem);

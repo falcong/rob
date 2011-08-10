@@ -12,15 +12,8 @@ import java.io.PrintStream;
 
 import org.junit.Test;
 
-import util.Constants;
-import util.Utility;
 
 public class IoTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
 	//test di openOutFile()
 	/*

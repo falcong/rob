@@ -11,7 +11,6 @@ import data.Solution;
 //MOD rob2.Problem
 //MOD
 import solvingalgorithm.Cplex;
-import util.Constants;
 
 public class CplexTest {
 	

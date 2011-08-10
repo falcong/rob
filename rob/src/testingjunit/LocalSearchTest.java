@@ -13,7 +13,6 @@ import io.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
-import util.Constants;
 
 public class LocalSearchTest {
 	final String CLASS_NAME = this.getClass().getName();

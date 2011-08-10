@@ -16,7 +16,6 @@ import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
-import util.Constants;
 
 public class VNSTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);

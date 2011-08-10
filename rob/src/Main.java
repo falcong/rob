@@ -17,8 +17,6 @@ import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
-import util.Constants;
-import util.Utility;
 
 public class Main {
 		
@@ -33,9 +31,9 @@ public class Main {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			//TODO fattorizzare
-			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
-					"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");		
-			System.exit(Constants.ERROR_CONFIG);
+			//System.err.println("Si è verificato un errore il programma verrà terminato\n"+
+					//"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");		
+			//System.exit(Constants.ERROR_CONFIG);
 		}
 		//prob 62
 		final String PROBLEM_NAME = "Cap.50.100.3.2.10.2.ctqd";
@@ -45,9 +43,9 @@ public class Main {
 			probParser = new ProblemParser(Io.getConfigParameter("problemsPath"));
 		} catch (Exception e1) {
 			e1.printStackTrace();
-			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
-					"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");			
-			System.exit(Constants.ERROR_CONFIG);
+			//System.err.println("Si è verificato un errore il programma verrà terminato\n"+
+					//"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");			
+			//System.exit(Constants.ERROR_CONFIG);
 		}
 		Problem problem = null;
 		//TODO vedere 3
@@ -57,7 +55,7 @@ public class Main {
 			e.printStackTrace();
 			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
 								"(il parser non è stato in grado di leggere il problema).");		
-			System.exit(Constants.ERROR_PARSER);
+			System.exit(1);
 		}
 		
 		//ottimo

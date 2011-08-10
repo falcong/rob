@@ -12,7 +12,6 @@ import data.Problem;
 import data.Solution;
 import data.Supplier;
 
-import util.Constants;
 
 
 public class AdvancedNeighbourGeneratorTest {

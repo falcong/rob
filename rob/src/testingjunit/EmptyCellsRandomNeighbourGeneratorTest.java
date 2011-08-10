@@ -10,7 +10,6 @@ import org.junit.Test;
 import data.Problem;
 import data.Supplier;
 
-import util.Constants;
 
 public class EmptyCellsRandomNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

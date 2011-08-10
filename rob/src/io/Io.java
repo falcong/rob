@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
-import util.Constants;
-
 public class Io {
+	//file di configurazione
+	private static final String CONFIG_FILE = "config.txt";
+	
 	/*
 	 * Apre un file il lettura e restituisce il corrispondente BufferedReader. 
 	 */
@@ -44,7 +45,7 @@ public class Io {
 		final char COMMENT_DELIMITER = '#';
 		final String SEPARATOR = "[\\s]*=[\\s]*";
 	
-		BufferedReader bufferedReader = Io.openInFile(Constants.CONFIG_FILE);
+		BufferedReader bufferedReader = Io.openInFile(CONFIG_FILE);
 		
 		String line;
 		boolean found = false;

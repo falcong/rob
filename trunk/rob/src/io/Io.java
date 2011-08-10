@@ -22,6 +22,7 @@ public class Io {
 		return new BufferedReader(inputStreamReader);
 	}
 	
+	
 	/*
 	 * apre un file su cui scrivere e restituisce il Print Stream corrispondente
 	 */
@@ -34,6 +35,7 @@ public class Io {
 	    	throw new Error(e);
 	    }
 	}
+	
 	
 	/*
 	 * legge da config.txt il parametro specificato

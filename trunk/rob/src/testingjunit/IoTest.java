@@ -69,11 +69,17 @@ public class IoTest {
 		}
 	}
 	
+	
+	
+	
 	//TODO implementare test
 	@Test
 	public final void testOpenInFile(){
 		;
 	}
+	
+	
+	
 	
 	//test di getConfigParameter
 	/*

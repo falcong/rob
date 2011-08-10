@@ -2,7 +2,6 @@ package solutiongenerator;
 
 import java.util.Arrays;
 import java.util.HashSet;
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -14,9 +13,6 @@ public class RandomSolutionGenerator extends SolutionGenerator {
 		super(problem);
 	}
 
-	//crea un generatore vuoto
-	public RandomSolutionGenerator() {
-	}
 
 	public Solution generate() {
 		

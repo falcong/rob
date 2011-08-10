@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import data.Problem;
 import data.Solution;
+import data.Supplier;
 
 import solutiongenerator.RandomSolutionGenerator;
 
@@ -62,50 +63,86 @@ public class EmptyCellsNeighbourGeneratorTest {
 		}				
 	}
 	
-	
-	
-//TODO eliminare sotto!	
-/*	@Test
-	public final void testEmptyCellsNeighbourGenerator() {
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem problem = pp.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 30, 42, 30};
-		int [] s2={0, 30, 0, 33};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution=new Solution(matrix,problem);
-		
-		EmptyCellsNeighbourGenerator generator = new EmptyCellsNeighbourGenerator(problem);
-		
-		//prima
-		solution.print();
-		
-		//dopo
-		Solution result=generator.generate(solution,1);
-		assertTrue(result.isAdmissible(problem));
-		result.print();
-	}
-	
+	//test di scramble()
+	/*
+	 * Caso generale.
+	 */
 	@Test
-	public final void testEmptyCellsNeighbourGeneratorBigProblem() {
-		ProblemParser parser = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		//62
-		Problem problem = parser.parse("Cap.50.100.3.2.80.4.ctqd");
-		RandomSolutionGenerator gen = new RandomSolutionGenerator(problem);
-		Solution solution = gen.generate();		
+	public final void testScramble1() throws Exception{
+		//per controllare che floor() funzioni correttamente
+		final double RAND_FACTOR = 0.53; 
 		
-		EmptyCellsNeighbourGenerator generator = new EmptyCellsNeighbourGenerator(problem);
+		final int N = 100;
+		for(int i=1; i<=N; i++){
+			testScramble(RAND_FACTOR);
+		}
+	}	
+	
+	/*
+	 * ratio = 0
+	 */ 
+	@Test
+	public final void testScramble2() throws Exception{
+		final double RAND_FACTOR = 0; 
+		testScramble(RAND_FACTOR);
+	}	
+	
+	private final void testScramble(double randomizationFactor) throws Exception{
+		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
 		
-		//prima
-		solution.print();
+		int numSuppliers = problem.getDimension();
+		//array0 = input
+		Supplier array0[] = new Supplier[numSuppliers+1];
+		//non usato
+		array0[0] = null;
+		for(int i=1; i<=numSuppliers; i++){
+			array0[i] = problem.getSupplier(i);
+		}
 		
-		//dopo
-		Solution result=generator.generate(solution,1);
-		assertTrue(result.isAdmissible(problem));
-		result.print();
+		EmptyCellsNeighbourGenerator generator = new  EmptyCellsNeighbourGenerator(problem);
+		generator.setRandomizationFactor(randomizationFactor);
+		//array1 = output
+		Supplier array1[] = generator.scramble(array0);
+		
+		//numero dei primi fornitori il cui ordine è stato alterato
+		final int NUM_DISORDERED_SUPPLIERS = (int)(numSuppliers*randomizationFactor);
+		
+		/*
+		 * Controllo che i primi NUM_DISORDERED_SUPPLIERS fornitori non vengano eliminati o duplicati
+		 * (al più ne può solo essere modificato l'ordine).
+		 */  
+		boolean found[] = new boolean[NUM_DISORDERED_SUPPLIERS+1];
+		//non usato
+		found[0] = true;
+		for(int i=1; i<=NUM_DISORDERED_SUPPLIERS; i++){
+			found[i] = false;
+		}
+		
+		for(int i=1; i<=NUM_DISORDERED_SUPPLIERS; i++){
+			int supplierId = array1[i].getId();
+			
+			//non devo già avere trovato questo fornitore
+			assertTrue(found[supplierId] == false);
+			
+			//segno che ho trovato fornitore
+			found[supplierId] = true;
+		}
+		
+		//controllo di avere trovato ogni fornitore almeno una volta
+		for(int i=1; i<=NUM_DISORDERED_SUPPLIERS; i++){
+			assertTrue(found[i] == true);
+		}
+		
+		
+		 /*
+		  * controllo che l'ordine degli ultimi fornitori non sia stato alterato
+		  */
+		 
+		for(int i=NUM_DISORDERED_SUPPLIERS+1; i<=numSuppliers; i++){
+			assertTrue(array1[i].getId() == i);
+		}
 	}
-*/
+	
 }

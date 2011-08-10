@@ -15,7 +15,7 @@ import data.Solution;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
-import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.SuccessorChoiceMethod;
+import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
 
 public class VNSTest {
 	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
@@ -45,7 +45,7 @@ public class VNSTest {
 	 */
 	@Test
 	public final void testExecute1() throws Exception {
-		LocalSearch localSearch=new LocalSearch(MAX_NEIGHBOUR_NUMBER, MAX_STEPS_NUMBER, SuccessorChoiceMethod.FIRST_IMPROVEMENT, nGenerator, problem);
+		LocalSearch localSearch=new LocalSearch(MAX_NEIGHBOUR_NUMBER, MAX_STEPS_NUMBER, StrategyName.FIRST_IMPROVEMENT, nGenerator, problem);
 		vnsSearch=new VNS(K_MAX, localSearch, nGenerator, problem);
 		startSolution=sGenerator.generate();
 		
@@ -64,7 +64,7 @@ public class VNSTest {
 	 */
 	@Test
 	public final void testExecute2() throws Exception {
-		LocalSearch localSearch=new LocalSearch(MAX_NEIGHBOUR_NUMBER, MAX_STEPS_NUMBER, SuccessorChoiceMethod.FIRST_IMPROVEMENT, nGenerator, problem);
+		LocalSearch localSearch=new LocalSearch(MAX_NEIGHBOUR_NUMBER, MAX_STEPS_NUMBER, StrategyName.FIRST_IMPROVEMENT, nGenerator, problem);
 		final int RESTARTS = -1;
 		final int MAX_TIME_IN_SECONDS = (int)MAX_TIME/1000;
 		vnsSearch=new VNS(K_MAX, localSearch, nGenerator, problem, RESTARTS, MAX_TIME_IN_SECONDS);

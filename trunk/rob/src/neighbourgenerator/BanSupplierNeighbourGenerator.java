@@ -1,5 +1,5 @@
 /*
- * pesca k fornitori casuali (presso cui quantità totale comprata >= 1)
+ * pesca un numero distance di fornitori casuali da bandire(presso cui quantità totale comprata >= 1)
  * ogni fornitore viene svuotato così:
  * scarico tutti i prodotti in un fornitore casuale, se non sufficiente continuo con i successivi
  */
@@ -32,7 +32,7 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 		HashSet<Integer> banned = new HashSet<Integer>();
 		int [] banArray=new int[distance];
 		for (int i=0;i<distance;i++) {
-			int randomSup = problem.getRandomSupplier(banned).getId();
+			int randomSup = problem.getRandomSupplierId(banned);
 			int total=solution.totalQuantityBought(randomSup);
 			if (total==0) {
 				i--;
@@ -60,17 +60,17 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 		int s=startSupplier;
 		boolean done=false;
 		while (!done) {			
-			for(int i=1;i<=problem.getNumProducts();i++){
+			for(int p=1;p<=problem.getNumProducts();p++){
 				//quanto sto comprando attualmente del prodotto i presso il fornitore bandito
-				int currentlyBuying=solution.getQuantity(bannedSupId,i);
+				int currentlyBuying=solution.getQuantity(bannedSupId,p);
 				if (currentlyBuying==0)
 					continue; //non sto comprando niente, passo al prodotto successivo
 				
 				//disponibilità residua del fornitore s
-				int residual=problem.getSupplier(s).getResidual(i,solution);
+				int residual=problem.getSupplier(s).getResidual(p,solution);
 				//se ha disponibilità residua, sposto tutto il possibile da bannedSup a s
 				if(residual>0)
-					solution.moveQuantity(i,bannedSupId,s,Math.min(currentlyBuying,residual),problem);				
+					solution.moveQuantity(p,bannedSupId,s,Math.min(currentlyBuying,residual),problem);				
 			}
 			
 			//incremento ciclico del supplier
@@ -78,7 +78,7 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 			
 			//il fornitore s non va bene come destinazione se è contenuto nella banned list
 			//quindi lo incremento ancora prima di ricominciare il ciclo
-			if (banned.contains(s)) {
+			while (banned.contains(s) && s!=startSupplier) {
 				s = s%numSuppliers+1;
 			}
 			//controllo se ho finito il giro

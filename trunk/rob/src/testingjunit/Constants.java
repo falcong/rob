@@ -11,9 +11,7 @@ public class Constants {
 	
 	static{
 		try {
-			//percorso della cartella contenente i file di input per il testing
-			TESTING_INPUT_PATH = Io.getConfigParameter("testInput");		
-			//percorso della cartella contenente i file di output per il testing
+			TESTING_INPUT_PATH = Io.getConfigParameter("testInput");
 			TESTING_OUTPUT_PATH = Io.getConfigParameter("testOutput");
 		} catch (Exception e) {
 			e.printStackTrace();

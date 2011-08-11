@@ -26,7 +26,7 @@ public class BanSupplierNeighbourGeneratorTest {
 	@Test
 	public final void testGenerate1() throws Exception{
 		final String methodName = new Exception().getStackTrace()[0].getMethodName();
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.40.3.2.99.1.ctqd";
 		Problem problem = null;

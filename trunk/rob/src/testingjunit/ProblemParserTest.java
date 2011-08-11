@@ -38,7 +38,7 @@ public class ProblemParserTest {
 	}
 	
 	private final void testParse(String problemName) throws Exception {
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		problem = pp.parse(problemName);
 		
 		//controllo che tutti i dati del problema siano corretti

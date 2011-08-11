@@ -12,7 +12,6 @@ public class ProblemParser extends Parser{
 	String file;
 	String problemsPath;
 	
-	final int INT_NOT_USED = -1;
 	final boolean BOOLEAN_NOT_USED = false;
 	
 	final int NOT_FOUND = -1;

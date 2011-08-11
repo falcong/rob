@@ -38,7 +38,7 @@ public class LocalSearchTest {
 	
 	private final void testExecute(StrategyName successorChoice) throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		final String PROBLEM_NAME = "Cap.10.100.5.1.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		

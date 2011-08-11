@@ -23,7 +23,7 @@ public class AdvancedNeighbourGeneratorTest {
 	 */
 	@Test
 	public final void testGenerate1() throws Exception{
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		final String PROBLEM_NAME = "problema1.txt";
 		//TODO vedere 5
 		Problem problem = null;
@@ -83,7 +83,7 @@ public class AdvancedNeighbourGeneratorTest {
 	 */
 	@Test
 	public final void testGenerate2() throws Exception{
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		final String PROBLEM_NAME = "problema2.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		int [] s0={0, 0, 0, 0};

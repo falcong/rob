@@ -15,7 +15,7 @@ import data.comparator.BoughtQuantityComparator;
 
 
 public class BoughtQuantityComparatorTest {
-	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 	
 	Problem problem;
 	Supplier sup1;

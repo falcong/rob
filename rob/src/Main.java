@@ -2,23 +2,22 @@
 import io.Io;
 import io.ProblemParser;
 import neighbourgenerator.AdvancedNeighbourGenerator;
+import neighbourgenerator.BanFullNeighbourGenerator;
 import neighbourgenerator.EmptyCellsNeighbourGenerator;
 import data.Problem;
 import data.Solution;
-import solutiongenerator.LinesSolutionGenerator;
-import solutiongenerator.TrivialSolutionGenerator;
+import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
-import util.Utility;
 
 
 
 public class Main {
 		
 	public static void main(String[] args) throws Exception{
-		final String PROBLEM_NAME = "Cap.50.100.3.2.10.2.ctqd";
+		final String PROBLEM_NAME = "Cap.50.40.3.1.70.1.ctqd";
 		
 		ProblemParser problemParser = null;
 		final String INPUT_PARAMETER = "input";
@@ -27,14 +26,9 @@ public class Main {
 			problemParser = new ProblemParser(Io.getConfigParameter(INPUT_PARAMETER));
 		} catch (Exception e) {
 			e.printStackTrace();
-			//TODO eliminare qua
-			//System.err.println("Si è verificato un errore il programma verrà terminato\n"+
-					//"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");			
-			//System.exit(Constants.ERROR_CONFIG);
-			//TODO fine eliminare
-			
-			Utility.exception("Non è stato possibile leggere il parametro "+INPUT_PARAMETER+
-					"nel file di configurazione. Il programma verrà terminato.");
+			System.err.println("Errore:\nNon è stato possibile leggere il parametro "+INPUT_PARAMETER+
+					"nel file di configurazione. Il programma verrà terminato.");			
+			System.exit(1);
 		}
 		
 		Problem problem = null;
@@ -52,47 +46,33 @@ public class Main {
 		//vns interna
       	final double RANDOMIZATION_FACTOR = 12/50;
 		EmptyCellsNeighbourGenerator intShaking = new EmptyCellsNeighbourGenerator(problem, RANDOMIZATION_FACTOR);
-		int lMax = 10;
-		int kIncrement = 1;
-		String intLabel = "i";
-		VNS intVNS = new VNS(lMax, localSearch, intShaking, problem, -1, 2000);
-		//intVNS.setStatistics(1, outputFile, intLabel);
-		//intVNS.setCplex(cplex);
-		intVNS.setIncrement(kIncrement);
+		final int L_MAX = 10;
+		final int K_INCREMENT = 2;
+		final int NUM_RESTARTS = -1;
+		VNS intVNS = new VNS(L_MAX, localSearch, intShaking, NUM_RESTARTS, problem);
+		intVNS.setIncrement(K_INCREMENT);
 		
 		//vns esterna
-      	//s0 = soluzione lines
-      	LinesSolutionGenerator linesGenerator = new LinesSolutionGenerator(problem);
-      	Solution lineSol = linesGenerator.generate();
+      	//s0 = soluzione iniziale random
+		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
+      	Solution s0 = randomGenerator.generate();
       	
-      	//s0 = soluzione random
-/*		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
-      	Solution s0 = randomGenerator.generate();*/
-      	
-      	//s0 = soluzione trivial
-      	TrivialSolutionGenerator trivialGenerator = new TrivialSolutionGenerator(problem);
-      	Solution s0 = trivialGenerator.generate();
-      	
-/*      	int kMax = 6;
-      	BanFullNeighbourGenerator extShaking = new BanFullNeighbourGenerator(problem);
-      	int numRestarts = -1;
-      	int time = 3600;
-      	String extLabel = "e";
-      	VNS extVNS = new VNS(kMax, intVNS, extShaking, problem, numRestarts, time);
-      	extVNS.setStatistics(1, outputFile, extLabel);*/
-      	//extVNS.setCplex(cplex);
+      	final int K_MAX = 6;
+      	final BanFullNeighbourGenerator extShaking = new BanFullNeighbourGenerator(problem);
+      	//in secondi
+      	final int MAX_TIME = 30;
+      	VNS extVNS = new VNS(K_MAX, intVNS, extShaking, problem, MAX_TIME);
 		
-
+      	//lancio la VNS esterna (s1=soluzione finale)
+      	Solution s1 = extVNS.execute(s0);
+      	System.out.println("funzione obiettivo della soluzione s1 = "+s1.getObjectiveFunction()+"\n\n\n");
 		
-		/*
-		 * lancio VNS: verrà interrotta manualmente!
-		 */
-		//extVNS.execute(s0);
-		intVNS.execute(lineSol);
+		//trovo ottimo con cplex
+		Cplex cplexSolver = new Cplex(problem);
+		Solution cplexSol = cplexSolver.execute(null);
 		
-		//TODO
-		//fare esempio con cplex [...]
-		Cplex cplex;
-		
+		//stampo errore di s1
+		double error = s1.getObjectiveFunction()/cplexSol.getObjectiveFunction()*100-100;
+		System.out.println("\n\n\nerrore della soluzione s1 = "+error);
 	}
 }

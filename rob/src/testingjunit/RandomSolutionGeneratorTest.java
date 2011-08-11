@@ -16,7 +16,7 @@ public class RandomSolutionGeneratorTest {
 	 */
 	@Test
 	public void testGenerate() throws Exception {
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.50.100.3.2.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);

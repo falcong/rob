@@ -16,7 +16,7 @@ import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
 
 public class VNSTest {
-	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 	final String PROBLEM_NAME = "Cap.50.40.3.1.70.1.ctqd";
 	final int K_MAX = 5;
 	final int MAX_NEIGHBOUR_NUMBER = 10;

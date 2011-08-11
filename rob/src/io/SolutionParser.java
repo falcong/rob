@@ -2,7 +2,6 @@ package io;
 
 import java.io.BufferedReader;
 import java.util.Arrays;
-
 import data.Problem;
 import data.Solution;
 
@@ -22,14 +21,15 @@ public class SolutionParser extends Parser {
 		int numSuppliers = problem.getDimension();
 		int numProducts = problem.getNumProducts();
 		int solutionMatrix[][] = new int[numSuppliers+1][numProducts+1];
-		Arrays.fill(solutionMatrix[0], 0);
+		//non uso la riga 0
+		Arrays.fill(solutionMatrix[0], INT_NOT_USED);
 		
 		BufferedReader bufferedReader = Io.openInFile(file);
 		String line;
 		int supplier=1;
 		while ((line = bufferedReader.readLine()) != null){
 			String [] lineArray=line.split("\t");
-			solutionMatrix[supplier][0]=0;
+			solutionMatrix[supplier][0] = INT_NOT_USED;
 			for (int i=1;i<=numProducts;i++){
 				solutionMatrix[supplier][i]= Integer.parseInt(lineArray[i-1]);
 			}
@@ -39,5 +39,4 @@ public class SolutionParser extends Parser {
 		
 		return new Solution(solutionMatrix, problem);
 	}
-
 }

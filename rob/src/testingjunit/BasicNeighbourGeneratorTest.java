@@ -22,7 +22,7 @@ public class BasicNeighbourGeneratorTest {
 	@Test
 	public final void testGenerate1() throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName();
-		ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		
 		final String PROBLEM_NAME = "Cap.10.100.3.2.10.1.ctqd";
 		Problem problem = null;

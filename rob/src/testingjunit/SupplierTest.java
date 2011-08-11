@@ -12,7 +12,7 @@ import data.Supplier;
 import solutiongenerator.RandomSolutionGenerator;
 
 public class SupplierTest {
-	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 
 	//test di activatedSegment() 
 	//fasce di sconto con limiti 50 e 70

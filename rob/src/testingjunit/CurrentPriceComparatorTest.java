@@ -14,7 +14,7 @@ import data.comparator.CurrentPriceComparator;
 
 
 public class CurrentPriceComparatorTest {
-	ProblemParser pp = new ProblemParser(Constants.INPUT_PATH);
+	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 	
 	/*
 	 * sup1 < sup2

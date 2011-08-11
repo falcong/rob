@@ -19,42 +19,28 @@ import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName
 public class Main {
 		
 	public static void main(String[] args){
-		//TODO eliminare queste variabili e sistemare qui inizio
-		int statistic = 5;
-		final int FILE_NUMBER = 15;
-		//TODO fare file di output
-		String outputFile = null;
-		try {
-			outputFile = Io.getConfigParameter("statistics")+"\\statistics"+statistic+"_"+FILE_NUMBER+".txt";
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			//TODO fattorizzare
-			//System.err.println("Si è verificato un errore il programma verrà terminato\n"+
-					//"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");		
-			//System.exit(Constants.ERROR_CONFIG);
-		}
-		//prob 62
 		final String PROBLEM_NAME = "Cap.50.100.3.2.10.2.ctqd";
+		//Io.getConfigParameter("problemsPath");
 		
-		ProblemParser probParser = null;
+/*		ProblemParser probParser = null;
 		try {
-			probParser = new ProblemParser(Io.getConfigParameter("problemsPath"));
+			probParser = new ProblemParser();
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			//System.err.println("Si è verificato un errore il programma verrà terminato\n"+
 					//"(Non è stato possibile aprire il file di configurazione "+Constants.CONFIG_FILE+").");			
 			//System.exit(Constants.ERROR_CONFIG);
-		}
+		}*/
 		Problem problem = null;
 		//TODO vedere 3
-		try {
+/*		try {
 			problem = probParser.parse(PROBLEM_NAME);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Si è verificato un errore il programma verrà terminato\n"+
 								"(il parser non è stato in grado di leggere il problema).");		
 			System.exit(1);
-		}
+		}*/
 		
 		//ottimo
 /*		Solution cplex = new Solution(Utility.getConfigParameter("input")+

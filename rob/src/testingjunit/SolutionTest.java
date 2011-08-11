@@ -13,7 +13,7 @@ import solutiongenerator.RandomSolutionGenerator;
 import solutiongenerator.SolutionGenerator;
 
 public class SolutionTest {
-	ProblemParser pp=new ProblemParser(Constants.INPUT_PATH);
+	ProblemParser pp=new ProblemParser(Constants.TESTING_INPUT_PATH);
 	
 	//test di Solution()
 	/*
@@ -58,7 +58,7 @@ public class SolutionTest {
 		Solution expectedSolution=new Solution(matrix,problem);
 		
 		final String inputFileName=PROBLEM_NAME+"_Solution.txt";
-		final String filePath = Constants.INPUT_PATH+System.getProperty("file.separator")+inputFileName;
+		final String filePath = Constants.TESTING_INPUT_PATH+System.getProperty("file.separator")+inputFileName;
 		
 		SolutionParser solParser = new SolutionParser(problem);
 		Solution importedSolution = solParser.parse(filePath);
@@ -111,7 +111,7 @@ public class SolutionTest {
 		Solution sol = sg.generate();
 		
 		final String outputFileName=PROBLEM_NAME+"_Solution.txt";
-		final String filePath = Constants.OUTPUT_PATH+System.getProperty("file.separator")+outputFileName;
+		final String filePath = Constants.TESTING_OUTPUT_PATH+System.getProperty("file.separator")+outputFileName;
 		
 		sol.export(filePath);
 		

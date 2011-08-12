@@ -42,6 +42,7 @@ public class SolutionTest {
 	 * importo
 	 * controllo che sol importata sia = sol del file
 	 */
+	//TODO deve essere spostato
 	@Test
 	public final void testSolutionString1() throws Exception {
 		final String PROBLEM_NAME="problema10.txt";
@@ -57,12 +58,12 @@ public class SolutionTest {
 		
 		Solution expectedSolution=new Solution(matrix,problem);
 		
-		final String inputFileName=PROBLEM_NAME+"_Solution.txt";
-		final String filePath = Constants.TESTING_INPUT_PATH+System.getProperty("file.separator")+inputFileName;
-		
-		SolutionParser solParser = new SolutionParser(problem);
-		Solution importedSolution = solParser.parse(filePath);
-		
+
+		final String inputFileName = PROBLEM_NAME+"_Solution.txt";
+		final String inputFileFolder = Constants.TESTING_INPUT_PATH+System.getProperty("file.separator");
+		SolutionParser solParser = new SolutionParser(inputFileFolder, problem);
+		Solution importedSolution = solParser.parse(inputFileName);
+	
 		assertTrue(expectedSolution.calcDistance(importedSolution)==0);
 	}
 	
@@ -104,6 +105,7 @@ public class SolutionTest {
 	 * controllo =
 	 */
 	@Test
+	//TODO deve essere spostato
 	public final void testExport1() throws Exception {
 		final String PROBLEM_NAME="Cap.50.40.5.1.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);
@@ -111,12 +113,12 @@ public class SolutionTest {
 		Solution sol = sg.generate();
 		
 		final String outputFileName=PROBLEM_NAME+"_Solution.txt";
-		final String filePath = Constants.TESTING_OUTPUT_PATH+System.getProperty("file.separator")+outputFileName;
+		final String fileFolder = Constants.TESTING_OUTPUT_PATH+System.getProperty("file.separator");
 		
-		sol.export(filePath);
+		sol.export(fileFolder+outputFileName);
 		
-		SolutionParser solParser = new SolutionParser(problem);
-		Solution importedSol = solParser.parse(filePath);
+		SolutionParser solParser = new SolutionParser(fileFolder, problem);
+		Solution importedSol = solParser.parse(outputFileName);
 		
 		assertTrue(sol.calcDistance(importedSol)==0);
 		assertTrue(sol.getObjectiveFunction()==importedSol.getObjectiveFunction());		

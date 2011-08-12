@@ -8,13 +8,19 @@ import data.Solution;
 public class SolutionParser extends Parser {
 	private Problem problem;
 	
-	public SolutionParser(String path) {
+	/**
+	 * Crea un parser in grado di leggere un file contenente la descrizione di una soluzione e di restituire 
+	 * l'oggetto corrispondente.
+	 * path indica la posizione (percorso assoluto) della cartella contenente il file di input (che viene specificato
+	 * con il parametro inputFile del metodo parse).
+	 */
+	public SolutionParser(String path, Problem problem) {
 		super(path);
+		this.problem = problem;
 	}
 	
-	/*
-	 * Esegue il parsing di una soluzione da un file (file = nome completo [incluso il path])
-	 * Precondizione: i dati devono essere nel formato usato dal metodo export(), con i valori separati da \t
+	/**
+	 * Effettua il parsing del file di nome inputFile, crea e restituisce la Solution descritta in tale file.
 	 */
 	@Override
 	public Solution parse(String file) throws Exception {
@@ -24,7 +30,7 @@ public class SolutionParser extends Parser {
 		//non uso la riga 0
 		Arrays.fill(solutionMatrix[0], INT_NOT_USED);
 		
-		BufferedReader bufferedReader = Io.openInFile(file);
+		BufferedReader bufferedReader = Io.openInFile(path+file);
 		String line;
 		int supplier=1;
 		while ((line = bufferedReader.readLine()) != null){

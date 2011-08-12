@@ -1,5 +1,6 @@
-package neighbourgenerator;
+package neighbourgenerator.orderstrategy;
 
+import data.IdList;
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -13,7 +14,7 @@ public class FullestFirstOrderStrategy extends SupplierOrderStrategy {
 	}
 
 	@Override
-	IdList createList(Solution solution, int size) {
+	public IdList createList(Solution solution, int size) {
 		Supplier [] orderedSuppliers=problem.sortByBoughtQuantity(solution);
 		int suppliersPoolSize=(int)(problem.getDimension()*POOL_PORTION);
 		IdList list = new IdList(size);

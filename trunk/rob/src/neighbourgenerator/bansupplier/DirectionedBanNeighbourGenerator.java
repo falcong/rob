@@ -7,9 +7,12 @@
  * (fascio di sconto attualmente attiva)
  */
 
-package neighbourgenerator;
+package neighbourgenerator.bansupplier;
 
 import java.util.HashSet;
+
+import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrategy;
+import neighbourgenerator.orderstrategy.FullestFirstOrderStrategy;
 
 import data.Problem;
 import data.Solution;

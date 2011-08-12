@@ -1,5 +1,8 @@
-package neighbourgenerator;
+package neighbourgenerator.bansupplier;
 
+
+import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
+import neighbourgenerator.orderstrategy.RandomOrderStrategy;
 import data.Problem;
 
 public class BanRandomNeighbourGenerator extends BanSupplierNeighbourGenerator {

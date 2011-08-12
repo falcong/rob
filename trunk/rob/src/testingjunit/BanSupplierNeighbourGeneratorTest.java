@@ -3,11 +3,12 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
-import neighbourgenerator.BanSupplierNeighbourGenerator;
-import neighbourgenerator.RandomEmptyingStrategy;
-import neighbourgenerator.RandomOrderStrategy;
-import neighbourgenerator.SupplierEmptyingStrategy;
-import neighbourgenerator.SupplierOrderStrategy;
+import neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator;
+import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
+import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
+
+import neighbourgenerator.orderstrategy.RandomOrderStrategy;
+import neighbourgenerator.orderstrategy.SupplierOrderStrategy;
 
 import org.junit.Before;
 import org.junit.Test;

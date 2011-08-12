@@ -1,5 +1,6 @@
-package neighbourgenerator;
+package neighbourgenerator.orderstrategy;
 
+import data.IdList;
 import data.Problem;
 import data.Solution;
 
@@ -15,7 +16,7 @@ public class RandomOrderStrategy extends SupplierOrderStrategy {
 	 * di prodotto acquistata
 	 */
 	@Override
-	IdList createList(Solution solution, int size) {
+	public IdList createList(Solution solution, int size) {
 		IdList list = new IdList(size);
 		for (int i=0;i<size;i++) {
 			int randomSup = problem.getRandomSupplierId(list.getHashSet());

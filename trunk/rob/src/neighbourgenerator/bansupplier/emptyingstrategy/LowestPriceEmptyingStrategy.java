@@ -1,5 +1,6 @@
-package neighbourgenerator;
+package neighbourgenerator.bansupplier.emptyingstrategy;
 
+import data.IdList;
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -22,7 +23,7 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 	 * seguendo l'ordine di list.
 	 */
 	@Override
-	void emptySuppliers(IdList list, Solution solution) {
+	public void emptySuppliers(IdList list, Solution solution) {
 		this.list=list;
 		this.solution=solution;
 		for(int i=0; i<list.getSize(); i++){

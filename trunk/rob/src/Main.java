@@ -1,8 +1,8 @@
 import io.Io;
 import io.ProblemParser;
 import neighbourgenerator.AdvancedNeighbourGenerator;
-import neighbourgenerator.BanFullNeighbourGenerator;
 import neighbourgenerator.EmptyCellsNeighbourGenerator;
+import neighbourgenerator.bansupplier.BanFullNeighbourGenerator;
 import data.Problem;
 import data.Solution;
 import solutiongenerator.LinesSolutionGenerator;

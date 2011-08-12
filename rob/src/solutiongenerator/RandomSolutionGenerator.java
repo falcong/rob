@@ -9,11 +9,16 @@ import data.Supplier;
 
 public class RandomSolutionGenerator extends SolutionGenerator {
 
+	/**
+	 * Crea un generatore di soluzione casuale per il problema problem.
+	 */
 	public RandomSolutionGenerator(Problem problem) {
 		super(problem);
 	}
 
-
+	/**
+	 * Genera la soluzione.
+	 */
 	public Solution generate() {
 		
 		int purchased[][] = new int[problem.getDimension() + 1][problem.getNumProducts() + 1]; 

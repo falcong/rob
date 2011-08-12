@@ -10,9 +10,9 @@ public class RandomEmptyingStrategy extends SupplierEmptyingStrategy {
 	}
 	/**
 	 * Questo metodo cerca di svuotare intere righe di soluzione corrispondenti ai
-	 * i fornitori contenuti in list secondo questo criterio:<br>
+	 * fornitori contenuti in list secondo questo criterio:<br>
 	 * Toglie gli acquisti dai fornitori in list spostandoli negli altri fornitori
-	 * partendo da un fornitore a caso seguendo l'odine specificato nel problema.<br>
+	 * partendo da un fornitore a caso e seguendo l'odine specificato nel problema.<br>
 	 * Se gli altri mercati non sono sufficienti a contenere i tutti i prodotti
 	 * delle righe da svuotare, sposterà tutto quello è possibile spostare mantenendo l'ammissibilità,
 	 * seguendo l'ordine di list.

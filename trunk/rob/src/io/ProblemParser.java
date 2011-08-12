@@ -10,7 +10,6 @@ import util.Utility;
 public class ProblemParser extends Parser{
 	int numProducts;
 	String file;
-	String problemsPath;
 	
 	final boolean BOOLEAN_NOT_USED = false;
 	
@@ -27,15 +26,25 @@ public class ProblemParser extends Parser{
 	final String SEPARATOR = "\\s[\\s]*";
 	final String STRING_TO_STRIP = "[\\s]*:[\\s]*";
 	
+	
+	/**
+	 * Crea un parser in grado di leggere un file contenente la descrizione di un problema e di restituire 
+	 * l'oggetto corrispondente.
+	 * path indica la posizione (percorso assoluto) della cartella contenente il file di input (che viene specificato
+	 * con il parametro inputFile del metodo parse).
+	 */
 	public ProblemParser(String path) {
-		problemsPath = path;
+		super(path);
 	}
+	
+	
 
-	/*
-	 * Crea Problem descritto nel file problemFile [formato di Manerba].
+	/**
+	 * Effettua il parsing del file di nome inputFile, crea e restituisce il Problem descritto in tale file
+	 * [formato di Manerba].
 	 */
 	public Problem parse(String problemFile) throws Exception{
-		file = problemsPath + File.separator + problemFile;
+		file = path + File.separator + problemFile;
 		
 		//leggo da file i vari valori
 		//NAME

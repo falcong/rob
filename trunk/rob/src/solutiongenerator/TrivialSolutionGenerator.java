@@ -8,10 +8,16 @@ import data.Supplier;
 
 
 public class TrivialSolutionGenerator extends SolutionGenerator {
+	/**
+	 * Crea un generatore di soluzione trivial per il problema problem.
+	 */
 	public TrivialSolutionGenerator(Problem problem) {
 		super(problem);
 	}
 	
+	/**
+	 * Genera la soluzione.
+	 */
 	@Override
 	public Solution generate() {
 		

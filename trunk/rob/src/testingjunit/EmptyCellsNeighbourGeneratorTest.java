@@ -46,7 +46,9 @@ public class EmptyCellsNeighbourGeneratorTest {
 				Solution sol1 = emptyGenerator.generate(sol0, distance);
 				//controllo ammissibilità della soluzione generata dal metodo
 				boolean ok = sol1.isAdmissible(problem);
-				
+				//verifico che il generatore abbia davvero prodotto
+				//una nuova soluzione diversa
+				assertTrue(sol0.calcDistance(sol1)!=0);
 				
 				if(!ok){
 					System.out.println("fallimento di "+CLASS_NAME+"."+methodName+"\n"+

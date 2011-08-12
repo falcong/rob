@@ -1,4 +1,3 @@
-//TODO CONFLITTO
 /*
  * m = n° tot fornitori
  * ordina i fornitori in base al numero totale di prodotti acquistati (decrescente)

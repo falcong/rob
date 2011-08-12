@@ -62,6 +62,7 @@ public class AdvancedNeighbourGeneratorTest {
 			Solution solution2 = generator.generate(solution1);
 			//dopo
 			assertTrue(solution2.isAdmissible(problem));
+			assertTrue(solution1.calcDistance(solution2)!=0);
 			int sup1Segment2 = sup1.activatedSegment(solution2);
 			int sup2Segment2 = sup2.activatedSegment(solution2);
 			System.out.println("\ndopo:\n" + "fascia s1 = " + sup1Segment2

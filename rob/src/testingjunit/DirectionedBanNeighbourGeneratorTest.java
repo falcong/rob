@@ -3,52 +3,52 @@ package testingjunit;
 import static org.junit.Assert.*;
 import io.ProblemParser;
 
-import neighbourgenerator.BasicNeighbourGenerator;
+import neighbourgenerator.BanFullNeighbourGenerator;
+import neighbourgenerator.DirectionedBanNeighbourGenerator;
 
 import org.junit.Test;
 
+import solutiongenerator.RandomSolutionGenerator;
 import data.Problem;
 import data.Solution;
 
-import solutiongenerator.RandomSolutionGenerator;
-
-public class BasicNeighbourGeneratorTest {
+public class DirectionedBanNeighbourGeneratorTest {
+	
 	final String CLASS_NAME = this.getClass().getName();
-
+	
 	//test di generate()
 	/*
-	 * Caso generale (controllo distanza).
+	 * Caso generale.
 	 */
 	@Test
-	public final void testGenerate1() throws Exception {
-		final String methodName = new Exception().getStackTrace()[0].getMethodName();
+	public final void testGenerateSolutionInt() throws Exception {
+		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		
-		final String PROBLEM_NAME = "Cap.10.100.3.2.10.1.ctqd";
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
 		Problem problem = null;
-		problem = pp.parse(PROBLEM_NAME);
+	    problem = pp.parse(PROBLEM_NAME);
 		
-		final int NUM_SUPPLIERS = problem.getDimension();
+		final int numSuppliers = problem.getDimension(); 
 		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();
-
 		
-		BasicNeighbourGenerator basicGenerator = new BasicNeighbourGenerator(problem); 
+		DirectionedBanNeighbourGenerator dirBanGenerator = new DirectionedBanNeighbourGenerator(problem); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
 		final int N = 10;
 		for(int i=1; i<=N; i++){
 			//provo tutte le possibili distanze
-			final int MAX_DISTANCE = 100;
-			for(int distance = 1; distance<=MAX_DISTANCE; distance+=5){
-				Solution sol1 = basicGenerator.generate(sol0, distance);
+			final int MAX_DISTANCE = numSuppliers/2;
+			for(int distance = 1; distance<=MAX_DISTANCE; distance++){
+				Solution sol1 = dirBanGenerator.generate(sol0, distance);
 				//controllo ammissibilità della soluzione generata dal metodo
 				boolean ok = sol1.isAdmissible(problem);
 				//verifico che il generatore abbia davvero prodotto
 				//una nuova soluzione diversa
-				assertTrue(sol0.calcDistance(sol1)==distance);
+				assertTrue(sol0.calcDistance(sol1)!=0);
 				
 				if(!ok){
 					System.out.println("fallimento di "+CLASS_NAME+"."+methodName+"\n"+
@@ -62,7 +62,7 @@ public class BasicNeighbourGeneratorTest {
 				
 				assertTrue(ok);
 			}
-		}		
+		}
 	}
 
 }

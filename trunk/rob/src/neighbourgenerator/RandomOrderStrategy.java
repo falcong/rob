@@ -9,6 +9,11 @@ public class RandomOrderStrategy extends SupplierOrderStrategy {
 		super(problem);
 	}
 
+	/**
+	 * Questo metodo crea una lista di dimensione size contenente ID di fornitori presi casualmente
+	 * tra tutti i fornitori del problema che sono presenti in soluzione con almeno un'unità 
+	 * di prodotto acquistata
+	 */
 	@Override
 	IdList createList(Solution solution, int size) {
 		IdList list = new IdList(size);

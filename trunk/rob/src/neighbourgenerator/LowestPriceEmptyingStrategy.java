@@ -17,7 +17,7 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 	 * i restanti fornitori secondo il prezzo corrente di P (considerando anche le fasce
 	 * di sconto) e quindi sposta gli acquisti del prodotto P iniziando dai fornitori
 	 * col prezzo più basso.<br>
-	 * Se gli altri mercati non sono sufficienti a contenere i tutti i prodotti
+	 * Se gli altri mercati non sono sufficienti a contenere tutti i prodotti
 	 * delle righe da svuotare, sposterà tutto quello è possibile spostare mantenendo l'ammissibilità,
 	 * seguendo l'ordine di list.
 	 */

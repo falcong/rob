@@ -16,40 +16,12 @@ import data.Solution;
 import data.Supplier;
 
 
-public class DirectionedBanNeighbourGenerator extends
-		BanFullNeighbourGenerator {
+public class DirectionedBanNeighbourGenerator extends BanSupplierNeighbourGenerator {
+		
 
-	public DirectionedBanNeighbourGenerator(Problem problem) {
-		super(problem);
-		this.problem=problem;
-	}
 
-	/*
-	 * Cerca per quanto possibile di svuotare completamente il fornitore bannedSupId
-	 * prendendo i fornitori in ordine di prezzo.
-	 * Se gli altri mercati non sono sufficienti a contenere i suoi prodotti svuota tutto
-	 * quello è possibile spostare mantenendo l'ammissibilità
-	 */
-	@Override
-	protected void emptySupplier(int bannedSupId, HashSet<Integer> banned, Solution solution) {
-		int numProducts=problem.getNumProducts();
-		//ciclo sui prodotti e svuoto cella per cella
-		for(int p=1;p<=numProducts;p++){
-			if(solution.getQuantity(bannedSupId, p)==0)
-				continue;
-			Supplier [] orderedSuppliers = problem.sortByCurrentPrice(p, solution);
-			for(int s=1; s<=problem.getDimension();s++){
-				Supplier currentSupplier = orderedSuppliers[s];
-				int currentSupId = currentSupplier.getId();
-				if(banned.contains(currentSupId))
-					continue;
-				int residual = currentSupplier.getResidual(p, solution);
-				if (residual<=0)
-					continue;
-				int quantity=Math.min(residual, solution.getQuantity(bannedSupId, p));
-				solution.moveQuantity(p, bannedSupId, currentSupId, quantity, problem);
-			}
-		}
+public DirectionedBanNeighbourGenerator(Problem problem) {
+	super(problem, new LowestPriceEmptyingStrategy(problem), new FullestFirstOrderStrategy(problem));
 	}
 }
 

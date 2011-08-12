@@ -12,7 +12,10 @@ public class LinesSolutionGenerator extends SolutionGenerator {
 	int productsNumber;
 	int solution [][];
 	int [] residualDemand;
-	                
+	
+	/**
+	 * Crea un generatore di soluzione lines per il problema problem.
+	 */
 	public LinesSolutionGenerator (Problem problem) {
 		super(problem);
 		suppliersNumber = problem.getDimension();
@@ -22,6 +25,9 @@ public class LinesSolutionGenerator extends SolutionGenerator {
 	
 
 	@Override
+	/**
+	 * Genera la soluzione.
+	 */
 	public Solution generate() {
 		HashSet<Integer> chosen=new HashSet<Integer>();
 		

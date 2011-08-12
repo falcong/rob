@@ -5,6 +5,7 @@ import neighbourgenerator.BanFullNeighbourGenerator;
 import neighbourgenerator.EmptyCellsNeighbourGenerator;
 import data.Problem;
 import data.Solution;
+import solutiongenerator.LinesSolutionGenerator;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
@@ -16,7 +17,7 @@ import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName
 public class Main {
 		
 	public static void main(String[] args) throws Exception{
-		final String PROBLEM_NAME = "Cap.50.40.3.1.70.1.ctqd";
+		final String PROBLEM_NAME = "Cap.10.40.3.2.99.1.ctqd";
 		
 		ProblemParser problemParser = null;
 		final String INPUT_PARAMETER = "input";
@@ -52,19 +53,19 @@ public class Main {
 		intVNS.setIncrement(K_INCREMENT);
 		
 		//vns esterna
-      	//s0 = soluzione iniziale random
-		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
-      	Solution s0 = randomGenerator.generate();
+      	//s0 = soluzione iniziale lines
+		LinesSolutionGenerator linesGenerator = new LinesSolutionGenerator(problem);
+      	Solution s0 = linesGenerator.generate();
       	
       	final int K_MAX = 6;
       	final BanFullNeighbourGenerator extShaking = new BanFullNeighbourGenerator(problem);
       	//in secondi
-      	final int MAX_TIME = 30;
+      	final int MAX_TIME = 5;
       	VNS extVNS = new VNS(K_MAX, intVNS, extShaking, problem, MAX_TIME);
 		
       	//lancio la VNS esterna (s1=soluzione finale)
       	Solution s1 = extVNS.execute(s0);
-      	System.out.println("funzione obiettivo della soluzione s1 = "+s1.getObjectiveFunction()+"\n\n\n");
+      	System.out.println("funzione obiettivo della soluzione s1 = "+String.format ("%.2f", s1.getObjectiveFunction())+"\n\n\n");
 		
 		//trovo ottimo con cplex
 		Cplex cplexSolver = new Cplex(problem);
@@ -72,6 +73,6 @@ public class Main {
 		
 		//stampo errore di s1
 		double error = s1.getObjectiveFunction()/cplexSol.getObjectiveFunction()*100-100;
-		System.out.println("\n\n\nerrore della soluzione s1 = "+error);
+		System.out.println("\n\n\nerrore della soluzione s1 = "+String.format ("%.2f", error)+" %");
 	}
 }

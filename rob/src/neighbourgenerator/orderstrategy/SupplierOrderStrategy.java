@@ -1,5 +1,6 @@
-package neighbourgenerator;
+package neighbourgenerator.orderstrategy;
 
+import data.IdList;
 import data.Problem;
 import data.Solution;
 
@@ -11,5 +12,5 @@ public abstract class SupplierOrderStrategy {
 		this.problem=problem;
 	}
 	
-	abstract IdList createList(Solution solution, int distance);
+	abstract public IdList createList(Solution solution, int distance);
 }

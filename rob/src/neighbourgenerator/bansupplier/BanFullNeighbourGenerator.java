@@ -6,9 +6,12 @@
  * scarico tutti i prodotti in un fornitore casuale, se non sufficiente continuo con i successivi
  */
 
-package neighbourgenerator;
+package neighbourgenerator.bansupplier;
 
 import java.util.HashSet;
+
+import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
+import neighbourgenerator.orderstrategy.FullestFirstOrderStrategy;
 
 import data.Problem;
 import data.Solution;

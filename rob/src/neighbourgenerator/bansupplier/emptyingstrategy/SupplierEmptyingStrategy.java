@@ -1,5 +1,6 @@
-package neighbourgenerator;
+package neighbourgenerator.bansupplier.emptyingstrategy;
 
+import data.IdList;
 import data.Problem;
 import data.Solution;
 
@@ -13,6 +14,6 @@ public abstract class SupplierEmptyingStrategy {
 		this.problem=problem;
 	}
 	
-	abstract void emptySuppliers(IdList list, Solution solution);
+	abstract public void emptySuppliers(IdList list, Solution solution);
 	
 }

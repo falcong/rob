@@ -4,10 +4,16 @@
  * scarico tutti i prodotti in un fornitore casuale, se non sufficiente continuo con i successivi
  */
 
-package neighbourgenerator;
+package neighbourgenerator.bansupplier;
 
 import java.util.HashSet;
 
+import neighbourgenerator.DistancedNeighbourGenerator;
+import neighbourgenerator.NeighbourGenerator;
+import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
+import neighbourgenerator.orderstrategy.SupplierOrderStrategy;
+
+import data.IdList;
 import data.Problem;
 import data.Solution;
 

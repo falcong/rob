@@ -1,4 +1,4 @@
-package neighbourgenerator;
+package data;
 
 import java.util.HashSet;
 

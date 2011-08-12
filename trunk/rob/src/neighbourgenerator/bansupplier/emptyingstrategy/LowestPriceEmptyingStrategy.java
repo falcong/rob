@@ -52,25 +52,3 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 	              }
 	}
 }
-
-//@Override
-//protected void emptySupplier(int bannedSupId, HashSet<Integer> banned, Solution solution) {
-//      int numProducts=problem.getNumProducts();
-//      //ciclo sui prodotti e svuoto cella per cella
-//      for(int p=1;p<=numProducts;p++){
-//              if(solution.getQuantity(bannedSupId, p)==0)
-//                      continue;
-//              Supplier [] orderedSuppliers = problem.sortByCurrentPrice(p, solution);
-//              for(int s=1; s<=problem.getDimension();s++){
-//                      Supplier currentSupplier = orderedSuppliers[s];
-//                      int currentSupId = currentSupplier.getId();
-//                      if(banned.contains(currentSupId))
-//                              continue;
-//                      int residual = currentSupplier.getResidual(p, solution);
-//                      if (residual<=0)
-//                              continue;
-//                      int quantity=Math.min(residual, solution.getQuantity(bannedSupId, p));
-//                      solution.moveQuantity(p, bannedSupId, currentSupId, quantity, problem);
-//              }
-//			}
-//	}

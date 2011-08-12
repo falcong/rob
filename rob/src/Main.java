@@ -1,4 +1,3 @@
-//TODO cancellare
 import io.Io;
 import io.ProblemParser;
 import neighbourgenerator.AdvancedNeighbourGenerator;

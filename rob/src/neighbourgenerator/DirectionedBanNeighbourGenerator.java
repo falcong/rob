@@ -34,5 +34,3 @@ public DirectionedBanNeighbourGenerator(Problem problem) {
 
 
 
-
-

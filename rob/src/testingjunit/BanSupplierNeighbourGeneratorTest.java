@@ -4,6 +4,11 @@ import static org.junit.Assert.*;
 import io.ProblemParser;
 
 import neighbourgenerator.BanSupplierNeighbourGenerator;
+import neighbourgenerator.RandomEmptyingStrategy;
+import neighbourgenerator.RandomOrderStrategy;
+import neighbourgenerator.SupplierEmptyingStrategy;
+import neighbourgenerator.SupplierOrderStrategy;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,8 +43,9 @@ public class BanSupplierNeighbourGeneratorTest {
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();
 
-		
-		BanSupplierNeighbourGenerator banGenerator = new BanSupplierNeighbourGenerator(problem); 
+		SupplierEmptyingStrategy empStrategy= new RandomEmptyingStrategy(problem);
+		SupplierOrderStrategy ordStrategy = new RandomOrderStrategy(problem);
+		BanSupplierNeighbourGenerator banGenerator = new BanSupplierNeighbourGenerator(problem, empStrategy, ordStrategy); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
 		final int N = 10;

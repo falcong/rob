@@ -12,7 +12,7 @@ public class Io {
 	//file di configurazione
 	private static final String CONFIG_FILE = "config.txt";
 	
-	/*
+	/**
 	 * Apre un file il lettura e restituisce il corrispondente BufferedReader. 
 	 */
 	public static BufferedReader openInFile(String fileName) throws Exception{
@@ -23,8 +23,11 @@ public class Io {
 	}
 	
 	
-	/*
-	 * apre un file su cui scrivere e restituisce il Print Stream corrispondente
+	/**
+	 * Apre un file su cui scrivere e restituisce il PrintStream corrispondente.
+	 * append indica dove viene inserita la sequenza di caratteri scritta sul file:
+	 * append=true -> alla fine del file, preservando il contenuto del file preesistente
+	 * append=false -> all'inizio del file, sovrascrivendo il file preesistente
 	 */
 	public static PrintStream openOutFile(String fileName, boolean append) throws FileNotFoundException{
 	    	FileOutputStream fileOutputStream = new FileOutputStream(fileName, append);
@@ -32,10 +35,10 @@ public class Io {
 	}
 	
 	
-	/*
-	 * legge da config.txt il parametro specificato
-	 * [restituisce null se il parametro non viene trovato]
-	 * Se parameter è presente più volte viene restituito il primo valore.
+	/**
+	 * Legge da config.txt il parametro parameter.
+	 * Restituisce null se il parametro non viene trovato.
+	 * Se parameter è presente più volte nel file ne viene restituito il primo valore.
 	 * Il file non deve contenere linee vuote.
 	 */
 	public static String getConfigParameter(String parameter) throws Exception {

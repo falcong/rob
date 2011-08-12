@@ -7,9 +7,9 @@ import data.Solution;
 
 public class SolutionParser extends Parser {
 	private Problem problem;
-
-	public SolutionParser(Problem problem){
-		this.problem = problem;
+	
+	public SolutionParser(String path) {
+		super(path);
 	}
 	
 	/*

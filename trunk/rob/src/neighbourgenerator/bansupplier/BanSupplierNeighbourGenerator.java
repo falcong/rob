@@ -6,8 +6,6 @@
 
 package neighbourgenerator.bansupplier;
 
-import java.util.HashSet;
-
 import neighbourgenerator.DistancedNeighbourGenerator;
 import neighbourgenerator.NeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;

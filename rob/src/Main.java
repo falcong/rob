@@ -6,7 +6,6 @@ import neighbourgenerator.bansupplier.BanFullNeighbourGenerator;
 import data.Problem;
 import data.Solution;
 import solutiongenerator.LinesSolutionGenerator;
-import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;

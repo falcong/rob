@@ -9,14 +9,10 @@
 
 package neighbourgenerator.bansupplier;
 
-import java.util.HashSet;
-
 import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrategy;
 import neighbourgenerator.orderstrategy.FullestFirstOrderStrategy;
 
 import data.Problem;
-import data.Solution;
-import data.Supplier;
 
 
 public class DirectionedBanNeighbourGenerator extends BanSupplierNeighbourGenerator {

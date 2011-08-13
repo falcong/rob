@@ -2,11 +2,8 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
-
-import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrategy;
-
+import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import org.junit.Test;
-
 import solutiongenerator.RandomSolutionGenerator;
 import data.IdList;
 import data.Problem;
@@ -23,37 +20,38 @@ public class RandomEmptyingStrategyTest {
 	 */
 	@Test
 	public void testEmptySuppliers1() throws Exception {
-		fail("Not yet implemented");
-		//final String PROBLEM_NAME = "Cap.50.40.5.1.10.1.ctqd";
 		final String PROBLEM_NAME = "problema16.txt";
 		ProblemParser parser = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		Problem problem = parser.parse(PROBLEM_NAME);
 		
-		RandomSolutionGenerator generator = new RandomSolutionGenerator(problem);
 		//sol0 = soluzione iniziale
-		Solution sol0 = generator.generate();
+		int r0[] = {0, 0, 0, 0};
+		int r1[] = {0, 40, 20, 23};
+		int r2[] = {0, 10, 12, 30};
+		int r3[] = {0, 10, 10, 10};
+		int matrix[][] = new int[4][];
+		matrix[0] = r0;
+		matrix[1] = r1;
+		matrix[2] = r2;
+		matrix[3] = r3;
+		Solution sol0 = new Solution(matrix, problem);
+		assertTrue(sol0.isAdmissible(problem));
 		
-		//lista con i fornitori da svuotare = {1,10,21}
-		final int NUM_SUPPLIERS = 3;
-		IdList toEmpty = new IdList(NUM_SUPPLIERS);
+		//lista con i fornitori da svuotare = {1}
+		IdList toEmpty = new IdList(1);
 		toEmpty.add(1, 0);
-		toEmpty.add(10, 1);
-		toEmpty.add(21, 2);
 		
 		//sol1 = soluzione con i fornitori svuotati
 		Solution sol1 = new Solution(sol0);
-		LowestPriceEmptyingStrategy strategy = new LowestPriceEmptyingStrategy(problem);
+		RandomEmptyingStrategy strategy = new RandomEmptyingStrategy(problem);
 		strategy.emptySuppliers(toEmpty, sol1);
 		
 		//controllo ammissibilità soluzione
 		assertTrue(sol1.isAdmissible(problem));
 		
-		//controllo che per ogni fornitore almeno 1 prodotto sia stato spostato
-		for(int s=0; s<toEmpty.getSize(); s++){
-			int totalBoughtSol0 = sol0.totalQuantityBought(toEmpty.getId(s));
-			int totalBoughtSol1 = sol1.totalQuantityBought(toEmpty.getId(s));
+		//controllo che almeno 1 prodotto sia stato spostato
+			int totalBoughtSol0 = sol0.totalQuantityBought(1);
+			int totalBoughtSol1 = sol1.totalQuantityBought(1);
 			assertTrue(totalBoughtSol1 < totalBoughtSol0);
-		}
 	}
-
 }

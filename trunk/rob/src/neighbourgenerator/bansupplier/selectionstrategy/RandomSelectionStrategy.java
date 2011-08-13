@@ -1,4 +1,4 @@
-package neighbourgenerator.bansupplier.orderstrategy;
+package neighbourgenerator.bansupplier.selectionstrategy;
 
 import data.IdList;
 import data.Problem;

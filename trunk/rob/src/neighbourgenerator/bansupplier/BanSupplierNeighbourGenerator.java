@@ -9,7 +9,7 @@ package neighbourgenerator.bansupplier;
 import neighbourgenerator.DistancedNeighbourGenerator;
 import neighbourgenerator.NeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
-import neighbourgenerator.bansupplier.orderstrategy.SupplierSelectionStrategy;
+import neighbourgenerator.bansupplier.selectionstrategy.SupplierSelectionStrategy;
 
 import data.IdList;
 import data.Problem;

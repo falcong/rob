@@ -10,7 +10,7 @@
 package neighbourgenerator.bansupplier;
 
 import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrategy;
-import neighbourgenerator.bansupplier.orderstrategy.FullestFirstSelectionStrategy;
+import neighbourgenerator.bansupplier.selectionstrategy.FullestFirstSelectionStrategy;
 
 import data.Problem;
 

@@ -2,7 +2,7 @@ package neighbourgenerator.bansupplier;
 
 
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
-import neighbourgenerator.bansupplier.orderstrategy.RandomSelectionStrategy;
+import neighbourgenerator.bansupplier.selectionstrategy.RandomSelectionStrategy;
 import data.Problem;
 
 public class BanRandomNeighbourGenerator extends BanSupplierNeighbourGenerator {

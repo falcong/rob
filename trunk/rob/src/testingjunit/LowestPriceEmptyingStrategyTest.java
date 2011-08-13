@@ -2,13 +2,8 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
-
 import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrategy;
-
 import org.junit.Test;
-
-import solutiongenerator.RandomSolutionGenerator;
-
 import data.IdList;
 import data.Problem;
 import data.Solution;
@@ -54,10 +49,6 @@ public class LowestPriceEmptyingStrategyTest {
 		//controllo ammissibilità soluzione
 		assertTrue(sol1.isAdmissible(problem));
 		
-		sol0.print();
-		System.out.println("\n\n\n");
-		sol1.print();
-		
 		/*
 		 * sol0 è fatta in modo che svuotando il fornitore 1 tutti i prodotti vadano a finire nel fornitore 3
 		 * controllo che almeno 1 prodotto del fornitore 1 sia stato spostato altrove
@@ -81,5 +72,4 @@ public class LowestPriceEmptyingStrategyTest {
 		 * sol1 
 		 */
 	}
-
 }

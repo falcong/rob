@@ -14,9 +14,9 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 	/**
 	 * Questo metodo cerca di svuotare intere righe di soluzione corrispondenti ai
 	 * i fornitori contenuti in list secondo questo criterio:<br>
-	 * Per ciascun prodotto P del fornitore da svuotare, l'algoritmo mette in ordine 
-	 * i restanti fornitori secondo il prezzo corrente di P (considerando anche le fasce
-	 * di sconto) e quindi sposta gli acquisti del prodotto P iniziando dai fornitori
+	 * Per ciascun prodotto p del fornitore da svuotare, l'algoritmo mette in ordine 
+	 * i restanti fornitori secondo il prezzo corrente di p (considerando anche le fasce
+	 * di sconto) e quindi sposta gli acquisti del prodotto p iniziando dai fornitori
 	 * col prezzo più basso.<br>
 	 * Se gli altri mercati non sono sufficienti a contenere tutti i prodotti
 	 * delle righe da svuotare, sposterà tutto quello è possibile spostare mantenendo l'ammissibilità,

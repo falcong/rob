@@ -20,12 +20,12 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 	
 	protected Problem problem;
 	SupplierEmptyingStrategy empStrategy;
-	SupplierSelectionStrategy ordStrategy;
+	SupplierSelectionStrategy selStrategy;
 	
 	public BanSupplierNeighbourGenerator(Problem problem, SupplierSelectionStrategy ordStrategy, SupplierEmptyingStrategy empStrategy) {
 		this.problem=problem;
 		this.empStrategy=empStrategy;
-		this.ordStrategy=ordStrategy;		
+		this.selStrategy=ordStrategy;		
 	}
 	
 	public Solution generate(Solution solution){
@@ -39,7 +39,7 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 		Solution solutionCopy=new Solution(solution);
 		
 		//Costruisco una lista di distance fornitori casuali che voglio "bandire"
-		IdList list= ordStrategy.createList(solution, distance);
+		IdList list= selStrategy.createList(solution, distance);
 		//Modifico solutionCopy usando la strategia di empStrategy
 		empStrategy.emptySuppliers(list, solutionCopy);
 		

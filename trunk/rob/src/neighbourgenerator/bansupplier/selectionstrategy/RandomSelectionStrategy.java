@@ -14,6 +14,7 @@ public class RandomSelectionStrategy extends SupplierSelectionStrategy {
 	 * Questo metodo crea una lista di dimensione size contenente ID di fornitori presi casualmente
 	 * tra tutti i fornitori del problema che sono presenti in soluzione con almeno un'unità 
 	 * di prodotto acquistata
+	 * Precondizione: size<=dimensione_del_problema.
 	 */
 	@Override
 	public IdList createList(Solution solution, int size) {

@@ -1,12 +1,12 @@
-package neighbourgenerator.orderstrategy;
+package neighbourgenerator.bansupplier.orderstrategy;
 
 import data.IdList;
 import data.Problem;
 import data.Solution;
 
-public class RandomOrderStrategy extends SupplierOrderStrategy {
+public class RandomSelectionStrategy extends SupplierSelectionStrategy {
 
-	public RandomOrderStrategy(Problem problem) {
+	public RandomSelectionStrategy(Problem problem) {
 		super(problem);
 	}
 

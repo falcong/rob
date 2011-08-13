@@ -6,9 +6,8 @@ import io.ProblemParser;
 import neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
-
-import neighbourgenerator.orderstrategy.RandomOrderStrategy;
-import neighbourgenerator.orderstrategy.SupplierOrderStrategy;
+import neighbourgenerator.bansupplier.orderstrategy.RandomSelectionStrategy;
+import neighbourgenerator.bansupplier.orderstrategy.SupplierSelectionStrategy;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,8 +44,8 @@ public class BanSupplierNeighbourGeneratorTest {
 		Solution sol0 = randomGenerator.generate();
 
 		SupplierEmptyingStrategy empStrategy= new RandomEmptyingStrategy(problem);
-		SupplierOrderStrategy ordStrategy = new RandomOrderStrategy(problem);
-		BanSupplierNeighbourGenerator banGenerator = new BanSupplierNeighbourGenerator(problem, empStrategy, ordStrategy); 
+		SupplierSelectionStrategy ordStrategy = new RandomSelectionStrategy(problem);
+		BanSupplierNeighbourGenerator banGenerator = new BanSupplierNeighbourGenerator(problem, ordStrategy, empStrategy); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
 		final int N = 10;

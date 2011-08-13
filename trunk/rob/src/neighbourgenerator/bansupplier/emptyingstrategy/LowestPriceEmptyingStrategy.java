@@ -16,6 +16,9 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 
 	//TODO qui
 	/**
+	 * 
+	 */
+	/**
 	 * Questo metodo cerca di svuotare intere righe di soluzione corrispondenti ai
 	 * fornitori contenuti in list secondo questo criterio:<br>
 	 * Per ciascun prodotto p del fornitore da svuotare, l'algoritmo mette in ordine 
@@ -26,6 +29,9 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 	 * delle righe da svuotare, sposterà tutto quello è possibile spostare mantenendo l'ammissibilità,
 	 * seguendo l'ordine di list.
 	 */
+	/**
+	 * 
+	 */
 	@Override
 	public void emptySuppliers(IdList list, Solution solution) {
 		this.list=list;
@@ -35,7 +41,7 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 		}
       }
 	
-	
+
 	private void emptySupplier(int supplierId) {
 	      int numProducts=problem.getNumProducts();
 	      //ciclo sui prodotti e svuoto cella per cella

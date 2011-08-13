@@ -15,8 +15,6 @@ public class ProblemParser extends Parser{
 	
 	final int NOT_FOUND = -1;
 	final int DEMAND_NOT_FOUND = -1;
-	final int PRODUCT_NOT_PRESENT = -1;
-	
 	final char COMMENT_DELIMITER = '#';
 	final String DEMAND_SECTION_DELIMITER = "DEMAND_SECTION";
 	final String OFFER_SECTION_DELIMITER = "OFFER_SECTION";
@@ -392,8 +390,8 @@ public class ProblemParser extends Parser{
 		 */
 		basePrices[0] = INT_NOT_USED;
 		availability[0] = INT_NOT_USED;
-		Arrays.fill(basePrices, 1, basePrices.length, PRODUCT_NOT_PRESENT);
-		Arrays.fill(availability, 1, availability.length, PRODUCT_NOT_PRESENT);
+		Arrays.fill(basePrices, 1, basePrices.length, Problem.PRODUCT_NOT_PRESENT);
+		Arrays.fill(availability, 1, availability.length, Problem.PRODUCT_NOT_PRESENT);
 		
 		//leggo tutte le triplette (prodotto, costo, disponibilità) presenti in offer
 		for(int i=0; i<=offer.length-3; i+=3){

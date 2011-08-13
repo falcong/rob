@@ -1,11 +1,10 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
+import java.util.Arrays;
 import io.ProblemParser;
-import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
-
+import neighbourgenerator.bansupplier.selectionstrategy.RandomSelectionStrategy;
 import org.junit.Test;
-
 import solutiongenerator.RandomSolutionGenerator;
 import data.IdList;
 import data.Problem;
@@ -17,6 +16,7 @@ public class RandomSelectionStrategyTest {
 	/*
 	 * caso generale
 	 * controllare: num fornitori, non ripetuti, ammissibili
+	 * e che avevano almeno 1 unità acquistata
 	 */
 	@Test
 	public void testCreateList1() throws Exception {
@@ -28,27 +28,36 @@ public class RandomSelectionStrategyTest {
 		//sol0 = soluzione iniziale
 		Solution sol0 = generator.generate();
 		
-		//lista con i fornitori da svuotare = {1,10,21}
-		final int NUM_SUPPLIERS = 3;
-		IdList toEmpty = new IdList(NUM_SUPPLIERS);
-		toEmpty.add(1, 0);
-		toEmpty.add(10, 1);
-		toEmpty.add(21, 2);
+		RandomSelectionStrategy strategy = new RandomSelectionStrategy(problem);
 		
-		//sol1 = soluzione con i fornitori svuotati
-		Solution sol1 = new Solution(sol0);
-		RandomEmptyingStrategy strategy = new RandomEmptyingStrategy(problem);
-		strategy.emptySuppliers(toEmpty, sol1);
-		
-		//controllo ammissibilità soluzione
-		assertTrue(sol1.isAdmissible(problem));
-		
-		//controllo che per ogni fornitore almeno 1 prodotto sia stato spostato
-		for(int s=0; s<toEmpty.getSize(); s++){
-			int totalBoughtSol0 = sol0.totalQuantityBought(toEmpty.getId(s));
-			int totalBoughtSol1 = sol1.totalQuantityBought(toEmpty.getId(s));
-			assertTrue(totalBoughtSol1 < totalBoughtSol0);
+		//ripeto N volte il test a causa del non determinismo del metodo
+		final int N = 10;
+		for(int k=0; k<N; k++){
+			//lista di 10 fornitori presso cui compravo almeno 1 prodotto estratti casualmente 
+			final int NUM_SUPPLIERS = 10;
+			IdList list = strategy.createList(sol0, NUM_SUPPLIERS);
+			
+			//controllo il numero di fornitori
+			assertTrue(list.getSize() <= NUM_SUPPLIERS);
+			
+			for(int i=0; i<list.getSize(); i++){
+				//controllo l'ammissibilità del fornitore
+				assertTrue(list.getId(i)>=1	&&	list.getId(i)<=problem.getDimension());
+				
+				//controllo che presso il fornitore sia acquistato almeno un prodotto
+				assertTrue(sol0.totalQuantityBought(list.getId(i)) >= 1);
+			}
+			
+			//controllo che la lista non contenga duplicati
+			boolean found[] = new boolean[problem.getDimension()+1];
+			Arrays.fill(found, false);
+			
+			for(int i=0; i<list.getSize(); i++){
+				if(found[list.getId(i)]){
+					fail("La lista contiene un fornitore duplicato");
+				}
+				found[list.getId(i)] = true;
+			}
 		}
 	}
-
 }

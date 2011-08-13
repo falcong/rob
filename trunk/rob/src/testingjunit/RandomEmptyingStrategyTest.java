@@ -41,17 +41,20 @@ public class RandomEmptyingStrategyTest {
 		IdList toEmpty = new IdList(1);
 		toEmpty.add(1, 0);
 		
-		//sol1 = soluzione con i fornitori svuotati
-		Solution sol1 = new Solution(sol0);
-		RandomEmptyingStrategy strategy = new RandomEmptyingStrategy(problem);
-		strategy.emptySuppliers(toEmpty, sol1);
-		
-		//controllo ammissibilità soluzione
-		assertTrue(sol1.isAdmissible(problem));
-		
-		//controllo che almeno 1 prodotto sia stato spostato
-			int totalBoughtSol0 = sol0.totalQuantityBought(1);
+		//eseguo il test N volte perché emptySuppliers non è deterministico
+		final int N = 10;
+		for(int i=1; i<N; i++){
+			//sol1 = soluzione con i fornitori svuotati
+			Solution sol1 = new Solution(sol0);
+			RandomEmptyingStrategy strategy = new RandomEmptyingStrategy(problem);
+			strategy.emptySuppliers(toEmpty, sol1);
+			
+			//controllo ammissibilità soluzione
+			assertTrue(sol1.isAdmissible(problem));
+			
+			//controllo che tutto il fornitore 1 sia stato svuotato (la soluzione è fatta in modo che ciò sia possibile)
 			int totalBoughtSol1 = sol1.totalQuantityBought(1);
-			assertTrue(totalBoughtSol1 < totalBoughtSol0);
+			assertTrue(totalBoughtSol1 == 0);
+		}
 	}
 }

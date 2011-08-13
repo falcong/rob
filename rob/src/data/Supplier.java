@@ -299,4 +299,6 @@ public class Supplier {
 		int segment = activatedSegment(totalQuantity);
 		return totalQuantity-lowerBounds[segment];
 	}
+	
+	
 }

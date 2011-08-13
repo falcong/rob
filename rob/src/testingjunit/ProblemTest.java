@@ -47,7 +47,7 @@ public class ProblemTest {
 		
 		//controllo domanda totale
 		final double TOLERANCE = 0;
-		assertEquals(totalDemand, problem.getTotalDeman(), TOLERANCE);
+		assertEquals(totalDemand, problem.getTotalDemand(), TOLERANCE);
 	}
 	
 	//metodo cellIsEmptiable()
@@ -286,7 +286,7 @@ public class ProblemTest {
 		 */ 
 		final int MAX_QUANTITY = 49;
 		final double TOLERANCE = 0;
-		assertEquals(MAX_QUANTITY, problem.getMaxQuantityBuyable(SUPPLIER), TOLERANCE);
+		assertEquals(MAX_QUANTITY, problem.getMaxBuyableQuantity(SUPPLIER), TOLERANCE);
 	}
 	
 	//test di getRandomSupplierId()

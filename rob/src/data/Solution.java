@@ -48,7 +48,7 @@ public class Solution {
 		System.out.println("Soluzione: (matrice fornitori*prodotti):");
 		
 		//ricavo una matrice di double contenente gli stessi valori di solutionMatrix
-		double tempMatrix[][] = new double[solutionMatrix.length][];
+		double tempMatrix[][] = new double[solutionMatrix.length][solutionMatrix[0].length];
 		for(int i = 0; i<solutionMatrix.length; i++){
 			for(int j = 0; j<solutionMatrix[1].length; j++){
 				tempMatrix[i][j] = solutionMatrix[i][j];
@@ -235,5 +235,21 @@ public class Solution {
 			}
 		}
 		return newMatrix;
+	}
+	
+	public int getSupplierFromCell (int cell) {
+		return (cell-getProductFromCell(cell))/numProducts+1;
+	}
+	
+	public int getProductFromCell (int cell) {
+		return (cell-1)%numProducts+1;
+	}
+	
+	public int getCell(int supplier,int product){
+		return (supplier-1)*numProducts+product;
+	}
+	
+	public int getQuantity(int cell){
+		return getQuantity(getSupplierFromCell(cell), getProductFromCell(cell));
 	}
 }

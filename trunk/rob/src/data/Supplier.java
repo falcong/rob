@@ -3,32 +3,54 @@ package data;
 import data.Solution;
 
 public class Supplier {
+	
+	/**
+	 * Identifica univocamente un fornitore
+	 */
 	private int id;
-	/*
-	 * basePrices[k] = prezzo base del prodotto k; 
-	 * basePrices[0] non viene utilizzato dunque basePrices.length = numProducts + 1
-	 * baseprices[k] = -1 significa che il prodotto k non è presente
+	
+	/**
+	 * Questo valore è usato per indicare che un prodotto non è disponibile presso il fornitore. 
+	 */
+	public final static int PRODUCT_NOT_PRESENT = -1;
+	
+	/**
+	 * Matrice dei prezzi di base.<br>
+	 * <ul>
+	 * <li>{@code basePrices[k]} = prezzo base del prodotto k;</li> 
+	 * <li>{@code basePrices[0]} non viene utilizzato, dunque {@code basePrices.length = numProducts + 1};</li>
+	 * <li>{@code baseprices[k]} = {@value #PRODUCT_NOT_PRESENT} significa che il prodotto k non è presente.</li>
+	 * </ul>
 	 */
 	private int basePrices[];
-	/*
-	 * contiene i prezzi dei vari prodotti per le varie fasce; 
-	 * prices[k][r]=prezzo del prodotto k nella fascia r;
-	 * prices[k][0]=prezzo base del prodotto k (non scontato)
-	 * prices[k][0]=basePrices[k];
-	 * prices[k][r]=-1 significa che il prodotto k non è presente;
-	 * prices[0][r] non viene utilizzato;
+	
+	/**
+	 * Contiene i prezzi dei vari prodotti per le varie fasce; 
+	 * <ul>
+	 * <li>{@code prices[k][r]}=prezzo del prodotto k nella fascia r;</li>
+	 * <li>{@code prices[k][0]}=prezzo base del prodotto k (non scontato)</li>
+	 * <li>{@code prices[k][0]}=basePrices[k];</li>
+	 * <li>{@code prices[k][r]}= {@value #PRODUCT_NOT_PRESENT} significa che il prodotto k non è presente;</li>
+	 * <li>{@code prices[0][r]} non viene utilizzato.</li>
+	 * <u>
 	 */
 	double prices[][];
-	/*
-	 * contiene le disponibilità dei vari prodotti; availability[k]=disponibilità
-	 * del prodotto k-esimo; availability[k]=-1 significa che il prodotto non è 
-	 * presente;
-	 * availability[0] non viene utilizzato
+	
+	
+	/**
+	 * Contiene le disponibilità dei vari prodotti;
+	 * <ul> 
+	 * <li>availability[k]=disponibilità del prodotto k-esimo;</li> 
+	 * <li>availability[k]=-1 significa che il prodotto non è presente;</li>
+	 * <li>availability[0] non viene utilizzato</li>
 	 */
-	//numero di fasce di sconto esclusa la fascia 0-esima [quella senza sconto]
-	private int numSegments;
 	private int availability[];
 
+	/**
+	 * Numero di fasce di sconto esclusa la fascia 0-esima [quella senza sconto]
+	 */
+	private int numSegments;
+	
 	/*
 	 * contiene gli estremi inferiori degli intervalli di sconto;
 	 * [ lowerBounds[r]; lowerBounds[r+1]-1 ] è l'intervallo r-esimo;

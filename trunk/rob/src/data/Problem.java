@@ -62,8 +62,6 @@ public class Problem {
 	 */
 	private Supplier suppliers[];
 	
-	public final static int PRODUCT_NOT_PRESENT = -1;
-	
 	/**
 	 * Costruisce un oggetto problema.
 	 * @param name
@@ -236,7 +234,7 @@ public class Problem {
 		int sum = 0;
 		for(int p=1; p<=numProducts; p++){
 			int availability = getSupplier(supplierId).getAvailability(p);
-			if(availability==PRODUCT_NOT_PRESENT){
+			if(availability==Supplier.PRODUCT_NOT_PRESENT){
 				availability=0;
 			}
 			

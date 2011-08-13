@@ -1,15 +1,15 @@
-package neighbourgenerator.orderstrategy;
+package neighbourgenerator.bansupplier.orderstrategy;
 
 import data.IdList;
 import data.Problem;
 import data.Solution;
 import data.Supplier;
 
-public class FullestFirstOrderStrategy extends SupplierOrderStrategy {
+public class FullestFirstSelectionStrategy extends SupplierSelectionStrategy {
 	
 	protected double POOL_PORTION =0.5;
 
-	public FullestFirstOrderStrategy(Problem problem) {
+	public FullestFirstSelectionStrategy(Problem problem) {
 		super(problem);
 	}
 

@@ -9,8 +9,7 @@
 package neighbourgenerator.bansupplier;
 
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
-import neighbourgenerator.orderstrategy.FullestFirstOrderStrategy;
-
+import neighbourgenerator.bansupplier.orderstrategy.FullestFirstSelectionStrategy;
 import data.Problem;
 
 
@@ -18,7 +17,7 @@ public class BanFullNeighbourGenerator extends BanSupplierNeighbourGenerator{
 	
 	
 	public BanFullNeighbourGenerator(Problem problem) {
-		super(problem, new RandomEmptyingStrategy(problem), new FullestFirstOrderStrategy(problem));
+		super(problem, new FullestFirstSelectionStrategy(problem), new RandomEmptyingStrategy(problem));
 		}
 }
 

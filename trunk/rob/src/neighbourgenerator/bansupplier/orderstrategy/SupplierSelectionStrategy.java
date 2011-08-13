@@ -1,14 +1,14 @@
-package neighbourgenerator.orderstrategy;
+package neighbourgenerator.bansupplier.orderstrategy;
 
 import data.IdList;
 import data.Problem;
 import data.Solution;
 
-public abstract class SupplierOrderStrategy {
+public abstract class SupplierSelectionStrategy {
 	
 	protected Problem problem;
 	
-	public SupplierOrderStrategy(Problem problem){
+	public SupplierSelectionStrategy(Problem problem){
 		this.problem=problem;
 	}
 	

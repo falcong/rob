@@ -9,7 +9,7 @@ package neighbourgenerator.bansupplier;
 import neighbourgenerator.DistancedNeighbourGenerator;
 import neighbourgenerator.NeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
-import neighbourgenerator.orderstrategy.SupplierOrderStrategy;
+import neighbourgenerator.bansupplier.orderstrategy.SupplierSelectionStrategy;
 
 import data.IdList;
 import data.Problem;
@@ -20,9 +20,9 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 	
 	protected Problem problem;
 	SupplierEmptyingStrategy empStrategy;
-	SupplierOrderStrategy ordStrategy;
+	SupplierSelectionStrategy ordStrategy;
 	
-	public BanSupplierNeighbourGenerator(Problem problem, SupplierEmptyingStrategy empStrategy, SupplierOrderStrategy ordStrategy) {
+	public BanSupplierNeighbourGenerator(Problem problem, SupplierSelectionStrategy ordStrategy, SupplierEmptyingStrategy empStrategy) {
 		this.problem=problem;
 		this.empStrategy=empStrategy;
 		this.ordStrategy=ordStrategy;		

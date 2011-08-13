@@ -10,7 +10,7 @@
 package neighbourgenerator.bansupplier;
 
 import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrategy;
-import neighbourgenerator.orderstrategy.FullestFirstOrderStrategy;
+import neighbourgenerator.bansupplier.orderstrategy.FullestFirstSelectionStrategy;
 
 import data.Problem;
 
@@ -20,7 +20,7 @@ public class DirectionedBanNeighbourGenerator extends BanSupplierNeighbourGenera
 
 
 public DirectionedBanNeighbourGenerator(Problem problem) {
-	super(problem, new LowestPriceEmptyingStrategy(problem), new FullestFirstOrderStrategy(problem));
+	super(problem, new FullestFirstSelectionStrategy(problem), new LowestPriceEmptyingStrategy(problem));
 	}
 }
 

@@ -390,8 +390,8 @@ public class ProblemParser extends Parser{
 		 */
 		basePrices[0] = INT_NOT_USED;
 		availability[0] = INT_NOT_USED;
-		Arrays.fill(basePrices, 1, basePrices.length, Problem.PRODUCT_NOT_PRESENT);
-		Arrays.fill(availability, 1, availability.length, Problem.PRODUCT_NOT_PRESENT);
+		Arrays.fill(basePrices, 1, basePrices.length, Supplier.PRODUCT_NOT_PRESENT);
+		Arrays.fill(availability, 1, availability.length, Supplier.PRODUCT_NOT_PRESENT);
 		
 		//leggo tutte le triplette (prodotto, costo, disponibilità) presenti in offer
 		for(int i=0; i<=offer.length-3; i+=3){

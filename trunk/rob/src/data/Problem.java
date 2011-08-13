@@ -334,7 +334,7 @@ public class Problem {
 	public Supplier[] sortByCurrentPrice(int product, Solution solution) {
 		Supplier[] suppliersCopy=suppliers.clone();
 		CurrentPriceComparator comparator= new CurrentPriceComparator(solution,product);
-		Arrays.sort(suppliersCopy, 1, dimension, comparator);
+		Arrays.sort(suppliersCopy, 1, dimension+1, comparator);
 		return suppliersCopy;
 	}
 	

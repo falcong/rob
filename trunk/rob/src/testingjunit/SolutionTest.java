@@ -223,4 +223,136 @@ public class SolutionTest {
 		final int TOTAL_QUANTITY = 61;
 		assertEquals(TOTAL_QUANTITY, solution.totalQuantityBought(SUPPLIER));
 	}
+
+	//metodo getCell()
+	/*
+	 * input =  1, 1
+	 */
+	@Test
+	public final void testGetCell1() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int SUPPLIER = 1;
+		final int PRODUCT = 1;
+		final int CELL = 1;
+		final double TOLERANCE = 0;
+		assertEquals(CELL, solution.getCell(SUPPLIER, PRODUCT), TOLERANCE);
+	}
+
+	/*
+	 * caso generale (input = 7, 53)
+	 */
+	@Test
+	public final void testGetCell2() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int SUPPLIER = 7;
+		final int PRODUCT = 53;
+		final int CELL = 653;
+		final double TOLERANCE = 0;
+		assertEquals(CELL, solution.getCell(SUPPLIER, PRODUCT), TOLERANCE);
+	}
+
+	/*
+	 * input = ultimo_fornitore, ultimo_prodotto
+	 */
+	@Test
+	public final void testGetCell3() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int SUPPLIER = 10;
+		final int PRODUCT = 100;
+		final int CELL = 1000;
+		final double TOLERANCE = 0;
+		assertEquals(CELL, solution.getCell(SUPPLIER, PRODUCT), TOLERANCE);
+	}
+
+	//test di getSupplierFromCell()
+	/*
+	 * cella = 1
+	 */
+	@Test
+	public final void testGetSupplierFromCell1() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int CELL = 1;
+		final int SUPPLIER = 1;
+		final double TOLERANCE = 0;
+		assertEquals(SUPPLIER, solution.getSupplierFromCell(CELL), TOLERANCE);
+	}
+
+	/*
+	 * caso generale (cella = 653)
+	 */
+	@Test
+	public final void testGetSupplierFromCell2() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int CELL = 653;
+		final int SUPPLIER = 7;
+		final double TOLERANCE = 0;
+		assertEquals(SUPPLIER, solution.getSupplierFromCell(CELL), TOLERANCE);
+	}
+
+	/*
+	 * cella = ultima_cella
+	 */
+	@Test
+	public final void testGetSupplierFromCell3() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int CELL = 1000;
+		final int SUPPLIER = 10;
+		final double TOLERANCE = 0;
+		assertEquals(SUPPLIER, solution.getSupplierFromCell(CELL), TOLERANCE);
+	}
+
+	//metodo getProductFromCell()
+	/*
+	 * cella = 1
+	 */
+	@Test
+	public final void testGetProductFromCell1() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int CELL = 1;
+		final int PRODUCT = 1;
+		final double TOLERANCE = 0;
+		assertEquals(PRODUCT, solution.getProductFromCell(CELL), TOLERANCE);
+	}
+
+	/*
+	 * cella = 653
+	 */
+	@Test
+	public final void testGetProductFromCell2() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int CELL = 653;
+		final int PRODUCT = 53;
+		final double TOLERANCE = 0;
+		assertEquals(PRODUCT, solution.getProductFromCell(CELL), TOLERANCE);
+	}
+
+	/*
+	 * cella = ultima_cella
+	 */
+	@Test
+	public final void testGetProductFromCell3() throws Exception{
+		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		Solution solution= new RandomSolutionGenerator(problem).generate();
+		final int CELL = 1000;
+		final int PRODUCT = 100;
+		final double TOLERANCE = 0;
+		assertEquals(PRODUCT, solution.getProductFromCell(CELL), TOLERANCE);
+	}
 }

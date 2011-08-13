@@ -32,7 +32,7 @@ public class Problem {
 	/**
 	 * Numero dei fornitori.
 	 */
-	private int dimension;
+	int dimension;
 	
 	/**
 	 * Numero massimo degli intervalli di sconto,
@@ -261,67 +261,7 @@ public class Problem {
 	public int maxSegmentActivable(int supplier){
 		return suppliers[supplier].activatedSegment(getMaxBuyableQuantity(supplier));
 	}
-	
-	/**
-	 * Questo metodo verifica se è possibile decrementare il valore della cella {@code cell} della
-	 * soluzione {@code solution} di almeno un'unità, senza spostare gli acquisti nelle celle
-	 * proibite contenute in {@code forbiddenCells}. 
-	 * Precondizione: cell contiene almeno 1 prodotto acquistato.
-	 * <ol> 
-	 * <li>C 				= insieme di tutte le celle della stessa colonna di {@code cell}, esclusa {@code cell} stessa</li>
-	 * <li>C_vietate		= intersezione(C; {@code forbiddenCells})</li>
-	 * <li>C_riempibili		= C\C_vietate</li>
-	 * <li>Q_tot_vietato	= quantità totale di prodotti comprati presso le C_vietate</li>
-	 * <li>D_effettiva		= (disponibilità residua totale delle C_riempibili)-Q_tot_vietato</li>
-	 * </ol>
-	 * Per decrementare il valore contenuto nella cella {@code cell} si può utilizzare solamente D_effettiva.
-	 * 
-	 * @param cell
-	 * @param solution
-	 * @param forbiddenCells
-	 * @return {@code true} se almeno 1 prodotto acquistato in cell è spostabile presso un altro fornitore;<br>
-	 * {@code false} altrimenti.
-	 */
-	//TODO Rinominare? Tipo isCellDecrementable o...? Spostare in solution o in EmptyCells? Mi sembra fuori posto in Problem
-	public boolean cellIsEmptiable(int cell, Solution solution, ArrayList<Integer> forbiddenCells){
-		int product=solution.getProductFromCell(cell);
-		//somma disponibilità
-		int sumResidualAvailability=0;
-		//ciclo sui fornitori, mantenendo fisso il prodotto
-		for (int supplierId=1;supplierId<=dimension;supplierId++){
-			int targetCell = solution.getCell(supplierId,product);
-			if (targetCell==cell) // la cella è la stessa che sto valutando
-				continue;
-			/*
-			 * Se la cella è tra quelle proibite, sottraggo dalla disponibilità
-			 * residua i prodotti acquistati da quella cella, perché presuppongo
-			 * che tali celle dovranno essere svuotate a loro volta. 
-			 */
-			if (forbiddenCells.contains(targetCell)) 
-				sumResidualAvailability-=solution.getQuantity(supplierId, product);
-			else //La cella può accogliere nuovi acquisti, aumento la disponibilità totale.
-				sumResidualAvailability+=getSupplier(supplierId).getResidual(product, solution);
-		}
-		if (sumResidualAvailability>0)
-			return true;
-		else 
-			return false;
-	}
-	
-	@Deprecated
-	public int getCell(int supplier,int product){
-		return (supplier-1)*numProducts+product;
-	}
-	
-	@Deprecated
-	public int getSupplierFromCell (int cell) {
-		return (cell-getProductFromCell(cell))/numProducts+1;
-	}
-	
-	@Deprecated
-	public int getProductFromCell (int cell) {
-		return (cell-1)%numProducts+1;
-	}
+
 	
 	/**
 	 * Ordina i fornitori in base al prezzo del prodotto {@code product} e alla soluzione {@code solution}. 

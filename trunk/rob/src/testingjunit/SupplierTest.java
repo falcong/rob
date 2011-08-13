@@ -328,7 +328,7 @@ public class SupplierTest {
 		//quantità necessaria per far scattare la fascia di sconto attiva nel secondo fornitore
 		final int QUANTITY = 9;
 		
-		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+		assertEquals(QUANTITY, supplier.quantityToNextSegment(solution));		
 	}
 	
 	/*
@@ -355,7 +355,7 @@ public class SupplierTest {
 		//quantità necessaria per far scattare la fascia di sconto attiva nel secondo fornitore
 		final int QUANTITY = 1;
 		
-		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+		assertEquals(QUANTITY, supplier.quantityToNextSegment(solution));		
 	}
 	
 	/*
@@ -382,7 +382,7 @@ public class SupplierTest {
 		//quantità necessaria per far scattare la fascia di sconto attiva nel secondo fornitore
 		final int QUANTITY = 30;
 		
-		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+		assertEquals(QUANTITY, supplier.quantityToNextSegment(solution));		
 	}
 	
 	/*
@@ -409,7 +409,7 @@ public class SupplierTest {
 		//quantità necessaria per saturare il secondo fornitore
 		final int QUANTITY = 40;
 		
-		assertEquals(QUANTITY, supplier.quantityToIncreaseSegment(solution));		
+		assertEquals(QUANTITY, supplier.quantityToNextSegment(solution));		
 	}
 	
 	//test di quantityToNotDecreaseSegment()
@@ -437,7 +437,7 @@ public class SupplierTest {
 		//quantità necessaria per saturare il secondo fornitore
 		final int QUANTITY = 30;
 		
-		assertEquals(QUANTITY, supplier.quantityToNotDecreaseSegment(solution));
+		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
 	}
 	
 	/*
@@ -464,7 +464,7 @@ public class SupplierTest {
 		//quantità necessaria per saturare il secondo fornitore
 		final int QUANTITY = 0;
 		
-		assertEquals(QUANTITY, supplier.quantityToNotDecreaseSegment(solution));
+		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
 	}
 	
 	/*
@@ -491,7 +491,7 @@ public class SupplierTest {
 		//quantità necessaria per saturare il secondo fornitore
 		final int QUANTITY = 1;
 		
-		assertEquals(QUANTITY, supplier.quantityToNotDecreaseSegment(solution));
+		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
 	}
 	
 	//test di setPrices

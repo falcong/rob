@@ -3,6 +3,7 @@ package data;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Solution {
@@ -251,5 +252,50 @@ public class Solution {
 	
 	public int getQuantity(int cell){
 		return getQuantity(getSupplierFromCell(cell), getProductFromCell(cell));
+	}
+
+	/**
+	 * Questo metodo verifica se è possibile decrementare il valore della cella {@code cell} della
+	 * soluzione {@code solution} di almeno un'unità, senza spostare gli acquisti nelle celle
+	 * proibite contenute in {@code forbiddenCells}. 
+	 * Precondizione: cell contiene almeno 1 prodotto acquistato.
+	 * <ol> 
+	 * <li>C 				= insieme di tutte le celle della stessa colonna di {@code cell}, esclusa {@code cell} stessa</li>
+	 * <li>C_vietate		= intersezione(C; {@code forbiddenCells})</li>
+	 * <li>C_riempibili		= C\C_vietate</li>
+	 * <li>Q_tot_vietato	= quantità totale di prodotti comprati presso le C_vietate</li>
+	 * <li>D_effettiva		= (disponibilità residua totale delle C_riempibili)-Q_tot_vietato</li>
+	 * </ol>
+	 * Per decrementare il valore contenuto nella cella {@code cell} si può utilizzare solamente D_effettiva.
+	 * 
+	 * @param cell
+	 * @param problem TODO
+	 * @param forbiddenCells
+	 * @return {@code true} se almeno 1 prodotto acquistato in cell è spostabile presso un altro fornitore;<br>
+	 * {@code false} altrimenti.
+	 */
+	public boolean cellValueIsDecrementable(int cell, Problem problem, ArrayList<Integer> forbiddenCells){
+		int product=getProductFromCell(cell);
+		//somma disponibilità
+		int sumResidualAvailability=0;
+		//ciclo sui fornitori, mantenendo fisso il prodotto
+		for (int supplierId=1;supplierId<=problem.getDimension();supplierId++){
+			int targetCell = getCell(supplierId,product);
+			if (targetCell==cell) // la cella è la stessa che sto valutando
+				continue;
+			/*
+			 * Se la cella è tra quelle proibite, sottraggo dalla disponibilità
+			 * residua i prodotti acquistati da quella cella, perché presuppongo
+			 * che tali celle dovranno essere svuotate a loro volta. 
+			 */
+			if (forbiddenCells.contains(targetCell)) 
+				sumResidualAvailability-=getQuantity(supplierId, product);
+			else //La cella può accogliere nuovi acquisti, aumento la disponibilità totale.
+				sumResidualAvailability+=problem.getSupplier(supplierId).getResidual(product, this);
+		}
+		if (sumResidualAvailability>0)
+			return true;
+		else 
+			return false;
 	}
 }

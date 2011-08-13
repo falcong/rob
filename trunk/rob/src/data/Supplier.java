@@ -371,13 +371,13 @@ public class Supplier {
 
 	/**
 	 * Calcola di quanto la quantità totale di acquisti presso il fornitore deve essere aumentata 
-	 * per far aumentare di 1 la fascia di sconto attiva;
-	 * se il fornitore si trova già nell'ultima fascia di sconto viene fornita la disponibilità residua
+	 * per far aumentare di 1 la fascia di sconto attiva. 
 	 *
 	 * @param solution
-	 * @return
+	 * @return La quantità di prodotti per far scattare la fascia. Se il fornitore si 
+	 * trova già nell'ultima fascia di sconto viene restituita la disponibilità residua del fornitore.
 	 */
-	public int quantityToIncreaseSegment(Solution solution){
+	public int quantityToNextSegment(Solution solution){
 		//quantità totale acquistata presso il fornitore
 		int totalQuantity = solution.totalQuantityBought(id);
 		int segment = activatedSegment(totalQuantity);
@@ -387,7 +387,14 @@ public class Supplier {
 		return lowerBounds[segment+1]-totalQuantity;
 	}
 
-	public int quantityToNotDecreaseSegment(Solution solution) {
+	/**
+	 * Calcola la quantità totale di acquisti che occorre togliere dal fornitore per
+	 * passare alla fascia di sconto precedente rispetto a quella attuale.
+	 * @param solution
+	 * @return La quantità di prodotti per far scattare la fascia. Se il fornitore si 
+	 * trova già nella prima fascia di sconto viene restituita la quantità che serve per svuotare completamente il fornitore.
+	 */
+	public int quantityToPreviousSegment(Solution solution) {
 		int totalQuantity = solution.totalQuantityBought(id);
 		if (totalQuantity==0)
 			return 0;

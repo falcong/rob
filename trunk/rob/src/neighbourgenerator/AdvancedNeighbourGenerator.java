@@ -65,7 +65,7 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 		 * quantità totale di prodotti acquistati che è necessario spostare dagli altri fornitori
 		 * a targetSupplier per far aumentare la fascia di sconto attiva di 1 in targetSupplier
 		 */
-		int quantityToMove = problem.getSupplier(targetSupplier).quantityToIncreaseSegment(solution);
+		int quantityToMove = problem.getSupplier(targetSupplier).quantityToNextSegment(solution);
 		/*
 		 * prodotto da cui iniziare i trasferimenti: ogni ciclo di trasferimento inizia dallo stesso prodotto
 		 */
@@ -89,7 +89,7 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 			
 			int maxMoveableTotalQuantity;
 			if (!relaxed)
-				maxMoveableTotalQuantity=problem.getSupplier(s).quantityToNotDecreaseSegment(solution);
+				maxMoveableTotalQuantity=problem.getSupplier(s).quantityToPreviousSegment(solution);
 			else
 				maxMoveableTotalQuantity=0;
 			

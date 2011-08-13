@@ -14,6 +14,9 @@ public class FullestFirstSelectionStrategy extends SupplierSelectionStrategy {
 	}
 
 	@Override
+	/*
+	 * precondizione: size<=dimension/2
+	 */
 	public IdList createList(Solution solution, int size) {
 		Supplier [] orderedSuppliers=problem.sortByBoughtQuantity(solution);
 		int suppliersPoolSize=(int)(problem.getDimension()*POOL_PORTION);

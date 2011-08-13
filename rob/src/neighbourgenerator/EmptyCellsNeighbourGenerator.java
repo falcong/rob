@@ -60,7 +60,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 			
 			if(cellsToEmpty.contains(cell) || cellsNotEmptiable.contains(cell)){
 				//la cella è già stata scelta o scartata precedentemente
-			}else if(isEmpty(s0, cell) || !problem.cellIsEmptiable(cell, s0, cellsToEmpty)){
+			}else if(isEmpty(s0, cell) || !s0.cellValueIsDecrementable(cell, problem, cellsToEmpty)){
 				//scarto la cella perchè vuota o non svuotabile
 				cellsNotEmptiable.add(cell);
 			}else{
@@ -95,9 +95,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 
 	
 	private boolean isEmpty(Solution sol, int cell){
-		int product = problem.getProductFromCell(cell);
-		int supplier = problem.getSupplierFromCell(cell);
-		if(sol.getQuantity(supplier, product)==0){
+		if(sol.getQuantity(cell)==0){
 			return true;
 		}else{
 			return false;
@@ -106,18 +104,18 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 	
 	
 	private void empty(Solution sol, int cell){
-		int supplier = problem.getSupplierFromCell(cell);
-		int product = problem.getProductFromCell(cell);
+		int supplier = sol.getSupplierFromCell(cell);
+		int product = sol.getProductFromCell(cell);
 		
 		Supplier orderedSuppliers[] = problem.sortByCurrentPrice(product, sol);
 		
-		int quantity = sol.getQuantity(supplier, product); 
+		int quantity = sol.getQuantity(cell); 
 			
 		for(int i=1; i<=numSuppliers && quantity>0; i++){
 			Supplier receivingSupplier = orderedSuppliers[i];
 			int recSup = receivingSupplier.getId();
 			int residualAvailability = problem.getSupplier(recSup).getResidual(product, sol);
-			int recCell = problem.getCell(recSup, product);
+			int recCell = sol.getCell(recSup, product);
 			
 			if(recSup!=supplier && !cellsToEmpty.contains(recCell) && residualAvailability>0){
 				int quantityToMove = Math.min(quantity, residualAvailability);

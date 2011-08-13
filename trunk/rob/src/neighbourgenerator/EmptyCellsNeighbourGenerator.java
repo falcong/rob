@@ -2,11 +2,9 @@ package neighbourgenerator;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;
-
 
 
 public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
@@ -21,6 +19,8 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 	
 	private final int DEFAULT_RAND_FACTOR = 0;
 	
+	
+	
 	public EmptyCellsNeighbourGenerator(Problem problem) {
 		this.problem=problem;
 		this.numSuppliers = problem.getDimension();
@@ -29,15 +29,18 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		totalCells=numSuppliers*numProducts;
 	}
 	
+	
 	public EmptyCellsNeighbourGenerator(Problem problem, double randomizationFactor) {
 		this(problem);
 		this.randomizationFactor = randomizationFactor;
 	}
 	
+	
 	public Solution generate(Solution solution){
 		final int DISTANCE = 1;
 		return generate(solution, DISTANCE);
 	}
+	
 	
 	@Override
 	public Solution generate(Solution s0, int distance){
@@ -124,6 +127,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		}		
 	}
 	
+	
 	/*
 	 * Altera l'ordine in maniera casuale dei primi floor(ratio * (array.length-1)) elementi.
 	 * array[0] non viene considerato.
@@ -156,6 +160,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		
 		return result;
 	}
+	
 	
    public void setRandomizationFactor(double randomizationFactor){
 	   this.randomizationFactor = randomizationFactor;

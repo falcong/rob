@@ -17,7 +17,6 @@ import data.Solution;
 
 
 public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
-	
 	protected Problem problem;
 	SupplierEmptyingStrategy empStrategy;
 	SupplierSelectionStrategy selStrategy;
@@ -45,5 +44,4 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 		
 		return solutionCopy;
 	}
-	
 }

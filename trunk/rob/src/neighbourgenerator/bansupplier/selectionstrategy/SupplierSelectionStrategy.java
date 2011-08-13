@@ -5,7 +5,6 @@ import data.Problem;
 import data.Solution;
 
 public abstract class SupplierSelectionStrategy {
-	
 	protected Problem problem;
 	
 	public SupplierSelectionStrategy(Problem problem){

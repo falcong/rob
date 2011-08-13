@@ -5,7 +5,6 @@ import data.Problem;
 import data.Solution;
 
 public abstract class SupplierEmptyingStrategy {
-	
 	protected Problem problem;
 	protected Solution solution;
 	protected IdList list;
@@ -15,5 +14,4 @@ public abstract class SupplierEmptyingStrategy {
 	}
 	
 	abstract public void emptySuppliers(IdList list, Solution solution);
-	
 }

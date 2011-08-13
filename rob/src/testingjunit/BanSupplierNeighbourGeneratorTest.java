@@ -6,8 +6,8 @@ import io.ProblemParser;
 import neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
-import neighbourgenerator.bansupplier.orderstrategy.RandomSelectionStrategy;
-import neighbourgenerator.bansupplier.orderstrategy.SupplierSelectionStrategy;
+import neighbourgenerator.bansupplier.selectionstrategy.RandomSelectionStrategy;
+import neighbourgenerator.bansupplier.selectionstrategy.SupplierSelectionStrategy;
 
 import org.junit.Before;
 import org.junit.Test;

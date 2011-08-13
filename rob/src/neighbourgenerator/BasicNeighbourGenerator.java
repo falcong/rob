@@ -1,7 +1,6 @@
 package neighbourgenerator;
 
 import java.util.HashSet;
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -9,16 +8,20 @@ import data.Supplier;
 
 public class BasicNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
 	protected Problem problem;
+	//massimo tempo = 20 secondi, dopo torno la soluzione che ho trovato lanciando un warning
+	private final long MAXIMUM_TIME=20000; 
+	
+	
 	public BasicNeighbourGenerator(Problem problem) {
 		this.problem=problem;
 	}
 	
-	private final long MAXIMUM_TIME=20000; //massimo tempo = 20 secondi, dopo torno la soluzione che ho trovato lanciando un warning
 	
 	public Solution generate(Solution solution){
 		final int DISTANCE = 1;
 		return generate(solution, DISTANCE);
 	}
+	
 	
 	/*
 	 * Genera un vicino esattamente di distanza distance, dove distance = |currentSolution-nextSolution|/2, cioè il numero di unità di prodotto scambiate

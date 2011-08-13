@@ -6,7 +6,6 @@ import data.Solution;
 import data.Supplier;
 
 public class FullestFirstSelectionStrategy extends SupplierSelectionStrategy {
-	
 	protected double POOL_PORTION =0.5;
 
 	public FullestFirstSelectionStrategy(Problem problem) {

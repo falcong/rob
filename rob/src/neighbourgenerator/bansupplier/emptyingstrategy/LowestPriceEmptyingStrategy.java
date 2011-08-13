@@ -6,14 +6,18 @@ import data.Solution;
 import data.Supplier;
 
 public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
-
+	/**
+	 * problem è il problema in cui applicare la strategia LowestpriceEmptyingStrategy per un certo 
+	 * BanSupplierNeighbourGenerator.
+	 */
 	public LowestPriceEmptyingStrategy(Problem problem) {
 		super(problem);
 	}
 
+	//TODO qui
 	/**
 	 * Questo metodo cerca di svuotare intere righe di soluzione corrispondenti ai
-	 * i fornitori contenuti in list secondo questo criterio:<br>
+	 * fornitori contenuti in list secondo questo criterio:<br>
 	 * Per ciascun prodotto p del fornitore da svuotare, l'algoritmo mette in ordine 
 	 * i restanti fornitori secondo il prezzo corrente di p (considerando anche le fasce
 	 * di sconto) e quindi sposta gli acquisti del prodotto p iniziando dai fornitori
@@ -30,6 +34,7 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 			emptySupplier(list.getId(i));
 		}
       }
+	
 	
 	private void emptySupplier(int supplierId) {
 	      int numProducts=problem.getNumProducts();

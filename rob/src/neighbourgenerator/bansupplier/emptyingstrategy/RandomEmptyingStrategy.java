@@ -9,6 +9,8 @@ public class RandomEmptyingStrategy extends SupplierEmptyingStrategy {
 	public RandomEmptyingStrategy(Problem problem) {
 		super(problem);
 	}
+	
+	
 	/**
 	 * Questo metodo cerca di svuotare intere righe di soluzione corrispondenti ai
 	 * fornitori contenuti in list secondo questo criterio:<br>

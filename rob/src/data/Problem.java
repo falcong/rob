@@ -1,6 +1,5 @@
 package data;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -18,14 +17,18 @@ import data.comparator.CurrentPriceComparator;
 
 public class Problem {
 	
+	/**
+	 * Nome del problema.
+	 */
 	private String name;
 	
-	//Contenuto nei file di istanza, attualmente non usato
-	//TODO Togliere o mettere un metodo get?
+	/**
+	 * Contenuto nei file di istanza, attualmente non usato.
+	 */
 	private String type;
 	
 	/**
-	 * Classe del problema
+	 * Classe del problema.
 	 */
 	private int problemClass;
 	
@@ -37,17 +40,19 @@ public class Problem {
 	/**
 	 * Numero massimo degli intervalli di sconto,
 	 * inclusa la fascia 0-esima in cui non è applicato alcuno sconto.
-	 * Se questo attributo vale -1 vuol dire che non è stato specificato
+	 * Se questo attributo vale -1 vuol dire che non è stato specificato.
 	 */
 	private int maxNRange;
 	
-	//Numero di prodotti
+	/**
+	 * Numero di prodotti.
+	 */
 	private int numProducts;
 	
 	
 	/**
 	 *  Vettore contenente la domanda per ciascun prodotto; demand[k]=domanda del 
-	 *  prodotto k-esimo; demand[0] non è usato quindi demand.length=numProducts+1
+	 *  prodotto k-esimo; demand[0] non è usato quindi demand.length=numProducts+1.
 	 */
 	private int demand [];
 	
@@ -193,12 +198,11 @@ public class Problem {
 	 * Restituisce la disponibilità totale del prodotto {@code  product} presso il fornitore {@code supplier</supplier>. 
 	 * @param supplier - id del fornitore
 	 * @param product - numero del prodotto
-	 * @return 
+	 * @return availability se è il prodotto è presente, 0 altrimenti
 	 */
 	public int getAvailability(int supplier, int product) { 
 		int availability = suppliers[supplier].getAvailability(product);
-		//TODO Spostare la costante Product not present qui?
-		if(availability==-1){
+		if(availability==Supplier.PRODUCT_NOT_PRESENT){
 			return 0;
 		}else{
 			return availability;

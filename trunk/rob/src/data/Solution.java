@@ -303,15 +303,15 @@ public class Solution {
 	}
 	
 	public int getSupplierFromCell (int cell) {
-		return (cell-getProductFromCell(cell))/numProducts+1;
+		return (cell-getProductFromCell(cell))/problem.getNumProducts()+1;
 	}
 	
 	public int getProductFromCell (int cell) {
-		return (cell-1)%numProducts+1;
+		return (cell-1)%problem.getNumProducts()+1;
 	}
 	
 	public int getCell(int supplier,int product){
-		return (supplier-1)*numProducts+product;
+		return (supplier-1)*problem.getNumProducts()+product;
 	}
 	
 	public int getQuantity(int cell){

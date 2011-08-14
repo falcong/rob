@@ -149,7 +149,7 @@ public class AdvancedNeighbourGeneratorTest {
 //		matrix[1]=s1;
 //		matrix[2]=s2;
 //		Solution solution=new Solution(matrix,problem);
-//		assertTrue(solution.isAdmissible(problem));
+//		assertTrue(solution.isAdmissible());
 //		
 //		AdvancedNeighbourGenerator2 generator = new AdvancedNeighbourGenerator2(problem);
 //		assertEquals(2, generator.findSupplierImproveablePublic(solution));
@@ -173,7 +173,7 @@ public class AdvancedNeighbourGeneratorTest {
 //		matrix[1]=s1;
 //		matrix[2]=s2;
 //		Solution solution=new Solution(matrix,problem);
-//		assertTrue(solution.isAdmissible(problem));
+//		assertTrue(solution.isAdmissible());
 //		
 //		AdvancedNeighbourGenerator2 generator = new AdvancedNeighbourGenerator2(problem);
 //		assertEquals(1, generator.findSupplierNotSaturatedPublic(solution));
@@ -198,7 +198,7 @@ public class AdvancedNeighbourGeneratorTest {
 //		matrix[1]=s1;
 //		matrix[2]=s2;
 //		Solution solution=new Solution(matrix,problem);
-//		assertTrue(solution.isAdmissible(problem));
+//		assertTrue(solution.isAdmissible());
 //		
 //		AdvancedNeighbourGenerator2 generator = new AdvancedNeighbourGenerator2(problem);
 //		assertEquals(1, generator.findTargetSupplierPublic(solution));

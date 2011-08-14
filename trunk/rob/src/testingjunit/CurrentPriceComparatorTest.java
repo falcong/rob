@@ -37,7 +37,7 @@ public class CurrentPriceComparatorTest {
 		matrix[2] = s2;
 		
 		Solution sol = new Solution(matrix, problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		final int product1 = 1;
 		CurrentPriceComparator comparator = new CurrentPriceComparator(sol, product1);
@@ -65,7 +65,7 @@ public class CurrentPriceComparatorTest {
 		matrix[2] = s2;
 		
 		Solution sol = new Solution(matrix, problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		final int product2 = 2;
 		CurrentPriceComparator comparator = new CurrentPriceComparator(sol, product2);
@@ -93,7 +93,7 @@ public class CurrentPriceComparatorTest {
 		matrix[2] = s2;
 		
 		Solution sol = new Solution(matrix, problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		final int product3 = 3;
 		CurrentPriceComparator comparator = new CurrentPriceComparator(sol, product3);

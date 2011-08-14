@@ -51,7 +51,7 @@ public class VNSTest {
 		final int N=10;
 		for(int i=1;i<=N;i++) {
 			Solution result=vnsSearch.execute(startSolution);
-			assertTrue(result.isAdmissible(problem));
+			assertTrue(result.isAdmissible());
 			assertTrue(result.getObjectiveFunction()<=startSolution.getObjectiveFunction());			
 		}
 	}

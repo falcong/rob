@@ -58,7 +58,7 @@ public class LocalSearchTest {
 			Solution sol1 = localSearch.execute(sol0);
 			
 			//controllo ammissibilità
-			assertTrue(sol1.isAdmissible(problem));
+			assertTrue(sol1.isAdmissible());
 			//controllo che la funzione obiettivo non sia peggiorata
 			assertTrue(sol1.getObjectiveFunction() <= sol0.getObjectiveFunction());
 		}

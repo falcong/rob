@@ -34,7 +34,7 @@ public class LowestPriceEmptyingStrategyTest {
 		matrix[2] = r2;
 		matrix[3] = r3;
 		Solution sol0 = new Solution(matrix, problem);
-		assertTrue(sol0.isAdmissible(problem));
+		assertTrue(sol0.isAdmissible());
 		
 		//lista con i fornitori da svuotare = {1}
 		final int NUM_SUPPLIERS = 1;
@@ -47,7 +47,7 @@ public class LowestPriceEmptyingStrategyTest {
 		strategy.emptySuppliers(toEmpty, sol1);
 		
 		//controllo ammissibilità soluzione
-		assertTrue(sol1.isAdmissible(problem));
+		assertTrue(sol1.isAdmissible());
 		
 		/*
 		 * sol0 è fatta in modo che svuotando il fornitore 1 tutti i prodotti vadano a finire nel fornitore 3

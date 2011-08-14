@@ -192,7 +192,7 @@ public class SupplierTest {
 		final String PROBLEM_NAME = "problema8_abiola.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER1_ID = 1;
 		final int PRODUCT1_ID = 1;
@@ -224,7 +224,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER2_ID = 2;
 		final int PRODUCT2_ID = 2;
@@ -256,7 +256,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER2_ID = 2;
 		final int PRODUCT2_ID = 2;
@@ -289,7 +289,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER);
@@ -321,7 +321,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER);
@@ -348,7 +348,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER);
@@ -375,7 +375,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER);
@@ -402,7 +402,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER);
@@ -430,7 +430,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER2_ID = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
@@ -457,7 +457,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER2_ID = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
@@ -484,7 +484,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER2_ID = 2;
 		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
@@ -512,7 +512,7 @@ public class SupplierTest {
 		matrix[2]=s2;
 		
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER2_ID = 2;
 
@@ -595,7 +595,7 @@ public class SupplierTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution1=new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible(problem));
+		assertTrue(solution1.isAdmissible());
 		assertEquals(49,s.quantityToIncreaseSegment(solution1));
 		
 		
@@ -607,7 +607,7 @@ public class SupplierTest {
 		matrix[1]=s21;
 		matrix[2]=s22;
 		Solution solution2=new Solution(matrix,problem);
-		assertTrue(solution2.isAdmissible(problem));
+		assertTrue(solution2.isAdmissible());
 		assertEquals(1,s.quantityToIncreaseSegment(solution2));
 		
 		int [] s30={0, 0, 0, 0};
@@ -618,7 +618,7 @@ public class SupplierTest {
 		matrix[1]=s31;
 		matrix[2]=s32;
 		Solution solution3=new Solution(matrix,problem);
-		assertTrue(solution3.isAdmissible(problem));
+		assertTrue(solution3.isAdmissible());
 		assertEquals(86,s.quantityToIncreaseSegment(solution3));
 	}
 	
@@ -636,7 +636,7 @@ public class SupplierTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution1=new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible(problem));
+		assertTrue(solution1.isAdmissible());
 		assertEquals(0, s.quantityToNotDecreaseSegment(solution1));
 		
 		
@@ -648,7 +648,7 @@ public class SupplierTest {
 		matrix[1]=s21;
 		matrix[2]=s22;
 		Solution solution2=new Solution(matrix,problem);
-		assertTrue(solution2.isAdmissible(problem));
+		assertTrue(solution2.isAdmissible());
 		assertEquals(1,s.quantityToNotDecreaseSegment(solution2));
 	}*/
 }

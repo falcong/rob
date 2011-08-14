@@ -35,7 +35,7 @@ public class RandomEmptyingStrategyTest {
 		matrix[2] = r2;
 		matrix[3] = r3;
 		Solution sol0 = new Solution(matrix, problem);
-		assertTrue(sol0.isAdmissible(problem));
+		assertTrue(sol0.isAdmissible());
 		
 		//lista con i fornitori da svuotare = {1}
 		IdList toEmpty = new IdList(1);
@@ -50,7 +50,7 @@ public class RandomEmptyingStrategyTest {
 			strategy.emptySuppliers(toEmpty, sol1);
 			
 			//controllo ammissibilità soluzione
-			assertTrue(sol1.isAdmissible(problem));
+			assertTrue(sol1.isAdmissible());
 			
 			//controllo che tutto il fornitore 1 sia stato svuotato (la soluzione è fatta in modo che ciò sia possibile)
 			int totalBoughtSol1 = sol1.totalQuantityBought(1);

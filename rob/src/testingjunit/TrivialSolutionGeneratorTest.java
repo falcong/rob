@@ -26,7 +26,7 @@ public class TrivialSolutionGeneratorTest {
 		//sol generata
 		Solution sol = generator.generate();
 		//controllo ammissibilità
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 	}
 
 }

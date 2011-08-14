@@ -31,7 +31,7 @@ public class SolutionTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution=new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		assertEquals(19346.75, solution.getObjectiveFunction(), 0.01);		
 	}
 	
@@ -92,7 +92,7 @@ public class SolutionTest {
 		matrixB[1]=B1;
 		matrixB[2]=B2;
 		Solution solutionB=new Solution(matrixB,problem);
-		assertTrue(solutionA.isAdmissible(problem)&&solutionB.isAdmissible(problem));
+		assertTrue(solutionA.isAdmissible()&&solutionB.isAdmissible());
 		assertEquals(2,solutionA.calcDistance(solutionB));
 	}
 	
@@ -141,7 +141,7 @@ public class SolutionTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 	}
 	
 	/*
@@ -160,7 +160,7 @@ public class SolutionTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(!solution.isAdmissible(problem));
+		assertTrue(!solution.isAdmissible());
 	}
 	
 	//test di moveQuantity()
@@ -216,7 +216,7 @@ public class SolutionTest {
 		matrix[1]=s1;
 		matrix[2]=s2;
 		Solution solution=new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int SUPPLIER = 2;
 		//quantità totale acquistata presso il fornitore 2

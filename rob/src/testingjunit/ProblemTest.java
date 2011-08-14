@@ -69,7 +69,7 @@ public class ProblemTest {
 		matrix[2] = s2;
 		matrix[3] = s3;
 		Solution sol = new Solution(matrix,problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		final int CELL = 3;
 		
@@ -98,7 +98,7 @@ public class ProblemTest {
 		matrix[2] = s2;
 		matrix[3] = s3;
 		Solution sol = new Solution(matrix,problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		final int CELL = 3;
 		
@@ -127,7 +127,7 @@ public class ProblemTest {
 		matrix[2] = s2;
 		matrix[3] = s3;
 		Solution sol = new Solution(matrix,problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		final int CELL = 3;
 		
@@ -239,7 +239,7 @@ public class ProblemTest {
 		matrix[2] = s2;
 		matrix[3] = s3;
 		Solution sol = new Solution(matrix,problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		//fornitori ordinati in base alla quantità acquistata totale presso essi
 		Supplier suppliers[] = problem.sortByBoughtQuantity(sol);
@@ -267,7 +267,7 @@ public class ProblemTest {
 		matrix[1] = s1;
 		matrix[2] = s2;
 		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible(problem));
+		assertTrue(solution.isAdmissible());
 		
 		final int PRODUCT = 1;
 		Supplier suppliers[] = problem.sortByCurrentPrice(PRODUCT, solution);

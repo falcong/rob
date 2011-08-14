@@ -14,8 +14,7 @@ public class FullestFirstSelectionStrategyTest {
 
 	//test di createList()
 	/*
-	 * caso generale
-	 * controllare: num fornitori, non ripetuti, ammissibili
+	 * Caso generale.
 	 */
 	@Test
 	public void testCreateList1() throws Exception {

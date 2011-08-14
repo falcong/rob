@@ -19,7 +19,6 @@ public class BanFullNeighbourGeneratorTest {
 	/*
 	 * Caso generale.
 	 */
-	//TODO aggiungere controllo che sol1 != sol0 qui e in tutti i metodi analoghi
 	@Test
 	public final void testGenerate1() throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
@@ -64,19 +63,4 @@ public class BanFullNeighbourGeneratorTest {
 			}
 		}
 	}
-	
-	
-	//TODO cancellare seguente!
-	//###########################################################################
-/*	@Test
-	public void testProva(){
-		//System.out.println(this.getClass().getName());
-		//System.out.println(CLASS_NAME);
-		
-		//System.out.println(new Exception().getStackTrace()[0].getMethodName());
-		
-		System.out.println("prima");
-		assertTrue(false);
-		System.out.println("ciao");
-	}*/
 }

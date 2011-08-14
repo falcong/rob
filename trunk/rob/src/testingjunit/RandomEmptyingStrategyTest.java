@@ -13,10 +13,7 @@ public class RandomEmptyingStrategyTest {
 
 	//test di emptySuppliers()
 	/*
-	 * caso generale:
-	 * ammissibilità sol
-	 * tutti i fornitori della lista diminuiti di almeno 1 prodotto
-	 * (dire che sol e lista sono creati t.c ciò sia possibile)
+	 * Caso generale.
 	 */
 	@Test
 	public void testEmptySuppliers1() throws Exception {
@@ -52,7 +49,10 @@ public class RandomEmptyingStrategyTest {
 			//controllo ammissibilità soluzione
 			assertTrue(sol1.isAdmissible());
 			
-			//controllo che tutto il fornitore 1 sia stato svuotato (la soluzione è fatta in modo che ciò sia possibile)
+			/*
+			 * controllo che tutto il fornitore 1 sia stato svuotato (la soluzione è fatta in modo che ciò 
+			 * sia possibile)
+			 */
 			int totalBoughtSol1 = sol1.totalQuantityBought(1);
 			assertTrue(totalBoughtSol1 == 0);
 		}

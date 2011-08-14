@@ -17,7 +17,7 @@ public abstract class ExplorationStrategy {
 	 * @param solution - la soluzione di partenza
 	 * @param maxNeighboursNumber - il massimo numero di vicini da esaminare
 	 * @param generator - l'algoritmo con cui generare i vicini
-	 * @return la soluzione migliore trovata durante l'esplorazione, oppure {@code null}
+	 * @return La soluzione migliore trovata durante l'esplorazione, oppure {@code null}
 	 * se sono stati esplorati {@code maxNeighboursNumber} vicini e nessuno di essi era migliore di {@code solution}.
 	 */
  public abstract Solution explore(Solution solution, int maxNeighboursNumber,

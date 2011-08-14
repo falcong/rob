@@ -6,9 +6,10 @@ import data.Solution;
 
 public abstract class SolutionGenerator {
 	Problem problem;
-	
+
 	/**
 	 * Crea un generatore di soluzione di tipo generico per il problema problem.
+	 * @param problem
 	 */
 	public SolutionGenerator(Problem problem){
 		this.problem=problem;
@@ -16,6 +17,8 @@ public abstract class SolutionGenerator {
 
 	/**
 	 * Genera la soluzione.
+	 * @return la soluzione generata.
 	 */
-	public abstract Solution generate() throws Exception;
+	public abstract Solution generate();
+
 }

@@ -7,9 +7,9 @@ public class Supplier {
 	private static final int NO_PRICE = -1;
 
 	/**
-	 * Identifica univocamente un fornitore
+	 * Identifica univocamente un fornitore.
 	 */
-	private int id;
+	final private int id;
 	
 	/**
 	 * Questo valore è usato per indicare che un prodotto non è disponibile presso il fornitore. 

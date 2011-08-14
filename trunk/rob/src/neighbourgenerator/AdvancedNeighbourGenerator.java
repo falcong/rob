@@ -16,10 +16,9 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 	}
 	
 	/**
-	 * Nella soluzione che riceve in ingresso individua un fornitore casuale lo fa passare
+	 * Nella soluzione che riceve in ingresso individua un fornitore casuale e lo fa passare
 	 * alla successiva fascia di sconto (facendo in modo per quanto possibile che negli altri
-	 * fornitori la fascia di sconto attiva non diminuisca)
-	 * Restituisce la nuova soluzione trovata
+	 * fornitori la fascia di sconto attiva non diminuisca). Restituisce la nuova soluzione trovata.
 	 */
 	@Override
 	public Solution generate(Solution currentSolution){

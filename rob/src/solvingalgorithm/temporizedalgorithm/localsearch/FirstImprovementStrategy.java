@@ -3,31 +3,27 @@ package solvingalgorithm.temporizedalgorithm.localsearch;
 import neighbourgenerator.NeighbourGenerator;
 import data.Solution;
 
+/**
+ * Implementa la strategia First Improvement.
+ */
 public class FirstImprovementStrategy extends ExplorationStrategy {
 
+	/**
+	 * Esplora l'intorno secondo la strategia First Improvement. La strategia
+	 * genera ed esamina un vicino alla volta ed esce al primo vicino che migliora la funzione
+	 * obiettivo rispetto a {@code solution}.
+	 */
 	@Override
 	public Solution explore(Solution solution, int maxNeighboursNumber,
 			NeighbourGenerator generator) {
-		int visited;
-		for(visited=1;visited<=maxNeighboursNumber;visited++) {
-			//controllo di non avere superato tempo max
-			/*if(finalTime!=-1  && System.currentTimeMillis()>finalTime){
-				return solution;
-			}*/
+		for(int visited=1; visited<=maxNeighboursNumber; visited++) {
+			Solution neighbour = generator.generate(solution);
 			
-			//stampa vicino
-			//printNeighbour(visited);
-			Solution neighbour=generator.generate(solution);
-			if (neighbour.getObjectiveFunction()<solution.getObjectiveFunction()){
-				//stampa n° vicini generati
-				//printNumNeighbours(visited);
-				//#n° vicini generati
+			if (neighbour.getObjectiveFunction() < solution.getObjectiveFunction()){
 				return neighbour; //Ho trovato un vicino migliore della soluzione corrente
 			}
 		}
-		//stampa n° vicini generati
-		//printNumNeighbours(visited-1);
-		//#n° vicini generati
+		//se arrivo qui, nessun vicino visitato è migliore di solution.
 		return null;
 	}
 

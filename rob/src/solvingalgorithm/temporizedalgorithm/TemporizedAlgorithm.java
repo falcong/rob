@@ -26,7 +26,8 @@ public abstract class TemporizedAlgorithm extends Algorithm implements Observer 
 	}
 	
 	/**
-	 * Avvia il thread del Timer
+	 * Avvia il thread del timer se il timer non è già partito. Se il timer è già in
+	 * esecuzione, questo metodo non fa nulla.
 	 */
 	public void startTimer(){
 		if(!timer.getStatus()){

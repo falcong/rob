@@ -137,9 +137,10 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		}		
 	}
 	
-	//TODO qui
+	
 	/**
-	 * Altera l'ordine in maniera casuale dei primi int(ratio * (array.length-1)) elementi.
+	 * Altera l'ordine in maniera casuale dei primi int(ratio * (array.length-1)) elementi di array.
+	 * Restituisce il corrispondente array di Supplier risultato di questa operazione.
 	 * array[0] non viene considerato.
 	 */
 	public Supplier[] scramble(Supplier array[]){
@@ -171,7 +172,9 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		return result;
 	}
 	
-	
+	/**
+	 * Setta il parametro fattore di randomizzazione. Si veda {@link #EmptyCellsNeighbourGenerator(Problem, double)}. 
+	 */
    public void setRandomizationFactor(double randomizationFactor){
 	   this.randomizationFactor = randomizationFactor;
    }

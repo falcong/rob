@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="data" size="1655,901" id="diagrams" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledY="35" tag="10" key="32303037303533312D313020726F622D73766E">
+  <children xsi:type="editmodel:PackageEditModel" name="data.comparator" location="290,3" size="601,222" id="data.comparator">
+    <children xsi:type="editmodel:ClassEditModel" name="BoughtQuantityComparator" location="29,67" size="245,103" id="data.comparator/BoughtQuantityComparator">
+      <children xsi:type="editmodel:CompartmentEditModel" size="118,18">
+        <children xsi:type="editmodel:AttributeEditModel" name="solution" id="data.comparator/BoughtQuantityComparator#solution"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="186,36">
+        <children xsi:type="editmodel:MethodEditModel" name="BoughtQuantityComparator" id="data.comparator/BoughtQuantityComparator#BoughtQuantityComparator(Ldata.Solution;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="compare" location="83,172" id="data.comparator/BoughtQuantityComparator#compare(Ldata.Supplier;Ldata.Supplier;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel"/>
+      <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data.comparator/BoughtQuantityComparator-Standard::Call->data/Solution*data.comparator/BoughtQuantityComparator-Soyatec::Import->data/Solution" source="//@children.0/@children.0" target="//@children.4" targetEnd="//@children.0/@children.0/@sourceConnections.0/@children.2" label="//@children.0/@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="0,51" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="199,95"/>
+      </sourceConnections>
+      <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data.comparator/BoughtQuantityComparator-Standard::Call->data/Supplier*data.comparator/BoughtQuantityComparator-Soyatec::Import->data/Supplier" source="//@children.0/@children.0" target="//@children.5" targetEnd="//@children.0/@children.0/@sourceConnections.1/@children.2" label="//@children.0/@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.0/@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="64,95" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="32,-1"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+    <children xsi:type="editmodel:ClassEditModel" name="CurrentPriceComparator" location="353,47" size="222,139" id="data.comparator/CurrentPriceComparator">
+      <children xsi:type="editmodel:CompartmentEditModel" size="118,36">
+        <children xsi:type="editmodel:AttributeEditModel" name="product" id="data.comparator/CurrentPriceComparator#product"/>
+        <children xsi:type="editmodel:AttributeEditModel" name="solution" id="data.comparator/CurrentPriceComparator#solution"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel" size="170,54">
+        <children xsi:type="editmodel:MethodEditModel" name="CurrentPriceComparator" id="data.comparator/CurrentPriceComparator#CurrentPriceComparator(Ldata.Solution;I)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="compare" id="data.comparator/CurrentPriceComparator#compare(Ldata.Supplier;Ldata.Supplier;)"/>
+        <children xsi:type="editmodel:MethodEditModel" name="setSolution" id="data.comparator/CurrentPriceComparator#setSolution(Ldata.Solution;)"/>
+      </children>
+      <children xsi:type="editmodel:CompartmentEditModel"/>
+      <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data.comparator/CurrentPriceComparator-Standard::Call->data/Supplier*data.comparator/CurrentPriceComparator-Soyatec::Import->data/Supplier" source="//@children.0/@children.1" target="//@children.5" targetEnd="//@children.0/@children.1/@sourceConnections.0/@children.2" label="//@children.0/@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="15,139" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="138,-1"/>
+      </sourceConnections>
+      <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data.comparator/CurrentPriceComparator-Standard::Call->data/Solution*data.comparator/CurrentPriceComparator-Soyatec::Import->data/Solution" source="//@children.0/@children.1" target="//@children.4" targetEnd="//@children.0/@children.1/@sourceConnections.1/@children.2" label="//@children.0/@children.1/@sourceConnections.1/@children.0" sourceEnd="//@children.0/@children.1/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+        <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="29,0" attachSource="true"/>
+        <children xsi:type="editmodel:AssociationEndEditModel" location="149,-1"/>
+        <bendpoints secondRelativeDimension="106,-96" firstRelativeDimension="-124,-21"/>
+      </sourceConnections>
+      <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+    </children>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.2 //@children.5/@sourceConnections.1" name="DataPrinter" location="225,629" size="127,42" id="data/DataPrinter">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="IdList" location="824,405" size="120,170" id="data/IdList">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="97,108">
+      <children xsi:type="editmodel:MethodEditModel" name="IdList" id="data/IdList#IdList(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="add" id="data/IdList#add(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="contains" location="205,250" id="data/IdList#contains(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getHashSet" id="data/IdList#getHashSet()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getId" id="data/IdList#getId(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSize" id="data/IdList#getSize()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.1" name="Problem" location="16,659" size="191,530" id="data/Problem">
+    <children xsi:type="editmodel:CompartmentEditModel" size="168,126">
+      <children xsi:type="editmodel:AttributeEditModel" name="demand" id="data/Problem#demand"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dimension" id="data/Problem#dimension"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="data/Problem#name"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="numProducts" id="data/Problem#numProducts"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="problemClass" id="data/Problem#problemClass"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="suppliers" id="data/Problem#suppliers"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="totalDemand" id="data/Problem#totalDemand"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="163,342">
+      <children xsi:type="editmodel:MethodEditModel" name="Problem" id="data/Problem#Problem(Ljava.lang.String;Ljava.lang.String;II[I[Ldata.Supplier;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAvailability" location="-9,198" id="data/Problem#getAvailability(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDemand" id="data/Problem#getDemand()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDimension" id="data/Problem#getDimension()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMaxBuyableQuantity" id="data/Problem#getMaxBuyableQuantity(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getName" id="data/Problem#getName()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumProducts" id="data/Problem#getNumProducts()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumSegments" id="data/Problem#getNumSegments(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getProblemClass" id="data/Problem#getProblemClass()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getProductDemand" id="data/Problem#getProductDemand(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRandomSupplier" id="data/Problem#getRandomSupplier(Ljava.util.HashSet;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRandomSupplier" id="data/Problem#getRandomSupplier()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRandomSupplierId" id="data/Problem#getRandomSupplierId(Ljava.util.HashSet;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSupplier" id="data/Problem#getSupplier(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSuppliers" id="data/Problem#getSuppliers()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalDemand" id="data/Problem#getTotalDemand()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="maxSegmentActivable" id="data/Problem#maxSegmentActivable(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="sortByBoughtQuantity" id="data/Problem#sortByBoughtQuantity(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="sortByCurrentPrice" id="data/Problem#sortByCurrentPrice(ILdata.Solution;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="data/Problem-Standard::Call->data/Supplier*data/Problem-Soyatec::Import->data/Supplier" source="//@children.3" target="//@children.5" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="191,102" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,552"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data/Problem-Soyatec::Import->data/Solution" source="//@children.3" target="//@children.4" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="0,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="36,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="57,421"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.1 //@children.5/@sourceConnections.0 //@children.0/@children.0/@sourceConnections.0 //@children.0/@children.1/@sourceConnections.1" name="Solution" location="13,25" size="199,422" id="data/Solution" runTimeClassModel="objectiveFunction,totalQuantityBought(I),Solution([[ILdata.Problem;),getQuantity(II),getObjectiveFunction(),solutionMatrix,moveQuantity(IIII),isAdmissible(),getProblem(),print(),getSolutionMatrix(),getProductFromCell(I),getQuantity(I),getSupplierFromCell(I),cellValueIsDecrementable(ILdata.Problem;Ljava.util.ArrayList;),Solution(Ldata.Solution;),export(Ljava.lang.String;),calcDistance(Ldata.Solution;),getCell(II)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="169,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="objectiveFunction" id="data/Solution#objectiveFunction"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="solutionMatrix" id="data/Solution#solutionMatrix"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="176,324">
+      <children xsi:type="editmodel:MethodEditModel" name="Solution" id="data/Solution#Solution([[ILdata.Problem;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Solution" id="data/Solution#Solution(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="calcDistance" id="data/Solution#calcDistance(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cellValueIsDecrementable" id="data/Solution#cellValueIsDecrementable(ILdata.Problem;Ljava.util.ArrayList;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cloneMatrix" id="data/Solution#cloneMatrix([[I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="export" id="data/Solution#export(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCell" id="data/Solution#getCell(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getObjectiveFunction" id="data/Solution#getObjectiveFunction()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getProblem" id="data/Solution#getProblem()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getProductFromCell" id="data/Solution#getProductFromCell(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getQuantity" id="data/Solution#getQuantity(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getQuantity" id="data/Solution#getQuantity(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSolutionMatrix" id="data/Solution#getSolutionMatrix()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSupplierFromCell" id="data/Solution#getSupplierFromCell(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isAdmissible" id="data/Solution#isAdmissible()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="moveQuantity" id="data/Solution#moveQuantity(IIII)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="print" id="data/Solution#print()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="totalQuantityBought" id="data/Solution#totalQuantityBought(I)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="data/Solution-Standard::Call->data/Supplier*data/Solution-Soyatec::Import->data/Supplier" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="199,303" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,119"/>
+      <bendpoints secondRelativeDimension="-38,-189" firstRelativeDimension="151,109"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="data/Solution-Standard::Call->data/Problem*data/Solution-Soyatec::Import->data/Problem" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="98,422" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="95,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="data/Solution-Standard::Call->data/DataPrinter" source="//@children.4" target="//@children.1" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="35,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="189,422" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="54,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0 //@children.4/@sourceConnections.0 //@children.0/@children.0/@sourceConnections.1 //@children.0/@children.1/@sourceConnections.0" name="Supplier" location="464,209" size="211,656" id="data/Supplier" runTimeClassModel="activatedSegment(I),getAvailabilities(),activatedSegment(Ldata.Solution;),getLowerBounds(),getAvailability(I),basePrices,print(),getResidual(I[[I),id,pRODUCT_NOT_PRESENT,numSegments,lowerBounds,quantityToPreviousSegment(Ldata.Solution;),getPrice(II),getTotalResidualAvailability(Ldata.Solution;),setPrices(I[I),availability,setLowerBounds([I),Supplier(I),checkAvailability(I),getDiscountedPrice(II),setBasePrices([I),setNumOfferedProducts(I),setAvailability([I),getPrices(),getId(),getResidual(ILdata.Solution;),quantityToNextSegment(Ldata.Solution;),prices,numOfferedProducts,getNumSegments(),getNumOfferedProducts(),getBasePrice(I)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="181,144">
+      <children xsi:type="editmodel:AttributeEditModel" name="availability" id="data/Supplier#availability"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="basePrices" id="data/Supplier#basePrices"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="data/Supplier#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="lowerBounds" id="data/Supplier#lowerBounds"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="numOfferedProducts" id="data/Supplier#numOfferedProducts"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="numSegments" id="data/Supplier#numSegments"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pRODUCT_NOT_PRESENT" id="data/Supplier#pRODUCT_NOT_PRESENT"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="prices" id="data/Supplier#prices"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="188,450">
+      <children xsi:type="editmodel:MethodEditModel" name="Supplier" id="data/Supplier#Supplier(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="activatedSegment" id="data/Supplier#activatedSegment(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="activatedSegment" id="data/Supplier#activatedSegment(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="checkAvailability" id="data/Supplier#checkAvailability(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAvailabilities" id="data/Supplier#getAvailabilities()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAvailability" id="data/Supplier#getAvailability(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBasePrice" id="data/Supplier#getBasePrice(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDiscountedPrice" id="data/Supplier#getDiscountedPrice(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getId" id="data/Supplier#getId()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLowerBounds" id="data/Supplier#getLowerBounds()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumOfferedProducts" id="data/Supplier#getNumOfferedProducts()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumSegments" id="data/Supplier#getNumSegments()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPrice" id="data/Supplier#getPrice(II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPrices" id="data/Supplier#getPrices()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPrices" id="data/Supplier#setPrices(I[I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getResidual" id="data/Supplier#getResidual(ILdata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTotalResidualAvailability" id="data/Supplier#getTotalResidualAvailability(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="print" id="data/Supplier#print()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="quantityToNextSegment" id="data/Supplier#quantityToNextSegment(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="quantityToPreviousSegment" id="data/Supplier#quantityToPreviousSegment(Ldata.Solution;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLowerBounds" id="data/Supplier#setLowerBounds([I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getResidual" id="data/Supplier#getResidual(I[[I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setAvailability" id="data/Supplier#setAvailability([I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNumOfferedProducts" id="data/Supplier#setNumOfferedProducts(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setBasePrices" id="data/Supplier#setBasePrices([I)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data/Supplier-Standard::Call->data/Solution*data/Supplier-Soyatec::Import->data/Solution" source="//@children.5" target="//@children.4" targetEnd="//@children.5/@sourceConnections.0/@children.2" label="//@children.5/@sourceConnections.0/@children.0" sourceEnd="//@children.5/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="80,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,167" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="199,349"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" id="data/Supplier-Standard::Call->data/DataPrinter" source="//@children.5" target="//@children.1" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="35,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="-1,242" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="79,41"/>
+      <bendpoints secondRelativeDimension="34,84" firstRelativeDimension="-86,-49"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

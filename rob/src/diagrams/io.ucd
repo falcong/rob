@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="io" size="1336,440" id="diagrams" metadata="uml2-1.0" initialized="true" tag="10" key="32303037303533312D313020726F622D73766E">
+  <children xsi:type="editmodel:ClassEditModel" name="Io" location="231,127" size="168,134" id="io/Io" runTimeClassModel="openOutFile(Ljava.lang.String;Z),cONFIG_FILE,openInFile(Ljava.lang.String;),getConfigParameter(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="132,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="cONFIG_FILE" id="io/Io#cONFIG_FILE"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="145,54">
+      <children xsi:type="editmodel:MethodEditModel" name="openInFile" id="io/Io#openInFile(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="openOutFile" id="io/Io#openOutFile(Ljava.lang.String;Z)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getConfigParameter" id="io/Io#getConfigParameter(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0" name="Parser" location="690,90" size="149,116" id="io/Parser" runTimeClassModel="iNT_NOT_USED,Parser(Ljava.lang.String;),parse(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="126,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="iNT_NOT_USED" id="io/Parser#iNT_NOT_USED"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="69,36">
+      <children xsi:type="editmodel:MethodEditModel" name="Parser" id="io/Parser#Parser(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="parse" id="io/Parser#parse(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ProblemParser" location="450,270" size="262,512" id="io/ProblemParser" runTimeClassModel="dISCOUNT_SECTION_DELIMITER,bOOLEAN_NOT_USED,readAttributeFromFile(Ljava.lang.String;),readAttribute(Ljava.lang.String;Ljava.lang.String;),cOMMENT_DELIMITER,dEMAND_NOT_FOUND,makeSuppliers(I),sEPARATOR,readDiscountSection(I[Ldata.Supplier;),readAttribute(Ljava.lang.String;I),readDemandFromFile(Ljava.io.BufferedReader;),numProducts,file,completeDemand([I),parse(Ljava.lang.String;),dEMAND_SECTION_DELIMITER,readDemandSection(),nOT_FOUND,readMandatoryAttribute(Ljava.lang.String;),readOfferSection(I),sTRING_TO_STRIP,ProblemParser(Ljava.lang.String;),oFFER_SECTION_DELIMITER,setOffer(Ldata.Supplier;[II),findLine(Ljava.io.BufferedReader;Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="239,198">
+      <children xsi:type="editmodel:AttributeEditModel" name="numProducts" id="io/ProblemParser#numProducts"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="file" id="io/ProblemParser#file"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="bOOLEAN_NOT_USED" id="io/ProblemParser#bOOLEAN_NOT_USED"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="nOT_FOUND" id="io/ProblemParser#nOT_FOUND"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dEMAND_NOT_FOUND" id="io/ProblemParser#dEMAND_NOT_FOUND"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="cOMMENT_DELIMITER" id="io/ProblemParser#cOMMENT_DELIMITER"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dEMAND_SECTION_DELIMITER" id="io/ProblemParser#dEMAND_SECTION_DELIMITER"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="oFFER_SECTION_DELIMITER" id="io/ProblemParser#oFFER_SECTION_DELIMITER"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="dISCOUNT_SECTION_DELIMITER" id="io/ProblemParser#dISCOUNT_SECTION_DELIMITER"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="sEPARATOR" id="io/ProblemParser#sEPARATOR"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="sTRING_TO_STRIP" id="io/ProblemParser#sTRING_TO_STRIP"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="164,252">
+      <children xsi:type="editmodel:MethodEditModel" name="ProblemParser" id="io/ProblemParser#ProblemParser(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="parse" id="io/ProblemParser#parse(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readAttributeFromFile" id="io/ProblemParser#readAttributeFromFile(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readDemandSection" id="io/ProblemParser#readDemandSection()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readDemandFromFile" id="io/ProblemParser#readDemandFromFile(Ljava.io.BufferedReader;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="completeDemand" id="io/ProblemParser#completeDemand([I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="makeSuppliers" id="io/ProblemParser#makeSuppliers(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="findLine" id="io/ProblemParser#findLine(Ljava.io.BufferedReader;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readOfferSection" id="io/ProblemParser#readOfferSection(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readDiscountSection" id="io/ProblemParser#readDiscountSection(I[Ldata.Supplier;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setOffer" id="io/ProblemParser#setOffer(Ldata.Supplier;[II)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readAttribute" id="io/ProblemParser#readAttribute(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readAttribute" id="io/ProblemParser#readAttribute(Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="readMandatoryAttribute" id="io/ProblemParser#readMandatoryAttribute(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="io/Parser&lt;-io/ProblemParser" source="//@children.2" target="//@children.3/@sourceConnections.0" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="131,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="101,-58"/>
+      <bendpoints secondRelativeDimension="-1,39" firstRelativeDimension="53,-25"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="SolutionParser" location="870,270" size="149,116" id="io/SolutionParser" runTimeClassModel="SolutionParser(Ljava.lang.String;Ldata.Problem;),problem,parse(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="121,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="problem" id="io/SolutionParser#problem"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="115,36">
+      <children xsi:type="editmodel:MethodEditModel" name="SolutionParser" id="io/SolutionParser#SolutionParser(Ljava.lang.String;Ldata.Problem;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="parse" id="io/SolutionParser#parse(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.2/@sourceConnections.0" id="io/Parser&lt;-io/SolutionParser" source="//@children.3" target="//@children.1" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="74,116" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

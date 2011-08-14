@@ -15,7 +15,7 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 		this.problem=problem;
 	}
 	
-	/*
+	/**
 	 * Nella soluzione che riceve in ingresso individua un fornitore casuale lo fa passare
 	 * alla successiva fascia di sconto (facendo in modo per quanto possibile che negli altri
 	 * fornitori la fascia di sconto attiva non diminuisca)

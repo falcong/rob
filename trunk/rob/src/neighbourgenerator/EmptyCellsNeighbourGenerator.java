@@ -29,19 +29,31 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		totalCells=numSuppliers*numProducts;
 	}
 	
-	
+	/**
+	 * 
+	 * @param randomizationFactor fattore di randomizzazione che fa sì che nella generazione del vicino i prodotti 
+	 * sottratti dalle celle da svuotare non vadano tutti nei fornitori con i prezzi più bassi.
+	 * 0 <= randomizationFactor <=1
+	 * randomizationFactor = 0 -> i fornitori in cui spostare i prodotti sono quelli con i prezzi più bassi
+	 * randomizationFactor = 1 -> i fornitori in cui spostare i prodotti sono scelti in maniera casuale
+	 */
 	public EmptyCellsNeighbourGenerator(Problem problem, double randomizationFactor) {
 		this(problem);
 		this.randomizationFactor = randomizationFactor;
 	}
 	
 	
+	/**
+	 * Genera una soluzione che è un vicino di s0 svuotando 1 cella.
+	 */
 	public Solution generate(Solution solution){
 		final int DISTANCE = 1;
 		return generate(solution, DISTANCE);
 	}
 	
-	
+	/**
+	 * Genera una soluzione che è un vicino di s0 svuotando distance celle.
+	 */
 	@Override
 	public Solution generate(Solution s0, int distance){
 		//lista delle celle da svuotare
@@ -125,9 +137,9 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 		}		
 	}
 	
-	
-	/*
-	 * Altera l'ordine in maniera casuale dei primi floor(ratio * (array.length-1)) elementi.
+	//TODO qui
+	/**
+	 * Altera l'ordine in maniera casuale dei primi int(ratio * (array.length-1)) elementi.
 	 * array[0] non viene considerato.
 	 */
 	public Supplier[] scramble(Supplier array[]){

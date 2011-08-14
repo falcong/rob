@@ -14,7 +14,12 @@ import data.IdList;
 import data.Problem;
 import data.Solution;
 
-//TODO qui
+/**
+ * 
+ * Questo generatore per creare i vicini di una soluzione svuota dei fornitori scelti con un certo criterio e ne va a 
+ * riempire altri scelti con un altro criterio.
+ *
+ */
 public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
 	protected Problem problem;
 	SupplierEmptyingStrategy empStrategy;
@@ -26,11 +31,17 @@ public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements
 		this.selStrategy=ordStrategy;		
 	}
 	
+	/**
+	 * Genera e restituisce una soluzione che è un vicino di solution di distanza (secondo un certo criterio) unitaria. 
+	 */
 	public Solution generate(Solution solution){
 		final int DISTANCE = 1;
 		return generate(solution, DISTANCE);
 	}
 	
+	/**
+	 * Genera e restituisce una soluzione che è un vicino di solution di distanza (secondo un certo criterio) distance.
+	 */
 	@Override
 	public Solution generate(Solution solution, int distance){
 		//copia di solution da modificare

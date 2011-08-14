@@ -13,7 +13,12 @@ import neighbourgenerator.bansupplier.emptyingstrategy.LowestPriceEmptyingStrate
 import neighbourgenerator.bansupplier.selectionstrategy.FullestFirstSelectionStrategy;
 import data.Problem;
 
-
+/**
+ * 
+ * Questo generatore per creare i vicini di una soluzione svuota i fornitori più pieni va a riempire
+ * i fornitori con i prezzi più vantaggiosi.
+ *
+ */
 public class DirectionedBanNeighbourGenerator extends BanSupplierNeighbourGenerator {
 		
 	public DirectionedBanNeighbourGenerator(Problem problem) {

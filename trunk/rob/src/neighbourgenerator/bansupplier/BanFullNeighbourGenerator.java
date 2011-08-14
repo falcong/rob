@@ -12,7 +12,12 @@ import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import neighbourgenerator.bansupplier.selectionstrategy.FullestFirstSelectionStrategy;
 import data.Problem;
 
-
+/**
+ * 
+ * Questo generatore per creare i vicini di una soluzione svuota i fornitori più pieni e va a riempire
+ * altri fornitori scelti casualmente.
+ *
+ */
 public class BanFullNeighbourGenerator extends BanSupplierNeighbourGenerator{
 	
 	

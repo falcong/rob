@@ -7,7 +7,11 @@ import data.Problem;
 import data.Solution;
 
 public class RandomSelectionStrategy extends SupplierSelectionStrategy {
-
+	/**
+	 * 
+	 * @param problem il problema in cui applicare la strategia RandomSelectionStrategy per un certo 
+	 * BanSupplierNeighbourGenerator.
+	 */
 	public RandomSelectionStrategy(Problem problem) {
 		super(problem);
 	}

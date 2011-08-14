@@ -97,11 +97,6 @@ public class Solution {
 		return objectiveFunction;
 	}
 	
-	@Deprecated
-	public boolean isAdmissible(Problem problem) {
-		return isAdmissible();
-	}
-	
 	/**
 	 * Verifica se la soluzione in ingresso è ammissibile per {@link #problem}.
 	 * @param problem

@@ -32,7 +32,8 @@ public class IoTest {
 	}
 	
 	/*
-	 * parametro presente più volte (è attesto che il metodo si fermi alla prima occorrenza, quindi deve restituire il primo valore)
+	 * parametro presente più volte (attesto che il metodo si fermi alla prima occorrenza, 
+	 * quindi deve restituire il primo valore)
 	 */
 	@Test
 	public void testGetConfigParameter3() throws Exception {

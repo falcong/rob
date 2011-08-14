@@ -1,13 +1,9 @@
-//aaaaaaaaaa
 package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
-
 import neighbourgenerator.AdvancedNeighbourGenerator;
-
 import org.junit.Test;
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;
@@ -118,93 +114,4 @@ public class AdvancedNeighbourGeneratorTest {
 		//controllo che solution2 = solution2Expected (se e solo se distanza=0)
 		assertTrue(solution2.calcDistance(solution2Expected)==0);	
 	}
-	
-	
-	//TODO cancellare tutto quello che viene dopo!
-	//temp
-	/*
-	 *  casi di test:
-	 *1. creare una solution dove il fornitore scelto sia unico e tutti gli altri non retrocedano
-	 *2. creare una solution dove per far scattare un fornitore almeno un'altro fornitore deve retrocedere 
-	 *(non posso far forzare il fornitore da far scattare)
-	 */
-	
-	
-
-//	@Test
-//	public final void testFindSupplierImproveablePublic(){
-//		/*
-//		 * problema1.txt
-//		 * soluzione tale che
-//		 * s1 -> fascia di sconto 2 (massima)
-//		 * s2 -> fascia di sconto 1
-//		 */
-//		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-//		Problem problem = pp.parse("problema1.txt");
-//		int [] s0={0, 0, 0, 0};
-//		int [] s1={0, 51, 42, 53};
-//		int [] s2={0, 9, 0, 10};
-//		int [][] matrix=new int[3][];
-//		matrix[0]=s0;
-//		matrix[1]=s1;
-//		matrix[2]=s2;
-//		Solution solution=new Solution(matrix,problem);
-//		assertTrue(solution.isAdmissible());
-//		
-//		AdvancedNeighbourGenerator2 generator = new AdvancedNeighbourGenerator2(problem);
-//		assertEquals(2, generator.findSupplierImproveablePublic(solution));
-//	}
-//	
-//	@Test
-//	public final void testFindSupplierNotSaturatedPublic(){
-//		/*
-//		 * problema1.txt
-//		 * soluzione tale che
-//		 * s1 -> fascia di sconto 2 (massima)
-//		 * s2 -> fascia di sconto 3 (massima) + saturazione
-//		 */
-//		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-//		Problem problem = pp.parse("problema1.txt");
-//		int [] s0={0, 0, 0, 0};
-//		int [] s1={0, 23, 42, 24};
-//		int [] s2={0, 37, 0, 39};
-//		int [][] matrix=new int[3][];
-//		matrix[0]=s0;
-//		matrix[1]=s1;
-//		matrix[2]=s2;
-//		Solution solution=new Solution(matrix,problem);
-//		assertTrue(solution.isAdmissible());
-//		
-//		AdvancedNeighbourGenerator2 generator = new AdvancedNeighbourGenerator2(problem);
-//		assertEquals(1, generator.findSupplierNotSaturatedPublic(solution));
-//	}
-//	
-//	
-//	@Test
-//	public final void testFindTargetSupplierPublic(){
-//		/*
-//		 * problema1.txt
-//		 * soluzione tale che
-//		 * s1 -> fascia di sconto 2 (massima)
-//		 * s2 -> fascia di sconto 3 (massima) + saturazione
-//		 */
-//		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-//		Problem problem = pp.parse("problema1.txt");
-//		int [] s0={0, 0, 0, 0};
-//		int [] s1={0, 23, 42, 24};
-//		int [] s2={0, 37, 0, 39};
-//		int [][] matrix=new int[3][];
-//		matrix[0]=s0;
-//		matrix[1]=s1;
-//		matrix[2]=s2;
-//		Solution solution=new Solution(matrix,problem);
-//		assertTrue(solution.isAdmissible());
-//		
-//		AdvancedNeighbourGenerator2 generator = new AdvancedNeighbourGenerator2(problem);
-//		assertEquals(1, generator.findTargetSupplierPublic(solution));
-//	}
-//	
-
-	
-
 }

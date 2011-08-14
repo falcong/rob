@@ -146,7 +146,7 @@ public class Problem {
 	
 	/**
 	 * Ritorna il numero di fornitori del problema.
-	 * @return dimension.
+	 * @return {@link #dimension}.
 	 */
 	public int getDimension() {
 		return dimension;
@@ -196,7 +196,7 @@ public class Problem {
 	}
 
 	/**
-	 * Restituisce la disponibilità totale del prodotto {@code  product} presso il fornitore {@code supplier</supplier>. 
+	 * Restituisce la disponibilità totale del prodotto {@code  product} presso il fornitore {@code supplier}. 
 	 * @param supplier - id del fornitore
 	 * @param product - numero del prodotto
 	 * @return availability se è il prodotto è presente, 0 altrimenti

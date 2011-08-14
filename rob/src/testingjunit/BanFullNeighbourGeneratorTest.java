@@ -45,7 +45,7 @@ public class BanFullNeighbourGeneratorTest {
 			for(int distance = 1; distance<=MAX_DISTANCE; distance++){
 				Solution sol1 = banGenerator.generate(sol0, distance);
 				//controllo ammissibilità della soluzione generata dal metodo
-				boolean ok = sol1.isAdmissible(problem);
+				boolean ok = sol1.isAdmissible();
 				//verifico che il generatore abbia davvero prodotto
 				//una nuova soluzione diversa
 				assertTrue(sol0.calcDistance(sol1)!=0);

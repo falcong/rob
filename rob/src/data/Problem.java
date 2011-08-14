@@ -40,7 +40,8 @@ public class Problem {
 	/**
 	 * Numero massimo degli intervalli di sconto,
 	 * inclusa la fascia 0-esima in cui non è applicato alcuno sconto.
-	 * Se questo attributo vale -1 vuol dire che non è stato specificato.
+	 * Se questo attributo vale -1 vuol dire che non è stato specificato.<br>
+	 * Attualmente questo attributo non è usato.
 	 */
 	private int maxNRange;
 	

@@ -45,7 +45,7 @@ public class BoughtQuantityComparatorTest {
 		matrix[1] = s1;
 		matrix[2] = s2;
 		Solution sol = new Solution(matrix, problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		BoughtQuantityComparator comparator = new BoughtQuantityComparator(sol);
 		assertTrue(comparator.compare(sup1, sup2) < 0);
@@ -64,7 +64,7 @@ public class BoughtQuantityComparatorTest {
 		matrix[1] = s1;
 		matrix[2] = s2;
 		Solution sol = new Solution(matrix, problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		BoughtQuantityComparator comparator = new BoughtQuantityComparator(sol);
 		assertTrue(comparator.compare(sup1, sup2) == 0);
@@ -83,7 +83,7 @@ public class BoughtQuantityComparatorTest {
 		matrix[1] = s1;
 		matrix[2] = s2;
 		Solution sol = new Solution(matrix, problem);
-		assertTrue(sol.isAdmissible(problem));
+		assertTrue(sol.isAdmissible());
 		
 		BoughtQuantityComparator comparator = new BoughtQuantityComparator(sol);
 		assertTrue(comparator.compare(sup1, sup2) > 0);

@@ -58,7 +58,7 @@ public class LowestPriceEmptyingStrategy extends SupplierEmptyingStrategy {
 	                      if (residual<=0)
 	                              continue;
 	                      int quantity=Math.min(residual, solution.getQuantity(supplierId, product));
-	                      solution.moveQuantity(product, supplierId, targetSupId, quantity, problem);
+	                      solution.moveQuantity(product, supplierId, targetSupId, quantity);
 	                      }
 	              }
 	}

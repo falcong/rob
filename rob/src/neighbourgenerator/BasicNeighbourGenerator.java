@@ -56,7 +56,7 @@ public class BasicNeighbourGenerator extends NeighbourGenerator implements Dista
 			if (supplier2==null) //questo si verifica se supplier1 è l'unico venditore di randomProduct, o se tutti gli altri venditori di randomProduct non hanno residuo
 				continue;
 			
-			neighbour.moveQuantity(randomProduct, supplier1.getId(), supplier2.getId(), 1, problem);
+			neighbour.moveQuantity(randomProduct, supplier1.getId(), supplier2.getId(), 1);
 			newDistance=solution.calcDistance(neighbour);
 			if (System.currentTimeMillis()-startTime>= MAXIMUM_TIME){
 				System.err.println("Warning: La generazione di un vicino alla distanza "+ distance + " sta richiedendo troppo tempo.\nRestituisco un vicino a distanza " + newDistance);

@@ -119,7 +119,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 			
 			if(recSup!=supplier && !cellsToEmpty.contains(recCell) && residualAvailability>0){
 				int quantityToMove = Math.min(quantity, residualAvailability);
-				sol.moveQuantity(product, supplier, recSup, quantityToMove, problem);
+				sol.moveQuantity(product, supplier, recSup, quantityToMove);
 				quantity -= quantityToMove; 
 			}
 		}		

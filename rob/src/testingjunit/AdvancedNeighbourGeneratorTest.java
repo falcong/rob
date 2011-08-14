@@ -41,7 +41,7 @@ public class AdvancedNeighbourGeneratorTest {
 		//prima
 		//solution1 = soluzione iniziale
 		Solution solution1 = new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible(problem));
+		assertTrue(solution1.isAdmissible());
 		Supplier sup1 = problem.getSupplier(1);
 		Supplier sup2 = problem.getSupplier(2);
 		//fasce di sconto attive inizialmente
@@ -61,7 +61,7 @@ public class AdvancedNeighbourGeneratorTest {
 			System.out.println("chiamata generate");
 			Solution solution2 = generator.generate(solution1);
 			//dopo
-			assertTrue(solution2.isAdmissible(problem));
+			assertTrue(solution2.isAdmissible());
 			assertTrue(solution1.calcDistance(solution2)!=0);
 			int sup1Segment2 = sup1.activatedSegment(solution2);
 			int sup2Segment2 = sup2.activatedSegment(solution2);
@@ -98,7 +98,7 @@ public class AdvancedNeighbourGeneratorTest {
 		//prima
 		//solution1 = soluzione iniziale
 		Solution solution1 = new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible(problem));
+		assertTrue(solution1.isAdmissible());
 		
 		//solution2expected 
 		int s20[] = {0, 0, 0, 0};
@@ -108,7 +108,7 @@ public class AdvancedNeighbourGeneratorTest {
 		matrix[1]=s21;
 		matrix[2]=s22;
 		Solution solution2Expected = new Solution(matrix,problem);
-		assertTrue(solution2Expected.isAdmissible(problem));
+		assertTrue(solution2Expected.isAdmissible());
 		
 		//solution2 = generate(solution1)
 		AdvancedNeighbourGenerator generator = new AdvancedNeighbourGenerator(problem);

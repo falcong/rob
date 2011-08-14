@@ -16,15 +16,21 @@ public class BasicNeighbourGenerator extends NeighbourGenerator implements Dista
 		this.problem=problem;
 	}
 	
-	
+	/**
+	 * Genera un vicino di distanza distance=1, dove distance = |currentSolution-nextSolution|/2,
+	 * cioè il numero di unità di prodotto scambiate.
+	 * 
+	 */
 	public Solution generate(Solution solution){
 		final int DISTANCE = 1;
 		return generate(solution, DISTANCE);
 	}
 	
 	
-	/*
-	 * Genera un vicino esattamente di distanza distance, dove distance = |currentSolution-nextSolution|/2, cioè il numero di unità di prodotto scambiate
+	/**
+	 * Genera un vicino di distanza distance, dove distance = |currentSolution-nextSolution|/2,
+	 * cioè il numero di unità di prodotto scambiate.
+	 * 
 	 */
 	@Override
 	public Solution generate(Solution solution, int distance){

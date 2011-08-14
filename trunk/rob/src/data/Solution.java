@@ -269,8 +269,8 @@ public class Solution {
 	 * Per decrementare il valore contenuto nella cella {@code cell} si può utilizzare solamente D_effettiva.
 	 * 
 	 * @param cell
-	 * @param problem TODO
-	 * @param forbiddenCells
+	 * @param problem 
+	 * @param forbiddenCells - altre celle che devono essere svuotate
 	 * @return {@code true} se almeno 1 prodotto acquistato in cell è spostabile presso un altro fornitore;<br>
 	 * {@code false} altrimenti.
 	 */

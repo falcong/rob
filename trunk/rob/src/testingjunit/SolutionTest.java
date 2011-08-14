@@ -17,7 +17,7 @@ public class SolutionTest {
 	
 	//test di Solution()
 	/*
-	 * caso generale
+	 * Caso generale
 	 */
 	@Test
 	public final void testSolution1() throws Exception {
@@ -32,13 +32,14 @@ public class SolutionTest {
 		matrix[2]=s2;
 		Solution solution=new Solution(matrix,problem);
 		assertTrue(solution.isAdmissible());
-		assertEquals(19346.75, solution.getObjectiveFunction(), 0.01);		
+		final double EXPECTED_OBJ_FUN_VALUE=19346.75;
+		assertEquals(EXPECTED_OBJ_FUN_VALUE, solution.getObjectiveFunction(), 0.01);		
 	}
 	
 	
 	//test di calcDistance()
 	/*
-	 * caso generale
+	 * Caso generale
 	 */
 	@Test
 	public final void testCalcDistance1() throws Exception {
@@ -62,22 +63,22 @@ public class SolutionTest {
 		matrixB[2]=B2;
 		Solution solutionB=new Solution(matrixB,problem);
 		assertTrue(solutionA.isAdmissible()&&solutionB.isAdmissible());
-		assertEquals(2,solutionA.calcDistance(solutionB));
+		
+		final int EXPECTED_DISTANCE_VALUE=2;
+		assertEquals(EXPECTED_DISTANCE_VALUE,solutionA.calcDistance(solutionB));
 	}
 	
 	//test di export()
 	/*
-	 * caso generale:
-	 * new sol
-	 * exp
-	 * imp
-	 * controllo =
+	 * Si genera una soluzione, la si esporta con il metodo export. 
+	 * Il file esportato poi viene riletto con il metodo parse.
+	 * Sono definite le condizioni che il file sia stato esportato correttamente.
 	 */
 	@Test
 	public final void testExport1() throws Exception {
 		final String PROBLEM_NAME="Cap.50.40.5.1.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);
-		SolutionGenerator sg=new RandomSolutionGenerator(problem);
+		SolutionGenerator sg = new RandomSolutionGenerator(problem);
 		Solution sol = sg.generate();
 		
 		final String outputFileName=PROBLEM_NAME+"_Solution.txt";
@@ -88,13 +89,14 @@ public class SolutionTest {
 		SolutionParser solParser = new SolutionParser(fileFolder, problem);
 		Solution importedSol = solParser.parse(outputFileName);
 		
+		//condizioni che accertano che il esportato sia stato importato correttamente
 		assertTrue(sol.calcDistance(importedSol)==0);
 		assertTrue(sol.getObjectiveFunction()==importedSol.getObjectiveFunction());		
 	}
 	
 	//test di isAdmissible()
 	/*
-	 * Soluzione ammissibile
+	 * Caso1: soluzione ammissibile
 	 */
 	@Test
 	public final void testIsAdmissible1() throws Exception {
@@ -113,7 +115,7 @@ public class SolutionTest {
 	}
 	
 	/*
-	 * Soluzione non ammissibile
+	 * Caso2: soluzione non ammissibile
 	 */
 	@Test
 	public final void testIsAdmissible2() throws Exception {
@@ -194,7 +196,7 @@ public class SolutionTest {
 
 	//metodo getCell()
 	/*
-	 * input =  1, 1
+	 * Caso1: (input =  primo_fornitore, primo_prodotto)
 	 */
 	@Test
 	public final void testGetCell1() throws Exception{
@@ -209,7 +211,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * caso generale (input = 7, 53)
+	 * Caso2: caso generale (input = 7, 53)
 	 */
 	@Test
 	public final void testGetCell2() throws Exception{
@@ -224,7 +226,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * input = ultimo_fornitore, ultimo_prodotto
+	 *Caso3: (input = ultimo_fornitore, ultimo_prodotto)
 	 */
 	@Test
 	public final void testGetCell3() throws Exception{
@@ -240,7 +242,7 @@ public class SolutionTest {
 
 	//test di getSupplierFromCell()
 	/*
-	 * cella = 1
+	 * Caso1: (input cella=1)
 	 */
 	@Test
 	public final void testGetSupplierFromCell1() throws Exception{
@@ -254,7 +256,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * caso generale (cella = 653)
+	 *Caso2: caso generale (input cella = 653)
 	 */
 	@Test
 	public final void testGetSupplierFromCell2() throws Exception{
@@ -268,7 +270,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * cella = ultima_cella
+	 * Caso3: (input cella = ultima_cella)
 	 */
 	@Test
 	public final void testGetSupplierFromCell3() throws Exception{
@@ -283,7 +285,7 @@ public class SolutionTest {
 
 	//metodo getProductFromCell()
 	/*
-	 * cella = 1
+	 * Caso1: (input cella = 1)
 	 */
 	@Test
 	public final void testGetProductFromCell1() throws Exception{
@@ -297,7 +299,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * cella = 653
+	 *Caso2: (input cella = 653)
 	 */
 	@Test
 	public final void testGetProductFromCell2() throws Exception{
@@ -311,7 +313,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * cella = ultima_cella
+	 * *Caso3: (input cella = ultima_cella)
 	 */
 	@Test
 	public final void testGetProductFromCell3() throws Exception{

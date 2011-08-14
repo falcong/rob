@@ -14,56 +14,50 @@ import solutiongenerator.RandomSolutionGenerator;
 public class SupplierTest {
 	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 
-	//test di activatedSegment() 
-	//fasce di sconto con limiti 50 e 70
+	//test di activatedSegment() fasce di sconto con limiti 50 e 70
 	/*
-	 * Caso con totalQuantityBought < di 50
+	 * Caso1: totalQuantityBought < di 50
 	 */
 	@Test
-	public final void testActivatedSegment1(){
+	public final void testActivatedSegment1() throws Exception{
 		final String PROBLEM_NAME = "problema1_abiola.txt";
 		final int ACTIVATED_SEGMENT_EXPECTED = 0; 
 		testActivatedSegment(PROBLEM_NAME, ACTIVATED_SEGMENT_EXPECTED);
 	}
 	
 	/*
-	 * Caso con totalQuantityBought pari a 49 (Boundary test)
+	 * Caso2: totalQuantityBought pari a 49 (Boundary test)
 	 */
 	@Test
-	public final void testActivatedSegment2(){
+	public final void testActivatedSegment2() throws Exception{
 		final String PROBLEM_NAME = "problema2_abiola.txt";
 		final int ACTIVATED_SEGMENT_EXPECTED = 0; 
 		testActivatedSegment(PROBLEM_NAME, ACTIVATED_SEGMENT_EXPECTED);
 	}
 
 	/*
-	 * Caso con totalQuantityBought pari a 50 (Boundary test)
+	 * Caso3: totalQuantityBought pari a 50 (Boundary test)
 	 */
 	@Test
-	public final void testActivatedSegment3(){
+	public final void testActivatedSegment3() throws Exception{
 		final String PROBLEM_NAME = "problema3_abiola.txt";
 		final int ACTIVATED_SEGMENT_EXPECTED = 1; 
 		testActivatedSegment(PROBLEM_NAME, ACTIVATED_SEGMENT_EXPECTED);
 	}
 	
 	/*
-	 * Caso con totalQuantityBought > 70
+	 * Caso4: totalQuantityBought > 70
 	 */
 	@Test
-	public final void testActivatedSegment4(){
+	public final void testActivatedSegment4() throws Exception{
 		final String PROBLEM_NAME = "problema4_abiola.txt";
 		final int ACTIVATED_SEGMENT_EXPECTED = 2; 
 		testActivatedSegment(PROBLEM_NAME, ACTIVATED_SEGMENT_EXPECTED);
 	}
 	
-	private final void testActivatedSegment(String problemName, int activatedSegmentExpected){
+	private final void testActivatedSegment(String problemName, int activatedSegmentExpected) throws Exception{
 		Problem problem = null;
-		try {
-			problem = pp.parse(problemName);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    problem = pp.parse(problemName);
 		
 		RandomSolutionGenerator generator = new RandomSolutionGenerator(problem);
 		Solution solution = generator.generate();
@@ -79,7 +73,7 @@ public class SupplierTest {
 	
 	//test di checkAvailability()
 	/*
-	 * Caso in cui il prodotto non c'è
+	 * Caso1: il prodotto non c'è
 	 */
 	@Test
 	public final void testCheckAvailability1(){
@@ -88,7 +82,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * Caso in cui il prodotto c'è con la disponibilità = 0
+	 * Caso2: il prodotto c'è con la disponibilità = 0
 	 */
 	@Test
 	public final void testCheckAvailability2(){
@@ -97,7 +91,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * Caso in cui il prodotto c'è con la disponibilità = n
+	 * Caso3: il prodotto c'è con la disponibilità = n
 	 */
 	@Test
 	public final void testCheckAvailability3(){
@@ -121,12 +115,10 @@ public class SupplierTest {
 	}
 	
 	//test di getDiscountedPrice()
-	//fasce di sconto con limiti 50 e 70
-    /*4 casi di test : es tre fascie di sconto con limiti 100 e 200
-     *50,99,100,250
-     */
-	/*
-     *Caso in cui si ricade nella prima fascia di sconto
+	//fasce di sconto con limiti(boundary) 50 e 70
+    //Casi di test verificati con valori 50,49,100,250.
+    /*
+     * Caso1: si cade nella prima fascia di sconto
      */
 	@Test
 	public final void testGetDiscountedPrice1() throws Exception{
@@ -141,9 +133,8 @@ public class SupplierTest {
 		testGetDiscountedPrice(matrix);
 	}
 	
-	
 	/*
-     *Caso in cui si ricade su un boundary (=49)
+     *Caso2: si ricade appena prima del primo boundary (=49)
      */
 	@Test
 	public final void testGetDiscountedPrice2() throws Exception{
@@ -159,25 +150,10 @@ public class SupplierTest {
 	}
 	
 	/*
-     *Caso in cui si ricade dopo l'ultimo boundary (> 70)
+     *Caso3: si cade sul primo boundary (=50)
      */
 	@Test
 	public final void testGetDiscountedPrice3() throws Exception{
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 20, 30, 27};
-		int [] s2={0, 40, 12, 36};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		
-		testGetDiscountedPrice(matrix);	
-	}
-	/*
-     *Caso in cui si ricade sul primo boundary (=50)
-     */
-	@Test
-	public final void testGetDiscountedPrice4() throws Exception{
 		int [] s0={0, 0, 0, 0};
 		int [] s1={0, 20, 30, 0};
 		int [] s2={0, 40, 12, 63};
@@ -188,6 +164,27 @@ public class SupplierTest {
 		
 		testGetDiscountedPrice(matrix);	
 	}
+	
+	/*
+     *Caso4: si cade dopo l'ultimo boundary (> 70)
+     */
+	@Test
+	public final void testGetDiscountedPrice4() throws Exception{
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 30, 27};
+		int [] s2={0, 40, 12, 36};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		testGetDiscountedPrice(matrix);	
+	}
+	
+	/*
+	 * Metodo che determina la fascia di sconto per un particolare prodotto dato in ingresso
+	 * una soluzione in forma matriciale
+	 */
 	private final void testGetDiscountedPrice(int matrix [][]) throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
@@ -206,6 +203,8 @@ public class SupplierTest {
 		assertEquals(expectedDiscountedPrice, discountedPriceProduct1, TOLERANCE);
 	}
 	
+	
+	//TODO partire da qui
 	//test di getResidual(int, int[][])
 	/*
 	 *Caso generale

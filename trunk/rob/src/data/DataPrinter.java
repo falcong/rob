@@ -1,15 +1,19 @@
 package data;
 
 public class DataPrinter {
-	/*
-	 * stampa la matrice che riceve in ingresso bidimensionale
-	 * x e y indicano come nominare le righe e le colonne
-	 * i e j indicano da quale riga e colonna, rispettivamente, partire
-	 * numTab1	numero tab prima riga intestazione [2]
-	 * numTab2 	numero tab fra elementi riga intestazione [3] 
-	 * numTab3	numero tab inizio ogni riga matrice [2]
-	 * numTab4	numero tab fra gli elementi di ogni riga della matrice [2]
-	 */
+    /**
+     * Stampa la matrice bidimensionale che riceve in ingresso.
+     * 
+     * @param matrix - matrice bidimensonale da stampare.
+     * @param x - indica il nome delle righe.
+     * @param y - indica il nome delle colonne.
+     * @param i - indicano da quale riga partire.
+     * @param j - indicano da quale colonna partire.
+     * @param numTab1 - numero tab prima riga intestazione.
+     * @param numTab2 - numero tab prima riga intestazione.
+     * @param numTab3 - numero tab inizio ogni riga matrice.
+     * @param numTab4 - numero tab fra gli elementi di ogni riga della matrice.
+     */
 	protected static void printMatrix2D(double matrix[][], String x, String y,
 			int i, int j, int numTab1, int numTab2, int numTab3, int numTab4){
 		int numRows		= matrix.length; 

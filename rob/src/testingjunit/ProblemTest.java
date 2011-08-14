@@ -17,12 +17,12 @@ import data.Supplier;
 public class ProblemTest {
 	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 	
-	//metodo problem()
+	//test di  problem()
 	/*
 	 * Caso generico: controllo domanda totale.
 	 */
 	@Test
-	public final void testProblem(){
+	public final void testProblem1(){
 		final String NAME = "name.ctqd";
 		final String TYPE = "CTQD";
 		final int PROBLEM_CLASS = 1;
@@ -50,12 +50,12 @@ public class ProblemTest {
 		assertEquals(totalDemand, problem.getTotalDemand(), TOLERANCE);
 	}
 	
-	//metodo cellIsEmptiable()
+	//test di cellIsEmptiable()
 	/*
 	 * Caso generale con cell svuotabile.
 	 */
 	@Test
-	public final void testCellIsEmptiable1() throws Exception{
+	public final void testCellValueIsDecrementable1() throws Exception{
 		final String PROBLEM_NAME = "problema7.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		
@@ -84,7 +84,7 @@ public class ProblemTest {
 	 * cell non svuotabile perchè le disponibilità residue di tutte le altre celle della stessa colonna sono 0. 
 	 */
 	@Test
-	public final void testCellIsEmptiable2() throws Exception{
+	public final void testCellValueIsDecrementable2() throws Exception{
 		final String PROBLEM_NAME = "problema7a.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		
@@ -113,7 +113,7 @@ public class ProblemTest {
 	 * cell non svuotabile perchè tutte le altre celle della stessa colonna appartengono a otherCellsToEmpty.
 	 */
 	@Test
-	public final void testCellIsEmptiable3() throws Exception{
+	public final void testCellValueIsDecrementable3() throws Exception{
 		final String PROBLEM_NAME = "problema7.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		
@@ -138,12 +138,12 @@ public class ProblemTest {
 		 assertTrue(sol.cellValueIsDecrementable(CELL, problem, otherCellsToEmpty) == false);
 	}
 	
-	//metodo getMaxQuantityBuyable()
+	//test di getMaxBuyableQuantity()
 	/*
 	 * Caso generale.
 	 */
 	@Test
-	public final void testGetMaxQuantityBuyable1() throws Exception{
+	public final void testGetMaxBuyableQuantity1() throws Exception{
 		final String PROBLEM_NAME = "problema7.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		

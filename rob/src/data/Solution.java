@@ -237,7 +237,7 @@ public class Solution {
 	
 	/**
 	 * Restituisce la quantità totale di prodotti comprati presso {@code supplier}.
-	 * @param supplier
+	 * @param supplier - l'id di un fornitore
 	 * @return la somma di tutti gli acquisti presso {@code supplier}.
 	 */
 	public int totalQuantityBought(int supplier){

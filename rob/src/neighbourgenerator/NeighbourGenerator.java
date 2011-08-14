@@ -8,5 +8,10 @@ import data.Solution;
  *
  */
 public abstract class NeighbourGenerator {
+	/**
+	 * 
+	 * @param solution - la soluzione di partenza
+	 * @return la nuova soluzione trovata.
+	 */
 	public abstract Solution generate(Solution solution);
 }

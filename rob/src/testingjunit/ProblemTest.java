@@ -159,7 +159,7 @@ public class ProblemTest {
 	
 	//test di getRandomSupplierId()
 	/*
-	 * Caso generico
+	 * Caso generale.
 	 */
 	@Test
 	public final void testGetRandomSupplierId1() throws Exception{
@@ -205,7 +205,7 @@ public class ProblemTest {
 	
 	//test di maxSegmentActivable()
 	/*
-	 * Caso generico
+	 * Caso generale
 	 * (con il fornitore che presenta una fascia irraggiungibile)
 	 */
 	@Test
@@ -222,7 +222,7 @@ public class ProblemTest {
 	
 	//test di sortByBoughtQuantity()
 	/*
-	 * Caso generico.
+	 * Caso generale.
 	 */
 	@Test
 	public final void testSortByBoughtQuantity1() throws Exception{
@@ -252,7 +252,7 @@ public class ProblemTest {
 	
 	//test di sortByCurrentPrice()
 	/*
-	 * caso generico
+	 * caso generale
 	 */
 	@Test
 	public final void testSortByCurrentPrice1() throws Exception{

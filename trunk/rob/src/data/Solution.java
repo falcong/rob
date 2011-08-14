@@ -1,5 +1,8 @@
 package data;
 
+import io.Io;
+
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -7,44 +10,64 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Solution {
-	/*
-	 * Matrice di dimensione (numSuppliers+1)*(numProducts+1) [poichè la riga 0-esima 
-	 * e la colonna 0-esima non sono utilizzate], indica le quantità di prodotto 
+	/**
+	 * Matrice di dimensione {@code (numSuppliers+1)*(numProducts+1)} (poiché la riga 0-esima 
+	 * e la colonna 0-esima non sono utilizzate), indica le quantità di prodotto 
 	 * acquistate presso ogni fornitore;
 	 * Esempio:
-     * solution[i][k]=x significa che x unità del prodotto k sono acquistate presso 
-     * il fornitore i;
+     * {@code solution[i][k]=x} significa che x unità del prodotto k sono acquistate presso 
+     * il fornitore i.
 	 */
 	private int[][] solutionMatrix;
-	private double objectiveFunction;
-	private int numSuppliers;
-	private int numProducts;
 	
-	//t
+	/**
+	 * Valore della funzione obiettivo
+	 */
+	private double objectiveFunction;
+	
+	private Problem problem;
+
+	/**
+	 * Costruisce un oggetto Solution dati la matrice soluzione e il problema.
+	 * @param solution
+	 * @param problem
+	 */
 	public Solution(int[][] solution, Problem problem) {
 		solutionMatrix=solution;
-		numSuppliers = solution.length-1;
-		numProducts = solution[1].length-1;
-		objectiveFunction=calcObjectiveFunction(problem);
+		this.problem = problem;
+//		numSuppliers = solution.length-1;
+//		numProducts = solution[1].length-1;
+		objectiveFunction=calcObjectiveFunction();
 	}
 	
-	/*
-	 * Costruttore overloaded che restituisce una copia dell'oggetto Solution in ingresso
+	/**
+	 * Costruttore overloaded che restituisce una copia dell'oggetto Solution in ingresso.
 	 */
-	//ta
 	public Solution(Solution sol) {
-		numSuppliers=sol.getNumSuppliers();
-		numProducts=sol.getNumProducts();
+//		numSuppliers=sol.getNumSuppliers();
+//		numProducts=sol.getNumProducts();
+		this.problem=sol.getProblem();
 		solutionMatrix=cloneMatrix(sol.getSolutionMatrix());
 		objectiveFunction=sol.getObjectiveFunction();
 	}
 	
+	Problem getProblem(){
+		return this.problem;
+	}
 	
+	/**
+	 * Restituisce la quantità di acquisti del prodotto {@code product} presso il fornitore {@code supplier}
+	 * @param supplier
+	 * @param product
+	 * @return {@link #solutionMatrix}[{@code supplier}][{@code product}]
+	 */
 	public int getQuantity(int supplier, int product){
 		return getSolutionMatrix()[supplier][product];
 	}
 	
-	
+	/**
+	 * Stampa la soluzione a video.
+	 */
 	public void print(){
 		System.out.println("Soluzione: (matrice fornitori*prodotti):");
 		
@@ -61,31 +84,51 @@ public class Solution {
 		System.out.println("funzione obiettivo = "+this.getObjectiveFunction());
 	}
 
+	//TODO Non è una violazione di accesso?
 	public void setSolution(int[][] solution) {
 		this.solutionMatrix = solution;
 	}
 
+	/**
+	 * Restituisce la matrice soluzione.
+	 * @return {@link #solutionMatrix}[][]
+	 */
 	public int[][] getSolutionMatrix() {
 		return solutionMatrix;
 	}
 
+	//TODO Anche questa non è una violazione di accesso?
 	public void setObjectiveFunction(double objectiveFunction) {
 		this.objectiveFunction = objectiveFunction;
 	}
-
+	
+	/**
+	 * Restituisce il valore della funzione obiettivo.
+	 * @return {@link #objectiveFunction}
+	 */
 	public double getObjectiveFunction() {
 		return objectiveFunction;
 	}
 	
+	@Deprecated
 	public boolean isAdmissible(Problem problem) {
+		return isAdmissible();
+	}
+	
+	/**
+	 * Verifica se la soluzione in ingresso è ammissibile per {@link #problem}.
+	 * @param problem
+	 * @return {@code true} se la soluzione è ammissibile, {@code false} altrimenti.
+	 */
+	public boolean isAdmissible() {
 		int [] demand=problem.getDemand();
 		
 		/*
 		 * controllo che la riga e la colonna 0-esime di solutionMatrix contengano 0 e che tutti gli altri
 		 * elementi siano >= 0
 		 */
-		for(int s=0; s<=numSuppliers; s++){
-			for(int p=0; p<=numProducts; p++){
+		for(int s=0; s<=problem.getDimension(); s++){
+			for(int p=0; p<=problem.getNumProducts(); p++){
 				if(s==0 || p==0){
 					//riga 0-esima e colonna 0-esima devono contenere 0
 					if(solutionMatrix[s][p]!=0){
@@ -125,7 +168,12 @@ public class Solution {
 		return true;
 	}
 	
-	private double calcObjectiveFunction(Problem problem) {
+	/**
+	 * Questo metodo calcola la funzione obiettivo.
+	 * @param problem
+	 * @return
+	 */
+	private double calcObjectiveFunction() {
 		double value=0;
 		for (int supp=1;supp<=problem.getDimension();supp++) {
 			int total=0;
@@ -144,41 +192,58 @@ public class Solution {
 		return value;
 	}
 
-	public void setNumProducts(int numProducts) {
-		this.numProducts = numProducts;
-	}
+//	public void setNumProducts(int numProducts) {
+//		this.numProducts = numProducts;
+//	}
+//
+//	public int getNumProducts() {
+//		return numProducts;
+//	}
 
-	public int getNumProducts() {
-		return numProducts;
-	}
-
-	public void setNumSuppliers(int numSuppliers) {
-		this.numSuppliers = numSuppliers;
-	}
-
-	public int getNumSuppliers() {
-		return numSuppliers;
-	}
+//	public void setNumSuppliers(int numSuppliers) {
+//		this.numSuppliers = numSuppliers;
+//	}
+//
+//	public int getNumSuppliers() {
+//		return numSuppliers;
+//	}
 	
-	/*
+	/**
 	 * Questo metodo sposta una certa quantità di prodotto da una cella all'altra. NB: NON fa controlli di 
 	 * consistenza e ammissibilità, essi sono a carico del chiamante (volendo, si potrebbe volere un'esplorazione
 	 * dell'intorno che va in regione di non ammissibilità, è il chiamante a doversene occupare)
+	 * @deprecated Use {@link #moveQuantity(int,int,int,int)} instead
 	 */
 	public void moveQuantity(int productId, int fromSupplierId, int toSupplierId, int quantity, Problem problem) {
-		solutionMatrix[fromSupplierId][productId]-=quantity;
-		solutionMatrix[toSupplierId][productId]+=quantity;
-		objectiveFunction=calcObjectiveFunction(problem);
+		moveQuantity(productId, fromSupplierId, toSupplierId, quantity);
 	}
 
-	/*
-	 * Calcola la distanza tra se stessa e un'altra soluzione data
+	/**
+	 * Questo metodo sposta una certa quantità {@code quantity} di prodotto {@code product} dalla riga {@code fromSupplierId}
+	 * alla riga {@code toSupplierId}.<br>
+	 * <b>Attenzione:</b> NON fa controlli di consistenza e ammissibilità, essi sono a carico del chiamante 
+	 * (volendo, si potrebbe volere un'esplorazione dell'intorno che va in regione di non ammissibilità, 
+	 * è il chiamante a doversene occupare).
 	 */
-	public int calcDistance(Solution s2) {
+	public void moveQuantity(int product, int fromSupplierId, int toSupplierId, int quantity) {
+		solutionMatrix[fromSupplierId][product]-=quantity;
+		solutionMatrix[toSupplierId][product]+=quantity;
+		objectiveFunction=calcObjectiveFunction();
+	}
+
+	/**
+	 * 
+	 * Calcola la distanza tra se stessa e un'altra soluzione data. La distanza è definita come |thisSolution-otherSolution|/2 
+	 * (dove thisSolution e otherSolution sono le matrici soluzione).
+	 * 
+	 * @param otherSolution - un altro oggetto soluzione.
+	 * @return la distanza tra quest'istanza e s2.
+	 */
+	public int calcDistance(Solution otherSolution) {
 		int sum=0;
-		for(int supId=1;supId<=numSuppliers;supId++) {
-			for(int prod=1;prod<=numProducts;prod++){
-				sum+=Math.abs(getSolutionMatrix()[supId][prod]-s2.getSolutionMatrix()[supId][prod]);
+		for(int supId=1;supId<=problem.getDimension();supId++) {
+			for(int prod=1;prod<=problem.getNumProducts();prod++){
+				sum+=Math.abs(getSolutionMatrix()[supId][prod]-otherSolution.getSolutionMatrix()[supId][prod]);
 			}
 		}
 		return sum/2;
@@ -190,17 +255,16 @@ public class Solution {
 	 */
 	public void export(String filePath) {
 
-		PrintStream output = null;
-	    try {
-	       FileOutputStream file = new FileOutputStream(filePath);
-	       output = new PrintStream(file);
-	    } catch (IOException e) {
-	       System.out.println("Errore: " + e);
-	       System.exit(1);
-	     }
-		
-		for(int i=1; i<=numSuppliers; i++){
-      	for(int k=1; k<=numProducts; k++){
+		PrintStream output;
+		try {
+			output = Io.openOutFile(filePath, false);
+		} catch (FileNotFoundException e) {
+			System.err.println("Si è verificato un errore nell'esportazione della soluzione. Il file " + filePath + " non è stato salvato.");
+			e.printStackTrace();
+			return;
+		}		
+		for(int i=1; i<=problem.getDimension(); i++){
+      	for(int k=1; k<=problem.getNumProducts(); k++){
       		output.print(solutionMatrix[i][k]+"\t");
       	}
       	output.println();
@@ -214,7 +278,7 @@ public class Solution {
 	 */
 	public int totalQuantityBought(int supplier){
 		int sum = 0;
-		for(int p=1; p<=numProducts; p++){
+		for(int p=1; p<=problem.getNumProducts(); p++){
 			sum += solutionMatrix[supplier][p];
 		}
 		

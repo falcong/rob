@@ -196,7 +196,7 @@ public class SolutionTest {
 		
 		Solution expectedSol=new Solution(expectedMatrix,problem);
 		
-		solution.moveQuantity(PRODUCT, SUP_FROM, SUP_TO, QUANTITY, problem); //solution dovrebbe diventare uguale a expectedSol (distanza=0)
+		solution.moveQuantity(PRODUCT, SUP_FROM, SUP_TO, QUANTITY); //solution dovrebbe diventare uguale a expectedSol (distanza=0)
 		assertEquals(0,solution.calcDistance(expectedSol)); 
 	}
 	

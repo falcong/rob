@@ -47,7 +47,7 @@ public class RandomEmptyingStrategy extends SupplierEmptyingStrategy {
 				int residual=problem.getSupplier(targetSupplier).getResidual(p,solution);
 				//se ha disponibilità residua, sposto tutto il possibile da supplierId a targetSupplier
 				if(residual>0)
-					solution.moveQuantity(p,supplierId,targetSupplier,Math.min(currentlyBuying,residual),problem);				
+					solution.moveQuantity(p,supplierId,targetSupplier,Math.min(currentlyBuying,residual));				
 			}
 			
 			//incremento ciclico del supplier

@@ -127,7 +127,7 @@ public class AdvancedNeighbourGenerator extends NeighbourGenerator {
 				}
 
 				//Aggiornamenti
-				solution.moveQuantity(p, s, targetSupplier, quantity, problem);
+				solution.moveQuantity(p, s, targetSupplier, quantity);
 						
 				quantityToMove-=quantity;
 				if(!relaxed){

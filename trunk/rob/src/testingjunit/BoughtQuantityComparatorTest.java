@@ -32,6 +32,7 @@ public class BoughtQuantityComparatorTest {
 		sup2 = problem.getSupplier(sup2Id);
 	}
 	
+	//test di compare()
 	/*
 	 * sup1 < sup2
 	 */
@@ -88,5 +89,4 @@ public class BoughtQuantityComparatorTest {
 		BoughtQuantityComparator comparator = new BoughtQuantityComparator(sol);
 		assertTrue(comparator.compare(sup1, sup2) > 0);
 	}
-
 }

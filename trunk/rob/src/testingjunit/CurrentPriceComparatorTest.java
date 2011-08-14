@@ -16,6 +16,7 @@ import data.comparator.CurrentPriceComparator;
 public class CurrentPriceComparatorTest {
 	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 	
+	//test di compare()
 	/*
 	 * sup1 < sup2
 	 */
@@ -99,5 +100,4 @@ public class CurrentPriceComparatorTest {
 		CurrentPriceComparator comparator = new CurrentPriceComparator(sol, product3);
 		assertTrue(comparator.compare(sup1,sup2) > 0);	
 	}
-
 }

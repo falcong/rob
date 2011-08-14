@@ -76,7 +76,7 @@ public class SupplierTest {
 	 * Caso1: il prodotto non c'è
 	 */
 	@Test
-	public final void testCheckAvailability1(){
+	public final void testCheckAvailability1() throws Exception{
 		final String PROBLEM_NAME = "problema5_abiola.txt";
 		testCheckAvailability(PROBLEM_NAME, false);
 	}
@@ -85,7 +85,7 @@ public class SupplierTest {
 	 * Caso2: il prodotto c'è con la disponibilità = 0
 	 */
 	@Test
-	public final void testCheckAvailability2(){
+	public final void testCheckAvailability2() throws Exception{
 		final String PROBLEM_NAME = "problema6_abiola.txt";
 		testCheckAvailability(PROBLEM_NAME, true);
 	}
@@ -94,19 +94,15 @@ public class SupplierTest {
 	 * Caso3: il prodotto c'è con la disponibilità = n
 	 */
 	@Test
-	public final void testCheckAvailability3(){
+	public final void testCheckAvailability3() throws Exception{
 		final String PROBLEM_NAME = "problema7_abiola.txt";
 		testCheckAvailability(PROBLEM_NAME, true);
 	}
 	
-	private final void testCheckAvailability(String problemName, boolean bool){
+	private final void testCheckAvailability(String problemName, boolean bool) throws Exception{
 		Problem problem = null;
-		try {
-			problem = pp.parse(problemName);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		problem = pp.parse(problemName);
+		
 		final int SUPPLIER1_ID = 1;
 		final int PRODUCT1_ID = 1;
 		
@@ -204,7 +200,6 @@ public class SupplierTest {
 	}
 	
 	
-	//TODO partire da qui
 	//test di getResidual(int, int[][])
 	/*
 	 *Caso generale
@@ -532,122 +527,4 @@ public class SupplierTest {
 			}
 		}	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//TODO da cancellare
-	
-	/*@Test
-	public final void testActivatedSegment() {
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem p = pp.parse("problema1.txt");
-		Supplier s = p.getSupplier(2);
-		
-		assertEquals(0, s.activatedSegment(1));
-		assertEquals(0, s.activatedSegment(9));
-		assertEquals(1, s.activatedSegment(10));
-		assertEquals(2, s.activatedSegment(69));
-		assertEquals(3, s.activatedSegment(70));
-		
-	}
-	
-	@Test
-	public final void testGetTotalResidualAvailability() {
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem problem=pp.parse("problema1.txt");
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 51, 42, 24};
-		int [] s2={0, 9, 0, 39};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution=new Solution(matrix,problem);
-		Supplier sup1 = problem.getSupplier(1);
-		int residual=sup1.getTotalResidualAvailability(solution);
-		Supplier sup2 = problem.getSupplier(2);
-		int residual2=sup2.getTotalResidualAvailability(solution);
-		assertEquals(39,residual);
-		assertEquals(28,residual2);
-	}
-	
-	
-	@Test
-	public final void testQuantityToIncreaseSegment(){
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem problem=pp.parse("problema2.txt");
-		Supplier s = problem.getSupplier(1);
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 1, 0, 0};
-		int [] s2={0, 59, 42, 63};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution1=new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible());
-		assertEquals(49,s.quantityToIncreaseSegment(solution1));
-		
-		
-		int [] s20={0, 0, 0, 0};
-		int [] s21={0, 51, 18, 0};
-		int [] s22={0, 9, 24, 63};
-		matrix=new int[3][];
-		matrix[0]=s20;
-		matrix[1]=s21;
-		matrix[2]=s22;
-		Solution solution2=new Solution(matrix,problem);
-		assertTrue(solution2.isAdmissible());
-		assertEquals(1,s.quantityToIncreaseSegment(solution2));
-		
-		int [] s30={0, 0, 0, 0};
-		int [] s31={0, 51, 19, 0};
-		int [] s32={0, 9, 23, 63};
-		matrix=new int[3][];
-		matrix[0]=s30;
-		matrix[1]=s31;
-		matrix[2]=s32;
-		Solution solution3=new Solution(matrix,problem);
-		assertTrue(solution3.isAdmissible());
-		assertEquals(86,s.quantityToIncreaseSegment(solution3));
-	}
-	
-	
-	@Test
-	public final void testQuantityToNotDecreaseSegment(){
-		ProblemParser pp = new ProblemParser(Utility.getConfigParameter("problemsPath"));
-		Problem problem=pp.parse("problema2.txt");
-		Supplier s = problem.getSupplier(1);
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 50, 0, 0};
-		int [] s2={0, 10, 42, 63};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		Solution solution1=new Solution(matrix,problem);
-		assertTrue(solution1.isAdmissible());
-		assertEquals(0, s.quantityToNotDecreaseSegment(solution1));
-		
-		
-		int [] s20={0, 0, 0, 0};
-		int [] s21={0, 9, 42, 0};
-		int [] s22={0, 51, 0, 63};
-		matrix=new int[3][];
-		matrix[0]=s20;
-		matrix[1]=s21;
-		matrix[2]=s22;
-		Solution solution2=new Solution(matrix,problem);
-		assertTrue(solution2.isAdmissible());
-		assertEquals(1,s.quantityToNotDecreaseSegment(solution2));
-	}*/
 }

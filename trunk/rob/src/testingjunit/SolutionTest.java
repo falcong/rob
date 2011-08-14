@@ -1,3 +1,5 @@
+//TODO da qui
+
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -242,7 +244,7 @@ public class SolutionTest {
 
 	//test di getSupplierFromCell()
 	/*
-	 * Caso1: (input cella=1)
+	 * Caso1: (input = cella 1)
 	 */
 	@Test
 	public final void testGetSupplierFromCell1() throws Exception{
@@ -256,7 +258,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 *Caso2: caso generale (input cella = 653)
+	 *Caso2: caso generale (input = cella 653)
 	 */
 	@Test
 	public final void testGetSupplierFromCell2() throws Exception{
@@ -270,7 +272,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * Caso3: (input cella = ultima_cella)
+	 * Caso3: (input = cella ultima_cella)
 	 */
 	@Test
 	public final void testGetSupplierFromCell3() throws Exception{

@@ -3,11 +3,11 @@ package data;
 import io.Io;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import util.Utility;
 
 public class Solution {
 	/**
@@ -84,11 +84,6 @@ public class Solution {
 		System.out.println("funzione obiettivo = "+this.getObjectiveFunction());
 	}
 
-	//TODO Non è una violazione di accesso?
-	public void setSolution(int[][] solution) {
-		this.solutionMatrix = solution;
-	}
-
 	/**
 	 * Restituisce la matrice soluzione.
 	 * @return {@link #solutionMatrix}[][]
@@ -97,11 +92,7 @@ public class Solution {
 		return solutionMatrix;
 	}
 
-	//TODO Anche questa non è una violazione di accesso?
-	public void setObjectiveFunction(double objectiveFunction) {
-		this.objectiveFunction = objectiveFunction;
-	}
-	
+
 	/**
 	 * Restituisce il valore della funzione obiettivo.
 	 * @return {@link #objectiveFunction}
@@ -171,7 +162,7 @@ public class Solution {
 	/**
 	 * Questo metodo calcola la funzione obiettivo.
 	 * @param problem
-	 * @return
+	 * @return {@link #objectiveFunction}
 	 */
 	private double calcObjectiveFunction() {
 		double value=0;
@@ -192,31 +183,6 @@ public class Solution {
 		return value;
 	}
 
-//	public void setNumProducts(int numProducts) {
-//		this.numProducts = numProducts;
-//	}
-//
-//	public int getNumProducts() {
-//		return numProducts;
-//	}
-
-//	public void setNumSuppliers(int numSuppliers) {
-//		this.numSuppliers = numSuppliers;
-//	}
-//
-//	public int getNumSuppliers() {
-//		return numSuppliers;
-//	}
-	
-	/**
-	 * Questo metodo sposta una certa quantità di prodotto da una cella all'altra. NB: NON fa controlli di 
-	 * consistenza e ammissibilità, essi sono a carico del chiamante (volendo, si potrebbe volere un'esplorazione
-	 * dell'intorno che va in regione di non ammissibilità, è il chiamante a doversene occupare)
-	 * @deprecated Use {@link #moveQuantity(int,int,int,int)} instead
-	 */
-	public void moveQuantity(int productId, int fromSupplierId, int toSupplierId, int quantity, Problem problem) {
-		moveQuantity(productId, fromSupplierId, toSupplierId, quantity);
-	}
 
 	/**
 	 * Questo metodo sposta una certa quantità {@code quantity} di prodotto {@code product} dalla riga {@code fromSupplierId}
@@ -250,8 +216,8 @@ public class Solution {
 	}
   
 
-	/*
-	 * scrive sul file fileName la soluzione
+	/**
+	 * Esporta la soluzione nel file {@code filePath}. Se il file non viene trovato viene generato uno warning.
 	 */
 	public void export(String filePath) {
 
@@ -259,7 +225,7 @@ public class Solution {
 		try {
 			output = Io.openOutFile(filePath, false);
 		} catch (FileNotFoundException e) {
-			System.err.println("Si è verificato un errore nell'esportazione della soluzione. Il file " + filePath + " non è stato salvato.");
+			Utility.warning("Si è verificato un errore nell'esportazione della soluzione. Il file " + filePath + " non è stato salvato.");
 			e.printStackTrace();
 			return;
 		}		
@@ -273,8 +239,10 @@ public class Solution {
 		output.close();
 	}
 	
-	/*
-	 * restituisce la quantità totale di prodotti comprati presso supplier
+	/**
+	 * Restituisce la quantità totale di prodotti comprati presso {@code supplier}.
+	 * @param supplier
+	 * @return la somma di tutti gli acquisti presso {@code supplier}.
 	 */
 	public int totalQuantityBought(int supplier){
 		int sum = 0;
@@ -287,7 +255,7 @@ public class Solution {
 	
 	/*
 	 * Questo metodo clona una matrice.
-	 * PRecondizione: presuppone sempre che la riga e la colonna 0 siano inutilizzate e riempite di zeri.
+	 * Precondizione: presuppone sempre che la riga e la colonna 0 siano inutilizzate e riempite di zeri.
 	 */
 	private int[][] cloneMatrix(int [][] matrix){
 		int[][] newMatrix = new int[matrix.length][];
@@ -302,18 +270,42 @@ public class Solution {
 		return newMatrix;
 	}
 	
+	
+	/**
+	 * Dato un identificatore di cella, restituisce il numero di riga del fornitore.
+	 * @param cell
+	 * @return il numero di riga corrispondente a {@param cell}.
+	 */
 	public int getSupplierFromCell (int cell) {
 		return (cell-getProductFromCell(cell))/problem.getNumProducts()+1;
 	}
 	
+
+	/**
+	 * Dato un identificatore di cella, restituisce il numero del prodotto.
+	 * @param cell
+	 * @return il numero di colonna corrispondente a {@param cell}.
+	 */	
 	public int getProductFromCell (int cell) {
 		return (cell-1)%problem.getNumProducts()+1;
 	}
 	
+	/**
+	 * Dato il numero del prodotto e del fornitore, restituisce il numero di cella corrispondente
+	 * @param supplier
+	 * @param product
+	 * @return l'identificatore di cella ({@code supplier}, {@code product}).
+	 */
 	public int getCell(int supplier,int product){
 		return (supplier-1)*problem.getNumProducts()+product;
 	}
 	
+	/**
+	 * Restituisce la quantità di prodotto contenuta in una cella della matrice soluzione.
+	 * @see #getQuantity(int, int)
+	 * @param cell
+	 * @return il valore contenuto nella cella {@code cell}. 
+	 */
 	public int getQuantity(int cell){
 		return getQuantity(getSupplierFromCell(cell), getProductFromCell(cell));
 	}

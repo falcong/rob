@@ -10,12 +10,11 @@ import neighbourgenerator.DistancedNeighbourGenerator;
 import neighbourgenerator.NeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
 import neighbourgenerator.bansupplier.selectionstrategy.SupplierSelectionStrategy;
-
 import data.IdList;
 import data.Problem;
 import data.Solution;
 
-
+//TODO qui
 public class BanSupplierNeighbourGenerator extends NeighbourGenerator implements DistancedNeighbourGenerator{
 	protected Problem problem;
 	SupplierEmptyingStrategy empStrategy;

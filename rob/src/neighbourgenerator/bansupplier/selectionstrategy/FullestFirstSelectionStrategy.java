@@ -7,15 +7,22 @@ import data.Supplier;
 
 public class FullestFirstSelectionStrategy extends SupplierSelectionStrategy {
 	protected double POOL_PORTION =0.5;
-
+	/**
+	 * 
+	 * @param problem il problema in cui applicare la strategia FullestFirstSelectionStrategy per un certo 
+	 * BanSupplierNeighbourGenerator.
+	 */
 	public FullestFirstSelectionStrategy(Problem problem) {
 		super(problem);
 	}
 
-	@Override
-	/*
-	 * precondizione: size<=dimension/2
+
+	
+	/**
+	 * Precondizione: size <= dimensione_problema/2
+	 * @return una lista contenente di size fornitori scelti casualmente fra la metà dei fornitori più pieni.
 	 */
+	@Override
 	public IdList createList(Solution solution, int size) {
 		Supplier [] orderedSuppliers=problem.sortByBoughtQuantity(solution);
 		int suppliersPoolSize=(int)(problem.getDimension()*POOL_PORTION);

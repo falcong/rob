@@ -13,8 +13,6 @@ public abstract class SupplierSelectionStrategy {
 	
 	/**
 	 * Crea una lista di id di fornitori secondo una certa strategia.
-	 * @param solution
-	 * @param distance
 	 * @return una IdList contenente gli id dei fornitori selezionati.
 	 */
 	abstract public IdList createList(Solution solution, int distance);

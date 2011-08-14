@@ -5,7 +5,11 @@ import data.Problem;
 import data.Solution;
 
 public class RandomEmptyingStrategy extends SupplierEmptyingStrategy {
-
+	/**
+	 * 
+	 * @param problem il problema in cui applicare la strategia RandomEmptyingStrategy per un certo 
+	 * BanSupplierNeighbourGenerator.
+	 */
 	public RandomEmptyingStrategy(Problem problem) {
 		super(problem);
 	}

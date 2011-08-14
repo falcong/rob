@@ -35,8 +35,6 @@ public class Solution {
 	public Solution(int[][] solution, Problem problem) {
 		solutionMatrix=solution;
 		this.problem = problem;
-//		numSuppliers = solution.length-1;
-//		numProducts = solution[1].length-1;
 		objectiveFunction=calcObjectiveFunction();
 	}
 	
@@ -44,8 +42,6 @@ public class Solution {
 	 * Costruttore overloaded che restituisce una copia dell'oggetto Solution in ingresso.
 	 */
 	public Solution(Solution sol) {
-//		numSuppliers=sol.getNumSuppliers();
-//		numProducts=sol.getNumProducts();
 		this.problem=sol.getProblem();
 		solutionMatrix=cloneMatrix(sol.getSolutionMatrix());
 		objectiveFunction=sol.getObjectiveFunction();

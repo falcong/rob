@@ -234,7 +234,7 @@ public class Supplier {
 		//matrice dei prezzi (prodotti*fasce)
 		if(prices!=null){
 			System.out.println("Matrice dei prezzi (prodotti*fasce-sconto):");
-			DataPrinter.printMatrix2D(prices, "p", "f", 1, 0, 2, 3, 2, 2);
+			DataPrinter.printMatrix(prices, "p", "f", 1, 0, 2, 3, 2, 2);
 		}
 		
 		//availability

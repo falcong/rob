@@ -74,7 +74,7 @@ public class Solution {
 				tempMatrix[i][j] = solutionMatrix[i][j];
 			}
 		}
-		DataPrinter.printMatrix2D(tempMatrix, "f", "p", 1, 1, 2, 2, 2, 2);
+		DataPrinter.printMatrix(tempMatrix, "f", "p", 1, 1, 2, 2, 2, 2);
 		System.out.println("");
 		
 		System.out.println("funzione obiettivo = "+this.getObjectiveFunction());

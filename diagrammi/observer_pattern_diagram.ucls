@@ -18,7 +18,7 @@
     </display>  
   </class>  
   <class id="3" corner="BOTTOM_RIGHT" language="java" name="java.util.Observable" project="rob-svn" 
-    file="/opt/java/jre/lib/rt.jar" binary="true">    
+    file="C:/Program Files/Java/jre6/lib/rt.jar" binary="true">    
     <position height="-1" width="-1" x="396" y="50"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -26,7 +26,7 @@
     </display>  
   </class>  
   <interface id="4" corner="BOTTOM_RIGHT" language="java" name="java.util.Observer" project="rob-svn" 
-    file="/opt/java/jre/lib/rt.jar" binary="true">    
+    file="C:/Program Files/Java/jre6/lib/rt.jar" binary="true">    
     <position height="-1" width="-1" x="128" y="133"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -34,7 +34,7 @@
     </display>  
   </interface>  
   <interface id="5" corner="BOTTOM_RIGHT" language="java" name="java.lang.Runnable" project="rob-svn" 
-    file="/opt/java/jre/lib/rt.jar" binary="true">    
+    file="C:/Program Files/Java/jre6/lib/rt.jar" binary="true">    
     <position height="63" width="100" x="536" y="279"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
@@ -42,13 +42,13 @@
     </display>  
   </interface>  
   <realization>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </realization>  
+  <realization>    
     <end type="SOURCE" nodeId="1"/>    
     <end type="TARGET" nodeId="5"/>  
   </realization>  
-  <generalization>    
-    <end type="SOURCE" nodeId="1"/>    
-    <end type="TARGET" nodeId="3"/>  
-  </generalization>  
   <association>    
     <end type="SOURCE" nodeId="2" navigable="false">      
       <attribute name="timer"/>      
@@ -57,10 +57,10 @@
     <end type="TARGET" nodeId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization>    
-    <end type="SOURCE" nodeId="2"/>    
-    <end type="TARGET" nodeId="4"/>  
-  </realization>  
+  <generalization>    
+    <end type="SOURCE" nodeId="1"/>    
+    <end type="TARGET" nodeId="3"/>  
+  </generalization>  
   <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true"/>    
     <operations public="true" package="true" protected="true" private="true"/>  

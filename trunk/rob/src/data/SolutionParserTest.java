@@ -1,12 +1,11 @@
-package testingjunit;
+package data;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import parser.ProblemParser;
 import parser.SolutionParser;
-import data.Problem;
-import data.Solution;
+import testingjunit.Constants;
 
 public class SolutionParserTest {
 	ProblemParser pp=new ProblemParser(Constants.TESTING_INPUT_PATH);

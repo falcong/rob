@@ -1,14 +1,14 @@
-package testingjunit;
+package data.comparator;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import parser.ProblemParser;
+import testingjunit.Constants;
 import data.Problem;
 import data.Solution;
 import data.Supplier;
-import data.comparator.BoughtQuantityComparator;
 
 
 public class BoughtQuantityComparatorTest {

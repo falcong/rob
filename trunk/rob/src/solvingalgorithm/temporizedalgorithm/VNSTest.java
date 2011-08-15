@@ -1,4 +1,4 @@
-package testingjunit;
+package solvingalgorithm.temporizedalgorithm;
 
 import static org.junit.Assert.*;
 import neighbourgenerator.BasicNeighbourGenerator;
@@ -9,9 +9,9 @@ import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
 import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
+import testingjunit.Constants;
 
 public class VNSTest {
 	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);

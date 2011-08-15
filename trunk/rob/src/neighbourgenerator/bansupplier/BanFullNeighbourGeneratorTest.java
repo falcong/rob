@@ -1,19 +1,19 @@
-package testingjunit;
+package neighbourgenerator.bansupplier;
 
 import static org.junit.Assert.*;
 
-import neighbourgenerator.bansupplier.DirectionedBanNeighbourGenerator;
 
 import org.junit.Test;
 
 import parser.ProblemParser;
 
-import solutiongenerator.RandomSolutionGenerator;
 import data.Problem;
 import data.Solution;
 
-public class DirectionedBanNeighbourGeneratorTest {
-	
+import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
+
+public class BanFullNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();
 	
 	//test di generate()
@@ -21,11 +21,11 @@ public class DirectionedBanNeighbourGeneratorTest {
 	 * Caso generale.
 	 */
 	@Test
-	public final void testGenerateSolutionInt() throws Exception {
+	public final void testGenerate1() throws Exception {
 		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		
-		final String PROBLEM_NAME = "Cap.10.100.3.1.70.1.ctqd";
+		final String PROBLEM_NAME = "Cap.10.100.3.1.10.1.ctqd";
 		Problem problem = null;
 	    problem = pp.parse(PROBLEM_NAME);
 		
@@ -35,7 +35,7 @@ public class DirectionedBanNeighbourGeneratorTest {
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();
 		
-		DirectionedBanNeighbourGenerator dirBanGenerator = new DirectionedBanNeighbourGenerator(problem); 
+		BanFullNeighbourGenerator banGenerator = new BanFullNeighbourGenerator(problem); 
 		
 		//esegue il test N volte perché il metodo non è deterministico
 		final int N = 10;
@@ -43,7 +43,7 @@ public class DirectionedBanNeighbourGeneratorTest {
 			//provo tutte le possibili distanze
 			final int MAX_DISTANCE = numSuppliers/2;
 			for(int distance = 1; distance<=MAX_DISTANCE; distance++){
-				Solution sol1 = dirBanGenerator.generate(sol0, distance);
+				Solution sol1 = banGenerator.generate(sol0, distance);
 				//controllo ammissibilità della soluzione generata dal metodo
 				boolean ok = sol1.isAdmissible();
 				//verifico che il generatore abbia davvero prodotto
@@ -64,5 +64,4 @@ public class DirectionedBanNeighbourGeneratorTest {
 			}
 		}
 	}
-
 }

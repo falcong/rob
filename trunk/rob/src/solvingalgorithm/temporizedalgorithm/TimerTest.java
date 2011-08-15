@@ -1,10 +1,9 @@
-package testingjunit;
+package solvingalgorithm.temporizedalgorithm;
 
 import static org.junit.Assert.*;
 import java.util.Observable;
 import java.util.Observer;
 import org.junit.Test;
-import solvingalgorithm.temporizedalgorithm.Timer;
 
 public class TimerTest implements Observer {
 	private boolean stop = false;

@@ -1,8 +1,7 @@
-package testingjunit;
+package neighbourgenerator;
 
 import static org.junit.Assert.*;
 
-import neighbourgenerator.BasicNeighbourGenerator;
 
 import org.junit.Test;
 
@@ -12,6 +11,7 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
 
 public class BasicNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

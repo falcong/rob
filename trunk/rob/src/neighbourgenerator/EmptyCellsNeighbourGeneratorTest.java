@@ -1,8 +1,7 @@
-package testingjunit;
+package neighbourgenerator;
 
 import static org.junit.Assert.*;
 
-import neighbourgenerator.EmptyCellsNeighbourGenerator;
 
 import org.junit.Test;
 
@@ -13,6 +12,7 @@ import data.Solution;
 import data.Supplier;
 
 import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
 
 public class EmptyCellsNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

@@ -111,8 +111,6 @@ public class ProblemParser extends Parser{
 	private int[] readDemandSection() throws Exception{
 		int demand[] = null;
 		BufferedReader inputFile = Io.openInFile(file);
-		String line;
-		String lineElements[];
 		
 		findLine(inputFile, DEMAND_SECTION_DELIMITER);
 		demand = readDemandFromFile(inputFile);

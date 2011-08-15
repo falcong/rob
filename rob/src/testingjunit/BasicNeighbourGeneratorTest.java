@@ -28,8 +28,6 @@ public class BasicNeighbourGeneratorTest {
 		Problem problem = null;
 		problem = pp.parse(PROBLEM_NAME);
 		
-		final int NUM_SUPPLIERS = problem.getDimension();
-		
 		RandomSolutionGenerator randomGenerator = new RandomSolutionGenerator(problem);
 		//sol0 0 sol iniziale casuale
 		Solution sol0 = randomGenerator.generate();

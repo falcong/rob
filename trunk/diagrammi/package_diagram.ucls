@@ -65,8 +65,8 @@
     <end type="TARGET" nodeId="6"/>  
   </dependency>  
   <dependency>    
-    <end type="SOURCE" nodeId="6"/>    
-    <end type="TARGET" nodeId="7"/>  
+    <end type="SOURCE" nodeId="7"/>    
+    <end type="TARGET" nodeId="6"/>  
   </dependency>  
   <dependency>    
     <end type="SOURCE" nodeId="2"/>    

@@ -1,17 +1,17 @@
-package testingjunit;
+package neighbourgenerator.bansupplier.selectionstrategy;
 
 import static org.junit.Assert.*;
 import java.util.Arrays;
-import neighbourgenerator.bansupplier.selectionstrategy.RandomSelectionStrategy;
 import org.junit.Test;
 
 import parser.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
 import data.IdList;
 import data.Problem;
 import data.Solution;
 
-public class RandomSelectionStrategyTest {
+public class FullestFirstSelectionStrategyTest {
 
 	//test di createList()
 	/*
@@ -27,24 +27,17 @@ public class RandomSelectionStrategyTest {
 		//sol0 = soluzione iniziale
 		Solution sol0 = generator.generate();
 		
-		RandomSelectionStrategy strategy = new RandomSelectionStrategy(problem);
+		FullestFirstSelectionStrategy strategy = new FullestFirstSelectionStrategy(problem);
 		
 		//ripeto N volte il test a causa del non determinismo del metodo
 		final int N = 10;
 		for(int k=0; k<N; k++){
-			//lista di 10 fornitori presso cui compravo almeno 1 prodotto estratti casualmente 
-			final int NUM_SUPPLIERS = 10;
-			IdList list = strategy.createList(sol0, NUM_SUPPLIERS);
-			
-			//controllo il numero di fornitori
-			assertTrue(list.getSize() <= NUM_SUPPLIERS);
+			//lista di 10 fornitori scelti casualmente fra la metà dei fornitori + pieni
+			IdList list = strategy.createList(sol0, 10);
 			
 			for(int i=0; i<list.getSize(); i++){
 				//controllo l'ammissibilità del fornitore
 				assertTrue(list.getId(i)>=1	&&	list.getId(i)<=problem.getDimension());
-				
-				//controllo che presso il fornitore sia acquistato almeno un prodotto
-				assertTrue(sol0.totalQuantityBought(list.getId(i)) >= 1);
 			}
 			
 			//controllo che la lista non contenga duplicati
@@ -59,4 +52,5 @@ public class RandomSelectionStrategyTest {
 			}
 		}
 	}
+
 }

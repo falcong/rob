@@ -1,17 +1,15 @@
-package testingjunit;
+package solutiongenerator;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import parser.ProblemParser;
-
 import data.Problem;
 import data.Solution;
+import testingjunit.Constants;
 
-import solutiongenerator.TrivialSolutionGenerator;
+public class LinesSolutionGeneratorTest {
 
-public class TrivialSolutionGeneratorTest {
 	//test di generate()
 	/*
 	 * Caso generale.
@@ -20,14 +18,13 @@ public class TrivialSolutionGeneratorTest {
 	public void testGenerate() throws Exception {
 		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		
-		final String PROBLEM_NAME = "Cap.50.100.3.1.99.1.ctqd";
+		final String PROBLEM_NAME = "Cap.50.40.3.1.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		
-		TrivialSolutionGenerator generator = new TrivialSolutionGenerator(problem);
+		LinesSolutionGenerator generator = new LinesSolutionGenerator(problem);
 		//sol generata
 		Solution sol = generator.generate();
 		//controllo ammissibilità
 		assertTrue(sol.isAdmissible());
 	}
-
 }

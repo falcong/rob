@@ -1,0 +1,36 @@
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="solvingalgorithm.Algorithm" project="rob-svn" 
+    file="/rob-svn/rob/src/solvingalgorithm/Algorithm.java" binary="false">    
+    <position height="-1" width="-1" x="265" y="67"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="solvingalgorithm.Cplex" project="rob-svn" 
+    file="/rob-svn/rob/src/solvingalgorithm/Cplex.java" binary="false">    
+    <position height="-1" width="-1" x="148" y="250"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <package id="3" language="java" name="solvingalgorithm.temporizedalgorithm" project="rob-svn" 
+    file="/rob-svn/rob/src/solvingalgorithm/temporizedalgorithm" binary="false">    
+    <position height="-1" width="-1" x="453" y="216"/>  
+  </package>  
+  <generalization>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <dependency>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="true" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

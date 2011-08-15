@@ -1,5 +1,3 @@
-//TODO da qui
-
 package testingjunit;
 
 import static org.junit.Assert.*;
@@ -73,7 +71,7 @@ public class SolutionTest {
 	//test di export()
 	/*
 	 * Si genera una soluzione, la si esporta con il metodo export. 
-	 * Il file esportato poi viene riletto con il metodo parse.
+	 * Il file esportato poi viene riletto con il metodo SolutionParser.parse().
 	 * Sono definite le condizioni che il file sia stato esportato correttamente.
 	 */
 	@Test
@@ -272,7 +270,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * Caso3: (input = cella ultima_cella)
+	 * Caso3: (input = ultima_cella)
 	 */
 	@Test
 	public final void testGetSupplierFromCell3() throws Exception{
@@ -287,7 +285,7 @@ public class SolutionTest {
 
 	//metodo getProductFromCell()
 	/*
-	 * Caso1: (input cella = 1)
+	 * Caso1: (input = cella 1)
 	 */
 	@Test
 	public final void testGetProductFromCell1() throws Exception{
@@ -301,7 +299,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 *Caso2: (input cella = 653)
+	 *Caso2: (input = cella 653)
 	 */
 	@Test
 	public final void testGetProductFromCell2() throws Exception{
@@ -315,7 +313,7 @@ public class SolutionTest {
 	}
 
 	/*
-	 * *Caso3: (input cella = ultima_cella)
+	 * *Caso3: (input = ultima_cella)
 	 */
 	@Test
 	public final void testGetProductFromCell3() throws Exception{

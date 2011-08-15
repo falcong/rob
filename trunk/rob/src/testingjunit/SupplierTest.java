@@ -26,7 +26,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * Caso2: totalQuantityBought pari a 49 (Boundary test)
+	 * Caso2: totalQuantityBought = 49 (Boundary test)
 	 */
 	@Test
 	public final void testActivatedSegment2() throws Exception{
@@ -82,7 +82,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * Caso2: il prodotto c'è con la disponibilità = 0
+	 * Caso2: il prodotto c'è con disponibilità = 0
 	 */
 	@Test
 	public final void testCheckAvailability2() throws Exception{
@@ -91,7 +91,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * Caso3: il prodotto c'è con la disponibilità = n
+	 * Caso3: il prodotto c'è con disponibilità > 0
 	 */
 	@Test
 	public final void testCheckAvailability3() throws Exception{
@@ -111,10 +111,10 @@ public class SupplierTest {
 	}
 	
 	//test di getDiscountedPrice()
-	//fasce di sconto con limiti(boundary) 50 e 70
+	/* Considero il prodotto 1 presso il fornitore 1 avente i limiti delle fasce di sconto pari a 50 e 70 
     //Casi di test verificati con valori 50,49,100,250.
     /*
-     * Caso1: si cade nella prima fascia di sconto
+     * Caso1: si cade nella prima fascia di sconto (quantità_totale_acquistata = 20)
      */
 	@Test
 	public final void testGetDiscountedPrice1() throws Exception{
@@ -130,7 +130,7 @@ public class SupplierTest {
 	}
 	
 	/*
-     *Caso2: si ricade appena prima del primo boundary (=49)
+     *Caso2: boundary (quantità_totale_acquistata = 49)
      */
 	@Test
 	public final void testGetDiscountedPrice2() throws Exception{
@@ -146,7 +146,7 @@ public class SupplierTest {
 	}
 	
 	/*
-     *Caso3: si cade sul primo boundary (=50)
+     *Caso3: boundary (quantità_totale_acquistata = 50)
      */
 	@Test
 	public final void testGetDiscountedPrice3() throws Exception{
@@ -162,7 +162,7 @@ public class SupplierTest {
 	}
 	
 	/*
-     *Caso4: si cade dopo l'ultimo boundary (> 70)
+     *Caso4: si cade nell'ultima fascia di sconto (quantità_totale_acquistata = 77)
      */
 	@Test
 	public final void testGetDiscountedPrice4() throws Exception{
@@ -178,8 +178,8 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * Metodo che determina la fascia di sconto per un particolare prodotto dato in ingresso
-	 * una soluzione in forma matriciale
+	 * Controlla la correttezza del prezzo del prodotto 1 presso il fornitore 1
+	 * [usato dai test di getDiscountedPrice()]
 	 */
 	private final void testGetDiscountedPrice(int matrix [][]) throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
@@ -295,9 +295,7 @@ public class SupplierTest {
 	
 	//test di quantityToIncreaseSegment()
 	/*
-	 * 4 casi di test : es tre fascie di sconto con limiti 100 e 200
-	 * 50,99,100,250
-	 */
+	 * considero il fornitore 2 avente 2 fasce di sconto con limiti 30 e 60
 	/*
 	 * quantitàTotale = 21
 	 */
@@ -326,7 +324,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * quantitàTotale = 29
+	 * quantitàTotale = 29 (boundary)
 	 */
 	@Test
 	public final void testQuantityToIncreaseSegment2() throws Exception{
@@ -353,7 +351,7 @@ public class SupplierTest {
 	}
 	
 	/*
-	 * quantitàTotale = 30
+	 * quantitàTotale = 30 (boundary)
 	 */
 	@Test
 	public final void testQuantityToIncreaseSegment3() throws Exception{
@@ -407,8 +405,9 @@ public class SupplierTest {
 	}
 	
 	//test di quantityToNotDecreaseSegment()
+	//considero il fornitore 2 avente 2 fasce di sconto con limiti 10, 60 e 120
 	/*
-	 *Caso generico
+	 *Caso generico (quantità_totale_comprata = 90)
 	 */
 	@Test
 	public final void testQuantityToNotDecreaseSegment1() throws Exception{
@@ -434,11 +433,40 @@ public class SupplierTest {
 		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
 	}
 	
+	
 	/*
-	 *Caso soglia
+	 * boundary (quantità_totale_comprata = 59)
 	 */
 	@Test
 	public final void testQuantityToNotDecreaseSegment2() throws Exception{
+		final String PROBLEM_NAME = "problema8_abiola.txt";
+		Problem problem = pp.parse(PROBLEM_NAME);
+		
+		int [] s0={0, 0, 0, 0};
+		int [] s1={0, 20, 33, 53};
+		int [] s2={0, 40, 9, 10};
+		int [][] matrix=new int[3][];
+		matrix[0]=s0;
+		matrix[1]=s1;
+		matrix[2]=s2;
+		
+		Solution solution = new Solution(matrix,problem);
+		assertTrue(solution.isAdmissible());
+		
+		final int SUPPLIER2_ID = 2;
+		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
+		//quantità necessaria per saturare il secondo fornitore
+		final int QUANTITY = 49;
+		
+		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
+	}
+	
+	
+	/*
+	 *boundary (quantità_totale_comprata = 60)
+	 */
+	@Test
+	public final void testQuantityToNotDecreaseSegment3() throws Exception{
 		final String PROBLEM_NAME = "problema8_abiola.txt";
 		Problem problem = pp.parse(PROBLEM_NAME);
 		
@@ -461,32 +489,6 @@ public class SupplierTest {
 		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
 	}
 	
-	/*
-	 *Caso con quantità 1
-	 */
-	@Test
-	public final void testQuantityToNotDecreaseSegment3() throws Exception{
-		final String PROBLEM_NAME = "problema8_abiola.txt";
-		Problem problem = pp.parse(PROBLEM_NAME);
-		
-		int [] s0={0, 0, 0, 0};
-		int [] s1={0, 20, 31, 53};
-		int [] s2={0, 40, 11, 10};
-		int [][] matrix=new int[3][];
-		matrix[0]=s0;
-		matrix[1]=s1;
-		matrix[2]=s2;
-		
-		Solution solution = new Solution(matrix,problem);
-		assertTrue(solution.isAdmissible());
-		
-		final int SUPPLIER2_ID = 2;
-		Supplier supplier = problem.getSupplier(SUPPLIER2_ID);
-		//quantità necessaria per saturare il secondo fornitore
-		final int QUANTITY = 1;
-		
-		assertEquals(QUANTITY, supplier.quantityToPreviousSegment(solution));
-	}
 	
 	//test di setPrices
 	/*

@@ -1,6 +1,8 @@
 package io;
 
-public abstract class Parser {
+import java.util.Observable;
+
+public abstract class Parser extends Observable {
 	final int INT_NOT_USED = -1;
 	//percorso assoluto della cartella contenente i file di input
 	protected String path;

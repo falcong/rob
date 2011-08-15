@@ -1,10 +1,10 @@
-package testingjunit;
+package neighbourgenerator;
 
 import static org.junit.Assert.*;
-import neighbourgenerator.AdvancedNeighbourGenerator;
 import org.junit.Test;
 
 import parser.ProblemParser;
+import testingjunit.Constants;
 import data.Problem;
 import data.Solution;
 import data.Supplier;

@@ -1,9 +1,10 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
-import io.ProblemParser;
 import neighbourgenerator.BasicNeighbourGenerator;
 import org.junit.Test;
+
+import parser.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.localsearch.FirstImprovementStrategy;
 import data.Problem;

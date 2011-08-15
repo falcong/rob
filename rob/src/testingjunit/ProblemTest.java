@@ -3,8 +3,9 @@ package testingjunit;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-import io.ProblemParser;
 import org.junit.Test;
+
+import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
 import data.Supplier;

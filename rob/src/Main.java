@@ -1,5 +1,4 @@
-import io.Io;
-import io.ProblemParser;
+import parser.ProblemParser;
 import neighbourgenerator.AdvancedNeighbourGenerator;
 import neighbourgenerator.EmptyCellsNeighbourGenerator;
 import neighbourgenerator.bansupplier.BanFullNeighbourGenerator;
@@ -10,6 +9,7 @@ import solvingalgorithm.Cplex;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
+import util.Io;
 
 
 

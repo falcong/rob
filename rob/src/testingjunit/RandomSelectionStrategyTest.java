@@ -2,9 +2,10 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import java.util.Arrays;
-import io.ProblemParser;
 import neighbourgenerator.bansupplier.selectionstrategy.RandomSelectionStrategy;
 import org.junit.Test;
+
+import parser.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
 import data.IdList;
 import data.Problem;

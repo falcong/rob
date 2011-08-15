@@ -1,11 +1,12 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
-import io.ProblemParser;
 
 import neighbourgenerator.bansupplier.BanFullNeighbourGenerator;
 
 import org.junit.Test;
+
+import parser.ProblemParser;
 
 import data.Problem;
 import data.Solution;

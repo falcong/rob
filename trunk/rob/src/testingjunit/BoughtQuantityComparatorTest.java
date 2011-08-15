@@ -2,12 +2,8 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
-
 import org.junit.Before;
 import org.junit.Test;
-
-
-
 import data.Problem;
 import data.Solution;
 import data.Supplier;

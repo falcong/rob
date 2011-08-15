@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import io.ProblemParser;
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import org.junit.Test;
-import solutiongenerator.RandomSolutionGenerator;
 import data.IdList;
 import data.Problem;
 import data.Solution;

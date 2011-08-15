@@ -2,14 +2,11 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 import io.ProblemParser;
-
 import neighbourgenerator.BasicNeighbourGenerator;
 import org.junit.Before;
 import org.junit.Test;
-
 import data.Problem;
 import data.Solution;
-
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.VNS;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
@@ -38,8 +35,7 @@ public class VNSTest {
 	
 	//test di execute()
 	/*
-	 * caso generale ammissibilità + fo <=
-	 * n volte
+	 * caso generale
 	 */
 	@Test
 	public final void testExecute1() throws Exception {
@@ -58,8 +54,8 @@ public class VNSTest {
 	
 	
 	/*
-	 * mette in evidenza il baco per cui il tempo di esecuzione della VNS viene contato a partire dall'
-	 * istante in cui l'oggetto VNS è creato e non quando inizia l'esecuzione
+	 * mette in evidenza il baco per cui [nella versione 1 del programma] il tempo di esecuzione della VNS viene 
+	 * erroneamente contato a partire dall'istante in cui l'oggetto VNS è creato e non quando ha inizio l'esecuzione
 	 */
 	@Test
 	public final void testExecute2() throws Exception {
@@ -82,15 +78,4 @@ public class VNSTest {
 		final long TOLERANCE = 1000;
 		assertEquals(MAX_TIME, executionTime, TOLERANCE);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-
 }

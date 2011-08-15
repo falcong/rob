@@ -1,14 +1,10 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
-
 import neighbourgenerator.BasicNeighbourGenerator;
-
 import org.junit.Test;
-
 import data.Problem;
 import data.Solution;
-
 import io.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
@@ -27,6 +23,7 @@ public class LocalSearchTest {
 		testExecute(successorChoice);
 	}
 	
+	
 	/*
 	 * Caso generale con best improvement.
 	 */
@@ -36,8 +33,8 @@ public class LocalSearchTest {
 		testExecute(successorChoice);
 	}
 	
+	
 	private final void testExecute(StrategyName successorChoice) throws Exception {
-		final String methodName = new Exception().getStackTrace()[0].getMethodName(); 
 		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		final String PROBLEM_NAME = "Cap.10.100.5.1.10.1.ctqd";
 		Problem problem = pp.parse(PROBLEM_NAME);

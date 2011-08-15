@@ -2,7 +2,6 @@ package solvingalgorithm.temporizedalgorithm;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import solvingalgorithm.Algorithm;
 
 public abstract class TemporizedAlgorithm extends Algorithm implements Observer {

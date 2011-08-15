@@ -1,0 +1,92 @@
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="data.Supplier" project="rob-svn" 
+    file="/rob-svn/rob/src/data/Supplier.java" binary="false">    
+    <position height="-1" width="-1" x="642" y="291"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="data.Solution" project="rob-svn" 
+    file="/rob-svn/rob/src/data/Solution.java" binary="false">    
+    <position height="-1" width="-1" x="1043" y="-190"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="data.Problem" project="rob-svn" 
+    file="/rob-svn/rob/src/data/Problem.java" binary="false">    
+    <position height="-1" width="-1" x="215" y="-182"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <package id="4" language="java" name="data.comparator" project="rob-svn" file="/rob-svn/rob/src/data/comparator" 
+    binary="false">    
+    <position height="-1" width="-1" x="732" y="-280"/>  
+  </package>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="data.DataPrinter" project="rob-svn" 
+    file="/rob-svn/rob/src/data/DataPrinter.java" binary="false">    
+    <position height="-1" width="-1" x="527" y="-361"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" name="data.IdList" project="rob-svn" 
+    file="/rob-svn/rob/src/data/IdList.java" binary="false">    
+    <position height="-1" width="-1" x="960" y="197"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <dependency>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="3"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="1"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </dependency>  
+  <association>    
+    <end type="SOURCE" nodeId="3" navigable="false">      
+      <attribute name="suppliers"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
+    <display labels="true" multiplicity="false"/>  
+  </association>  
+  <association>    
+    <end type="SOURCE" nodeId="2" navigable="false">      
+      <attribute name="problem"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </dependency>  
+  <classifier-display autosize="true" package="true" initial-value="true" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

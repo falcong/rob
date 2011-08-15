@@ -1,0 +1,24 @@
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
+  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="data.comparator.CurrentPriceComparator" project="rob-svn" 
+    file="/rob-svn/rob/src/data/comparator/CurrentPriceComparator.java" binary="false">    
+    <position height="-1" width="-1" x="161" y="135"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="data.comparator.BoughtQuantityComparator" project="rob-svn" 
+    file="/rob-svn/rob/src/data/comparator/BoughtQuantityComparator.java" binary="false">    
+    <position height="-1" width="-1" x="427" y="118"/>    
+    <display autosize="true" package="true" initial-value="true" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <classifier-display autosize="true" package="true" initial-value="true" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

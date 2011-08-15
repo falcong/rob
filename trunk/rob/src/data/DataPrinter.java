@@ -14,7 +14,7 @@ public class DataPrinter {
      * @param numTab3 - numero tab inizio ogni riga matrice.
      * @param numTab4 - numero tab fra gli elementi di ogni riga della matrice.
      */
-	protected static void printMatrix2D(double matrix[][], String x, String y,
+	protected static void printMatrix(double matrix[][], String x, String y,
 			int i, int j, int numTab1, int numTab2, int numTab3, int numTab4){
 		int numRows		= matrix.length; 
 		int numColumns	= matrix[0].length;

@@ -1,5 +1,5 @@
-<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" 
     name="neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy" project="rob-svn" 
     file="/rob-svn/rob/src/neighbourgenerator/bansupplier/emptyingstrategy/RandomEmptyingStrategy.java" binary="false">    

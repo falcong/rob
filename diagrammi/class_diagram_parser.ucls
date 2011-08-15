@@ -1,5 +1,5 @@
-<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="parser.SolutionParser" project="rob-svn" 
     file="/rob-svn/rob/src/parser/SolutionParser.java" binary="false">    
     <position height="-1" width="-1" x="130" y="224"/>    
@@ -25,11 +25,11 @@
     </display>  
   </class>  
   <generalization>    
-    <end type="SOURCE" nodeId="1"/>    
+    <end type="SOURCE" nodeId="2"/>    
     <end type="TARGET" nodeId="3"/>  
   </generalization>  
   <generalization>    
-    <end type="SOURCE" nodeId="2"/>    
+    <end type="SOURCE" nodeId="1"/>    
     <end type="TARGET" nodeId="3"/>  
   </generalization>  
   <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    

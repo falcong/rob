@@ -1,4 +1,4 @@
-package testingjunit;
+package solvingalgorithm;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -6,7 +6,7 @@ import org.junit.Test;
 import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
-import solvingalgorithm.Cplex;
+import testingjunit.Constants;
 
 public class CplexTest {
 	

@@ -1,4 +1,4 @@
-package testingjunit;
+package solutiongenerator;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -7,7 +7,7 @@ import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
 
-import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
 
 public class RandomSolutionGeneratorTest {
 

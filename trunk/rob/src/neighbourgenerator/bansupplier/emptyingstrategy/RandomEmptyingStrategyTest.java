@@ -1,10 +1,10 @@
-package testingjunit;
+package neighbourgenerator.bansupplier.emptyingstrategy;
 
 import static org.junit.Assert.*;
-import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import org.junit.Test;
 
 import parser.ProblemParser;
+import testingjunit.Constants;
 import data.IdList;
 import data.Problem;
 import data.Solution;

@@ -1,10 +1,10 @@
-package testingjunit;
+package data;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 import parser.ProblemParser;
-import data.Problem;
+import testingjunit.Constants;
 
 
 public class ProblemParserTest {

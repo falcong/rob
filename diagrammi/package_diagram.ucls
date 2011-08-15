@@ -1,5 +1,5 @@
 <class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
-  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
+  realizations="true" associations="false" dependencies="true" nesting-relationships="true">  
   <package id="2" language="java" name="" project="rob-svn" file="/rob-svn/rob/src" binary="false">    
     <position height="-1" width="-1" x="407" y="45"/>  
   </package>  
@@ -15,7 +15,7 @@
     <position height="-1" width="-1" x="85" y="163"/>  
   </package>  
   <package id="6" language="java" name="data" project="rob-svn" file="/rob-svn/rob/src/data" binary="false">    
-    <position height="-1" width="-1" x="306" y="351"/>  
+    <position height="-1" width="-1" x="329" y="352"/>  
   </package>  
   <package id="7" language="java" name="solutiongenerator" project="rob-svn" file="/rob-svn/rob/src/solutiongenerator" 
     binary="false">    
@@ -25,6 +25,10 @@
     <position height="-1" width="-1" x="585" y="187"/>  
   </package>  
   <dependency>    
+    <end type="SOURCE" nodeId="8"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
+  <dependency>    
     <end type="SOURCE" nodeId="6"/>    
     <end type="TARGET" nodeId="3"/>  
   </dependency>  
@@ -33,25 +37,20 @@
     <end type="TARGET" nodeId="3"/>  
   </dependency>  
   <dependency>    
-    <bendpoint x="203" y="270"/>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="5"/>  
+  </dependency>  
+  <dependency>    
     <end type="SOURCE" nodeId="5"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="2"/>    
     <end type="TARGET" nodeId="6"/>  
   </dependency>  
   <dependency>    
     <end type="SOURCE" nodeId="8"/>    
     <end type="TARGET" nodeId="3"/>  
-  </dependency>  
-  <dependency>    
-    <end type="SOURCE" nodeId="2"/>    
-    <end type="TARGET" nodeId="4"/>  
-  </dependency>  
-  <dependency>    
-    <end type="SOURCE" nodeId="2"/>    
-    <end type="TARGET" nodeId="5"/>  
-  </dependency>  
-  <dependency>    
-    <end type="SOURCE" nodeId="4"/>    
-    <end type="TARGET" nodeId="6"/>  
   </dependency>  
   <dependency>    
     <end type="SOURCE" nodeId="2"/>    
@@ -62,16 +61,16 @@
     <end type="TARGET" nodeId="7"/>  
   </dependency>  
   <dependency>    
-    <end type="SOURCE" nodeId="8"/>    
+    <end type="SOURCE" nodeId="4"/>    
     <end type="TARGET" nodeId="6"/>  
   </dependency>  
   <dependency>    
-    <end type="SOURCE" nodeId="7"/>    
-    <end type="TARGET" nodeId="6"/>  
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="7"/>  
   </dependency>  
   <dependency>    
     <end type="SOURCE" nodeId="2"/>    
-    <end type="TARGET" nodeId="6"/>  
+    <end type="TARGET" nodeId="4"/>  
   </dependency>  
   <classifier-display autosize="true" package="true" initial-value="true" signature="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true"/>    

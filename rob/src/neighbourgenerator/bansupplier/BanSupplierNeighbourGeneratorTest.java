@@ -1,8 +1,7 @@
-package testingjunit;
+package neighbourgenerator.bansupplier;
 
 import static org.junit.Assert.*;
 
-import neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import neighbourgenerator.bansupplier.emptyingstrategy.SupplierEmptyingStrategy;
 import neighbourgenerator.bansupplier.selectionstrategy.RandomSelectionStrategy;
@@ -17,6 +16,7 @@ import data.Problem;
 import data.Solution;
 
 import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
 
 public class BanSupplierNeighbourGeneratorTest {
 	final String CLASS_NAME = this.getClass().getName();

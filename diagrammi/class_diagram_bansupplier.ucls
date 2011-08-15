@@ -93,34 +93,39 @@
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <dependency>    
-    <bendpoint x="520" y="439"/>    
-    <end type="SOURCE" nodeId="2"/>    
-    <end type="TARGET" nodeId="8"/>  
-  </dependency>  
+  <generalization>    
+    <bendpoint x="79" y="356"/>    
+    <end type="SOURCE" nodeId="7"/>    
+    <end type="TARGET" nodeId="13"/>  
+  </generalization>  
+  <generalization>    
+    <bendpoint x="79" y="466"/>    
+    <end type="SOURCE" nodeId="8"/>    
+    <end type="TARGET" nodeId="13"/>  
+  </generalization>  
   <generalization>    
     <bendpoint x="1053" y="348"/>    
     <end type="SOURCE" nodeId="9"/>    
     <end type="TARGET" nodeId="12"/>  
   </generalization>  
-  <dependency>    
-    <bendpoint x="678" y="380"/>    
-    <end type="SOURCE" nodeId="2"/>    
-    <end type="TARGET" nodeId="11"/>  
-  </dependency>  
+  <generalization>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="5"/>  
+  </generalization>  
   <generalization>    
     <bendpoint x="1053" y="465"/>    
     <end type="SOURCE" nodeId="11"/>    
     <end type="TARGET" nodeId="12"/>  
   </generalization>  
   <dependency>    
+    <bendpoint x="513" y="407"/>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <dependency>    
     <bendpoint x="670" y="408"/>    
     <end type="SOURCE" nodeId="1"/>    
     <end type="TARGET" nodeId="11"/>  
-  </dependency>  
-  <dependency>    
-    <end type="SOURCE" nodeId="4"/>    
-    <end type="TARGET" nodeId="9"/>  
   </dependency>  
   <association>    
     <bendpoint x="79" y="85"/>    
@@ -131,29 +136,11 @@
     <end type="TARGET" nodeId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association>    
-    <bendpoint x="1052" y="85"/>    
-    <end type="SOURCE" nodeId="5" navigable="false">      
-      <attribute name="selStrategy"/>      
-      <multiplicity minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" nodeId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization>    
-    <bendpoint x="79" y="356"/>    
-    <end type="SOURCE" nodeId="7"/>    
-    <end type="TARGET" nodeId="13"/>  
-  </generalization>  
   <dependency>    
-    <bendpoint x="545" y="452"/>    
-    <end type="SOURCE" nodeId="4"/>    
-    <end type="TARGET" nodeId="8"/>  
+    <bendpoint x="678" y="380"/>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="11"/>  
   </dependency>  
-  <generalization>    
-    <end type="SOURCE" nodeId="4"/>    
-    <end type="TARGET" nodeId="5"/>  
-  </generalization>  
   <generalization>    
     <end type="SOURCE" nodeId="1"/>    
     <end type="TARGET" nodeId="5"/>  
@@ -166,11 +153,24 @@
     <end type="SOURCE" nodeId="2"/>    
     <end type="TARGET" nodeId="5"/>  
   </generalization>  
-  <generalization>    
-    <bendpoint x="79" y="466"/>    
-    <end type="SOURCE" nodeId="8"/>    
-    <end type="TARGET" nodeId="13"/>  
-  </generalization>  
+  <association>    
+    <bendpoint x="1052" y="85"/>    
+    <end type="SOURCE" nodeId="5" navigable="false">      
+      <attribute name="selStrategy"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency>    
+    <bendpoint x="470" y="405"/>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="8"/>  
+  </dependency>  
+  <dependency>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="9"/>  
+  </dependency>  
   <classifier-display autosize="true" package="true" initial-value="true" signature="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true"/>    
     <operations public="true" package="true" protected="true" private="true"/>  

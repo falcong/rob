@@ -1,4 +1,4 @@
-package testingjunit;
+package solvingalgorithm.temporizedalgorithm.localsearch;
 
 import static org.junit.Assert.*;
 import neighbourgenerator.BasicNeighbourGenerator;
@@ -8,8 +8,8 @@ import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
 import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
+import testingjunit.Constants;
 
 public class LocalSearchTest {
 	final String CLASS_NAME = this.getClass().getName();

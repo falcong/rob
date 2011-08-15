@@ -1,20 +1,20 @@
-package testingjunit;
+package solvingalgorithm.temporizedalgorithm.localsearch;
 
 import static org.junit.Assert.*;
 import neighbourgenerator.BasicNeighbourGenerator;
 import org.junit.Test;
 
 import parser.ProblemParser;
-import solutiongenerator.RandomSolutionGenerator;
-import solvingalgorithm.temporizedalgorithm.localsearch.FirstImprovementStrategy;
 import data.Problem;
 import data.Solution;
+import solutiongenerator.RandomSolutionGenerator;
+import testingjunit.Constants;
 
-public class FirstImprovementStrategyTest {
-
+public class BestImprovementStrategyTest {
+	
 	//test di explore()
 	/*
-	 * caso generale
+	 * caso generico
 	 */
 	@Test
 	public void testExplore() throws Exception {
@@ -25,13 +25,13 @@ public class FirstImprovementStrategyTest {
 		RandomSolutionGenerator generator = new RandomSolutionGenerator(problem);
 		Solution sol0 = generator.generate();
 				
-		FirstImprovementStrategy strategy = new FirstImprovementStrategy();
+		BestImprovementStrategy strategy = new BestImprovementStrategy();
 		final int MAX_NEIGHBOUR_NUMBER = 10;
 		final BasicNeighbourGenerator neighbourGenerator = new BasicNeighbourGenerator(problem);
 		Solution sol1 = strategy.explore(sol0, MAX_NEIGHBOUR_NUMBER, neighbourGenerator);
 		
 		//controllo ammissibilità soluzione generata e che la funzione obiettivo non sia peggiorata
 		assertTrue(sol1.isAdmissible());
-		assertTrue(sol1.getObjectiveFunction() <= sol0.getObjectiveFunction());
+		assertTrue(sol1.getObjectiveFunction() <= sol0.getObjectiveFunction());	
 	}
 }

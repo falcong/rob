@@ -1,9 +1,10 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
-import io.ProblemParser;
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
 import org.junit.Test;
+
+import parser.ProblemParser;
 import data.IdList;
 import data.Problem;
 import data.Solution;

@@ -3,9 +3,10 @@ package testingjunit;
 import static org.junit.Assert.*;
 import neighbourgenerator.BasicNeighbourGenerator;
 import org.junit.Test;
+
+import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
-import io.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;

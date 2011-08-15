@@ -1,12 +1,12 @@
 package data;
 
-import io.Io;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import util.Io;
 import util.Utility;
 
 public class Solution {

@@ -1,6 +1,6 @@
 package testingjunit;
 
-import io.Io;
+import util.Io;
 
 
 public class Constants {

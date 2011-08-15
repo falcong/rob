@@ -2,9 +2,10 @@ package testingjunit;
 
 import static org.junit.Assert.*;
 
-import io.Io;
 
 import org.junit.Test;
+
+import util.Io;
 
 
 public class IoTest {

@@ -1,10 +1,11 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
-import io.ProblemParser;
 import java.util.Arrays;
 import neighbourgenerator.bansupplier.selectionstrategy.FullestFirstSelectionStrategy;
 import org.junit.Test;
+
+import parser.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
 import data.IdList;
 import data.Problem;

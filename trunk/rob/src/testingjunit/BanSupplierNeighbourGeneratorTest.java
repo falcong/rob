@@ -1,7 +1,6 @@
 package testingjunit;
 
 import static org.junit.Assert.*;
-import io.ProblemParser;
 
 import neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator;
 import neighbourgenerator.bansupplier.emptyingstrategy.RandomEmptyingStrategy;
@@ -11,6 +10,8 @@ import neighbourgenerator.bansupplier.selectionstrategy.SupplierSelectionStrateg
 
 import org.junit.Before;
 import org.junit.Test;
+
+import parser.ProblemParser;
 
 import data.Problem;
 import data.Solution;

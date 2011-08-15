@@ -1,5 +1,5 @@
-<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" 
     name="neighbourgenerator.bansupplier.selectionstrategy.SupplierSelectionStrategy" project="rob-svn" 
     file="/rob-svn/rob/src/neighbourgenerator/bansupplier/selectionstrategy/SupplierSelectionStrategy.java" 
@@ -30,11 +30,11 @@
     </display>  
   </class>  
   <generalization>    
-    <end type="SOURCE" nodeId="3"/>    
+    <end type="SOURCE" nodeId="2"/>    
     <end type="TARGET" nodeId="1"/>  
   </generalization>  
   <generalization>    
-    <end type="SOURCE" nodeId="2"/>    
+    <end type="SOURCE" nodeId="3"/>    
     <end type="TARGET" nodeId="1"/>  
   </generalization>  
   <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    

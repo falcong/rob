@@ -21,7 +21,6 @@ public class AdvancedNeighbourGeneratorTest {
 	public final void testGenerate1() throws Exception{
 		ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);
 		final String PROBLEM_NAME = "problema1.txt";
-		//TODO vedere 5
 		Problem problem = null;
 		problem = pp.parse(PROBLEM_NAME);
 

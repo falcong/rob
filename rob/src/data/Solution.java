@@ -321,7 +321,7 @@ public class Solution {
 	 * @return {@code true} se almeno 1 prodotto acquistato in cell è spostabile presso un altro fornitore;<br>
 	 * {@code false} altrimenti.
 	 */
-	public boolean cellValueIsDecrementable(int cell, Problem problem, ArrayList<Integer> forbiddenCells){
+	public boolean isCellValueDecrementable(int cell, Problem problem, ArrayList<Integer> forbiddenCells){
 		int product=getProductFromCell(cell);
 		//somma disponibilità
 		int sumResidualAvailability=0;

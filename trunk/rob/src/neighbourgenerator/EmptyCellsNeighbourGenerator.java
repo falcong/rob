@@ -72,7 +72,7 @@ public class EmptyCellsNeighbourGenerator extends NeighbourGenerator implements 
 			
 			if(cellsToEmpty.contains(cell) || cellsNotEmptiable.contains(cell)){
 				//la cella è già stata scelta o scartata precedentemente
-			}else if(isEmpty(s0, cell) || !s0.cellValueIsDecrementable(cell, problem, cellsToEmpty)){
+			}else if(isEmpty(s0, cell) || !s0.isCellValueDecrementable(cell, problem, cellsToEmpty)){
 				//scarto la cella perchè vuota o non svuotabile
 				cellsNotEmptiable.add(cell);
 			}else{

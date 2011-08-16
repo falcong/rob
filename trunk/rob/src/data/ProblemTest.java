@@ -72,7 +72,7 @@ public class ProblemTest {
 		 otherCellsToEmpty.add(1);
 		 otherCellsToEmpty.add(6);
 		 
-		 assertTrue(sol.cellValueIsDecrementable(CELL, problem, otherCellsToEmpty));
+		 assertTrue(sol.isCellValueDecrementable(CELL, problem, otherCellsToEmpty));
 	}
 	
 	/*
@@ -101,7 +101,7 @@ public class ProblemTest {
 		 otherCellsToEmpty.add(1);
 		 otherCellsToEmpty.add(6);
 		 
-		 assertTrue(sol.cellValueIsDecrementable(CELL, problem, otherCellsToEmpty) == false);
+		 assertTrue(sol.isCellValueDecrementable(CELL, problem, otherCellsToEmpty) == false);
 	}
 	
 	/*
@@ -130,7 +130,7 @@ public class ProblemTest {
 		 otherCellsToEmpty.add(1);
 		 otherCellsToEmpty.add(5);
 		 
-		 assertTrue(sol.cellValueIsDecrementable(CELL, problem, otherCellsToEmpty) == false);
+		 assertTrue(sol.isCellValueDecrementable(CELL, problem, otherCellsToEmpty) == false);
 	}
 	
 	//test di getMaxBuyableQuantity()

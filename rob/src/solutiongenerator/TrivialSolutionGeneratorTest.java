@@ -9,7 +9,7 @@ import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
 
-import testingjunit.Constants;
+import util.Constants;
 
 public class TrivialSolutionGeneratorTest {
 	//test di generate()

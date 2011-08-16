@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import parser.ProblemParser;
-import testingjunit.Constants;
+import util.Constants;
 import data.IdList;
 import data.Problem;
 import data.Solution;

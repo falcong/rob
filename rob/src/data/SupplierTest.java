@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import parser.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
-import testingjunit.Constants;
+import util.Constants;
 
 public class SupplierTest {
 	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);

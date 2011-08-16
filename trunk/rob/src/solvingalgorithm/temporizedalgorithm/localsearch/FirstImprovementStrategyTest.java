@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import parser.ProblemParser;
 import solutiongenerator.RandomSolutionGenerator;
-import testingjunit.Constants;
+import util.Constants;
 import data.Problem;
 import data.Solution;
 

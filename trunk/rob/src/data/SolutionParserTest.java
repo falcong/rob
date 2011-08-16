@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import parser.ProblemParser;
 import parser.SolutionParser;
-import testingjunit.Constants;
+import util.Constants;
 
 public class SolutionParserTest {
 	ProblemParser pp=new ProblemParser(Constants.TESTING_INPUT_PATH);

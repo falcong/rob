@@ -6,7 +6,7 @@ import java.util.HashSet;
 import org.junit.Test;
 
 import parser.ProblemParser;
-import testingjunit.Constants;
+import util.Constants;
 
 
 public class ProblemTest {

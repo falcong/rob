@@ -11,7 +11,7 @@ import data.Solution;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
-import testingjunit.Constants;
+import util.Constants;
 
 public class VNSTest {
 	ProblemParser pp = new ProblemParser(Constants.TESTING_INPUT_PATH);

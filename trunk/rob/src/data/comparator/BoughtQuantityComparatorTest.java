@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import parser.ProblemParser;
-import testingjunit.Constants;
+import util.Constants;
 import data.Problem;
 import data.Solution;
 import data.Supplier;

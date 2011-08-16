@@ -7,7 +7,7 @@ import parser.ProblemParser;
 import parser.SolutionParser;
 import solutiongenerator.RandomSolutionGenerator;
 import solutiongenerator.SolutionGenerator;
-import testingjunit.Constants;
+import util.Constants;
 
 public class SolutionTest {
 	ProblemParser pp=new ProblemParser(Constants.TESTING_INPUT_PATH);

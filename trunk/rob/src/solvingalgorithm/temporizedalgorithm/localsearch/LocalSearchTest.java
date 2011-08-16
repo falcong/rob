@@ -9,7 +9,7 @@ import data.Problem;
 import data.Solution;
 import solutiongenerator.RandomSolutionGenerator;
 import solvingalgorithm.temporizedalgorithm.localsearch.LocalSearch.StrategyName;
-import testingjunit.Constants;
+import util.Constants;
 
 public class LocalSearchTest {
 	final String CLASS_NAME = this.getClass().getName();

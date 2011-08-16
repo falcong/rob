@@ -8,7 +8,7 @@ import parser.ProblemParser;
 import data.Problem;
 import data.Solution;
 import solutiongenerator.RandomSolutionGenerator;
-import testingjunit.Constants;
+import util.Constants;
 
 public class BestImprovementStrategyTest {
 	

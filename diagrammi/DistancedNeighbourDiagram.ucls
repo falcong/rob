@@ -1,0 +1,93 @@
+<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" corner="BOTTOM_RIGHT" language="java" name="neighbourgenerator.NeighbourGenerator" project="rob-svn" 
+    file="/rob-svn/rob/src/neighbourgenerator/NeighbourGenerator.java" binary="false">    
+    <position height="83" width="157" x="205" y="39"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <interface id="2" corner="BOTTOM_RIGHT" language="java" name="neighbourgenerator.DistancedNeighbourGenerator" 
+    project="rob-svn" file="/rob-svn/rob/src/neighbourgenerator/DistancedNeighbourGenerator.java" binary="false">    
+    <position height="-1" width="-1" x="563" y="79"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </interface>  
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="neighbourgenerator.AdvancedNeighbourGenerator" 
+    project="rob-svn" file="/rob-svn/rob/src/neighbourgenerator/AdvancedNeighbourGenerator.java" binary="false">    
+    <position height="-1" width="-1" x="116" y="258"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="4" corner="BOTTOM_RIGHT" language="java" name="neighbourgenerator.BasicNeighbourGenerator" 
+    project="rob-svn" file="/rob-svn/rob/src/neighbourgenerator/BasicNeighbourGenerator.java" binary="false">    
+    <position height="-1" width="-1" x="310" y="259"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="5" corner="BOTTOM_RIGHT" language="java" name="neighbourgenerator.EmptyCellsNeighbourGenerator" 
+    project="rob-svn" file="/rob-svn/rob/src/neighbourgenerator/EmptyCellsNeighbourGenerator.java" binary="false">    
+    <position height="-1" width="-1" x="512" y="259"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="6" corner="BOTTOM_RIGHT" language="java" 
+    name="neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator" project="rob-svn" 
+    file="/rob-svn/rob/src/neighbourgenerator/bansupplier/BanSupplierNeighbourGenerator.java" binary="false">    
+    <position height="-1" width="-1" x="731" y="264"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <generalization>    
+    <bendpoint x="731" y="172"/>    
+    <bendpoint x="284" y="172"/>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <generalization>    
+    <bendpoint x="116" y="172"/>    
+    <bendpoint x="284" y="172"/>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <realization>    
+    <end type="SOURCE" nodeId="5"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </realization>  
+  <realization>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </realization>  
+  <realization>    
+    <end type="SOURCE" nodeId="6"/>    
+    <end type="TARGET" nodeId="2"/>  
+  </realization>  
+  <generalization>    
+    <bendpoint x="512" y="172"/>    
+    <bendpoint x="284" y="172"/>    
+    <end type="SOURCE" nodeId="5"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <generalization>    
+    <bendpoint x="310" y="172"/>    
+    <bendpoint x="284" y="172"/>    
+    <end type="SOURCE" nodeId="4"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </generalization>  
+  <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

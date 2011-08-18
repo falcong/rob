@@ -1,5 +1,5 @@
-<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true">  
+<class-diagram version="1.0.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" corner="BOTTOM_RIGHT" language="java" name="neighbourgenerator.NeighbourGenerator" project="rob-svn" 
     file="/rob-svn/rob/src/neighbourgenerator/NeighbourGenerator.java" binary="false">    
     <position height="83" width="157" x="205" y="39"/>    
@@ -43,7 +43,7 @@
   <class id="6" corner="BOTTOM_RIGHT" language="java" 
     name="neighbourgenerator.bansupplier.BanSupplierNeighbourGenerator" project="rob-svn" 
     file="/rob-svn/rob/src/neighbourgenerator/bansupplier/BanSupplierNeighbourGenerator.java" binary="false">    
-    <position height="-1" width="-1" x="731" y="264"/>    
+    <position height="-1" width="-1" x="730" y="259"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false"/>      
       <operations public="false" package="false" protected="false" private="false"/>    

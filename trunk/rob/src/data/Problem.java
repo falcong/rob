@@ -2,10 +2,6 @@ package data;
 
 import java.util.Arrays;
 import java.util.HashSet;
-
-
-
-
 import data.Supplier;
 import data.comparator.BoughtQuantityComparator;
 import data.comparator.CurrentPriceComparator;

@@ -1,9 +1,10 @@
-package data;
+package parser;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import parser.ProblemParser;
+import data.Problem;
+
 import util.Constants;
 
 
